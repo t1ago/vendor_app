@@ -58,16 +58,16 @@ ESSE CSS É PARA TODAS AS PÁGINAS E SÃO GENÉRICOS
     outline: none;
 }
 
+.coluna-fields > input.erro {
+    border-bottom: 1px solid #DB281E;
+}
+
 /*  MENSAGEM */
 .coluna-fields > label.mensagem {
     font-size: 12px;
 }
 .coluna-fields > label.mensagem.erro {
     color: #DB281E;
-}
-
-.coluna-fields > input.erro {
-    border-bottom: 1px solid #DB281E;
 }
 
 /*BOTÕES*/

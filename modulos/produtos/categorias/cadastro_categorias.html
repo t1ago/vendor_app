@@ -28,7 +28,7 @@
 
                 <div class="coluna coluna-fields">
                     <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" required minlength="3" onkeyup="campo_nome_onchange()"
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64" onkeyup="campo_nome_onchange()"
                         onchange="campo_nome_onchange()">
                     <label id="id_mensagem" class="mensagem"></label>
                 </div>
@@ -36,7 +36,7 @@
 
             <div class="linha">
                 <div class="coluna coluna-botoes-cadastro">
-                    <button type="button">Cancelar</button>
+                    <button type="button" onclick="botao_cancelar_click()">Cancelar</button>
                     <button type="button" id="botao_salvar" onclick="botao_salvar_click()">Salvar</button>
                 </div>
             </div>
@@ -44,6 +44,7 @@
     </main>
 </body>
 
+<script src="../../../utilitarios/padrao.js"></script>
 <script src="cadastro_categorias.js"></script>
 
 </html>

@@ -26,6 +26,13 @@ validar_campo_nome = function() {
         return false
     }
 
+    if (campo_nome.validity.tooLong == true) {
+        campo_nome.classList.add('erro')
+        mensagem_nome.innerHTML = 'Informe um texto com até 64 letras'
+        mensagem_nome.classList.add('erro')
+        return false
+    }
+
     return true
 }
 
@@ -33,4 +40,8 @@ botao_salvar_click = function() {
     if (validar_campo_nome() == false) {
         campo_nome.focus();
     }
+}
+
+botao_cancelar_click = function() {
+    navegarPara('../../../index.html');
 }

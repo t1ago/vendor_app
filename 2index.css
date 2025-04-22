@@ -1,0 +1,19 @@
+/* modificação das linhas */
+
+.flex-container
+        [type="text"] {
+        border-bottom: 4px solid #333;
+        padding: 5px 10px;
+        display: flex;
+        margin-top: 10px;
+        border-radius: 20px;
+      }
+
+    /* modificações do botão */
+
+.flex-item {
+    margin-top: 20px;
+    gap: 30px;
+    border-radius: 20px;
+    
+}

@@ -1,1 +1,3 @@
-# vendor_app
+# vendor_app 
+git pull
+

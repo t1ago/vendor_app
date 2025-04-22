@@ -40,8 +40,14 @@ botao_salvar_click = function() {
     if (validar_campo_nome() == false) {
         campo_nome.focus();
     }
+
+    if (window.localStorage.getItem('categorias') == null) {
+        window.localStorage.setItem('categorias', '')
+    }
+
+    
 }
 
 botao_cancelar_click = function() {
-    navegarPara('../../../index.html');
+    navegarPara('lista_categorias.html');
 }

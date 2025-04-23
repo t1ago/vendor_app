@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vendor_App (Estudos)</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao.css">
+    <link rel="stylesheet" type="text/css" href="cadastro_categorias.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main id="cadastro-categorias">
+        <form id="formulario">
+            <div class="linha">
+                <h1 class="coluna">Cadastro de Categorias</h1>
+            </div>
+
+            <div class="linha espaco-cima">
+                <div class="coluna coluna-id coluna-fields">
+                    <label for="id">Id</label>
+                    <input type="text" id="id" name="id">
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64" onkeyup="campo_nome_onchange()"
+                        onchange="campo_nome_onchange()">
+                    <label id="id_mensagem" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-botoes-cadastro">
+                    <button type="button" onclick="botao_cancelar_click()">Cancelar</button>
+                    <button type="button" id="botao_salvar" onclick="botao_salvar_click()">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
+
+<script src="../../../utilitarios/padrao.js"></script>
+<script src="cadastro_categorias.js"></script>
+
+</html>

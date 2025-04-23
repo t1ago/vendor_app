@@ -1,0 +1,96 @@
+/*
+TODAS AS PÁGINAS
+
+ESSE CSS É PARA TODAS AS PÁGINAS E SÃO GENÉRICOS
+*/
+
+/*FONTES*/
+* {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    letter-spacing: 1px;
+}
+
+/*LAYOUT E POSICIONAMENTOS*/
+.linha {
+    width: 100%;
+    display: inline-flex;
+}
+
+.coluna {
+    flex-grow: 1;
+    margin: 10px;
+}
+
+.espaco-cima {
+    margin: 32px 0px 0px 0px;
+}
+
+/*CAMPOS ID*/
+.coluna-id {
+    flex-grow: 0;
+    width: 60px;
+    display: none;
+}
+
+/*CAMPOS PADRÃO*/
+/*  TÍTULO */
+.coluna-fields > label[for] {
+    font-size: 18px;
+}
+
+/*  CAMPO */
+.coluna-fields > input {
+    font-size: 14px;
+    padding: 0px 5px 5px 5px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 1px solid #586EDB;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: calc(100% - 8px);
+}
+
+.coluna-fields > input:focus {
+    border-bottom: 2px solid #599DDC;
+    outline: none;
+}
+
+.coluna-fields > input.erro {
+    border-bottom: 1px solid #DB281E;
+}
+
+/*  MENSAGEM */
+.coluna-fields > label.mensagem {
+    font-size: 12px;
+}
+.coluna-fields > label.mensagem.erro {
+    color: #DB281E;
+}
+
+/*BOTÕES*/
+button {
+    border: 0px;
+    background: #586EDB;
+    padding: 10px;
+    color: white;
+    border-radius: 15px;
+}
+
+.coluna-botoes-cadastro {
+    text-align: right;
+}
+
+.coluna-botoes-cadastro > button:hover {
+    opacity: 80%;
+}
+
+.coluna-botoes-cadastro > button:active {
+    opacity: 100%;
+}
+
+.coluna-botoes-cadastro > button:last-child {
+    background: #599DDC;
+}

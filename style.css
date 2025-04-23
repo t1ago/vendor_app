@@ -14,7 +14,6 @@ h3 {
     background-color: #599DDC;
     padding: 20px;
     width: 600px;
-    margin: auto;
     border-radius: 5px;
     text-align: left;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
@@ -64,9 +63,8 @@ input.caixa {
 }
 
 .botoes-rodape {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin: 20px auto;
-    width: 60%;
+    display: inline-block;
+    text-align: right;
+    margin: 10px auto;
+    width: 600px;
 }

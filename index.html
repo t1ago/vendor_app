@@ -1,35 +1,24 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Vendor_App</title>
+    <title>Vendor_App (Estudos)</title>
 
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="utilitarios/padrao.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <form>
-        <div class="flex-container">
-            <div class="flex-item">
-                <label>Id</label>
-                <input type="text" id="id" name="id">
-            </div>
-
-            <div class="flex-item">
-                <label>Name</label>
-                <input type="text" id="name" name="name">
-            </div>
-        </div>
-
-        <div class="flex-container">
-            <div>
-                <button type="button">Cancelar</button>
-            </div>
-            <div>
-                <button type="button">Salvar</button>
-            </div>
-        </div>
-    </form>
+    <main id="home">
+        <button type="button" onclick="botao_listar_categorias_click()">Categorias</button>
+    </main>
 </body>
+
+<script src="utilitarios/padrao.js"></script>
+<script src="index.js"></script>
 
 </html>

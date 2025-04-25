@@ -88,3 +88,5 @@ exibir_dados = function() {
 
 // Executa
 exibir_dados()
+
+console.log(process)

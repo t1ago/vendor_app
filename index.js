@@ -11,5 +11,3 @@ botao_listar_medidas_click = function() {
 botao_listar_moedas_click = function() {
     navegarPara('./modulos/produtos/moedas/tela_de_moeda.html');
 }
-
-console.log(API_HOST)

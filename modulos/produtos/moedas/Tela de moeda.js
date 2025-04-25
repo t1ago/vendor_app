@@ -6,6 +6,13 @@ botao_salvar_click = function() {
     if (window.localStorage.getItem("moeda") == null){
         window.localStorage.setItem("moeda","[]")
     }
+
+    document.getElementById('cancelar').addEventListener('click', function() {
+        if (confirm('Tem certeza que deseja cancelar?')) {
+          // Se a pessoa confirmar, você pode limpar o formulário ou redirecionar
+          window.location.reload(); // exemplo: recarrega a página
+        }
+      });
     moedas = window.localStorage.getItem("moeda")
     listasmoedas = JSON.parse(moedas)
     moeda ={

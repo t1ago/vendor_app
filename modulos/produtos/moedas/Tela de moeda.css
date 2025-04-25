@@ -1,84 +1,63 @@
-.linha {
-  display:inline-flex;
-  width: 100%;
-
-}
-.coluna{
-  flex-grow: 1;
-  margin: 5px;
-}
-
-/* Reset e corpo da página centralizado */
-body {
-  background-color: gray;
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* area vista */
 .container {
-  background-color: white;
-  width: 600px;
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
-  border-radius: 10px;
-}
-/* Alteração no titulo */
-h1 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(0, 119, 255);
-}
-
-/* Estilo dos campos de entrada */
-#id, #moeda, #nome {
   display: flex;
-  width: 40%;
-  margin: 10px auto;
-  padding: 10px;
-  border-bottom: 2px solid black;
-  outline: none;
+  justify-content: center;
+  flex-direction: row;
 }
 
-.coluna-id {
+#id {
   display: none;
 }
 
-/* deixando em linha a parte escrita */
-input{
-  border: none;
-  background-color: transparent;
-}
-
-
-/* Estilo base para os botões */
-button{
-  margin: 15px;
-  padding: 15px;
-  border: none;
-  border-radius: 5px;
-}
-  
-
-/* Agrupamento de botões */
-.botoes-acao, .botoes-inferiores {
+.linha {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 15px;
+  color: black;
+  margin: 5px;
+  padding: 5px;
 }
-/* alteração da cor dos botões */
-button#salvar{
-  background-color: green;
-  color: white; 
 
+.coluna {
+  flex-grow: 0;
+  margin: 5px;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.campos>input {
+  
+}
+
+h1 {
+  color: blue;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 40px;
+  text-align: center;
+}
+
+.button {
+  padding: 10px;
+  margin: 25px;
+  text-align: center;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  gap: 20px;
+}
+
+button#salvar {
+  background-color: green;
+  border: 8px solid green;
+  width: 100px;
 }
 
 button#cancelar {
   background-color: red;
-  color: white; 
+  border: 8px solid red;
+  width: 100px;
 }
 
+input {
+  border: none;
+  border-bottom: 2px solid black;
+  outline: none;
+  width: 300px;
+}

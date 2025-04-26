@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidades de Medida</title>
+    <link rel="stylesheet" href="tela_medida.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Unidades de Medida</h1>
+
+        <div class="linha">
+            <div class="coluna coluna-id">
+                <label for="id">ID</label>
+
+            </div>
+            <div class="coluna">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" placeholder="Unidade de medida">
+            </div>
+            <div class="coluna-acoes">
+                <button class="emoji" onclick="editartxt()">✏️</button>
+                <button class="emoji" onclick="excluirtxt()">❌</button>
+            </div>
+        </div>
+
+        <div class="botoes-rodape">
+            <button onclick="voltar()">Voltar</button>
+            <button onclick="abrirModal()">Cadastrar</button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal" id="modalCadastro">
+            <div class="modal-content">
+                <span class="fechar" onclick="fecharModal()">❌</span>
+                <h2>Cadastrar Nova Unidade</h2>
+                <label for="novo-id">ID</label>
+                <input type="text" id="novo-id" placeholder="Novo ID">
+                <label for="novo-nome">Nome</label>
+                <input type="text" id="novo-nome" placeholder="Nova unidade de medida">
+                <div class="modal-buttons">
+                    <button class="emoji" onclick="botao_salvar_click()">💾</button>
+                    <button class="emoji" onclick="fecharModal()">❌</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="tela_medida.js">
+
+    </script>
+</body>
+</html>

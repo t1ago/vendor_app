@@ -4,6 +4,8 @@
 <head>
     <title>Vendor_App (Estudos)</title>
 
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
     <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao.css">
     <link rel="stylesheet" type="text/css" href="lista_categorias.css">
 
@@ -19,12 +21,26 @@
             <h1 class="coluna">Lista de Categorias</h1>
         </div>
 
-        <div class="linha">
-            <div class="coluna" style="height: 300px; background: blue;">
+        <div class="linha espaco-cima">
+            <div class="coluna coluna_tabela">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela_dados">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="coluna coluna_sem_tabela" style="display: none;">
+                <h2>Nenhuma categoria localizada</h2>
             </div>
         </div>
 
-        <div class="linha botoes">
+        <div class="linha coluna-botoes-listagem espaco-cima">
             <div class="coluna">
                 <button type="button" onclick="botao_voltar_home_click()">Voltar</button>
             </div>

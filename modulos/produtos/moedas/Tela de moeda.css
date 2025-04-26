@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
+
 }
 
 #id {
@@ -10,21 +11,21 @@
 
 .linha {
   display: flex;
-  color: black;
+  color: rgb(0, 0, 0);
   margin: 5px;
   padding: 5px;
 }
 
 .coluna {
   flex-grow: 0;
-  margin: 5px;
+  margin: 10px;
   display: inline-flex;
   flex-direction: column;
+  padding: 10px;
+
 }
 
-.campos>input {
-  
-}
+.campos>input {}
 
 h1 {
   color: blue;
@@ -41,23 +42,28 @@ h1 {
   justify-content: right;
   align-items: right;
   gap: 20px;
+
 }
 
 button#salvar {
   background-color: green;
   border: 8px solid green;
   width: 100px;
+  border-radius: 15px;
+  color: white;
 }
 
 button#cancelar {
   background-color: red;
   border: 8px solid red;
   width: 100px;
+  border-radius: 15px;
+  color: white;
 }
 
 input {
   border: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid rgba(51, 88, 209, 0.685);
   outline: none;
-  width: 300px;
+  width: 450px;
 }

@@ -11,34 +11,44 @@
         <h1>Unidades de Medida</h1>
 
         <div class="linha">
+            <!-- ID escondido para uso interno -->
             <div class="coluna coluna-id">
                 <label for="id">ID</label>
-
+                <input type="text" id="id" placeholder="ID">
             </div>
+
+            <!-- Nome da unidade -->
             <div class="coluna">
                 <label for="nome">Nome</label>
                 <input type="text" id="nome" placeholder="Unidade de medida">
             </div>
+
+            <!-- Ações de edição e exclusão -->
             <div class="coluna-acoes">
                 <button class="emoji" onclick="editartxt()">✏️</button>
                 <button class="emoji" onclick="excluirtxt()">❌</button>
             </div>
         </div>
 
+        <!-- Botões de voltar e cadastrar -->
         <div class="botoes-rodape">
             <button onclick="voltar()">Voltar</button>
             <button onclick="abrirModal()">Cadastrar</button>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal de cadastro -->
         <div class="modal" id="modalCadastro">
             <div class="modal-content">
                 <span class="fechar" onclick="fecharModal()">❌</span>
+
                 <h2>Cadastrar Nova Unidade</h2>
+
                 <label for="novo-id">ID</label>
-                <input type="text" id="novo-id" placeholder="Novo ID">
+                <!--local que será gerado o ID automaticamente-->
+
                 <label for="novo-nome">Nome</label>
                 <input type="text" id="novo-nome" placeholder="Nova unidade de medida">
+
                 <div class="modal-buttons">
                     <button class="emoji" onclick="botao_salvar_click()">💾</button>
                     <button class="emoji" onclick="fecharModal()">❌</button>
@@ -47,8 +57,6 @@
         </div>
     </div>
 
-    <script src="tela_medida.js">
-
-    </script>
+    <script src="tela_medida.js"></script>
 </body>
 </html>

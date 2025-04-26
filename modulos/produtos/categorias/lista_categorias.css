@@ -2,10 +2,8 @@
     padding: 32px 256px 0px 256px;
 }
 
-.botoes > .coluna:last-child {
-    text-align: right;
-}
-
-.botoes > .coluna:last-child > button {
-    background: #599DDC;
+@media screen and (max-width: 1150px) {
+    #listar-categorias {
+        padding: 32px 32px 0px 32px;
+    }
 }

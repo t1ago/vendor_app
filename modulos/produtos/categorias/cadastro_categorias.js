@@ -51,75 +51,75 @@ exibir_mensagem_operacao = function(visivel, mensagem, classe_css) {
     grupo_mensagem.style.display = visivel ? 'block' : 'none'
 }
 
-criar_categoria = function() {
+criar_categoria = async function() {
     exibir_mensagem_operacao(true, 'Criando categoria', null)
 
-    if (window.localStorage.getItem('categorias') == null) {
-        window.localStorage.setItem('categorias', '[]')
-    }
-
-    lista_categorias = JSON.parse(window.localStorage.getItem('categorias'))
     categoria = {
         'id': null,
         'nome': campo_nome.value
     }
 
-    if (lista_categorias.length == 0) {
-        categoria.id = 1
-    } else {
-        lista_ordenada_categorias = lista_categorias.sort(function(a, b) { return a - b}).reverse()
-        categoria.id = lista_ordenada_categorias[0].id
-        categoria.id = categoria.id + 1
-    }
+    requisicao = await fetch("http://localhost:3000/categorias", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(categoria)
+    })
 
-    lista_categorias.push(categoria);
-    window.localStorage.setItem('categorias', JSON.stringify(lista_categorias))
-    campo_id.value = categoria.id
-
-    exibir_mensagem_operacao(true, 'Categoria criada com Sucesso', 'sucesso')
-    setInterval(function() {
-        botao_cancelar_click()
-    }, 2000)
-}
-
-alterar_categoria = function() {
-    exibir_mensagem_operacao(true, 'Alterando categoria', null)
-
-    if (window.localStorage.getItem('categorias') == null) {
-        window.localStorage.setItem('categorias', '[]')
-    }
-
-    lista_categorias = JSON.parse(window.localStorage.getItem('categorias'))
-
-    if (lista_categorias.length == 0) {
-        criar_categoria()
-    } else {
-        
-        indice = lista_categorias.findIndex(function(valor, array_indice, array) {
-            return valor.id == campo_id.value
-        })
-        categoria = lista_categorias[indice]
-        categoria.nome = campo_nome.value
-        lista_categorias[indice] = categoria
-
-        window.localStorage.setItem('categorias', JSON.stringify(lista_categorias))
-
-        exibir_mensagem_operacao(true, 'Categoria alterada com Sucesso', 'sucesso')
+    if (requisicao.ok == true) {
+        exibir_mensagem_operacao(true, 'Categoria criada com Sucesso', 'sucesso')
         setInterval(function() {
             botao_cancelar_click()
+        }, 2000)
+    } else {
+        exibir_mensagem_operacao(true, 'Falha ao salvar categoria', 'erro')
+        setInterval(function() {
+            exibir_mensagem_operacao(false, '', null)
         }, 2000)
     }
 }
 
-botao_salvar_click = function() {
+alterar_categoria = async function() {
+    exibir_mensagem_operacao(true, 'Alterando categoria', null)
+
+    categoria = {
+        'id': campo_id.value,
+        'nome': campo_nome.value
+    }
+
+    requisicao = await fetch(`http://localhost:3000/categorias/${categoria.id}`, {
+        method: "PUT",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(categoria)
+    })
+
+    if (requisicao.ok == true) {
+        exibir_mensagem_operacao(true, 'Categoria alterada com Sucesso', 'sucesso')
+        setInterval(function() {
+            botao_cancelar_click()
+        }, 2000)
+    } else {
+        exibir_mensagem_operacao(true, 'Falha ao alterar categoria', 'erro')
+        setInterval(function() {
+            exibir_mensagem_operacao(false, '', null)
+        }, 2000)
+    }
+}
+
+botao_salvar_click = async function() {
     if (validar_campo_nome() == false) {
         campo_nome.focus();
     }
 
     if (campo_id.value.trim() == '') {
-        criar_categoria()
+        await criar_categoria()
     } else {
-        alterar_categoria()
+        await alterar_categoria()
     }
 }
 
@@ -127,24 +127,32 @@ botao_cancelar_click = function() {
     navegarPara('lista_categorias.html');
 }
 
-exibir_dados = function() {
+exibir_dados = async function() {
     url_parametros = window.location.search
 
     if (url_parametros != '') {
         parametros = new URLSearchParams(url_parametros)
         parametro_id = parametros.get('id')
 
-        lista_categorias = JSON.parse(window.localStorage.getItem('categorias'))
-
-        categoria = lista_categorias.find(function(valor, array_indice, array) {
-            return valor.id == parametro_id
+        requisicao = await fetch(`http://localhost:3000/categorias/${parametro_id}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
         })
-
-        campo_id.value = categoria.id
-        campo_nome.value = categoria.nome
-    }
-
     
+        if (requisicao.ok == true) {
+            resposta = await requisicao.json()
+            campo_id.value = resposta.data[0].id
+            campo_nome.value = resposta.data[0].nome
+        } else {
+            exibir_mensagem_operacao(true, 'Falha ao recuperar categoria', 'erro')
+            setInterval(function() {
+                botao_cancelar_click()
+            }, 2000)
+        }
+    }
 }
 
 // Executa

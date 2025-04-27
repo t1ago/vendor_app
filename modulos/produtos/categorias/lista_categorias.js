@@ -2,15 +2,10 @@ tabela_dados = document.getElementById('tabela_dados')
 coluna_tabela = document.getElementsByClassName('coluna_tabela')[0]
 coluna_sem_tabela = document.getElementsByClassName('coluna_sem_tabela')[0]
 
-botao_excluir_click = function(id) {
-    lista_categorias = JSON.parse(window.localStorage.getItem('categorias'))
-
-    indice = lista_categorias.findIndex(function(valor, array_indice, array) {
-        return valor.id == id
+botao_excluir_click = async function(id) {
+    return await fetch(`http://localhost:3000/categorias/${id}`, {
+        method: "DELETE",
     })
-
-    lista_categorias.splice(indice, 1)
-    window.localStorage.setItem('categorias', JSON.stringify(lista_categorias))
 }
 
 botao_editar_click = function(id) {
@@ -25,21 +20,23 @@ botao_voltar_home_click = function() {
     navegarPara('../../../index.html');
 }
 
-buscar_dados = function() {
-    categorias = window.localStorage.getItem('categorias')
+buscar_dados = async function() {
+    requisicao = await fetch("http://localhost:3000/categorias", {
+        method: "GET",
+    })
 
-    if (categorias != null) {
-        lista_categorias = JSON.parse(categorias)
+    if (requisicao.ok == true) {
+        resposta = await requisicao.json()
 
-        return lista_categorias.length > 0 ? lista_categorias : null 
+        return resposta.data.length > 0 ? resposta.data : null 
     } else {
         return null
     }
 }
 
-exibir_dados = function() {
+exibir_dados = async function() {
     tabela_dados.innerHTML = ''
-    lista_categorias = buscar_dados()
+    lista_categorias = await buscar_dados()
 
     if (lista_categorias != null) {
         coluna_tabela.style.display = 'block'
@@ -67,8 +64,8 @@ exibir_dados = function() {
                 botao_editar_click(item.id)
             }
 
-            botao_excluir.onclick = function() {
-                botao_excluir_click(item.id)
+            botao_excluir.onclick = async function() {
+                await botao_excluir_click(item.id)
                 exibir_dados()
             }
 
@@ -88,5 +85,3 @@ exibir_dados = function() {
 
 // Executa
 exibir_dados()
-
-console.log(process)

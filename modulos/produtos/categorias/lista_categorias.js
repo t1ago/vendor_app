@@ -1,6 +1,7 @@
 tabela_dados = document.getElementById('tabela_dados')
-coluna_tabela = document.getElementsByClassName('coluna_tabela')[0]
-coluna_sem_tabela = document.getElementsByClassName('coluna_sem_tabela')[0]
+tabela = document.getElementById('tabela')
+mensagem = document.getElementById('mensagem')
+imagem = document.getElementById('imagem')
 
 botao_excluir_click = async function(id) {
     return await fetch(`http://localhost:3000/categorias/${id}`, {
@@ -34,14 +35,40 @@ buscar_dados = async function() {
     }
 }
 
+exibir_situacao_operacao = function(operacao) {
+    tabela.setAttribute('class', '')
+    mensagem.setAttribute('class', '')
+    imagem.setAttribute('class', '')
+
+    switch (operacao) {
+        case 'BUSCANDO':
+            tabela.classList.add('esconder')
+            mensagem.classList.add('esconder')
+            imagem.classList.add('exibir')
+            break;
+        case 'TEM_DADOS':
+            tabela.classList.add('exibir')
+            mensagem.classList.add('esconder')
+            imagem.classList.add('esconder')
+            break;
+
+        case 'SEM_DADOS':
+            tabela.classList.add('esconder')
+            mensagem.classList.add('exibir')
+            imagem.classList.add('esconder')
+            break;
+        default:
+            break;
+    }
+}
+
 exibir_dados = async function() {
+    exibir_situacao_operacao('BUSCANDO')
+
     tabela_dados.innerHTML = ''
     lista_categorias = await buscar_dados()
 
     if (lista_categorias != null) {
-        coluna_tabela.style.display = 'block'
-        coluna_sem_tabela.style.display = 'none'
-
         lista_categorias.forEach(item => {
             linha = document.createElement('tr')
 
@@ -65,6 +92,7 @@ exibir_dados = async function() {
             }
 
             botao_excluir.onclick = async function() {
+                exibir_situacao_operacao('BUSCANDO')
                 await botao_excluir_click(item.id)
                 exibir_dados()
             }
@@ -77,9 +105,10 @@ exibir_dados = async function() {
 
             tabela_dados.appendChild(linha)
         });
+
+        exibir_situacao_operacao('TEM_DADOS')
     } else {
-        coluna_tabela.style.display = 'none'
-        coluna_sem_tabela.style.display = 'block'
+        exibir_situacao_operacao('SEM_DADOS')
     }
 }
 

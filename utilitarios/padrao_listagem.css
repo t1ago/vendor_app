@@ -67,6 +67,13 @@
     }
 }
 
+/*TITULO*/
+@media screen and (max-width: 950px) {
+    .linha>h1 {
+        text-align: center;
+    }
+}
+
 
 /*BOTÕES*/
 .coluna-botoes-listagem>.coluna:last-child {

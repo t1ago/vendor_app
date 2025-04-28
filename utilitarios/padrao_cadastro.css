@@ -59,6 +59,11 @@
     background: #599DDC;
 }
 
+.coluna-fields>input[disabled] {
+    border: 0px;
+    background: #f6f6f6;
+}
+
 /*OPERACÃO*/
 .coluna-operacao>img {
     display: inline;

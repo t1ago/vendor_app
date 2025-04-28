@@ -4,7 +4,7 @@ mensagem = document.getElementById('mensagem')
 imagem = document.getElementById('imagem')
 
 botao_excluir_click = async function(id) {
-    return await fetch(`http://localhost:3000/categorias/${id}`, {
+    return await fetch(`${API_HOST}/categorias/${id}`, {
         method: "DELETE",
     })
 }
@@ -22,7 +22,7 @@ botao_voltar_home_click = function() {
 }
 
 buscar_dados = async function() {
-    requisicao = await fetch("http://localhost:3000/categorias", {
+    requisicao = await fetch(`${API_HOST}/categorias`, {
         method: "GET",
     })
 

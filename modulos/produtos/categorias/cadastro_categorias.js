@@ -1,4 +1,3 @@
-
 campo_nome = document.getElementById('name')
 campo_id = document.getElementById('id')
 mensagem_nome = document.getElementById('id_mensagem')
@@ -89,7 +88,7 @@ criar_categoria = async function() {
         'nome': campo_nome.value
     }
 
-    requisicao = await fetch("http://localhost:3000/categorias", {
+    requisicao = await fetch(`${API_HOST}/categorias`, {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -119,7 +118,7 @@ alterar_categoria = async function() {
         'nome': campo_nome.value
     }
 
-    requisicao = await fetch(`http://localhost:3000/categorias/${categoria.id}`, {
+    requisicao = await fetch(`${API_HOST}/categorias/${categoria.id}`, {
         method: "PUT",
         headers: {
             'Accept': 'application/json',
@@ -167,7 +166,7 @@ exibir_dados = async function() {
         parametros = new URLSearchParams(url_parametros)
         parametro_id = parametros.get('id')
 
-        requisicao = await fetch(`http://localhost:3000/categorias/${parametro_id}`, {
+        requisicao = await fetch(`${API_HOST}/categorias/${parametro_id}`, {
             method: "GET",
             headers: {
                 'Accept': 'application/json',

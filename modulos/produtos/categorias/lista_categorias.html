@@ -7,6 +7,7 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
     <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao.css">
+    <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao_listagem.css">
     <link rel="stylesheet" type="text/css" href="lista_categorias.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,8 +23,8 @@
         </div>
 
         <div class="linha espaco-cima">
-            <div class="coluna coluna_tabela">
-                <table>
+            <div class="coluna">
+                <table id="tabela" class="esconder">
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -33,24 +34,29 @@
                     <tbody id="tabela_dados">
                     </tbody>
                 </table>
-            </div>
-
-            <div class="coluna coluna_sem_tabela" style="display: none;">
-                <h2>Nenhuma categoria localizada</h2>
+                <h2 id="mensagem" class="esconder">Nenhuma categoria localizada</h2>
+                <img id="imagem" class="esconder" src="../../../imagens/loading.png">
             </div>
         </div>
 
         <div class="linha coluna-botoes-listagem espaco-cima">
             <div class="coluna">
-                <button type="button" onclick="botao_voltar_home_click()">Voltar</button>
+                <button type="button" onclick="botao_voltar_home_click()">
+                    <img src="../../../imagens/voltar.png">
+                    <span>Voltar</span>
+                </button>
             </div>
             <div class="coluna">
-                <button type="button" onclick="botao_castrar_categorias_click()">Nova Categoria</button>
+                <button type="button" onclick="botao_castrar_categorias_click()">
+                    <img src="../../../imagens/novo.png">
+                    <span>Nova Categoria</span>
+                </button>
             </div>
         </div>
     </main>
 </body>
 
+<script src="../../../config.js"></script>
 <script src="../../../utilitarios/padrao.js"></script>
 <script src="lista_categorias.js"></script>
 

@@ -27,50 +27,6 @@ ESSE CSS É PARA TODAS AS PÁGINAS E SÃO GENÉRICOS
     margin: 32px 0px 0px 0px;
 }
 
-/*CADASTRO*/
-/*CAMPOS ID*/
-.coluna-id {
-    flex-grow: 0;
-    width: 60px;
-    display: none;
-}
-
-/*CAMPOS PADRÃO*/
-/*  TÍTULO */
-.coluna-fields > label[for] {
-    font-size: 18px;
-}
-
-/*  CAMPO */
-.coluna-fields > input {
-    font-size: 14px;
-    padding: 0px 5px 5px 5px;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: 1px solid #586EDB;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: calc(100% - 8px);
-}
-
-.coluna-fields > input:focus {
-    border-bottom: 2px solid #599DDC;
-    outline: none;
-}
-
-.coluna-fields > input.erro {
-    border-bottom: 1px solid #DB281E;
-}
-
-/*  MENSAGEM */
-.coluna-fields > label.mensagem {
-    font-size: 12px;
-}
-.coluna-fields > label.mensagem.erro {
-    color: #DB281E;
-}
-
 /*BOTÕES*/
 button {
     border: 0px;
@@ -80,132 +36,19 @@ button {
     border-radius: 15px;
 }
 
-.coluna-botoes-cadastro {
-    text-align: right;
+button > * {
+    vertical-align: middle;
 }
 
-.coluna-botoes-cadastro > button:hover {
-    opacity: 80%;
+/*EXIBICÃO*/
+.esconder {
+    display: none;
 }
 
-.coluna-botoes-cadastro > button:active {
-    opacity: 100%;
+table.exibir {
+    display: table;
 }
 
-.coluna-botoes-cadastro > button:last-child {
-    background: #599DDC;
-}
-
-/*OPERACÃO*/
-.coluna-operacao {
-    text-align: right;
-}
-
-.coluna-operacao > label {
-    color: #599DDC;
-}
-
-.coluna-operacao > label.sucesso {
-    color: #2AA539;
-}
-
-.coluna-operacao > label.erro {
-    color: #FE0707;
-}
-
-@media screen and (max-width: 950px) {
-    .linha > h1 {
-        text-align: center;
-    }
-}
-
-@media screen and (max-width: 650px) {
-    .coluna-botoes-cadastro > button {
-        width: 100%;
-    }
-
-    .coluna-botoes-cadastro > button:last-child {
-        margin-top: 10px;
-        background: #599DDC;
-    }
-}
-
-/*LISTAGENS*/
-/*TABELA*/
-.coluna > table {
-    width: 100%;
-}
-
-.coluna > table > thead > tr > th {
-    padding: 0;
-    font-size: 18px;
-    border-bottom: 1px solid #586EDB;
-    text-align: left;
-    padding-bottom: 10px;
-}
-
-.coluna > table > thead > tr > th:last-child {
-    text-align: center;
-}
-
-.coluna > table > tbody > tr > td {
-    padding: 5px 5px 5px 5px;
-    text-align: left;
-}
-
-.coluna > table > tbody > tr > td:last-child {
-    text-align: center;
-}
-
-.coluna > table > tbody > tr:hover {
-    background: #599ddc18;
-}
-
-.coluna > table > tbody > tr > td > span {
-    font-size: 16px;
-    padding: 0;
-    text-align: left;
-}
-
-.coluna > table > tbody > tr > td > button {
-    width: 24px;
-    height: 24px;
-    padding: 0px;
-    background: none;
-    margin-right: 10px;
-}
-
-.coluna > table > tbody > tr > td > button > img:hover {
-    cursor: pointer;
-}
-
-.coluna_sem_tabela {
-    text-align: center;
-}
-
-
-/*BOTÕES*/
-.coluna-botoes-listagem > .coluna:last-child {
-    text-align: right;
-}
-
-.coluna-botoes-listagem > .coluna:last-child > button {
-    background: #599DDC;
-}
-
-@media screen and (max-width: 650px) {
-    .coluna-botoes-listagem {
-        flex-wrap: wrap
-    }
-
-    .coluna-botoes-listagem > .coluna {
-        width: 100%;
-    }
-    .coluna-botoes-listagem > .coluna > button {
-        width: 100%;
-    }
-
-    .coluna-botoes-listagem > .coluna:last-child {
-        margin-top: 0px;
-    }
+.exibir {
+    display: block;
 }

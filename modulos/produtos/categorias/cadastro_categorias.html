@@ -7,6 +7,7 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
     <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao.css">
+    <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao_cadastro.css">
     <link rel="stylesheet" type="text/css" href="cadastro_categorias.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,19 +38,27 @@
             </div>
 
             <div class="linha">
-                <div class="coluna coluna-botoes-cadastro">
-                    <button type="button" onclick="botao_cancelar_click()">Cancelar</button>
-                    <button type="button" id="botao_salvar" onclick="botao_salvar_click()">Salvar</button>
+                <div class="coluna coluna-botoes-cadastro esconder">
+                    <button type="button" onclick="botao_cancelar_click()">
+                        <img src="../../../imagens/cancelar.png">
+                        <span>Cancelar</span>
+                    </button>
+                    <button type="button" id="botao_salvar" onclick="botao_salvar_click()">
+                        <img src="../../../imagens/salvar.png">
+                        <span>Salvar</span>
+                    </button>
                 </div>
 
-                <div class="coluna coluna-operacao" style="display: none;">
-                    <label id="operacao">teste</label>
+                <div class="coluna coluna-operacao esconder">
+                    <img id="imagem" class="esconder" src="../../../imagens/loading.png">
+                    <label id="operacao"></label>
                 </div>
             </div>
         </form>
     </main>
 </body>
 
+<script src="../../../config.js"></script>
 <script src="../../../utilitarios/padrao.js"></script>
 <script src="cadastro_categorias.js"></script>
 

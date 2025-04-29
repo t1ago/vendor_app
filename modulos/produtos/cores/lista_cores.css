@@ -1,0 +1,20 @@
+#listar-cores {
+    padding: 32px 256px 0px 256px;
+}
+
+.coluna>table>thead>tr>th {
+    width: 10px;
+}
+
+.coluna>table>tbody>tr>td>div {
+    width: 12px;
+    height: 12px;
+    padding: 5px;
+    text-align: center;
+}
+
+@media screen and (max-width: 1150px) {
+    #listar-cores {
+        padding: 32px 32px 0px 32px;
+    }
+}

@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao.css">
     <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao_cadastro.css">
-    <link rel="stylesheet" type="text/css" href="cadastro_categorias.css">
+    <link rel="stylesheet" type="text/css" href="cadastro_cores.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,10 +17,10 @@
 </head>
 
 <body>
-    <main id="cadastro-categorias">
+    <main id="cadastro-cores">
         <form id="formulario">
             <div class="linha">
-                <h1 class="coluna">Cadastro de Categorias</h1>
+                <h1 class="coluna">Cadastro de cores</h1>
             </div>
 
             <div class="linha espaco-cima">
@@ -30,10 +30,14 @@
                 </div>
 
                 <div class="coluna coluna-fields">
-                    <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" required minlength="3" maxlength="64" onkeyup="campo_nome_onchange()"
-                        onchange="campo_nome_onchange()">
+                    <label for="cor">Cor</label>
+                    <input type="color" id="cor" name="cor" required onchange="campo_cor_onchange()">
                     <label id="id_mensagem" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="hexadecimal">Hexadecimal</label>
+                    <input type="text" id="hexadecimal" name="hexadecimal" required disabled>
                 </div>
             </div>
 

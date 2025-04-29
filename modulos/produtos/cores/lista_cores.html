@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao.css">
     <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao_listagem.css">
-    <link rel="stylesheet" type="text/css" href="lista_categorias.css">
+    <link rel="stylesheet" type="text/css" href="lista_cores.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +17,9 @@
 </head>
 
 <body>
-    <main id="listar-categorias">
+    <main id="listar-cores">
         <div class="linha">
-            <h1 class="coluna">Lista de Categorias</h1>
+            <h1 class="coluna">Lista de Cores</h1>
         </div>
 
         <div class="linha espaco-cima">
@@ -27,14 +27,15 @@
                 <table id="tabela" class="esconder">
                     <thead>
                         <tr>
-                            <th>Nome</th>
+                            <th>Cor</th>
+                            <th>Hexadecimal</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody id="tabela_dados">
                     </tbody>
                 </table>
-                <h2 id="mensagem" class="esconder">Nenhuma categoria localizada</h2>
+                <h2 id="mensagem" class="esconder">Nenhuma cor localizada</h2>
                 <img id="imagem" class="esconder" src="../../../imagens/loading.png">
             </div>
         </div>
@@ -49,7 +50,7 @@
             <div class="coluna">
                 <button type="button" onclick="botao_castrar_click()">
                     <img src="../../../imagens/novo.png">
-                    <span>Nova Categoria</span>
+                    <span>Nova Cor</span>
                 </button>
             </div>
         </div>
@@ -58,6 +59,6 @@
 
 <script src="../../../config.js"></script>
 <script src="../../../utilitarios/padrao.js"></script>
-<script src="lista_categorias.js"></script>
+<script src="lista_cores.js"></script>
 
 </html>

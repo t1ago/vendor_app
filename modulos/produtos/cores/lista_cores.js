@@ -4,17 +4,17 @@ mensagem = document.getElementById('mensagem')
 imagem = document.getElementById('imagem')
 
 botao_excluir_click = async function(id) {
-    return await fetch(`${API_HOST}/categorias/${id}`, {
+    return await fetch(`${API_HOST}/cores/${id}`, {
         method: "DELETE",
     })
 }
 
 botao_editar_click = function(id) {
-    navegarPara(`cadastro_categorias.html?id=${id}`);
+    navegarPara(`cadastro_cores.html?id=${id}`);
 }
 
 botao_castrar_click = function() {
-    navegarPara('cadastro_categorias.html');
+    navegarPara('cadastro_cores.html');
 }
 
 botao_voltar_home_click = function() {
@@ -22,7 +22,7 @@ botao_voltar_home_click = function() {
 }
 
 buscar_dados = async function() {
-    requisicao = await fetch(`${API_HOST}/categorias`, {
+    requisicao = await fetch(`${API_HOST}/cores`, {
         method: "GET",
     })
 
@@ -66,18 +66,26 @@ exibir_dados = async function() {
     exibir_situacao_operacao('BUSCANDO')
 
     tabela_dados.innerHTML = ''
-    lista_categorias = await buscar_dados()
+    lista_cores = await buscar_dados()
 
-    if (lista_categorias != null) {
-        lista_categorias.forEach(item => {
+    if (lista_cores != null) {
+        lista_cores.forEach(item => {
             linha = document.createElement('tr')
 
-            coluna_nome = document.createElement('td')
-            span_nome = document.createElement('span')
-            span_nome.innerHTML = item.nome
+            coluna_cor = document.createElement('td')
 
-            coluna_nome.appendChild(span_nome)
-            linha.appendChild(coluna_nome)
+            div_cor = document.createElement('div')
+            div_cor.style.background = item.hexadecimal
+            
+            coluna_cor.appendChild(div_cor)
+            linha.appendChild(coluna_cor)
+
+            coluna_hexadecimal = document.createElement('td')
+            span_hexadecimal = document.createElement('span')
+            span_hexadecimal.innerHTML = item.hexadecimal
+
+            coluna_hexadecimal.appendChild(span_hexadecimal)
+            linha.appendChild(coluna_hexadecimal)
 
             coluna_acoes = document.createElement('td')
             botao_editar = document.createElement('button')

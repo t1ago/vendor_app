@@ -1,0 +1,122 @@
+/*CADASTRO*/
+/*CAMPOS ID*/
+.coluna-id {
+    flex-grow: 0;
+    width: 60px;
+    display: none;
+}
+
+/*CAMPOS PADRÃO*/
+/*  TÍTULO */
+.coluna-fields>label[for] {
+    font-size: 18px;
+}
+
+/*  CAMPO */
+.coluna-fields>input {
+    font-size: 14px;
+    padding: 0px 5px 5px 5px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 1px solid #586EDB;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: calc(100% - 8px);
+}
+
+.coluna-fields>input:focus {
+    border-bottom: 2px solid #599DDC;
+    outline: none;
+}
+
+.coluna-fields>input.erro {
+    border-bottom: 1px solid #DB281E;
+}
+
+/*  MENSAGEM */
+.coluna-fields>label.mensagem {
+    font-size: 12px;
+}
+
+.coluna-fields>label.mensagem.erro {
+    color: #DB281E;
+}
+
+.coluna-botoes-cadastro {
+    text-align: right;
+}
+
+.coluna-botoes-cadastro>button:hover {
+    opacity: 80%;
+}
+
+.coluna-botoes-cadastro>button:active {
+    opacity: 100%;
+}
+
+.coluna-botoes-cadastro>button:last-child {
+    background: #599DDC;
+}
+
+.coluna-fields>input[disabled] {
+    border: 0px;
+    background: #f6f6f6;
+}
+
+/*OPERACÃO*/
+.coluna-operacao>img {
+    display: inline;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    animation: rotacao 5s linear infinite;
+}
+
+@keyframes rotacao {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.coluna-operacao>img.esconder {
+    display: none;
+}
+
+.coluna-operacao {
+    text-align: right;
+}
+
+.coluna-operacao>label {
+    color: #599DDC;
+    vertical-align: middle;
+}
+
+.coluna-operacao.sucesso>label {
+    color: #2AA539;
+}
+
+.coluna-operacao.erro>label {
+    color: #FE0707;
+}
+
+@media screen and (max-width: 950px) {
+    .linha>h1 {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .coluna-botoes-cadastro>button {
+        width: 100%;
+    }
+
+    .coluna-botoes-cadastro>button:last-child {
+        margin-top: 10px;
+        background: #599DDC;
+    }
+}

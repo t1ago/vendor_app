@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
-
+  max-width: 100%;
 }
 
-#id {
+.linha_input_id {
   display: none;
 }
 
@@ -34,15 +34,13 @@ h1 {
   text-align: center;
 }
 
-.button {
+.button { 
   padding: 10px;
   margin: 25px;
-  text-align: center;
   display: flex;
   justify-content: right;
   align-items: right;
-  gap: 20px;
-
+  gap: 30px;
 }
 
 button#salvar {
@@ -53,6 +51,12 @@ button#salvar {
   color: white;
 }
 
+button#salvar:hover {
+  background-color: #4CAF50; /* Green */
+  border: 8px solid #4CAF50;
+  color: white;
+}
+
 button#cancelar {
   background-color: red;
   border: 8px solid red;
@@ -60,6 +64,13 @@ button#cancelar {
   border-radius: 15px;
   color: white;
 }
+
+button#cancelar:hover {
+  background-color: red;
+  border: 8px solid #f44336;
+  color: white;
+}
+
 
 input {
   border: none;

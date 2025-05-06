@@ -13,18 +13,17 @@
             <!--Título e incrementação do ID-->
             <h1>Cadastro de moeda</h1>
             <div class="container">
-                <div class="linha"></div>
-                <div class="coluna campos"></div>
-                <label for="id"></label>
-                <input type="text" id="id" name="id">
-
+                <div class="linha_input_id">
+                <label for="id">ID</label>
+                <input type="text" id="id" style="display: none;" value="1">
+            </div>
 
                 <div>
                     <!--Adição da moeda-->
                     <div class="linha"></div>
                     <div class="coluna campos"></div>
                     <label for="moeda">Moeda</label>
-                    <input type="text" id="moeda" name="moeda">
+                    <input type="text" id="moeda" name="moeda" value="">
                 </div>
 
                 <div>
@@ -32,7 +31,7 @@
                     <div class="linha"></div>
                     <div class="coluna campos"></div>
                     <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome">
+                    <input type="text" id="nome" name="nome" value="">
 
                 </div>
             </div>

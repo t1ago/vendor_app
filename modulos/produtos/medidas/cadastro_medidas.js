@@ -8,33 +8,12 @@ function limpar_campo () {
 }
 
 function voltar() {
-    window.location.href = "../tela_de_medidas/lista_de_medidas.html"
+    window.location.href = "../medidas/lista_medidas.html"
     
-}
-
-function alterar () {
-    let medidas = window.localStorage.getItem("medidas")
-    let listademedidas = JSON.parse(medidas);
-
-    indice = listademedidas.findIndex (
-        function (value, index, obj) {
-            return value.id == campo_novo_id.value
-        }
-    ) 
-
-    listademedidas [indice].nome = campo_novo_nome.value
-
-    medidas = JSON.stringify(listademedidas);
-    window.localStorage.setItem("medidas", medidas);
-
-    alert("Medida alterada com sucesso!");
-    
-    limpar_campo();
-
 }
 
 function incluir() {
-    if (window.localStorage.getItem("medidas") == null) {
+    if (window.localStorage.getItem("medidas") === null) {
         window.localStorage.setItem("medidas", "[]");
     }
 
@@ -73,11 +52,5 @@ function incluir() {
 }
 
 function salvar() {
-
-    if (campo_novo_id.value == '') {
-        incluir()
-    } else {
-        alterar ()
-    }
-
+    incluir();
 }

@@ -85,3 +85,26 @@ button {
 button:hover {
     background-color: #586EDB;
 }
+
+#tabela_medidas {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+#tabela_medidas th,
+#tabela_medidas td {
+    padding: 8px 12px;
+    text-align: left;
+}
+
+#tabela_medidas th:nth-child(1),
+#tabela_medidas td:nth-child(1) {
+    width: 100%; /* Nome ocupa o espaço disponível */
+}
+
+#tabela_medidas th:nth-child(2),
+#tabela_medidas td:nth-child(2) {
+    white-space: nowrap; /* Impede quebra nos botões */
+    text-align: center;
+}

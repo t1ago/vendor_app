@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*FONTES*/
+* {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    letter-spacing: 1px;
+}
+
+/* Área Principal */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.315);
+    align-items: center;
+}
+
+/* Título principal */
+h1 {
+    margin: 0px 0px 30px 0px;
+    text-align: center;
+}
+
+/* Linha da tabela */
+.linha {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: nowrap;
+}
+
+/* Coluna da tabela */
+.coluna {
+    display: flex;
+    flex: 1;
+    margin-right: 10px;
+    align-items: center;
+}
+
+/* Apagar o ID */
+.coluna-id {
+    display: none;
+}
+
+/* Configuração do Input */
+.coluna > input {
+    padding: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.3s;
+    margin-left: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.coluna input:focus {
+    border: 1px solid #586EDB;
+}
+
+/* Botões no final da tela */
+.botoes-rodape {
+    display: flex;
+    justify-content: end;
+    margin-top: 1.5rem;
+    gap: 3rem;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #586EDB;
+}

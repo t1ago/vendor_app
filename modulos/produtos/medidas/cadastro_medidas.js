@@ -49,8 +49,59 @@ function incluir() {
     alert("Medida salva com sucesso!");
     
     limpar_campo();
+
+    setInterval(function() {
+        voltar()
+    }, 2000)
 }
 
-function salvar() {
-    incluir();
+function alterar() {
+
+    let medidas = window.localStorage.getItem("medidas")
+    let listademedidas = JSON.parse(medidas);
+
+    let indice = listademedidas.findIndex(function(value, index, obj){
+        return value.id == campo_novo_id.value
+    })  
+    let medida = listademedidas [indice]
+    medida.nome = campo_novo_nome.value
+
+    listademedidas [indice] = medida
+
+    medidas = JSON.stringify(listademedidas)
+    window.localStorage.setItem("medidas", medidas)
+
+    setInterval(function() {
+        voltar()
+    }, 2000)
 }
+
+
+function salvar() {
+    if (campo_novo_id.value != "") {
+        alterar();
+    } else {     
+        incluir();
+    }
+}
+
+function importardados () {
+    let parametros = window.location.search
+
+    if (parametros) {
+        parametroquebrado = new URLSearchParams(parametros)
+        parametroid = parametroquebrado.get("id")
+
+        let medidas = window.localStorage.getItem("medidas")
+
+        let listademedidas = JSON.parse(medidas);
+
+        let localizado = listademedidas.find(function(item) {
+            return item.id == parametroid
+        })
+        campo_novo_id.value = localizado.id
+        campo_novo_nome.value = localizado.nome
+    }
+}
+
+importardados();

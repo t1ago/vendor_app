@@ -12,19 +12,17 @@ function irParaIndex () {
 
 function excluir_medida(id) {
     let medidas = localStorage.getItem("medidas");
+    let listaMedidas = JSON.parse(medidas);
 
-    if (medidas) {
-        let listaMedidas = JSON.parse(medidas);
+    indice = listaMedidas.findIndex(function(valor, index, obj){
+        return valor.id == id
+    })
+    listaMedidas.splice(indice, 1)
 
-        // Verifica se o ID no localStorage está como número ou string
-        listaMedidas = listaMedidas.filter(item => item.id !== id);
+    medidas = JSON.stringify(listaMedidas)
+    window.localStorage.setItem("medidas", medidas)
 
-        // Atualiza o localStorage com a nova lista
-        localStorage.setItem("medidas", JSON.stringify(listaMedidas));
-
-        // Atualiza a exibição na tela
-        exibir_dados();
-    }
+    exibir_dados();
 }
 
 function exibir_dados () {
@@ -49,41 +47,7 @@ function exibir_dados () {
             const botaoEditar = document.createElement("button");
             botaoEditar.innerText = "✏️";
             botaoEditar.onclick = () => {
-                // Trocar o span por um input
-                const inputEditar = document.createElement("input");
-                inputEditar.type = "text";
-                inputEditar.value = item.nome;
-
-                colunaNome.innerHTML = "";
-                colunaNome.appendChild(inputEditar);
-
-                // Criar botão salvar (💾)
-                const botaoSalvar = document.createElement("button");
-                botaoSalvar.innerText = "💾";
-                botaoSalvar.onclick = () => {
-                    const novoNome = inputEditar.value.trim();
-                    if (novoNome !== "") {
-                        item.nome = novoNome;
-                        // Atualizar localStorage
-                        localStorage.setItem("medidas", JSON.stringify(listaMedidas));
-                        // Recarregar a tabela
-                        exibir_dados();
-                    } else {
-                        alert("O nome não pode ser vazio.");
-                    }
-                };
-
-                // Criar botão cancelar (❌)
-                const botaoCancelar = document.createElement("button");
-                botaoCancelar.innerText = "❌";
-                botaoCancelar.onclick = () => {
-                    exibir_dados(); // Recarrega a linha original
-                };
-
-                // Substituir botões de ação
-                colunaAcoes.innerHTML = "";
-                colunaAcoes.appendChild(botaoSalvar);
-                colunaAcoes.appendChild(botaoCancelar);
+                window.location.href = `cadastro_medidas.html?id=${item.id}`;
             };
 
             // Botão excluir

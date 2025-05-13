@@ -14,9 +14,9 @@
             <h1>Cadastro de moeda</h1>
             <div class="container">
                 <div class="linha_input_id">
-                <label for="id">ID</label>
-                <input type="text" id="id" style="display: none;" value="1">
-            </div>
+                    <label for="id">ID</label>
+                    <input type="text" id="id" style="display: none;" value="">
+                </div>
 
                 <div>
                     <!--Adição da moeda-->
@@ -39,13 +39,15 @@
         <div>
             <!--Botões-->
             <div class="button">
-                <button id="cancelar" onclick="botao_cancelar_click()">cancelar</button>
-                <div class="botoes-salvar"></div>
-                <button id="salvar" onclick="botao_salvar_click()">Salvar</button>
+                <button id="cancelar" onclick="voltarmoeda()">Cancelar</button>
+                <div class="botoes-salvar">
+                    <button type="button" id="salvar" onclick="botao_salvar_click()">Salvar</button>
+                </div>
             </div>
         </div>
-        </div>
+
     </form>
 </body>
 <script src="tela_de_moeda.js"></script>
+
 </html>

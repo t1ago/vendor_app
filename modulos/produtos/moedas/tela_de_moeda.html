@@ -9,52 +9,45 @@
 
 <body>
     <form>
-        <div class="container">
-            <div>
-                <!--Título e incrementação do ID-->
-                <div class="linha">
-                    <div>
-                        <h1>Cadastro de Moedas</h1>
-                    </div>
+        <div>
+            <!--Título e incrementação do ID-->
+            <h1>Cadastro de moeda</h1>
+            <div class="container">
+                <div class="linha_input_id">
+                    <label for="id">ID</label>
+                    <input type="text" id="id" style="display: none;" value="">
                 </div>
-                <div class="linha">
 
-                    <div class="coluna coluna-id">
+                <div>
+                    <!--Adição da moeda-->
+                    <div class="linha"></div>
+                    <div class="coluna campos"></div>
+                    <label for="moeda">Moeda</label>
+                    <input type="text" id="moeda" name="moeda" value="">
+                </div>
 
-                        <label for="id">ID</label>
+                <div>
+                    <!--Adição do nome-->
+                    <div class="linha"></div>
+                    <div class="coluna campos"></div>
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" value="">
 
-                        <input type="text" id="id" name="id">
-                    </div>
-                </div>
-            </div>
-            <div>
-                <!--Adição da moeda-->
-                <div class="linha">
-                    <div class="coluna">
-                        <label for="id"><strong>Moeda</strong></label>
-                        <input type="text" id="moeda" name="moeda">
-                    </div>
-                </div>
-            </div>
-            <div>
-                <!--Adição do nome-->
-                <div class="linha">
-                    <div class="coluna">
-                        <label for="id"><strong>Nome</strong></label>
-                        <input type="text" id="nome" name="nome">
-                    </div>
-                </div>
-            </div>
-            <div>
-                <!--Botões-->
-                <div class="botoes-acao">
-                    <button id="cancelar">Cancelar</button>
-                    <div class="botoes-salvar"></div>
-                    <button id="salvar" onclick="botao_salvar_click()">Salvar</button> 
                 </div>
             </div>
         </div>
+        <div>
+            <!--Botões-->
+            <div class="button">
+                <button id="cancelar" onclick="voltarmoeda()">Cancelar</button>
+                <div class="botoes-salvar">
+                    <button type="button" id="salvar" onclick="botao_salvar_click()">Salvar</button>
+                </div>
+            </div>
+        </div>
+
     </form>
 </body>
 <script src="tela_de_moeda.js"></script>
+
 </html>

@@ -9,29 +9,22 @@
 
 </head>
 <body>
-    <main>
-        <div id="container">
+    <main class="cadastro_medidas">
+
+        <div class="container">
             <h1>Lista de Medidas</h1>
 
-            <div class="linha">
-            <!-- ID escondido para uso interno -->
-                <div class="coluna coluna-id">
-                    <label for="campo_id">ID</label>
-                    <input type="hidden"  id="campo_id">
-                </div>
-
-            <!-- Campo medida -->
-                <div class="coluna">
-                    <label for="campo_medida">Nome</label>
-                    <input type="text" id="campo_medida" placeholder="Unidade de medida" minlength="3" maxlength="64">
-                </div>
-
-            <!-- Botões de ação -->
-                <div class="coluna">
-                    <button onclick="editar()">Editar</button>
-                    <button onclick="excluir()">Excluir</button>
-                </div>
-            </div>
+            <table id="tabela_medidas">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo_tabela">
+                    <!-- Os dados aparecarão aqui -->
+                </tbody>
+            </table>
 
             <div class="botoes-rodape">
                 <button onclick="irParaIndex()">Voltar</button>

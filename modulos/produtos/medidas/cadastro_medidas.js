@@ -1,6 +1,33 @@
 // Pegando os elementos do DOM
-const campo_novo_id = document.getElementById("campo_novo_id")
+const campo_novo_id = document.getElementById("campo_novo_id");
 const campo_novo_nome = document.getElementById("campo_novo_nome");
+const mensagem_erro = document.getElementById("mensagem");
+
+function validar_campo_nome() {
+    mensagem_erro.innerHTML = "";
+
+    if (campo_novo_nome.validity.valueMissing) {
+        campo_novo_nome.classList.remove('erro')
+        mensagem_erro.innerHTML = "Digite um nome válido."
+        mensagem_erro.classList.remove('erro')
+        return false
+    }
+
+    if (campo_novo_nome.validity.tooShort) {
+        campo_novo_nome.add('erro')
+        mensagem_erro.innerHTML = "Inserir nome com mais de 3 letras."
+        mensagem_erro.classList.add('erro')
+        return false
+    }
+
+    if (campo_novo_nome.validity.tooLong) {
+        campo_novo_nome.add('erro')
+        mensagem_erro.innerHTML = "Inserir nome com menos de 64 letras."
+        mensagem_erro.classList.add('erro')
+        return false
+    }
+    return true
+}
 
 function limpar_campo() {
     campo_novo_nome.value = "";
@@ -78,10 +105,14 @@ function alterar() {
 
 
 function salvar() {
-    if (campo_novo_id.value != "") {
-        alterar();
-    } else {     
-        incluir();
+    if (validar_campo_nome() == false) {
+        validar_campo_nome.focus()
+    } else {
+        if (campo_novo_id.value != "") {
+            alterar();
+        } else {     
+            incluir();
+        }
     }
 }
 

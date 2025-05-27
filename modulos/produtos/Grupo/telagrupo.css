@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #e0e7ff 0%, #fdf5f5 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1000px;
+    background: rgba(253, 245, 245, 0.97);
+    margin: 30px auto;
+    padding: 30px 35px 30px 35px;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+form {
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 32px;
+    font-size: 2.2rem;
+    color: rgb(23, 23, 119);
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    color: #222;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #bdbdbd;
+    outline: none;
+    font-size: 1rem;
+    padding: 10px 0 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-bottom: 2.5px solid rgb(23, 23, 119);
+    background: #f3f6ff;
+}
+
+.button-arrumed {
+    text-align: right;
+    padding-top: 18px;
+}
+
+#button_cancelar,
+#button_salvar {
+    margin-left: 8px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: 0 2px 8px rgba(23, 23, 119, 0.08);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+#button_cancelar:hover,
+#button_salvar:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(23, 23, 119, 0.13);
+}
+
+
+#button_cancelar {
+    width: 100px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: red;
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    opacity: 0.9;
+}
+
+#button_cancelar:hover {
+    background-color: rgba(235, 7, 7, 0.836);
+}
+
+#button_salvar {
+    width: 100px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(46, 201, 15, 0.877);
+    color: aliceblue;
+    opacity: 0.9;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#button_salvar:hover {
+    background-color: rgba(17, 161, 17, 0.822);
+}

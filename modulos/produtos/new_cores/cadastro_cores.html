@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Cores</title>
+
+  <link rel="stylesheet" href="padrao_cores.css">
+</head>
+<body>
+
+<main id="cadastro_cores">
+  <div class="container">
+    <h1>Cadastro de Cores</h1>
+
+    <!-- Campo ID oculto (para edição futura) -->
+    <input type="hidden" id="campo_id">
+
+    <div class="linha">
+    <!-- Cor via seletor -->
+      <div class="coluna">
+        <label for="nova_cor">Selecionar cor:</label>
+        <input type="color" id="nova_cor" name="nova_cor">
+      </div>
+    <!-- Código hexadecimal da cor -->
+      <div class="coluna">
+        <label for="hexadecimal_cor">Código hexadecimal:</label>
+        <input type="text" name="hexadecimal_cor" id="hexadecimal_cor" placeholder="#000000">
+      </div>
+    </div>
+
+    <!-- Botões de ação -->
+    <div class="linha botoes-rodape">
+      <button onclick="voltar()">⬅️ Voltar</button>
+      <button onclick="salvarCor()">💾 Salvar</button>
+    </div>
+  </div>
+</main>
+
+<script src="cadastro_cores.js"></script>
+</body>
+</html>

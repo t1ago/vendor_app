@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #599DDC;
+    margin-bottom: 24px;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+#container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #599DDC;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.95rem;
+}
+
+tbody tr:hover {
+    background-color: #f0f8ff;
+}
+
+th:first-child, td:first-child {
+    width: 70%;
+}
+
+th:last-child, td:last-child {
+    width: 30%;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: background-color 0.2s;
+    font-size: 0.95rem;
+    width: 48%;
+}
+button:first-of-type {
+    background-color: #599DDC;
+}
+
+button:first-of-type:hover {
+    background-color: #4a8cc6;
+}
+
+button:last-of-type {
+    background-color: #586EDB;
+}
+
+button:last-of-type:hover {
+    background-color: #475cc9;
+}
+
+@media (max-width: 480px) {
+    #container {
+        padding: 20px;
+    }
+
+    table th, table td {
+        padding: 8px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+}

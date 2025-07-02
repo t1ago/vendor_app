@@ -3,25 +3,25 @@ tabela = document.getElementById('tabela')
 mensagem = document.getElementById('mensagem')
 imagem = document.getElementById('imagem')
 
-botao_excluir_click = async function(id) {
+botao_excluir_click = async function (id) {
     return await fetch(`${API_HOST}/categorias/${id}`, {
         method: "DELETE",
     })
 }
 
-botao_editar_click = function(id) {
+botao_editar_click = function (id) {
     navegarPara(`cadastro_categorias.html?id=${id}`);
 }
 
-botao_castrar_click = function() {
+botao_castrar_click = function () {
     navegarPara('cadastro_categorias.html');
 }
 
-botao_voltar_home_click = function() {
+botao_voltar_home_click = function () {
     navegarPara('../../../index.html');
 }
 
-buscar_dados = async function() {
+buscar_dados = async function () {
     requisicao = await fetch(`${API_HOST}/categorias`, {
         method: "GET",
     })
@@ -29,13 +29,13 @@ buscar_dados = async function() {
     if (requisicao.ok == true) {
         resposta = await requisicao.json()
 
-        return resposta.data.length > 0 ? resposta.data : null 
+        return resposta.data.length > 0 ? resposta.data : null
     } else {
         return null
     }
 }
 
-exibir_situacao_operacao = function(operacao) {
+exibir_situacao_operacao = function (operacao) {
     tabela.setAttribute('class', '')
     mensagem.setAttribute('class', '')
     imagem.setAttribute('class', '')
@@ -62,7 +62,8 @@ exibir_situacao_operacao = function(operacao) {
     }
 }
 
-exibir_dados = async function() {
+
+exibir_dados = async function () {
     exibir_situacao_operacao('BUSCANDO')
 
     tabela_dados.innerHTML = ''
@@ -87,11 +88,11 @@ exibir_dados = async function() {
             imagem_excluir = document.createElement('img')
             imagem_excluir.src = '../../../imagens/remover.png'
 
-            botao_editar.onclick = function() { 
+            botao_editar.onclick = function () {
                 botao_editar_click(item.id)
             }
 
-            botao_excluir.onclick = async function() {
+            botao_excluir.onclick = async function () {
                 exibir_situacao_operacao('BUSCANDO')
                 await botao_excluir_click(item.id)
                 exibir_dados()

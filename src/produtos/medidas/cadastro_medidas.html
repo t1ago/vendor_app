@@ -11,31 +11,31 @@
 <body>
     
     <main id="cadastro_medidas">
-
-        <div class="container">
-            <h1>Cadastro de Medidas</h1>
-
-            <div class="linha">
-            <!-- ID escondido para uso interno -->
-                <div class="coluna coluna-id">
-                    <label for="campo_novo_id">ID</label>
-                    <input type="hidden" id="campo_novo_id" value="">
+        <form>
+            <div class="container">
+                <h1>Cadastro de Medidas</h1>
+                <div class="linha">
+                <!-- ID escondido para uso interno -->
+                    <div class="coluna coluna-id">
+                        <label for="campo_novo_id">ID</label>
+                        <input type="hidden" id="campo_novo_id" value="">
+                    </div>
+                <!-- Campo medida -->
+                    <div class="coluna">
+                        <label for="campo_novo_nome">Nome</label>
+                        <input type="text" id="campo_novo_nome" placeholder="Unidade de medida" 
+                        required minlength="3" maxlength="64" onkeyup="validar_campo_nome()" onchange="validar_campo_nome()">
+                        <label id="mensagem"></label>
+                        
+                    </div>
                 </div>
-
-            <!-- Campo medida -->
-                <div class="coluna">
-                    <label for="campo_novo_nome">Nome</label>
-                    <input type="text" id="campo_novo_nome" placeholder="Unidade de medida" minlength="3" maxlength="64" value="">
+                <div class="botoes-rodape">
+                    <button onclick="voltar()">❌</button>
+                    <button onclick="salvar()">💾</button>
                 </div>
-            </div>
-
-            <div class="botoes-rodape">
-                <button onclick="voltar()">❌</button>
-                <button onclick="salvar()">💾</button>
-            </div>
             
-        </div>
-
+            </div>
+        </form>
     </main>
     <script src="cadastro_medidas.js"></script>
 </body>

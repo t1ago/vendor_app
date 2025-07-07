@@ -24,11 +24,8 @@ function carregarMoedas() {
 
         listamoeda.forEach(function (item, i) {
             const linha = document.createElement("tr");
-
             const coluna_moeda = document.createElement("td")
-
             const coluna_nome = document.createElement("td")
-
             const coluna_acoes = document.createElement("td")
             const span_moeda = document.createElement("span")
             const span_nome = document.createElement("span")
@@ -38,12 +35,8 @@ function carregarMoedas() {
             btn_editar.innerHTML = "editar"
             btn_editar.onclick = () => editar_coluna(item.id);
 
-
-
             btn_excluir.innerHTML = "excluir"
             btn_excluir.onclick = () => excluir_coluna(item.id);
-
-
 
             span_moeda.innerHTML = item.moeda
             span_nome.innerHTML = item.nome

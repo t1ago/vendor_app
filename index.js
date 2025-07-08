@@ -15,3 +15,7 @@ botao_listar_medidas_click = function () {
 botao_listar_moedas_click = function () {
     navegarPara('./src/produtos/moedas/tela_de_moeda.html');
 }
+
+botao_listar_fornecedor_tiago_click = function () {
+    navegarPara('./src/produtos/fornecedores/tiago/cadastro_fornecedor.html')
+}

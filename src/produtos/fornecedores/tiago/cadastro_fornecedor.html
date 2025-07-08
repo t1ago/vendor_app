@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vendor_App (Estudos)</title>
+
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../utilitarios/padrao.css">
+    <link rel="stylesheet" type="text/css" href="../../../../utilitarios/padrao_cadastro.css">
+    <link rel="stylesheet" type="text/css" href="cadastro_fornecedor.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main id="cadastro-fornecedor">
+        <form id="formulario">
+            <div class="linha">
+                <h1 class="coluna">Cadastro de Fornecedor (Tiago)</h1>
+            </div>
+
+            <div class="linha espaco-cima linha-principal">
+                <div class="coluna coluna-id coluna-fields">
+                    <label for="id">Id</label>
+                    <input type="text" id="id" name="id">
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64">
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="coin">Moeda</label>
+                    <input type="text" id="coin" name="coin">
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="buy">Preço Compra</label>
+                    <input type="text" id="buy" name="buy" required minlength="4" maxlength="64">
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="sale">Preço Venda</label>
+                    <input type="text" id="sale" name="sale" required minlength="4" maxlength="64">
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields">
+                    <label for="group">Grupo</label>
+                    <input type="text" id="group" name="group">
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="category">Categoria</label>
+                    <input type="text" id="category" name="category">
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields">
+                    <label for="measure">Unidade de Medida</label>
+                    <input type="text" id="measure" name="measure">
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="brand">Marca</label>
+                    <input type="text" id="brand" name="brand">
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="color">Cor</label>
+                    <input type="text" id="color" name="color">
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields">
+                    <label for="desc">Descrição</label>
+                    <input type="text" id="desc" name="desc" required minlength="3" maxlength="128">
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-botoes-cadastro">
+                    <button type="button" onclick="">
+                        <img src="../../../../imagens/cancelar.png">
+                        <span>Cancelar</span>
+                    </button>
+                    <button type="button" id="botao_salvar" onclick="">
+                        <img src="../../../../imagens/salvar.png">
+                        <span>Salvar</span>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </main>
+
+</body>

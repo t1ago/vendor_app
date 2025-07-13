@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Fornecedores (Dam)</title>
+</head>
+<body>
+    <main id="cadastro-fornecedores">
+        <form id="container">
+            <div class="linha">
+                <h1 class="coluna">Cadastro de Fornecedores (Dam)</h1>
+            </div>
+
+            <input type="hidden" id="campo_id" value="">
+
+            <!-- Campos gerados via JS -->
+            <div id="campos-dinamicos">
+                <div class="linha">
+                    <div class="botoes-rodape">
+                        <button type="button" onclick="voltar()">❌</button>
+                        <button type="button" onclick="salvar()">💾</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+    <script src="cadastro_fornecedores.js"></script>
+</body>
+</html>

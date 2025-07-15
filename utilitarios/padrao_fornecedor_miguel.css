@@ -1,0 +1,89 @@
+
+.linha {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+    
+    row-gap: 15px;
+    
+    margin-bottom: 10px;
+}
+
+div>label {
+    font-size: 23px;
+}
+
+
+.coluna {
+    flex: 1 1 22%;
+    min-width: 180px;
+}
+
+
+.coluna-base {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.coluna-base label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 3px;
+}
+
+
+.coluna-base input[type="text"] {
+    font-size: 14px;
+    padding: 4px 0px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    background: transparent;
+    outline: none;
+    transition: 0.3s;
+}
+
+.linha>h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    color: #466E76;
+   
+}
+
+.botoes {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 10px;
+  margin: 10px;
+}
+.button-cancel {
+    background-color: red;
+    border: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    transition: 0.4s;
+    color: white;
+    cursor: pointer;
+}
+
+.button-cancel:hover {
+    transform: scale(1.1);
+}
+
+.button-save {
+    background-color: green;
+    border: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    transition: 0.4s;
+    color: white;
+    cursor: pointer;
+}
+
+.button-save:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,19 @@
+.hidden {
+ display: none;
+}
+
+
+.linha {
+    width: 100%;
+    display: inline;
+}
+
+.coluna {
+    width: 100px;
+    display: inline-flex;
+
+}
+
+.coluna.coluna_name {
+    border: none;
+}

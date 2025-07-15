@@ -1,67 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="fornecedor_victor.css">
-    <link rel="stylesheet" href="../../../../utilitarios/padrao.css">
-    <link rel="stylesheet" href="../../../../utilitarios/padrao_cadastro.css">
+    <link rel="stylesheet" href="../../../../utilitarios/padrao_victor.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor_App (Estudos)</title>
 </head>
 <body>
     <main id="cadastro-fornecedor">
-        <form id="formulario">
+        <div id="tabela">
             <div class="linha">
                 <h1 class="coluna">Cadastro de fornecedor (Victor)</h1>
             </div>
-            <div class="linha espaco-cima linha-principal">
-                <div class="coluna coluna-id coluna-fields">
+            <div class="linha espaco-cima">
+                <div class="coluna coluna-id coluna-campo">
                     <label for="id">Id</label>
                     <input type="text" id="id" name="id">
                 </div>
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-campo">
                     <label for="name">Nome</label>
                     <input type="text" id="name" name="name" required minlength="3" maxlength="64">
                 </div>
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-campo">
                     <label for="moeda">Moeda</label>
                     <input type="text" id="moeda" name="moeda" required minlength="4" maxlength="64">
                 </div>
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-campo">
                     <label for="compra">Preço Compra</label>
                     <input type="text" id="compra" name="compra" required minlength="4" maxlength="64">
                 </div>
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-campo">
                     <label for="venda">Preço Venda</label>
                     <input type="text" id="venda" name="venda" required minlength="4" maxlength="64">
                 </div>
             </div>
             <div class="linha">
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-campo">
                     <label for="grupo">Grupo</label>
                     <input type="text" id="grupo" name="grupo" required minlength="4" maxlength="64">
                 </div>
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-campo">
                     <label for="categoria">Categoria</label>
                     <input type="text" id="categoria" name="categoria" required minlength="4" maxlength="64">
                 </div>
             </div>
             <div class="linha">
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-campo">
                     <label for="medida">Unidade de Medida</label>
                     <input type="text" id="medida" name="medida" required minlength="4" maxlength="64">
                 </div>
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-campo">
                     <label for="marca">Marca</label>
                     <input type="text" id="marca" name="marca" required minlength="4" maxlength="64">
                 </div>
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-campo">
                     <label for="cor">Cor</label>
                     <input type="text" id="cor" name="cor" required minlength="4" maxlength="64">
                 </div>
             </div>
             <div class="linha">
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-campo">
                     <label for="desc">Descrição</label>
                     <input type="text" id="desc" required minlength="3" maxlength="120">
                 </div>
@@ -72,7 +70,7 @@
                     <button>Salvar</button>
                 </div>
             </div>
-        </form>
+        </div>
     </main>
 </body>
 </html>

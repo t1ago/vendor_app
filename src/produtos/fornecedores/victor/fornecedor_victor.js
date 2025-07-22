@@ -18,6 +18,15 @@ function focar_campo(elemento) {
         elemento_informacao.classList.remove('esconder')
     }
 }
+function desfocar_campo(event) {
+    if (event?.target?.closest('.informacao-lista') || event?.target?.closest('input')) {
+        return;
+    }
+    let lista_Elementos = document.getElementsByClassName('informacao-lista');
+    for (let i = 0; i < lista_Elementos.length; i++) {
+        lista_Elementos[i].classList.add('esconder');
+    }
+}
 function selecionar_item(elemento, id) {
     valores_dados[id] = parseInt(elemento.dataset.value)
     esconder_informacao(elemento)

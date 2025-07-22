@@ -1,0 +1,87 @@
+body {
+    background-color: #D9D9D9;
+    margin: 0;
+    padding: 0;
+}
+/* Centraliza o conteúdo */
+#principal {
+    display: flex;
+    justify-content: center;
+}
+
+/* Container principal */
+#tabela {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+/* A linha do título: bloco normal */
+.linha:first-child {
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* Título centralizado */
+.linha > h1 {
+    text-align: center;
+    font-size: 36px;
+    margin: 0;
+}
+
+/* Todas as outras linhas: flex container */
+.linha:not(:first-child) {
+    display: flex;
+    flex-wrap: wrap; /* Se faltar espaço, quebra para a linha de baixo */
+    gap: 20px; /* Espaço entre campos */
+    margin-bottom: 20px;
+}
+
+/* Estilo de labels e inputs */
+.coluna {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    flex: 1; /* Cada coluna ocupa espaço proporcional */
+    min-width: 200px;
+}
+
+.coluna-campo > label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.coluna-campo > input {
+    width: 100%;
+    min-width: 300px;
+    border: none;
+    border-bottom: 1px solid;
+    outline: none;
+    padding: 5px;
+    font-size: 16px;
+}
+
+/* Botoes alinhados a direita */
+.coluna-botoes {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 10px;
+}
+
+.coluna-botoes > button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Oculta ID */
+.coluna-id {
+    display: none;
+}
+
+/* Espaço extra em cima das linhas que precisam */
+.espaco-cima {
+    margin-top: 20px;
+}

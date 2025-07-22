@@ -1,0 +1,29 @@
+.informacao-lista.esconder {
+    display: none;
+}
+.informacao-lista {
+    min-height: 50px;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    z-index: 99;
+    border-radius: 15px;
+    background-color: blue;
+    max-width: 400px;
+    position: absolute;
+}
+.informacao-lista>ul {
+    margin: 12px;
+    padding: 0px;
+}
+.informacao-lista>ul>li {
+    padding: 6px;
+    margin: 0px;
+    color: white;
+    list-style-type: none;
+}
+.informacao-lista>ul>li:hover {
+    background-color: aqua;
+    color:white;
+    border-radius: 12px;
+}

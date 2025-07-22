@@ -22,11 +22,7 @@
                 <div class="coluna coluna-campo">
                     <label for="moeda">Moeda</label>
                     <input type="text" id="moeda" name="moeda" onfocus="focar_campo(this)">
-                    <div class="informacao-lista esconder">
-                        <ul>
-                            <li data-value="1" onclick="selecionar_item(this, 'id_moeda')"><span>Real (R$)</span></li>
-                            <li data-value="2" onclick="selecionar_item(this, 'id_moeda')"><span>Dollar (U$)</span></li>
-                        </ul>
+                   <div id="info_moeda" class="informacao-lista esconder">
                     </div>
                 </div>
                 <div class="coluna coluna-campo">
@@ -42,21 +38,13 @@
                 <div class="coluna coluna-campo">
                     <label for="grupo">Grupo</label>
                     <input type="text" id="grupo" name="grupo" onfocus="focar_campo(this)">
-                    <div class="informacao-lista esconder">
-                        <ul>
-                            <li data-value="1" onclick="selecionar_item(this, 'id_grupo')"><span>Fama</span></li>
-                            <li data-value="2" onclick="selecionar_item(this, 'id_grupo')"><span>Leitos</span></li>
-                        </ul>
+                    <div id="info_grupos" class="informacao-lista esconder">
                     </div>
                 </div>
                 <div class="coluna coluna-campo">
                     <label for="categoria">Categoria</label>
-                    <input type="text" id="categoria" name="categoria" onfocus="focar_campo(this)">
-                    <div class="informacao-lista esconder">
-                        <ul>
-                            <li data-value="1" onclick="selecionar_item(this, 'id_categoria')"><span>Supreme</span></li>
-                            <li data-value="2" onclick="selecionar_item(this, 'id_categoria')"><span>Média</span></li>
-                        </ul>
+                    <input type="text" id="categoria" name="categoria" onfocus="focar_campo(this, buscar_informacao_categorias)">
+                    <div id="info_categorias" class="informacao-lista esconder">
                     </div>
                 </div>
             </div>

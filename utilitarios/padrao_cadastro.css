@@ -65,6 +65,40 @@ textarea {
     background: #f6f6f6;
 }
 
+.coluna-fields>.informacao-consulta.esconder {
+    display: none;
+}
+
+.coluna-fields>.informacao-consulta {
+    min-height: 50px;
+    max-height: 500px;
+    max-width: 500px;
+    background-color: #586EDB;
+    z-index: 99;
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 15px;
+}
+
+.coluna-fields>.informacao-consulta>ul {
+    margin: 12px 12px 12px 12px;
+    padding: 0;
+}
+
+.coluna-fields>.informacao-consulta>ul>li {
+    list-style-type: none;
+    padding: 6px;
+    margin: 0px;
+    color: white;
+}
+
+.coluna-fields>.informacao-consulta>ul>li:hover {
+    background-color: #599DDC;
+    color: white;
+    border-radius: 12px;
+}
+
 /*OPERACÃO*/
 .coluna-operacao>img {
     display: inline;

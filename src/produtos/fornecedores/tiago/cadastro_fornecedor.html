@@ -17,18 +17,13 @@
 </head>
 
 <body>
-    <main id="cadastro-fornecedor">
+    <main id="cadastro-fornecedor" onclick="">
         <form id="formulario">
             <div class="linha">
                 <h1 class="coluna">Cadastro de Fornecedor (Tiago)</h1>
             </div>
 
             <div class="linha espaco-cima linha-principal">
-                <div class="coluna coluna-id coluna-fields">
-                    <label for="id">Id</label>
-                    <input type="text" id="id" name="id">
-                </div>
-
                 <div class="coluna coluna-fields">
                     <label for="name">Nome</label>
                     <input type="text" id="name" name="name" required minlength="3" maxlength="64">
@@ -36,7 +31,7 @@
 
                 <div class="coluna coluna-fields">
                     <label for="coin">Moeda</label>
-                    <input type="text" id="coin" name="coin">
+                    <input type="text" id="coin" name="coin" onfocus="foco_campo(this)">
                 </div>
 
                 <div class="coluna coluna-fields">
@@ -53,12 +48,17 @@
             <div class="linha">
                 <div class="coluna coluna-fields">
                     <label for="group">Grupo</label>
-                    <input type="text" id="group" name="group">
+                    <input type="text" id="group" name="group" onfocus="foco_campo(this, buscar_informacao_grupos)">
+                    <div id="info-grupos" class="informacao-consulta esconder">
+                    </div>
                 </div>
 
                 <div class="coluna coluna-fields">
                     <label for="category">Categoria</label>
-                    <input type="text" id="category" name="category">
+                    <input type="text" id="category" name="category"
+                        onfocus="foco_campo(this, buscar_informacao_categorias)">
+                    <div id="info-categorias" class="informacao-consulta esconder">
+                    </div>
                 </div>
             </div>
 
@@ -98,9 +98,9 @@
                     </button>
                 </div>
             </div>
-
         </form>
-
     </main>
 
+    <script src="../../../../config.js"></script>
+    <script src="cadastro_fornecedor.js"></script>
 </body>

@@ -18,19 +18,16 @@ nova_selecao = false
 
 
 clique_geral = function () {
-    if (elemento_focado == null) {
-        return
-    }
-
     if (nova_selecao) {
         nova_selecao = false
     } else {
-        elemento_pai = elemento_focado.parentNode
-        elemento_informacao = elemento_pai.getElementsByClassName('informacao-consulta')[0]
+        infos = document.getElementsByClassName('informacao-consulta')
 
-        if (elemento_informacao != undefined) {
-            elemento_informacao.classList.add('esconder')
-        }
+        Array.from(infos).forEach(item => {
+            if (item.classList.contains('esconder') == false) {
+                item.classList.add('esconder')
+            }
+        })
     }
 }
 
@@ -64,9 +61,21 @@ esconder_informacao = function (elemento) {
     }
 }
 
+animacao_carregando_dados = function (elemento, show = true) {
+    elemento.innerHTML = ''
+    if (show) {
+        elemento.style.overflow = 'hidden'
+        img = document.createElement('img')
+        img.src = '../../../../imagens/loading.png'
+        elemento.appendChild(img)
+    } else {
+        elemento.style.removeProperty('overflow')
+    }
+}
+
 buscar_informacao_categorias = async function (elemento) {
     info_categorias = document.getElementById('info-categorias')
-    info_categorias.innerHTML = ""
+    animacao_carregando_dados(info_categorias)
 
     requisicao = await fetch(`${API_HOST}/categorias`, {
         method: "GET",
@@ -77,7 +86,7 @@ buscar_informacao_categorias = async function (elemento) {
     })
 
     if (requisicao.ok == true) {
-
+        animacao_carregando_dados(info_categorias, false)
         lista = document.createElement('ul')
         lista_categorias = await requisicao.json()
 
@@ -105,8 +114,8 @@ buscar_informacao_categorias = async function (elemento) {
 }
 
 buscar_informacao_grupos = async function (elemento) {
-    info_categorias = document.getElementById('info-grupos')
-    info_categorias.innerHTML = ""
+    info_grupos = document.getElementById('info-grupos')
+    animacao_carregando_dados(info_grupos)
 
     requisicao = await fetch(`${API_HOST}/grupos`, {
         method: "GET",
@@ -117,7 +126,7 @@ buscar_informacao_grupos = async function (elemento) {
     })
 
     if (requisicao.ok == true) {
-
+        animacao_carregando_dados(info_grupos, false)
         lista = document.createElement('ul')
         lista_categorias = await requisicao.json()
 
@@ -140,7 +149,7 @@ buscar_informacao_grupos = async function (elemento) {
             lista.appendChild(lista_item)
         });
 
-        info_categorias.appendChild(lista)
+        info_grupos.appendChild(lista)
     } else {
         // vou fazer outra coisa
     }

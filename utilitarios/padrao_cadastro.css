@@ -69,6 +69,10 @@ textarea {
     display: none;
 }
 
+.coluna-fields>.informacao-consulta.loading {
+    display: none;
+}
+
 .coluna-fields>.informacao-consulta {
     min-height: 50px;
     max-height: 500px;
@@ -97,6 +101,20 @@ textarea {
     background-color: #599DDC;
     color: white;
     border-radius: 12px;
+}
+
+.coluna-fields>.informacao-consulta>img {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    animation: rotacao 5s linear infinite;
+}
+
+.coluna-fields>.informacao-consulta>img {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    animation: rotacao 5s linear infinite;
 }
 
 /*OPERACÃO*/

@@ -17,6 +17,7 @@
                 <h1 class="title">Cadastro de Fornecedor(Miguel)</h1>
             </div>
 
+            
             <!-- Criação do id -->
             <div class="#">
                 <div class="hidden">
@@ -25,59 +26,79 @@
                 </div>
             </div>
 
+
             <!-- Criação do nome -->
             <div class="linha">
                 <div class="coluna coluna-base">
                     <label for="name">Nome</label>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name" onfocus="focar_campo(this)">
                 </div>
 
 
                 <!-- Criação do Preço compra -->
-
                 <div class="coluna coluna-base">
                     <label for="buy">Preço Compra</label>
-                    <input type="text" name="buy" id="buy">
+                    <input type="text" name="buy" id="buy" onfocus="focar_campo(this)">
                 </div>
             </div>
+
 
             <!-- Criação do Preço Venda -->
             <div class="linha">
                 <div class="coluna coluna-base">
                     <label for="sell">Preço Venda</label>
-                    <input type="text" name="sell" id="sell">
+                    <input type="text" name="sell" id="sell" onfocus="focar_campo(this)">
                 </div>
 
 
                 <!-- Criação da Moeda -->
-
                 <div class="coluna coluna-base">
                     <label for="coin">Moeda</label>
-                    <input type="text" name="coin" id="coin">
+                    <input type="text" name="coin" id="coin" onfocus="focar_campo(this, buscando_informação_moeda)">
+                    <div id="info-moeda" class="informacao-lista esconder">
+                     
+                    </div>
                 </div>
-
             </div>
+
+
             <!-- Criação do Categoria -->
             <div class="linha">
                 <div class="coluna coluna-base">
                     <label for="categoria">Categoria</label>
-                    <input type="text" name="categoria" id="categoria">
+                    <input type="text" name="categoria" id="categoria" onfocus="focar_campo(this, buscar_informação_categoria)">
+                    <div id="info-categoria" class="informacao-lista esconder">
+                       
+                    </div>
                 </div>
 
 
-                    <!-- Criação da cor -->
+                <!-- Criação da cor -->
 
-                    <div class="coluna coluna-base">
-                        <label for="cor">Cor</label>
-                        <input type="text" name="cor" id="cor">
+                <div class="coluna coluna-base">
+                    <label for="cor">Cor</label>
+                    <input type="text" name="cor" id="cor" onfocus="focar_campo(this)">
+                    <div class="informacao-lista esconder">
+                        <ul>
+                            <li data-value="1" onclick="selecionar_item(this, 'id_cor')"><span>Real (R$)</span></li>
+                            <li data-value="2" onclick="selecionar_item(this, 'id_cor')"><span>Dollar (US$)</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
+
             <!-- Criação da Medida -->
             <div class="linha">
                 <div class="coluna coluna-base">
                     <label for="medida">Medida</label>
-                    <input type="text" name="medida" id="medida">
+                    <input type="text" name="medida" id="medida" onfocus="focar_campo(this)">
+                    <div class="informacao-lista esconder">
+                        <ul>
+                            <li data-value="1" onclick="selecionar_item(this, 'id_unidade_medida')"><span>Real(R$)</span></li>
+                            <li data-value="2" onclick="selecionar_item(this, 'id_unidade_medida')"><span>Dollar(US$)</span> </li>
+                        </ul>
+                    </div>
                 </div>
 
 
@@ -85,7 +106,13 @@
 
                 <div class="coluna coluna-base">
                     <label for="marc">Marca</label>
-                    <input type="text" name="marc" id="marc">
+                    <input type="text" name="marc" id="marc" onfocus="focar_campo(this)">
+                    <div class="informacao-lista esconder">
+                        <ul>
+                            <li data-value="1" onclick="selecionar_item(this, 'id_marca')"><span>Real (R$)</span></li>
+                            <li data-value="2" onclick="selecionar_item(this, 'id_marca')"><span>Dollar (US$)</span> </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -94,15 +121,17 @@
             <div class="linha">
                 <div class="coluna coluna-base">
                     <label for="group">Grupo</label>
-                    <input type="text" name="group" id="magrouprc">
+                    <input type="text" name="group" id="magrouprc" onfocus="focar_campo(this, buscar_informação_grupo)">
+                    <div id="info-grupo"class="informacao-lista esconder">
+                        
+                    </div>
                 </div>
-
 
 
                 <!-- Criação da Descricao -->
                 <div class="coluna coluna-base">
                     <label for="desc">Descricao</label>
-                    <input type="text" name="desc" id="desc">
+                    <input type="text" name="desc" id="desc" onfocus="focar_campo(this,)">
                 </div>
             </div>
 

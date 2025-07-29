@@ -77,39 +77,28 @@ buscar_informacao_categorias = async function (elemento) {
     info_categorias = document.getElementById('info-categorias')
     animacao_carregando_dados(info_categorias)
 
-    requisicao = await fetch(`${API_HOST}/categorias`, {
-        method: "GET",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    })
-
-    if (requisicao.ok == true) {
-        animacao_carregando_dados(info_categorias, false)
-        lista = document.createElement('ul')
-        lista_categorias = await requisicao.json()
-
-        lista_categorias.data.forEach(item => {
-            lista_item = document.createElement('li')
-            lista_item.dataset.id = item.id
-
-            span_item = document.createElement('span')
-            span_item.innerHTML = item.nome
-
-            lista_item.appendChild(span_item)
-
-            lista_item.onclick = function () {
-                selecionar_item(lista_item, 'id_categoria')
-                adicionar_valor_campo(elemento, item.nome)
+    try {
+        requisicao = await fetch(`${API_HOST}/categorias`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
+        })
 
-            lista.appendChild(lista_item)
-        });
+        if (requisicao.ok == true) {
+            animacao_carregando_dados(info_categorias, false)
 
-        info_categorias.appendChild(lista)
-    } else {
-        // vou fazer outra coisa
+            dados = await requisicao.json()
+            criar_lista_informacao(dados, 'nome', 'id', 'id_categoria', elemento, info_categorias)
+        } else {
+            animacao_carregando_dados(info_categorias, false)
+            exibir_informacao_falha(info_categorias, 'Nenhuma categoria localizado')
+        }
+    }
+    catch (erro) {
+        animacao_carregando_dados(info_categorias, false)
+        exibir_informacao_falha(info_categorias, 'Nenhuma categoria localizado')
     }
 }
 
@@ -117,43 +106,64 @@ buscar_informacao_grupos = async function (elemento) {
     info_grupos = document.getElementById('info-grupos')
     animacao_carregando_dados(info_grupos)
 
-    requisicao = await fetch(`${API_HOST}/grupos`, {
-        method: "GET",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    })
-
-    if (requisicao.ok == true) {
-        animacao_carregando_dados(info_grupos, false)
-        lista = document.createElement('ul')
-        lista_categorias = await requisicao.json()
-
-        lista_categorias.data.filter(item => {
-            return item.nome != null
-        }).forEach(item => {
-            lista_item = document.createElement('li')
-            lista_item.dataset.id = item.id
-
-            span_item = document.createElement('span')
-            span_item.innerHTML = item.nome
-
-            lista_item.appendChild(span_item)
-
-            lista_item.onclick = function () {
-                selecionar_item(lista_item, 'id_grupo')
-                adicionar_valor_campo(elemento, item.nome)
+    try {
+        requisicao = await fetch(`${API_HOST}/grupos`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
+        })
 
-            lista.appendChild(lista_item)
-        });
+        if (requisicao.ok == true) {
+            animacao_carregando_dados(info_grupos, false)
 
-        info_grupos.appendChild(lista)
-    } else {
-        // vou fazer outra coisa
+            dados = await requisicao.json()
+            criar_lista_informacao(dados, 'nome', 'id', 'id_grupo', elemento, info_grupos)
+        } else {
+            animacao_carregando_dados(info_categorias, false)
+            exibir_informacao_falha(info_categorias, 'Nenhum grupo localizado')
+        }
+    } catch (erro) {
+        animacao_carregando_dados(info_categorias, false)
+        exibir_informacao_falha(info_categorias, 'Nenhum grupo localizado')
     }
+}
 
+exibir_informacao_falha = function (elemento, mensagem) {
+    lista = document.createElement('ul')
+    lista_item = document.createElement('li')
+    span_item = document.createElement('span')
+    span_item.innerHTML = mensagem
+    lista_item.appendChild(span_item)
+    lista.appendChild(lista_item)
+    elemento.appendChild(lista)
+}
+
+criar_lista_informacao = function (dados, campo_nome, campo_id, campo_salvar, elemento_salvar, container) {
+    lista_ul = document.createElement('ul')
+    lista_dados = dados
+
+    lista_dados.data.filter(item => {
+        return item[campo_nome] != null
+    }).forEach(item => {
+        lista_li = document.createElement('li')
+        lista_li.dataset.id = item[campo_id]
+
+        span = document.createElement('span')
+        span.innerHTML = item[campo_nome]
+
+        lista_li.appendChild(span)
+
+        lista_li.onclick = function () {
+            selecionar_item(lista_li, campo_salvar)
+            adicionar_valor_campo(elemento_salvar, item[campo_nome])
+        }
+
+        lista_ul.appendChild(lista_li)
+    });
+
+    container.appendChild(lista_ul)
 }
 
 adicionar_valor_campo = function (elemento, valor) {

@@ -1,3 +1,5 @@
+const { createElement } = require("react");
+
 valores_dados = {
     id_fornecedor: null,
     nome: null,
@@ -190,22 +192,31 @@ buscar_informacao_marca = async function (elemento) {
     info_marca = document.getElementById("info-marca")
     info_marca.innerHTML = ""
 
-    requisicao = await fetch(``)
+    rerquisicao = await fetch(``, {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
 
-    if(requisicao.ok == true)
+        }
+    })
+
+    if (requisicao.ok) {
 
         lista = document.createElement("ul")
 
         lista_marca = await requisicao.json()
         lista_marca.data.forEach(item => {
 
-            lista_item = document.createElement("li")
+
+            lista_item = createElement("li")
             lista_item.dataset.id = item.id
 
-            span_item = document.createElement("li")
+            span_item = createElement("span")
             span_item.innerHTML = item.nome
 
-            lista_item.appendChild(span_item)
+            lista_marca.appendChild(span_item)
+
             lista_item.onclick = function() {
                 selecionar_item(elemento, "id_marca")
                 adicionar_valor_campo(elemento, item.nome)
@@ -216,5 +227,8 @@ buscar_informacao_marca = async function (elemento) {
 
         info_marca.appendChild(lista)
     }
+
+
+}
 
 

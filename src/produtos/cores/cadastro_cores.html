@@ -5,38 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro de Cores</title>
 
+  <!-- Usando o CSS padrão -->
+  <link rel="stylesheet" href="../../produtos/padraodam.css">
   <link rel="stylesheet" href="padrao_cores.css">
 </head>
 <body>
+  <main class="container">
+    <form id="formCor" novalidate>
+      <h1>Cadastro de Cores</h1>
 
-<main id="cadastro_cores">
-  <div class="container">
-    <h1>Cadastro de Cores</h1>
+      <!-- Campo ID oculto -->
+      <input type="hidden" id="campoId">
 
-    <!-- Campo ID oculto (para edição futura) -->
-    <input type="hidden" id="campo_id">
-
-    <div class="linha">
-    <!-- Cor via seletor -->
-      <div class="coluna">
-        <label for="nova_cor">Selecionar cor:</label>
-        <input type="color" id="nova_cor" name="nova_cor">
+      <!-- Linha da cor -->
+      <div class="linha">
+        <div class="coluna">
+          <label for="nova_cor">Selecionar cor:</label>
+          <input type="color" id="novaCor" name="novaCor">
+        </div>
+        <div class="coluna">
+          <label for="hexadecimal_cor">Código hexadecimal:</label>
+          <input type="text" id="hexCor" name="hexCor" placeholder="#000000" required pattern="^#([A-Fa-f0-9]{6})$">
+          <small class="erro"></small>
+        </div>
       </div>
-    <!-- Código hexadecimal da cor -->
-      <div class="coluna">
-        <label for="hexadecimal_cor">Código hexadecimal:</label>
-        <input type="text" name="hexadecimal_cor" id="hexadecimal_cor" placeholder="#000000">
+
+      <!-- Botões -->
+      <div class="linha">
+        <div class="botoes-rodape">
+          <button type="button" onclick="voltar()">❌</button>
+          <button type="submit">💾</button>
+        </div>
       </div>
-    </div>
+    </form>
+  </main>
 
-    <!-- Botões de ação -->
-    <div class="linha botoes-rodape">
-      <button onclick="voltar()">⬅️ Voltar</button>
-      <button onclick="salvarCor()">💾 Salvar</button>
-    </div>
-  </div>
-</main>
-
-<script src="cadastro_cores.js"></script>
+  <script src="cadastro_cores.js"></script>
 </body>
 </html>

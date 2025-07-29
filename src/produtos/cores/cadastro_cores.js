@@ -1,125 +1,118 @@
-    const idCampo = document.getElementById("campo_id")
+//Elemento DOM para buscar ID
+const el = id => document.getElementById(id);
 
-// Atualiza o campo de texto com o valor hexadecimal da cor escolhida
-document.getElementById("nova_cor").addEventListener("input", function () {
-    const corSelecionada = this.value;
-    document.getElementById("hexadecimal_cor").value = corSelecionada
-});
-
-function LimparCampos() {
-    document.getElementById("campo_id").value = "";
-    document.getElementById("nova_cor").value = "#000000";
-    document.getElementById("hexadecimal_cor").value ="";
+//Objeto para facilitar acesso aos elementos
+const campos = {
+    id: el("campoId"),
+    cor: el("novaCor"),
+    hex: el("hexCor"),
+    form: el("formCor"),
 }
 
+//Atualiza o campo hexadecimal com base no seletor de cor
+function sincHex() {
+    campos.hex.value = campos.cor.value.toUpperCase();
+}
+
+//Limpa todos os campos do formulário
+function limparCampos() {
+    campos.id.value = "";
+    campos.cor.value= "#000000";
+    campos.hex.value = "";
+}
+
+//Voltar para a lista de cores
 function voltar() {
-    window.location.href = "../new_cores/lista_cores.html";
+    window.location.href = "../cores/lista_cores.html"
 }
 
-// ID sequencial
+//Gera o próximo ID sequencial
 function gerarProximoId() {
     let ultimoId = parseInt(localStorage.getItem("ultimoIdCor")) || 0;
     let novoId = ultimoId + 1;
-    localStorage.setItem("ultimoIdCor", novoId)
+    localStorage.setItem("ultimoIdCor", novoId);
     return novoId;
 }
 
-function cadastrarCor () {
-    const idCampo = document.getElementById("campo_id").value;
-    const corHex = document.getElementById("hexadecimal_cor").value;
+//salva uma nova cor
+function cadastrarCor() {
+    const corHex = campos.hex.value;
+    let listaCores = JSON.parse(localStorage.getItem("listaCores")) || [];
 
-    //validação básica
-    if (!corHex) {
-        alert("Por favor, selecione uma cor");
-    } else {
-    //Recupera lista existente do localStorage
-    let ListaCores = JSON.parse(localStorage.getItem("ListaCores")) || [];
+    const novoId = gerarProximoId();
+    const novaCor = { id: novoId, hex: corHex };
 
-    if (idCampo) {
-        const index = ListaCores.findIndex(function (cor) {
-            return cor.id == idCampo;
-        });
+    listaCores.push(novaCor);
+    localStorage.setItem("listaCores", JSON.stringify(listaCores));
 
-        if (index !== -1) {
-            ListaCores[index].hex = corHex;
-        }
-    } else {
-        const novoID = gerarProximoId();
-        const novaCor = {id: novoID, hex: corHex};
-        ListaCores.push(novaCor);
-    }
-
-    localStorage.setItem("ListaCores", JSON.stringify(ListaCores));
-    alert("Cor salva com sucesso!")
-    LimparCampos();
-
-    setTimeout(function() {
-        voltar()
-    },1000)
-    }
+    alert("Cor salva com sucesso!");
+    limparCampos();
+    setTimeout(voltar, 1000);
 }
 
+//Alterar uma cor existente
 function alterarCor() {
-    let cor = window.localStorage.getItem("ListaCores");
-    let ListaCores = JSON.parse(cor);
+    let listaCores = JSON.parse(localStorage.getItem("listaCores")) || [];
 
-    let indice = ListaCores.findIndex(function(value) {
-        return value.id == idCampo.value
-    })
-    
+    let indice = listaCores.findIndex(cor => cor.id == campos.id.value);
+
     if (indice !== -1) {
-        ListaCores[indice].hex = document.getElementById("hexadecimal_cor").value;
+        listaCores[indice].hex = campos.hex.value;
+        localStorage.setItem("listaCores", JSON.stringify(listaCores));
 
-        let cores = JSON.stringify(ListaCores);
-
-    window.localStorage.setItem("ListaCores", cores);
-    alert("Cor alterada com sucesso!");
-    LimparCampos();
-
-    setTimeout(function() {
-        voltar();
-    }, 1000);
-} else {
-    alert("Erro: cor não encontrada para alteração.")
+        alert("Cor alterada com sucesso!");
+        limparCampos();
+        setTimeout(voltar, 1000);
+    } else {
+        alert("Erro: cor não encontrada para alteração.")
     }
 }
 
+//Salva (decide entre cadastrar ou alterar)
 function salvarCor() {
-    if (idCampo.value != "") {
+    if (campos.id.value != ""){
         alterarCor();
     } else {
         cadastrarCor();
     }
 }
 
-function sincronizarHex() {
-    const corSelecionada = document.getElementById("nova_cor").value;
-    document.getElementById("hexadecimal_cor").value = corSelecionada
-}
+//Importar cor para edição (URL)
+function importarCor() {
+    const parametros = new URLSearchParams(window.location.search);
+    const parametroId = parametros.get("id");
 
-function importarCor () {
-    const hexCampo = document.getElementById("hexadecimal_cor")
+    if (parametroId) {
+        let listaCores = JSON.parse(localStorage.getItem("listaCores")) || [];
+        let localizado = listaCores.find(item => item.id == parametroId);
 
-    let corImportada = window.location.search
-
-    if(corImportada) {
-        parametroQuebrado = new URLSearchParams(corImportada);
-        parametroId = parametroQuebrado.get("id");
-
-        let cores = window.localStorage.getItem("ListaCores")
-
-        let ListaCores = JSON.parse(cores);
-
-        let localizado = ListaCores.find(function(item) {
-            return item.id == parametroId
-        })
-        idCampo.value = localizado.id
-        hexCampo.value = localizado.hex
-
-        document.getElementById("nova_cor").value = localizado.hex;
-
-        sincronizarHex();
+        if (localizado) {
+            campos.id.value = localizado.id;
+            campos.hex.value = localizado.hex;
+            campos.cor.value = localizado.hex;
+            sincHex();
+        }
     }
 }
 
-importarCor()
+//Atualizar hex automaticamente
+campos.cor.addEventListener("input", sincHex);
+
+//Submit do formulário
+campos.form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const erro = campos.hex.nextElementSibling;
+
+    if (!campos.hex.checkValidity()) {
+        erro.textContent = "Informe um código hexadecimal válido.";
+        campos.hex.classList.add("erro-input");
+    } else {
+        erro.textContent = "";
+        campos.hex.classList.remove("erro-input");
+        salvarCor();
+    }
+})
+
+//Inicializa
+importarCor();

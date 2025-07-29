@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Cores</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Cores</title>
 
-<link rel="stylesheet" href="padrao_cores.css">
-
+  <!-- CSS padrão -->
+  <link rel="stylesheet" href="../../produtos/padraodam.css">
 </head>
 <body>
-    <main class="cadastro_cores">
-        
-        <div class="container">
-            <h1>Lista de Cores</h1>
+  <main class="container">
+    <h1>Lista de Cores</h1>
 
-            <table id="tabela_cores">
-                <thead>
-                    <tr>
-                        <th>Cor</th>
-                        <th>Hexadecimal</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="corpo_tabela">
-                    <!-- Os dados aparecerão aqui -->
-                </tbody>
-            </table>
+    <div class="tabela-container">
+      <table id="tabela_cores">
+        <thead>
+          <tr>
+            <th>Cor</th>
+            <th>Hexadecimal</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="corpoTabela">
+          <!-- Dados inseridos pelo JS -->
+        </tbody>
+      </table>
+    </div>
 
-            <div class="botoes-rodape">
-                <button onclick="irParaIndex()">⬅️ Voltar</button>
-                <button onclick="abrirCadastro()">💾 Cadastrar</button>
-            </div>
-        </div>
-    </main>
+    <div class="botoes-rodape">
+      <button onclick="irParaIndex()">◀️ Voltar</button>
+      <button onclick="abrirCadastro()">💾 Cadastrar</button>
+    </div>
+  </main>
+
+  <script src="lista_cores.js"></script>
 </body>
-
-<script src="lista_cores.js"></script>
 </html>

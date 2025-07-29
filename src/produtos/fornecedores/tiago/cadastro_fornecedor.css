@@ -1,0 +1,19 @@
+#cadastro-fornecedor {
+    padding: 32px 256px 0px 256px;
+}
+
+
+
+.linha-principal>div:nth-child(2) {
+    width: 50%;
+}
+
+@media screen and (max-width: 950px) {
+    #cadastro-fornecedor {
+        padding: 32px 32px 0px 32px;
+    }
+
+    .linha-principal>div:nth-child(2) {
+        width: calc(100% - 10px);
+    }
+}

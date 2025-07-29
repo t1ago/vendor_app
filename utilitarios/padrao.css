@@ -36,7 +36,7 @@ button {
     border-radius: 15px;
 }
 
-button > * {
+button>* {
     vertical-align: middle;
 }
 
@@ -51,4 +51,14 @@ table.exibir {
 
 .exibir {
     display: block;
+}
+
+@media screen and (max-width: 650px) {
+    .linha {
+        flex-direction: column;
+    }
+
+    .coluna {
+        width: calc(100% - 10px);
+    }
 }

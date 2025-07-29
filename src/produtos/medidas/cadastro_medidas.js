@@ -3,30 +3,31 @@ const campo_novo_id = document.getElementById("campo_novo_id");
 const campo_novo_nome = document.getElementById("campo_novo_nome");
 const mensagem_erro = document.getElementById("mensagem");
 
+function mostrarErro(texto) {
+    mensagem_erro.textContent = texto;
+    mensagem_erro.classList.add('erro');
+    campo_novo_nome.classList.add('erro');
+    campo_novo_nome.focus();
+}
+
 function validar_campo_nome() {
     mensagem_erro.innerHTML = "";
+    campo_novo_nome.classList.remove('erro');
 
-    if (campo_novo_nome.validity.valueMissing) {
-        campo_novo_nome.classList.remove('erro')
-        mensagem_erro.innerHTML = "Digite um nome válido."
-        mensagem_erro.classList.remove('erro')
-        return false
-    }
+if (campo_novo_nome.validity.valueMissing) {
+    mostrarErro("Digite um nome válido.");
+    return false;
+}
+if (campo_novo_nome.validity.tooShort) {
+    mostrarErro("Insira um nome com mais de 3 letras.");
+    return false;
+}
+if (campo_novo_nome.validity.tooLong) {
+    mostrarErro("Insira um nome com menos de 64 letras.");
+    return false;
+}
 
-    if (campo_novo_nome.validity.tooShort) {
-        campo_novo_nome.add('erro')
-        mensagem_erro.innerHTML = "Inserir nome com mais de 3 letras."
-        mensagem_erro.classList.add('erro')
-        return false
-    }
-
-    if (campo_novo_nome.validity.tooLong) {
-        campo_novo_nome.add('erro')
-        mensagem_erro.innerHTML = "Inserir nome com menos de 64 letras."
-        mensagem_erro.classList.add('erro')
-        return false
-    }
-    return true
+    return true;
 }
 
 function limpar_campo() {
@@ -40,13 +41,12 @@ function voltar() {
 }
 
 function incluir() {
-    if (window.localStorage.getItem("medidas") === null) {
-        window.localStorage.setItem("medidas", "[]");
+    if (!localStorage.getItem("medidas")) {
+        localStorage.setItem("medidas", "[]");
     }
 
     //Recupera as medidas já salvas
-    let medidas = window.localStorage.getItem("medidas")
-    let listademedidas = JSON.parse(medidas);
+let listademedidas = JSON.parse(localStorage.getItem("medidas"));
 
     //cria o objeto da nova medida
     let medida = {
@@ -70,14 +70,13 @@ function incluir() {
     listademedidas.push(medida);
 
     // Salva novamente no localStorage
-    medidas = JSON.stringify(listademedidas);
-    window.localStorage.setItem("medidas", medidas);
+    localStorage.setItem("medidas", JSON.stringify(listademedidas));
 
     alert("Medida salva com sucesso!");
 
     limpar_campo();
 
-    setInterval(function() {
+    setTimeout(function() {
         voltar()
     }, 2000)
 }

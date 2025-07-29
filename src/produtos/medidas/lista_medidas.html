@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Medidas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Medidas</title>
 
-<link rel="stylesheet" href="medidas.css">
-
+  <!-- CSS padrão aplicado -->
+  <link rel="stylesheet" href="../../produtos/padraodam.css">
 </head>
 <body>
-    <main class="cadastro_medidas">
+  <main class="container">
+    <h1>Lista de Medidas</h1>
 
-        <div class="container">
-            <h1>Lista de Medidas</h1>
+    <div class="tabela-container">
+      <table id="tabela_medidas">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="corpo_tabela">
+          <!-- Dados renderizados via JS -->
+        </tbody>
+      </table>
+    </div>
 
-            <table id="tabela_medidas">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="corpo_tabela">
-                    <!-- Os dados aparecarão aqui -->
-                </tbody>
-            </table>
+    <!-- Botões -->
+    <div class="botoes-rodape">
+      <button onclick="irParaIndex()">◀️ Voltar</button>
+      <button onclick="abrirCadastro()">💾 Cadastrar</button>
+    </div>
+  </main>
 
-            <div class="botoes-rodape">
-                <button onclick="irParaIndex()">Voltar</button>
-                <button onclick="abrirCadastro()">Cadastrar</button>
-            </div>
-
-        </div>
-    </main>
-    
-    <script src="lista_medidas.js"></script>
-
+  <script src="lista_medidas.js"></script>
 </body>
 </html>

@@ -106,6 +106,39 @@ async function buscar_informacao_grupos(elemento) {
 
     }
 }
+async function buscar_informacao_marca(elemento) {
+    let info_marca = document.getElementById("info_marca")
+    info_marca.innerHTML = ""
+    requisicao = await fetch(`http://localhost:3000/marca`, {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
+        }
+    })
+    if (requisicao.ok == true) {
+        lista = document.createElement("ul")
+        listas_marcas = await requisicao.json()
+        listas_marcas.data.filter(item => {
+            return item.nome != null
+        }).forEach(item => {
+            lista_item = document.createElement("li")
+            lista_item.dataset.id = item.id
+            span_item = document.createElement("span")
+            span_item.innerHTML = item.nome
+            lista_item.appendChild(span_item)
+
+            lista_item.onclick = function() {
+                selecionar_item(lista_item, 'id_marca')
+                adicionar_item_campo(elemento,item.nome)
+            }
+            lista.appendChild(lista_item)
+        })
+        info_marca.appendChild(lista)
+    } else {
+
+    }
+}
 function adicionar_item_campo(elemento,valor) {
     elemento.value = valor
 }

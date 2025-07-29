@@ -44,6 +44,13 @@ document.addEventListener('click', (elemento) => {
     });
 });
 
+
+adicionar_valor_campo = function (elemento, valor) {
+
+    elemento.value = valor
+}
+
+
 buscar_informação_categoria = async function (elemento) {
     info_categoria = document.getElementById('info-categoria')
     info_categoria.innerHTML = ""
@@ -133,13 +140,11 @@ buscar_informação_grupo = async function (elemento) {
 
     } else {
 
-
     }
-
 }
 
-buscando_informação_moeda = async function (elemento) {
-    info_moeda = ("info-moeda")
+buscar_informacao_moeda = async function (elemento) {
+    info_moeda = document.getElementById("info-moeda")
     info_moeda.innerHTML = ""
 
     requisicao = await fetch(`http://localhost:3000/moedas`, {
@@ -149,40 +154,35 @@ buscando_informação_moeda = async function (elemento) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
+
     })
 
     if (requisicao.ok == true) {
+
         lista = document.createElement("ul")
 
-        
         lista_moeda = await requisicao.json()
-
         lista_moeda.data.forEach(item => {
+
             lista_item = document.createElement("li")
             lista_item.dataset.id = item.id
 
-            span_item = document.createElement("span")
-            span_item.innerHTML = item.nome
+            span_moeda = document.createElement("span")
+            span_moeda.innerHTML = item.nome
 
-            lista_item.appendChild(span_item)
+            lista_item.appendChild(span_moeda)
 
             lista_item.onclick = function () {
-                selecionar_item(lista_item, 'id_moeda')
+                selecionar_item(lista_item, "id_moeda")
                 adicionar_valor_campo(elemento, item.nome)
-
-                lista.appendChild(lista_item)
             }
 
-            info_moeda.appendChild(lista)
+            lista.appendChild(lista_item)
         })
 
+        info_moeda.appendChild(lista)
     } else {
 
     }
-
 }
 
-adicionar_valor_campo = function (elemento, valor) {
-
-    elemento.value = valor
-}

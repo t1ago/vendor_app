@@ -1,38 +1,76 @@
-const campos = [
-    { id: 'nome', label: 'Nome', required: true},
-    { id: 'moeda', label: 'Moeda', required: true},
-    { id: 'preco_compra', label: 'Preço de Compra', type: 'number', required: true},
-    { id: 'preco_venda', label: 'Preço de Venda', type: 'number', required: true},
-    { id: 'grupo', label: 'Grupo', required: true},
-    { id: 'categoria', label: 'Categoria', required: true},
-    { id: 'medida', label: 'Unidade de Medida', required: true},
-    { id: 'marca', label: 'Marca', required: true},
-    { id: 'cor', label: 'Cor', required: true},
-    { id: 'descricao', label: 'Descrição', type: 'textarea', required: true},
-];
+function validarCampo(campo) {
+  const erroElemento = campo.parentElement.querySelector(".erro");
+  campo.classList.remove("invalido");
+  erroElemento.textContent = "";
 
-const container = document.getElementById('campos-dinamicos');
+  if (!campo.checkValidity()) {
+    campo.classList.add("invalido");
 
-campos.forEach(campo=> {
-    const linha = document.createElement('div');
-    linha.className = 'linha';
-
-    const label = document.createElement('label');
-    label.setAttribute('for', campo.id);
-    label.textContent = campo.label;
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.id = campo.id;
-    input.name = campo.id;
-
-    if (campo.required) {
-        input.required = true;
-        input.minLength = 3;
-        input.maxLength = 64;
+    if (campo.validity.valueMissing) {
+      erroElemento.textContent = "Este campo é obrigatório.";
+    } else if (campo.validity.tooShort) {
+      erroElemento.textContent = `Mínimo de ${campo.minLength} caracteres.`;
+    } else if (campo.validity.tooLong) {
+      erroElemento.textContent = `Máximo de ${campo.maxLength} caracteres.`;
     }
 
-    linha.appendChild(label);
-    linha.appendChild(input);
-    linha.appendChild(linha);
+    return false;
+  }
+
+  return true;
+}
+
+valores_dados = {
+  id_fornecedor: null,
+  nome: null,
+  id_moeda: null,
+  preco_compra: null,
+  preco_venda: null,
+  id_grupo: null,
+  id_categoria: null,
+  id_unidade_medida: null,
+  id_marca: null,
+  id_cor: null,
+  descricao: null,
+}
+
+foco_campo = function (elemento) {
+  elemento_pai = elemento.parentNode
+  elemento_informacao = elemento_pai.getElementsByClassName('oculto')[0]
+
+  if (elemento_informacao != undefined) {
+    elemento_informacao.classList.remove('oculto')
+  }
+}
+
+document.querySelectorAll('.lista-suspensa-container').forEach(container => {
+  const input = container.querySelector('.lista-suspensa-input');
+  const lista = container.querySelector('.lista-suspensa-opcoes');
+
+  input.addEventListener('focus', () => {
+    lista.classList.remove('lista-oculta');
+  });
+
+  input.addEventListener('input', () => {
+    const termo = input.value.toLowerCase();
+    lista.querySelectorAll('li').forEach(item => {
+      const texto = item.textContent.toLowerCase();
+      item.style.display = texto.includes(termo) ? 'block' : 'none';
+    });
+  });
+
+  lista.querySelectorAll('li').forEach(opcao => {
+    opcao.addEventListener('click', () => {
+      input.value = opcao.textContent;
+      input.dataset.valor = opcao.dataset.valor;
+      lista.classList.add('lista-oculta');
+    });
+  });
+
+  // Fecha se clicar fora
+  document.addEventListener('click', e => {
+    if (!container.contains(e.target)) {
+      lista.classList.add('lista-oculta');
+    }
+  });
 });

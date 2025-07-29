@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="stylesheet" href="padrao_victor.css">
+    <link rel="stylesheet" href="../../../utilitarios/padrao_victor.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor app</title>
@@ -15,7 +15,7 @@
             <div class="linha espaco-cima">
                 <div class="coluna coluna-campo">
                     <label for="name">Nome</label>
-                    <input type=text id="name" name="name">
+                    <input type=text id="name" name="name" required maxlength="64" minlength="3" oninput="validarCampoNome(this)">
                 </div>
                 <div class="coluna coluna-id coluna-campo">
                     <label for="id">Id</label>
@@ -24,11 +24,12 @@
             </div>
             <div class="linha">
                 <div class="coluna coluna-botoes">
-                    <button>Cancelar</button>
-                    <button>Salvar</button>
+                    <button onclick="voltar()">Cancelar</button>
+                    <button onclick="botao_salvar()">Salvar</button>
                 </div>
             </div>
         </div>
     </main>
+    <script src="cadastro_marca.js"></script>
 </body>
 </html>

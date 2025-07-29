@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="stylesheet" href="padrao_victor.css">
+    <link rel="stylesheet" href="../../../utilitarios/padrao_victor.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor app</title>
 </head>
 <body>
+    <script src="lista_marca.js"></script>
     <main id="principal">
         <div id="tabela">
             <div class="linha">
@@ -27,8 +28,8 @@
             </div>
             <div class="linha">
                 <div class="coluna coluna-botoes">
-                    <button>Voltar</button>
-                    <button>Cadastrar</button>
+                    <button onclick="voltarIndex()">Voltar</button>
+                    <button onclick="abrirCadastro()">Cadastrar</button>
                 </div>
             </div>
         </div>

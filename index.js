@@ -18,3 +18,6 @@ botao_listar_moedas_click = function () {
 botao_listar_fornecedor_victor_click = function () {
     navegarPara('./src/produtos/fornecedores/victor/fornecedor_victor.html')
 }
+botao_listar_marcas_click = function () {
+    navegarPara('./src/produtos/marca/lista_marca.html')
+}

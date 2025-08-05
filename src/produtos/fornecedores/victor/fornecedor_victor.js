@@ -186,6 +186,9 @@ async function buscar_informacao_marca(elemento) {
 
     }
 }
+async function buscar_informacao_grupos(elemento) {
+    
+}
 function adicionar_item_campo(elemento,valor) {
     elemento.value = valor
 }

@@ -15,3 +15,7 @@ botao_listar_medidas_click = function () {
 botao_listar_moedas_click = function () {
     navegarPara('./modulos/produtos/moedas/lista_moeda.html');
 }
+
+botao_listar_grupo_click = function () {
+    navegarPara('./modulos/produtos/grupo/listagrupo.html');
+}

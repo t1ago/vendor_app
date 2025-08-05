@@ -19,3 +19,11 @@ botao_listar_moedas_click = function () {
 botao_listar_grupo_click = function () {
     navegarPara('./src/produtos/grupo/listagrupo.html');
 }
+
+botao_listar_fornecedor_tiago_click = function () {
+    navegarPara('./src/produtos/fornecedores/tiago/cadastro_fornecedor.html')
+}
+
+botao_listar_fornecedores_click = function () {
+    navegarPara('./src/produtos/fornecedores/dam/cadastro_fornecedores.html');
+}

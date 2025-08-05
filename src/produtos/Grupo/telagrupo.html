@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor_app</title>
+    <link rel="stylesheet" href="telagrupo.css">
+</head>
+
+<body>
+
+    <form class="container">
+        <H1>Cadastro de Grupo</H1>
+        <div>
+            <label>
+                Nome do grupo
+            </label>
+            <input type="text" id="grupo" required minlength="3" maxlength="64" onkeyup="validacampo()"
+                onchange="validacampo()"></input>
+            <label id="mensagemgrupo"></label>
+        </div>
+        <div>
+            <input type="text" id="idgrupo" name="idgrupo" style="display: none;"></input>
+        </div>
+
+        <div class="button-arrumed">
+            <div>
+                <button id="button_cancelar" type="button" onclick="voltar()">Cancelar</button>
+                <button id="button_salvar" type="button" onclick="botao_salvar_click()">Salvar</button>
+            </div>
+        </div>
+
+
+    </form>
+
+</body>
+<script src="telagrupo.js"></script>
+
+</html>

@@ -8,29 +8,26 @@ valores_dados = {
     id_categoria:null,
     id_unidade_medida:null,
     id_marca:null,
+    id_cores:null,
     descricao:null
 }
 
 async function focar_campo(elemento,minha_funcao) {
-    let elemento_pai = elemento.parentNode;
-    let elemento_informacao = elemento_pai.getElementsByClassName('esconder')[0]
+    elemento_pai = elemento.parentNode;
+    elemento_informacao = elemento_pai.getElementsByClassName('esconder')[0]
     if (elemento_informacao != undefined) {
         elemento_informacao.classList.remove('esconder')
     }
     
     await minha_funcao(elemento)
 }
-function desfocar_campo(event) {
-    if (event?.target?.closest('.informacao-lista') || event?.target?.closest('input')) {
-        return;
-    }
-    let lista_Elementos = document.getElementsByClassName('informacao-lista');
-    for (let i = 0; i < lista_Elementos.length; i++) {
-        lista_Elementos[i].classList.add('esconder');
-    }
+function desfocar_campo(elemento) {
+    elemento_pai = elemento.parentNode;
+    elemento_fechado = elemento_pai.getElementsByClassName("informacao-lista")[0];
+    elemento_fechado.classList.add('esconder');
 }
 function selecionar_item(elemento, id) {
-    valores_dados[id] = parseInt(elemento.dataset.value)
+    valores_dados[id] = parseInt(elemento.dataset.id)
     esconder_informacao(elemento)
     console.log(valores_dados)
 }
@@ -45,18 +42,8 @@ function esconder_informacao(elemento) {
 async function buscar_informacao_categorias(elemento) {
     try {
         info_categorias = document.getElementById("info_categorias")
-        info_categorias.innerHTML = ""
-
-        let elemento_carregando = document.createElement("span")
-        elemento_carregando.innerHTML = "Carregando..."
-
-        let div_resultado = document.createElement("div")
-        div_resultado.style.color = "white"
-        div_resultado.appendChild(elemento_carregando)
-
-        info_categorias.appendChild(div_resultado)
-
-
+        info_categorias.innerHTML = "";
+        animacaoCarregar(elemento)
         requisicao = await fetch(`http://localhost:3000/categorias`,{
             method: "GET",
             headers: {
@@ -64,12 +51,13 @@ async function buscar_informacao_categorias(elemento) {
                 'Content-type': 'application/json'
             }
         })
-        div_resultado.remove()
+        animacaoCarregar(elemento,false)
         if (requisicao.ok ==true) {
             lista = document.createElement("ul")
             lista_categorias = await requisicao.json()
-            lista_categorias.data.forEach(item => {
-                //Puxa o id
+            lista_categorias.data.filter(item => 
+                {return item.nome != null
+            }).forEach(item => {
                 lista_item = document.createElement("li")
                 lista_item.dataset.id = item.id
                 span_item = document.createElement("span")
@@ -84,34 +72,22 @@ async function buscar_informacao_categorias(elemento) {
             })
             info_categorias.appendChild(lista)
         }
-    } catch {
-        info_categorias = document.getElementById("info_categorias")
-        info_categorias.innerHTML = ""
-
-        let elemento_erro = document.createElement("span")
-        elemento_erro.innerHTML = "Nenhuma categoria foi encontrada..."
-
-        let div_resultado = document.createElement("div")
-        div_resultado.style.color = "white"
-        div_resultado.appendChild(elemento_erro)
-
-        info_categorias.appendChild(div_resultado)
-    } 
+    } catch (erro) {
+        animacaoCarregar(elemento,false)
+        lista = document.createElement("ul");
+        lista_item = document.createElement("li");
+        span_item = document.createElement("span");
+        span_item.innerHTML = "Nenhum grupo encontrado...";
+        lista_item.appendChild(span_item);
+        lista.appendChild(lista_item);
+        info_categorias.appendChild(lista);
+    }
 }
 async function buscar_informacao_grupos(elemento) {
     try {
         info_grupos = document.getElementById("info_grupos")
         info_grupos.innerHTML = ""
-        
-        let elemento_carregando = document.createElement("span")
-        elemento_carregando.innerHTML = "Carregando..."
-
-        let div_resultado = document.createElement("div")
-        div_resultado.style.color = "white"
-        div_resultado.appendChild(elemento_carregando)
-
-        info_grupos.appendChild(div_resultado)
-
+        animacaoCarregar(elemento)
         requisicao = await fetch(`http://localhost:3000/grupos`,{
             method: "GET",
             headers: {
@@ -119,7 +95,7 @@ async function buscar_informacao_grupos(elemento) {
                 'Content-type': 'application/json'
             }
         })
-        div_resultado.remove()
+        animacaoCarregar(elemento,false)
         if(requisicao.ok == true) {
             lista = document.createElement("ul")
             listas_grupos = await requisicao.json()
@@ -139,56 +115,209 @@ async function buscar_informacao_grupos(elemento) {
                 })
                 info_grupos.appendChild(lista)
         } 
-    } catch {
-        info_grupos = document.getElementById("info_categorias")
-        info_grupos.innerHTML = ""
-
-        let elemento_erro = document.createElement("span")
-        elemento_erro.innerHTML = "Nenhum grupo foi encontrado..."
-
-        let div_resultado = document.createElement("div")
-        div_resultado.style.color = "white"
-        div_resultado.appendChild(elemento_erro)
-
-        info_grupos.appendChild(div_resultado)
-    }  
-}
-async function buscar_informacao_marca(elemento) {
-    let info_marca = document.getElementById("info_marca")
-    info_marca.innerHTML = ""
-    requisicao = await fetch(`http://localhost:3000/marca`, {
-        method: "GET",
-        headers: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json'
-        }
-    })
-    if (requisicao.ok == true) {
-        lista = document.createElement("ul")
-        listas_marcas = await requisicao.json()
-        listas_marcas.data.filter(item => {
-            return item.nome != null
-        }).forEach(item => {
-            lista_item = document.createElement("li")
-            lista_item.dataset.id = item.id
-            span_item = document.createElement("span")
-            span_item.innerHTML = item.nome
-            lista_item.appendChild(span_item)
-
-            lista_item.onclick = function() {
-                selecionar_item(lista_item, 'id_marca')
-                adicionar_item_campo(elemento,item.nome)
-            }
-            lista.appendChild(lista_item)
-        })
-        info_marca.appendChild(lista)
-    } else {
-
+    } catch (erro) {
+        animacaoCarregar(elemento,false)
+        lista = document.createElement("ul");
+        lista_item = document.createElement("li");
+        span_item = document.createElement("span");
+        span_item.innerHTML = "Nenhum grupo encontrado...";
+        lista_item.appendChild(span_item);
+        lista.appendChild(lista_item);
+        info_grupos.appendChild(lista);
     }
 }
-async function buscar_informacao_grupos(elemento) {
-    
+async function buscar_informacao_marca(elemento) {
+    try {
+        info_marca = document.getElementById("info_marca")
+        info_marca.innerHTML = ""
+        animacaoCarregar(elemento);
+        requisicao = await fetch(`http://localhost:3000/marca`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            }
+        })
+        animacaoCarregar(elemento,false)
+        if (requisicao.ok == true) {
+            lista = document.createElement("ul")
+            listas_marcas = await requisicao.json()
+            listas_marcas.data.filter(item => {
+                return item.nome != null
+            }).forEach(item => {
+                lista_item = document.createElement("li")
+                lista_item.dataset.id = item.id
+                span_item = document.createElement("span")
+                span_item.innerHTML = item.nome
+                lista_item.appendChild(span_item)
+
+                lista_item.onclick = function() {
+                    selecionar_item(lista_item, 'id_marca')
+                    adicionar_item_campo(elemento,item.nome)
+                }
+                lista.appendChild(lista_item)
+            })
+            info_marca.appendChild(lista)
+        }
+    } catch (erro) {
+        animacaoCarregar(elemento,false)
+        lista = document.createElement("ul");
+        lista_item = document.createElement("li");
+        span_item = document.createElement("span");
+        span_item.innerHTML = "Nenhuma marca encontrada...";
+        lista_item.appendChild(span_item);
+        lista.appendChild(lista_item);
+        info_marca.appendChild(lista);
+    }
+}
+async function buscar_informacao_moedas(elemento) {
+    try {
+        info_moedas = document.getElementById("info_moedas");
+        info_moedas.innerHTML = ""
+        animacaoCarregar(elemento)
+        requisicao = await fetch('http://localhost:3000/moedas', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            }
+        })
+        animacaoCarregar(elemento,false)
+        if(requisicao.ok == true) {
+            lista = document.createElement("ul");
+            listas_moedas = await requisicao.json()
+            listas_moedas.data.filter(item => {
+                return item.nome != null
+            }).forEach(item => {
+                lista_item = document.createElement("li");
+                lista_item.dataset.id = item.id;
+                span_item = document.createElement("span");
+                span_item.innerHTML = item.nome;
+                lista_item.appendChild(span_item);
+
+                lista_item.onclick = function() {
+                    selecionar_item(lista_item, 'id_moeda')
+                    adicionar_item_campo(elemento,item.nome)
+                }
+                lista.appendChild(lista_item)
+            })
+            info_moedas.appendChild(lista)
+        }
+    } catch {
+        animacaoCarregar(elemento,false)
+        lista = document.createElement("ul");
+        lista_item = document.createElement("li");
+        span_item = document.createElement("span");
+        span_item.innerHTML = "Nenhuma moeda encontrada...";
+        lista_item.appendChild(span_item);
+        lista.appendChild(lista_item);
+        info_moedas.appendChild(lista);
+    }
+}
+async function buscar_informacao_medidas(elemento) {
+    try {
+        info_medidas = document.getElementById("info_medidas");
+        info_medidas.innerHTML = "";
+        animacaoCarregar(elemento)
+        requisicao = await fetch ('http://localhost:3000/medidas',{
+            method:'GET',
+            headers:{
+                'Accept': 'application/json',
+                'Content_type':'application/json'
+            }
+        })
+        animacaoCarregar(elemento,false)
+        if(requisicao.ok == true) {
+            lista = document.createElement("ul");
+            listas_medidas = await requisicao.json();
+            listas_medidas.data.filter(item => {
+                return item.nome != null
+            }).forEach(item => {
+                lista_item = document.createElement("li");
+                lista_item.dataset.id = item.id;
+                span_item = document.createElement("span");
+                span_item.innerHTML = item.nome;
+                lista_item.appendChild(span_item);
+
+                lista_item.onclick = function() {
+                    selecionar_item(lista_item, 'id_unidade_medida')
+                    adicionar_item_campo(elemento,item.nome)
+                }
+                lista.appendChild(lista_item)
+            })
+            info_medidas.appendChild(lista);
+        }
+    } catch {
+        animacaoCarregar(elemento,false)
+        lista = document.createElement("ul");
+        lista_item = document.createElement("li");
+        span_item = document.createElement("span");
+        span_item.innerHTML = "Nenhuma medida encontrada...";
+        lista_item.appendChild(span_item);
+        lista.appendChild(lista_item);
+        info_medidas.appendChild(lista);
+    }
+}
+async function buscar_informacao_cores(elemento) {
+    try {
+        info_cores = document.getElementById("info_cores");
+        info_cores.innerHTML = "";
+        animacaoCarregar(elemento)
+        requisicao = await fetch('http://localhost:3000/cores',{
+            method:'GET',
+            headers:{
+                'Accept': 'application/json',
+                'Content_type':'application/json'
+            }
+        })
+        animacaoCarregar(elemento,false)
+        if(requisicao.ok == true) {
+            lista = document.createElement("ul");
+            listas_cores = await requisicao.json();
+            listas_cores.data.filter(item => {
+                return item.hexadecimal != null
+            }).forEach(item => {
+                lista_item = document.createElement("li");
+                lista_item.dataset.id = item.id;
+                span_item = document.createElement("span");
+                span_item.innerHTML = item.hexadecimal;
+                lista_item.appendChild(span_item);
+
+                lista_item.onclick = function() {
+                    selecionar_item(lista_item, 'id_cor')
+                    adicionar_item_campo(elemento,item.hexadecimal)
+                }
+                lista.appendChild(lista_item)
+            })
+            info_cores.appendChild(lista);
+        }
+    } catch {
+        animacaoCarregar(elemento,false)
+        lista = document.createElement("ul");
+        lista_item = document.createElement("li");
+        span_item = document.createElement("span");
+        span_item.innerHTML = "Nenhuma cor encontrada...";
+        lista_item.appendChild(span_item);
+        lista.appendChild(lista_item);
+        info_cores.appendChild(lista);
+    }
 }
 function adicionar_item_campo(elemento,valor) {
     elemento.value = valor
+}
+function animacaoCarregar(elemento, chave = true) {
+    elemento_div = elemento.parentNode;
+    elemento_selecionado = elemento_div.getElementsByClassName('informacao-lista')[0];
+    elemento_animado = document.createElement('div');
+    elemento_animado.classList.add('elemento_animado');
+    if (chave == true) {
+        animacao = document.createElement('img');
+        animacao.src = '../../../../imagens/loading.png';
+        animacao.classList.add('animar')
+        elemento_animado.appendChild(animacao);
+        elemento_selecionado.appendChild(elemento_animado);
+    } else {
+        elemento_animado = document.getElementsByClassName("elemento_animado")[0];
+        elemento_animado.remove();
+    } 
 }

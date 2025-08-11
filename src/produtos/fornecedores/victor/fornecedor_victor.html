@@ -21,8 +21,8 @@
                 </div>
                 <div class="coluna coluna-campo">
                     <label for="moeda">Moeda</label>
-                    <input type="text" id="moeda" name="moeda" onfocus="focar_campo(this)">
-                   <div id="info_moeda" class="informacao-lista esconder">
+                    <input type="text" id="moeda" name="moeda" onfocus="focar_campo(this, buscar_informacao_moedas)" onblur="desfocar_campo(this)">
+                    <div id="info_moedas" class="informacao-lista esconder">
                     </div>
                 </div>
                 <div class="coluna coluna-campo">
@@ -37,13 +37,13 @@
             <div class="linha">
                 <div class="coluna coluna-campo">
                     <label for="grupo">Grupo</label>
-                    <input type="text" id="grupo" name="grupo" onfocus="focar_campo(this, buscar_informacao_grupos)">
+                    <input type="text" id="grupo" name="grupo" onfocus="focar_campo(this, buscar_informacao_grupos)" onblur="desfocar_campo(this)">
                     <div id="info_grupos" class="informacao-lista esconder">
                     </div>
                 </div>
                 <div class="coluna coluna-campo">
                     <label for="categoria">Categoria</label>
-                    <input type="text" id="categoria" name="categoria" onfocus="focar_campo(this, buscar_informacao_categorias)">
+                    <input type="text" id="categoria" name="categoria" onfocus="focar_campo(this, buscar_informacao_categorias)" onblur="desfocar_campo(this)">
                     <div id="info_categorias" class="informacao-lista esconder">
                     </div>
                 </div>
@@ -51,24 +51,21 @@
             <div class="linha">
                 <div class="coluna coluna-campo">
                     <label for="medida">Unidade de Medida</label>
-                    <input type="text" id="medida" name="medida" onfocus="focar_campo(this)">
-                    <div class="informacao-lista esconder">
-                        <ul>
-                            <li data-value="1" onclick="selecionar_item(this, 'id_unidade_medida')"><span>mm</span></li>
-                            <li data-value="2" onclick="selecionar_item(this, 'id_unidade_medida')"><span>cm</span></li>
-                            <li data-value="3" onclick="selecionar_item(this, 'id_unidade_medida')"><span>m</span></li>
-                        </ul>
+                    <input type="text" id="medida" name="medida" onfocus="focar_campo(this,buscar_informacao_medidas)" onblur="desfocar_campo(this)">
+                    <div id="info_medidas" class="informacao-lista esconder">
                     </div>
                 </div>
                 <div class="coluna coluna-campo">
                     <label for="marca">Marca</label>
-                    <input type="text" id="marca" name="marca" onfocus="focar_campo(this, buscar_informacao_marca)">
+                    <input type="text" id="marca" name="marca" onfocus="focar_campo(this, buscar_informacao_marca)" onblur="desfocar_campo(this)">
                     <div id="info_marca" class="informacao-lista esconder">
                     </div>
                 </div>
-                <div class="coluna coluna-campo">
+                <div class="coluna coluna-campo" >
                     <label for="cor">Cor</label>
-                    <input type="text" id="cor" name="cor">
+                    <input type="text" id="cor" name="cor" onfocus="focar_campo(this, buscar_informacao_cores)" onblur="desfocar_campo(this)">
+                    <div id="info_cores" class="informacao-lista esconder">
+                    </div>
                 </div>
             </div>
             <div class="linha">
@@ -80,7 +77,7 @@
             <div class="linha">
                 <div class="coluna coluna-botoes">
                     <button>Cancelar</button>
-                    <button>Salvar</button>
+                    <button onclick="mostrar()">Salvar</button>
                 </div>
             </div>
         </div>

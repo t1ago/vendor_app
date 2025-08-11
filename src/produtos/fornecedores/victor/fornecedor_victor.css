@@ -27,3 +27,17 @@
     color:white;
     border-radius: 12px;
 }
+@keyframes girar {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.elemento_animado {
+    overflow: hidden;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+}
+.animar {
+    animation: girar 2s linear infinite;
+}

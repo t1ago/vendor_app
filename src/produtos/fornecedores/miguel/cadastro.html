@@ -75,15 +75,12 @@
 
                 <!-- Criação da cor -->
 
+            
                 <div class="coluna coluna-base">
                     <label for="cor">Cor</label>
-                    <input type="text" name="cor" id="cor" onfocus="focar_campo(this)">
-                    <div class="informacao-lista esconder">
-                        <ul>
-                            <li data-value="1" onclick="selecionar_item(this, 'id_cor')"><span>Real (R$)</span></li>
-                            <li data-value="2" onclick="selecionar_item(this, 'id_cor')"><span>Dollar (US$)</span>
-                            </li>
-                        </ul>
+                    <input type="text" name="cor" id="cor" onfocus="focar_campo(this, buscar_informacao_cor)">
+                    <div id="info-cor" class="informacao-lista esconder">
+                      
                     </div>
                 </div>
             </div>
@@ -131,7 +128,7 @@
 
             <div class="botoes">
                 <button class="button-cancel" type="button" onclick="">Cancelar</button>
-                <button class="button-save" type="button" onclick="">Salvar</button>
+                <button class="button-save" type="button" onclick="botao_salvar_click">Salvar</button>
             </div>
             </div>
         </form>

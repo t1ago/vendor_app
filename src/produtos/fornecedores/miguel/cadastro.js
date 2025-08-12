@@ -23,7 +23,7 @@ async function focar_campo(elemento, minha_funcao) {
 }
 
 function selecionar_item(elemento, id) {
-    valores_dados[id] = parseInt(elemento.dataset.value)
+    valores_dados[id] = parseInt(elemento.dataset.id)
     esconder_informacao(elemento)
     console.log(valores_dados)
 }
@@ -196,7 +196,8 @@ buscar_informacao_marca = async function (elemento) {
     info_marca = document.getElementById("info-marca")
     info_marca.innerHTML = "🔄"
 
-    requisicao = await fetch(`http://localhost:3000/marca`, {
+    requisicao = await fetch("http://localhost:3000/marca", {
+
         method: "GET",
         headers: {
             'Accept': 'application/json',
@@ -204,51 +205,53 @@ buscar_informacao_marca = async function (elemento) {
         }
     })
 
-    if (requisicao.ok) {
+    if (requisicao.ok == true) {
 
         lista = document.createElement("ul")
 
         lista_marca = await requisicao.json()
         lista_marca.data.forEach(item => {
 
-
             lista_item = document.createElement("li")
             lista_item.dataset.id = item.id
 
-            span_item = document.createElement("span")
-            span_item.innerHTML = item.nome
+            span_marca = document.createElement("span")
+            span_marca.innerHTML = item.nome
 
-            lista_item.appendChild(span_item)
+            lista_item.appendChild(span_marca)
 
             lista_item.onclick = function () {
-                selecionar_item(elemento, "id_marca")
+                selecionar_item(lista_item, "id_marca")
                 adicionar_valor_campo(elemento, item.nome)
             }
+
             lista.appendChild(lista_item)
         })
+
         info_marca.innerHTML = ""
         info_marca.appendChild(lista)
     } else {
 
     }
+
+
 }
 
 
 buscar_informacao_medida = async function (elemento) {
+    info_marca = document.getElementById("info-medida")
+    info_marca.innerHTML = "🔄"
 
-    info_medida = document.getElementById("info-medida")
-    info_medida.innerHTML = "🔄"
+    requisicao = await fetch("http://localhost:3000/medidas", {
 
-    requisicao = await fetch(`http://localhost:3000/medidas`, {
         method: "GET",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
-
     })
 
-    if(requisicao.ok == true) {
+    if (requisicao.ok == true) {
 
         lista = document.createElement("ul")
 
@@ -258,24 +261,72 @@ buscar_informacao_medida = async function (elemento) {
             lista_item = document.createElement("li")
             lista_item.dataset.id = item.id
 
-            span_item = document.createElement("span")
-            span_item.innerHTML = item.nome
+            span_medida = document.createElement("span")
+            span_medida.innerHTML = item.nome
 
-            lista_item.appendChild(span_item)
+            lista_item.appendChild(span_medida)
 
-            lista_item.onclick = function() {
-                selecionar_item(elemento,"id_medida")
+            lista_item.onclick = function () {
+                selecionar_item(lista_item, "id_unidade_medida")
                 adicionar_valor_campo(elemento, item.nome)
             }
+
             lista.appendChild(lista_item)
         })
-        
-        info_medida.innerHTML = ""
-        info_medida.appendChild(lista)       
-    } else {
-
+        info_marca.innerHTML = ""
+        info_marca.appendChild(lista)
     }
 
 
 }
 
+
+
+buscar_informacao_cor = async function (elemento) {
+
+    info_cor = document.getElementById("info-cor")
+    info_cor.innerHTML = "🔄"
+
+    requisicao = await fetch(`http://localhost:3000/cores`, {
+
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if (requisicao.ok = true) {
+
+        lista = document.createElement("ul")
+
+        lista_cor = await requisicao.json()
+
+        lista_cor.data.forEach(item => {
+
+            lista_item = document.createElement("li")
+            lista_item.dataset.id = item.id
+
+            span_cor = document.createElement("span")
+            span_cor.innerHTML = item.hexadecimal
+
+            lista_item.appendChild(span_cor)
+
+            lista_item.onclick = function () {
+                selecionar_item(lista_item, "id_cor")
+                adicionar_valor_campo(elemento, item.hexadecimal)
+            }
+            lista.appendChild(lista_item)
+
+        })
+
+        info_cor.innerHTML = ""
+        info_cor.appendChild(lista)
+    } else {
+
+    }
+
+}
+botao_salvar_click = function() {
+    console.log(valores_dados)
+}

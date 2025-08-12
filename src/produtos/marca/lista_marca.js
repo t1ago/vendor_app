@@ -7,20 +7,26 @@ function voltarIndex() {
 }
 
 let listaMarca = [];
-function carregarMarca() {
-    const corpotabela = document.getElementById("tabela-marca")
-    corpotabela.innerHTML = "";
-
-    let marca = localStorage.getItem("marca");
-    if (marca) {
-        listaMarca = JSON.parse(marca);
-        listaMarca.forEach(function (item) {
-            const linha = document.createElement("tr");
-            const coluna_nome = document.createElement("td")
-            const coluna_acoes = document.createElement("td")
-            const span_nome = document.createElement("span")
-            const botao_editar = document.createElement("button")
-            const botao_excluir = document.createElement("button")
+async function carregarMarca() {
+    corpo_tabela = document.getElementById("corpo_tabela");
+    corpo_tabela.innerHTML = "";
+    requisicao = await fetch ('http://localhost:3000/marca', {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
+        }
+    });
+    if (requisicao.ok == true) {
+        listaMarca = await requisicao.json()
+        listaMarca.data.filter(item => {
+            return item.nome != null }).forEach(function (item) {
+            linha = document.createElement("tr");
+            coluna_nome = document.createElement("td");
+            coluna_acoes = document.createElement("td");
+            span_nome = document.createElement("span");
+            botao_editar = document.createElement("button");
+            botao_excluir = document.createElement("button");
 
             botao_editar.innerHTML = "editar"
             botao_editar.onclick = () => editar_coluna(item.id);
@@ -29,25 +35,19 @@ function carregarMarca() {
             botao_excluir.onclick = () => excluir_coluna(item.id);
 
             span_nome.innerHTML = item.nome
-
-            linha.appendChild(coluna_nome)
-            coluna_nome.appendChild(span_nome)
-            coluna_acoes.appendChild(botao_editar)
-            coluna_acoes.appendChild(botao_excluir)
-            linha.appendChild(coluna_acoes)
-            corpotabela.appendChild
+            coluna_nome.appendChild(span_nome);
+            linha.appendChild(coluna_nome);
+            coluna_acoes.appendChild(botao_editar);
+            coluna_acoes.appendChild(botao_excluir);
+            linha.appendChild(coluna_acoes);
+            corpo_tabela.appendChild(linha);
         });
     }
 }
-function excluir_coluna(id) {
-    let marca = localStorage.getItem("marca")
-    let listamarca = JSON.parse(marca)
-
-    indice = listamarca.findIndex(function (valor) {
-        return valor.id == id
+async function excluir_coluna(id) {
+    await fetch (`http://localhost:3000/marca/${id}`, {
+        method: "DEL"
     })
-    listamarca.splice(indice,1)
-    window.localStorage.setItem("marca",JSON.stringify(listamarca))
     carregarMarca()
 }
 function editar_coluna(id) {

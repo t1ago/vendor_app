@@ -13,7 +13,11 @@ botao_listar_medidas_click = function () {
 }
 
 botao_listar_moedas_click = function () {
-    navegarPara('./src/produtos/moedas/tela_de_moeda.html');
+    navegarPara('./src/produtos/moedas/lista_moeda.html');
+}
+
+botao_listar_grupo_click = function () {
+    navegarPara('./src/produtos/grupo/listagrupo.html');
 }
 
 botao_listar_fornecedor_tiago_click = function () {

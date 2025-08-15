@@ -59,11 +59,9 @@
       <!-- Categoria -->
         <div class="coluna lista-suspensa-container">
           <label for="categoria">Categoria</label>
-          <input type="text" id="categoria" name="categoria" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this)" />
-          <ul class="lista-suspensa-opcoes lista-oculta">
-            <li data-id="1" onclick="selecionar_item(this, 'id_categoria')">Importado</li>
-            <li data-id="2" onclick="selecionar_item(this, 'id_categoria')">Nacional</li>
-          </ul>
+          <input type="text" id="categoria" name="categoria" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscar_informacao_categorias)" />
+          <div id="lista_suspensa" class="lista-suspensa-opcoes lista-oculta">
+          </div>
         </div>
 
       <!-- Medida -->

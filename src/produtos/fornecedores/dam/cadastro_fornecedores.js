@@ -34,12 +34,34 @@ valores_dados = {
   descricao: null,
 }
 
-foco_campo = function (elemento) {
+foco_campo = async function (elemento, minha_funcao) {
   elemento_pai = elemento.parentNode
   elemento_informacao = elemento_pai.getElementsByClassName('oculto')[0]
 
   if (elemento_informacao != undefined) {
     elemento_informacao.classList.remove('oculto')
+  }
+
+  await minha_funcao (elemento)
+}
+
+buscar_informacao_categorias = async function (elemento) {
+  lista_suspensa = document.getElementById('lista_suspensa');
+
+  requisicao = await fetch(`http://127.0.0.1:3000/categorias`, {
+    method: "GET",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+
+  if (requisicao.ok == true) {
+
+    dados = await requisicao.json()
+    console.log(dados)
+  } else {
+
   }
 }
 

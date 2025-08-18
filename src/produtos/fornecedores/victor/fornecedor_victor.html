@@ -17,7 +17,7 @@
             <div class="linha espaco-cima linha-principal">
                 <div class="coluna coluna-campo">
                     <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" required minlength="3" maxlength="64">
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64" onchange="campos_onchange('nome',this)">
                 </div>
                 <div class="coluna coluna-campo">
                     <label for="moeda">Moeda</label>
@@ -27,11 +27,11 @@
                 </div>
                 <div class="coluna coluna-campo">
                     <label for="compra">Preço Compra</label>
-                    <input type="text" id="compra" name="compra" required minlength="4" maxlength="64">
+                    <input type="text" id="compra" name="compra" required minlength="4" maxlength="64" onchange="campos_onchange('preco_compra',this)">
                 </div>
                 <div class="coluna coluna-campo">
                     <label for="venda">Preço Venda</label>
-                    <input type="text" id="venda" name="venda" required minlength="4" maxlength="64">
+                    <input type="text" id="venda" name="venda" required minlength="4" maxlength="64" onchange="campos_onchange('preco_venda',this)">
                 </div>
             </div>
             <div class="linha">
@@ -71,13 +71,13 @@
             <div class="linha">
                 <div class="coluna coluna-campo">
                     <label for="desc">Descrição</label>
-                    <input type="text" id="desc" required minlength="3" maxlength="120">
+                    <input type="text" id="desc" required minlength="3" maxlength="120" onchange="campos_onchange('descricao',this)">
                 </div>
             </div>
             <div class="linha">
                 <div class="coluna coluna-botoes">
                     <button>Cancelar</button>
-                    <button onclick="mostrar()">Salvar</button>
+                    <button onclick="salvar()">Salvar</button>
                 </div>
             </div>
         </div>

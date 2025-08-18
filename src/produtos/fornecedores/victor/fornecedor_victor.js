@@ -12,24 +12,26 @@ valores_dados = {
     descricao:null
 }
 
-async function focar_campo(elemento,minha_funcao) {
-    elemento_pai = elemento.parentNode;
-    elemento_informacao = elemento_pai.getElementsByClassName('esconder')[0]
-    if (elemento_informacao != undefined) {
-        elemento_informacao.classList.remove('esconder')
-    }
-    
-    await minha_funcao(elemento)
+function salvar() {
+    console.log(valores_dados)
 }
-function desfocar_campo(elemento) {
-    elemento_pai = elemento.parentNode;
-    elemento_fechado = elemento_pai.getElementsByClassName("informacao-lista")[0];
-    elemento_fechado.classList.add('esconder');
+function campos_onchange(propriedade, elemento) {
+    valores_dados[propriedade] = elemento.value;
 }
+
 function selecionar_item(elemento, id) {
     valores_dados[id] = parseInt(elemento.dataset.id)
     esconder_informacao(elemento)
     console.log(valores_dados)
+}
+
+function desfocar_campo(elemento) {
+    if (elemento.isTrusted != true) {
+        console.log('funcionou')
+        elemento_pai = elemento.parentNode;
+        elemento_fechado = elemento_pai.getElementsByClassName("informacao-lista")[0];
+        elemento_fechado.classList.add('esconder');
+    }
 }
 
 function esconder_informacao(elemento) {
@@ -39,6 +41,17 @@ function esconder_informacao(elemento) {
         elemento_pai.classList.add('esconder')
     }
 }
+
+async function focar_campo(elemento,minha_funcao) {
+    elemento_pai = elemento.parentNode;
+    elemento_informacao = elemento_pai.getElementsByClassName('esconder')[0]
+    if (elemento_informacao != undefined) {
+        elemento_informacao.classList.remove('esconder')
+    }
+    
+    await minha_funcao(elemento)
+}
+
 async function buscar_informacao_categorias(elemento) {
     try {
         info_categorias = document.getElementById("info_categorias")
@@ -302,9 +315,6 @@ async function buscar_informacao_cores(elemento) {
         info_cores.appendChild(lista);
     }
 }
-function adicionar_item_campo(elemento,valor) {
-    elemento.value = valor
-}
 function animacaoCarregar(elemento, chave = true) {
     elemento_div = elemento.parentNode;
     elemento_selecionado = elemento_div.getElementsByClassName('informacao-lista')[0];
@@ -320,4 +330,10 @@ function animacaoCarregar(elemento, chave = true) {
         elemento_animado = document.getElementsByClassName("elemento_animado")[0];
         elemento_animado.remove();
     } 
+}
+function adicionar_item_campo(elemento,valor) {
+    elemento.value = valor
+}
+async function criar_fornecedor() {
+    await fetch ('http://localhost:3000/fornecedor/victor')
 }

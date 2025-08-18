@@ -34,64 +34,35 @@ function voltar() {
     window.location.href = "listagrupo.html"
 }
 
-function cadastrargrupo() {
+async function cadastrargrupo() {
+    let grupo = {
+        nome: campo_nome.value
+    };
 
-    // Verificando se esta nulo, para criar um array
-    if (window.localStorage.getItem("grupo") == null)
-        window.localStorage.setItem("grupo", "[]")
-    // Dando a variavel a array e usando JSON
-    let grupo = localStorage.getItem("grupo")
-    let listagrupo = JSON.parse(grupo)
-    // Valor da array
-    grupo = {
-        'id': null,
-        'nome': campo_nome.value
+    let requisicao = await fetch("http://localhost:3000/grupos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(grupo)
+    });
+
+    if (requisicao.ok) {
+        let resposta = await requisicao.json();
+        campo_id.value = resposta.id; // API já gera o ID
     }
-    // Vendo o tamanho de lista se for 0 valor id = 1
-    if (listagrupo.length == 0) {
-        grupo.id = 1
-    } else {
-        // deixando a lista em forma decrescente pelo id
-        let lista_ordem = listagrupo.sort(
-            function (a, b) {
-                return b - a
-            }
-        ).reverse()
-        // Pegando o ultimo valor (maior id)
-        let ultimogrupo = lista_ordem[0]
-        // Acrescentando + 1 ao valor id
-        grupo.id = ultimogrupo.id + 1
-    }
-    // Define o valor do campo ID com o ID gerado para a nova moeda
-    campo_id.value = grupo.id
-
-    // Adiciona a nova moeda ao array de moedas
-    listagrupo.push(grupo)
-
-    // Converte o array atualizado de moedas para JSON
-    let grupoarray = JSON.stringify(listagrupo)
-
-    // Armazena o array atualizado no localStorage
-    window.localStorage.setItem("grupo", grupoarray)
 }
 
-alterargrupo = function () {
-    grupo = window.localStorage.getItem("grupo")
 
-    listagrupo = JSON.parse(grupo)
+async function alterargrupo() {
+    let grupo = {
+        id: campo_id.value,
+        nome: campo_nome.value
+    };
 
-
-    indice = listagrupo.findIndex(function (valor) {
-        return valor.id == campo_id.value
-    })
-
-    grupo = listagrupo[indice]
-    grupo.nome = campo_nome.value
-    listagrupo[indice] = grupo
-
-
-    window.localStorage.setItem('grupo', JSON.stringify(listagrupo))
-
+    await fetch(`http://localhost:3000/grupos/${grupo.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(grupo)
+    });
 }
 
 
@@ -111,25 +82,25 @@ botao_salvar_click = function () {
     window.location.href = "listagrupo.html"
 }
 
-function dados() {
-    let parametros = window.location.search
+async function dados() {
+    let parametros = window.location.search;
     if (parametros) {
+        let parametrosquebrado = new URLSearchParams(parametros);
+        let parametrosid = parametrosquebrado.get("id");
 
-        parametrosquebrado = new URLSearchParams(parametros)
-
-        let parametrosid = parametrosquebrado.get("id")
-
-        let grupo = window.localStorage.getItem("grupo")
-
-        let listagrupo = JSON.parse(grupo)
-
-        let localizado = listagrupo.find(function (item) {
-            return item.id == parametrosid
-        })
-        campo_id.value = localizado.id
-        campo_nome.value = localizado.nome
-
+        let requisicao = await fetch(`http://localhost:3000/grupos/${parametrosid}`);
+        if (requisicao.ok) {
+            let localizado = await requisicao.json();
+            campo_id.value = localizado.id;
+            campo_nome.value = localizado.nome;
+        }
     }
 }
 
-dados()
+button_excluir.onclick = async function () {
+    await fetch(`http://localhost:3000/grupos/${item.id}`, {
+        method: "DELETE"
+    });
+    carregarGrupo();
+}
+

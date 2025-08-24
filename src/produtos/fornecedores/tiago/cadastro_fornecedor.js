@@ -73,7 +73,7 @@ animacao_carregando_dados = function (elemento, show = true) {
     }
 }
 
-buscar_informacao_categorias = async function (elemento) {
+buscarAPI = async function (elemento) {
     info_categorias = document.getElementById('info-categorias')
     animacao_carregando_dados(info_categorias)
 

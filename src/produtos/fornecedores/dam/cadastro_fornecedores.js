@@ -1,28 +1,10 @@
-function validarCampo(campo) {
-  const erroElemento = campo.parentElement.querySelector(".erro");
-  campo.classList.remove("invalido");
-  erroElemento.textContent = "";
+// CONFIG
+const API_HOST = "http://127.0.0.1:3000";
 
-  if (!campo.checkValidity()) {
-    campo.classList.add("invalido");
-
-    if (campo.validity.valueMissing) {
-      erroElemento.textContent = "Este campo é obrigatório.";
-    } else if (campo.validity.tooShort) {
-      erroElemento.textContent = `Mínimo de ${campo.minLength} caracteres.`;
-    } else if (campo.validity.tooLong) {
-      erroElemento.textContent = `Máximo de ${campo.maxLength} caracteres.`;
-    }
-
-    return false;
-  }
-
-  return true;
-}
-
-valores_dados = {
+// Valores selecionados no formulário
+const valores = {
   id_fornecedor: null,
-  nome: null,
+  nome: "",
   id_moeda: null,
   preco_compra: null,
   preco_venda: null,
@@ -31,68 +13,86 @@ valores_dados = {
   id_unidade_medida: null,
   id_marca: null,
   id_cor: null,
-  descricao: null,
+  descricao: "",
+};
+
+function clique_geral() {
+  if (nova_selecao) {
+    nova_selecao = false;
+  } else {
+    infos = document.getElementsByClassName('informacao-consulta');
+
+    Array.from(infos).forEach(item => {
+      if (item.classList.contains('lista-oculta') == false) {
+        item.classList.add('lista-oculta');
+      };
+    });
+  };
 }
 
-foco_campo = async function (elemento, minha_funcao) {
-  elemento_pai = elemento.parentNode
-  elemento_informacao = elemento_pai.getElementsByClassName('oculto')[0]
+async function foco_campo(elemento, minha_funcao) {
+  elemento_focado = elemento;
+  nova_selecao = true;
+
+  elemento_pai = elemento.parentNode;
+  elemento_informacao = elemento_pai.getElementsByClassName('lista-oculta')[0]
 
   if (elemento_informacao != undefined) {
-    elemento_informacao.classList.remove('oculto')
+    elemento_informacao.classList.remove('lista-oculta');
   }
 
-  await minha_funcao (elemento)
+  await minha_funcao(elemento);
 }
 
-buscar_informacao_categorias = async function (elemento) {
-  lista_suspensa = document.getElementById('lista_suspensa');
+function esconder_informacao(elemento) {
+  elemento_pai = elemento.parentNode;
+  elemento_pai = elemento_pai.parentNode;
 
-  requisicao = await fetch(`http://127.0.0.1:3000/categorias`, {
-    method: "GET",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  })
+  if (elemento_pai != undefined) {
+    elemento_pai.classList.add('lista-oculta');
+  }
+}
 
-  if (requisicao.ok == true) {
-
-    dados = await requisicao.json()
-    console.log(dados)
+function carregar_dados (elemento, show = true) {
+  elemento.innerHTML = '';
+  if (show) {
+    elemento.style.overflow = 'hidden';
+    img = document.createElement('img');
+    img.src = '../../../../imagens/loading.png';
+    elemento.appendchild(img);
   } else {
-
+    elemento.style.removeProperty('overflow');
   }
 }
 
-document.querySelectorAll('.lista-suspensa-container').forEach(container => {
-  const input = container.querySelector('.lista-suspensa-input');
-  const lista = container.querySelector('.lista-suspensa-opcoes');
+async function buscarAPI(elemento) {
+  info_grupos = document.getElementById('info-grupos');
+  carregar_dados(info_grupos);
 
-  input.addEventListener('focus', () => {
-    lista.classList.remove('lista-oculta');
-  });
+  try {
+    requisicao = await fetch(`${API_HOST}/categorias`, {
+      method: "GET",
+      Headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
 
-  input.addEventListener('input', () => {
-    const termo = input.value.toLowerCase();
-    lista.querySelectorAll('li').forEach(item => {
-      const texto = item.textContent.toLowerCase();
-      item.style.display = texto.includes(termo) ? 'block' : 'none';
-    });
-  });
+    if (requisicao.ok == true) {
+      carregar_dados(info_grupos, false);
 
-  lista.querySelectorAll('li').forEach(opcao => {
-    opcao.addEventListener('click', () => {
-      input.value = opcao.textContent;
-      input.dataset.valor = opcao.dataset.valor;
-      lista.classList.add('lista-oculta');
-    });
-  });
-
-  // Fecha se clicar fora
-  document.addEventListener('click', e => {
-    if (!container.contains(e.target)) {
-      lista.classList.add('lista-oculta');
+      dados = await requisicao.json();
+      criar_lista_informacao(dados, 'nome', 'id', 'id_categoria', elemento, info_grupos);
+    } else {
+      carregar_dados(info_grupos, false);
+      exibir_informacao_falha(info_categorias, 'Nenhuma informação localizada');
     }
-  });
-});
+  } catch (erro) {
+    carregar_dados(info_categorias, false);
+    exibir_informacao_falha(info_categorias, 'Nenhuma informação localizada');
+  }
+}
+
+async function buscar_informacao_grupos(elemento) {
+  info_grupos = document.getElementById('')
+}

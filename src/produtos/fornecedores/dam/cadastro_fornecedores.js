@@ -59,7 +59,7 @@ function carregar_dados (elemento, show = true) {
     elemento.style.overflow = 'hidden';
     img = document.createElement('img');
     img.src = '../../../../imagens/loading.png';
-    elemento.appendchild(img);
+    elemento.appendChild(img);
   } else {
     elemento.style.removeProperty('overflow');
   }
@@ -72,7 +72,7 @@ async function buscarAPI(elemento) {
   try {
     requisicao = await fetch(`${API_HOST}/categorias`, {
       method: "GET",
-      Headers: {
+      headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
@@ -85,14 +85,78 @@ async function buscarAPI(elemento) {
       criar_lista_informacao(dados, 'nome', 'id', 'id_categoria', elemento, info_grupos);
     } else {
       carregar_dados(info_grupos, false);
-      exibir_informacao_falha(info_categorias, 'Nenhuma informação localizada');
+      exibir_informacao_falha(info_grupos, 'Nenhuma informação localizada');
     }
   } catch (erro) {
     carregar_dados(info_categorias, false);
-    exibir_informacao_falha(info_categorias, 'Nenhuma informação localizada');
+    exibir_informacao_falha(info_grupos, 'Nenhuma informação localizada');
   }
 }
 
 async function buscar_informacao_grupos(elemento) {
-  info_grupos = document.getElementById('')
+  info_grupos = document.getElementById('info-grupos')
+  carregar_dados(info_grupos)
+
+  try {
+    requisicao = await fetch(`${API_HOST}/grupos`, {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (requisicao.ok == true) {
+      carregar_dados(info_grupos, false);
+
+      dados = await requisicao.json();
+      criar_lista_informacao(dados, 'nome', 'id', 'id_grupo', elemento, info_grupos);
+    } else {
+      carregar_dados(info_categorias, false);
+      exibir_informacao_falha(info_grupos, 'Nenhuma informação localizada.');
+    }
+  } catch (erro) {
+    carregar_dados(info_categorias, false);
+    exibir_informacao_falha(info_grupos, 'Nenhumma informação localizada.');
+  }
+}
+
+function exibir_informacao_falha(elemento, mensagem) {
+    lista = document.createElement('ul')
+    lista_item = document.createElement('li')
+    span_item = document.createElement('span')
+    span_item.innerHTML = mensagem
+    lista_item.appendChild(span_item)
+    lista.appendChild(lista_item)
+    elemento.appendChild(lista)
+}
+
+function criar_lista_informacao(dados, campo_nome, campo_id, campo_salvar, elemento_salvar, container) {
+    lista_ul = document.createElement('ul')
+    lista_dados = dados
+
+    lista_dados.data.filter(item => {
+        return item[campo_nome] != null
+    }).forEach(item => {
+        lista_li = document.createElement('li')
+        lista_li.dataset.id = item[campo_id]
+
+        span = document.createElement('span')
+        span.innerHTML = item[campo_nome]
+
+        lista_li.appendChild(span)
+
+        lista_li.onclick = function () {
+            selecionar_item(lista_li, campo_salvar)
+            adicionar_valor_campo(elemento_salvar, item[campo_nome])
+        }
+
+        lista_ul.appendChild(lista_li)
+    });
+
+    container.appendChild(lista_ul)
+}
+
+adicionar_valor_campo = function (elemento, valor) {
+    elemento.value = valor
 }

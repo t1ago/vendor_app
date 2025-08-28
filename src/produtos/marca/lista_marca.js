@@ -46,7 +46,7 @@ async function carregarMarca() {
 }
 async function excluir_coluna(id) {
     await fetch (`http://localhost:3000/marca/${id}`, {
-        method: "DEL"
+        method: "DELETE"
     })
     carregarMarca()
 }

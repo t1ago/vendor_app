@@ -2,9 +2,7 @@ campo_nome = document.getElementById("name")
 campo_id = document.getElementById("id")
 mensagem_nome = document.getElementById('id_mensagem')
 
-function voltar() {
-    window.location.href = "lista_marca.html";
-}
+
 
 function validarCampoNome() {
     campo_nome.classList.remove('erro')
@@ -47,7 +45,7 @@ async function cadastrar_marca() {
                 'Accept': 'application/json',
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify(post)
+            body: JSON.stringify(marca)
         })
         if (requisicao.ok == true) {
             setTimeout(() => {
@@ -109,12 +107,14 @@ async function exibirDados() {
         if (requisicao.ok == true) {
             listamarca = await requisicao.json()
             localizado = listamarca.data.find(function (item) {
-                return item.id = parametrosId
+                return item.id == parametrosId
             })
             campo_id.value = localizado.id
             campo_nome.value = localizado.nome
         }
     }
 }
-
+function voltar() {
+    window.location.href = "lista_marca.html";
+}
 exibirDados()

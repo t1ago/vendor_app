@@ -30,7 +30,7 @@ function clique_geral() {
   };
 }
 
-async function foco_campo(elemento, minha_funcao) {
+async function foco_campo(elemento, minha_funcao, endereco) {
   elemento_focado = elemento;
   nova_selecao = true;
 
@@ -41,7 +41,7 @@ async function foco_campo(elemento, minha_funcao) {
     elemento_informacao.classList.remove('lista-oculta');
   }
 
-  await minha_funcao(elemento);
+  await minha_funcao(elemento, endereco);
 }
 
 function esconder_informacao(elemento) {
@@ -65,12 +65,14 @@ function carregar_dados (elemento, show = true) {
   }
 }
 
-async function buscarAPI(elemento) {
-  info_grupos = document.getElementById('info-grupos');
-  carregar_dados(info_grupos);
+async function buscarAPI(elemento, endereco) {
+  elemento_pai = elemento.parentNode
+
+  info_div = elemento_pai.getElementsByTagName("div") [0]
+  carregar_dados(info_div);
 
   try {
-    requisicao = await fetch(`${API_HOST}/categorias`, {
+    requisicao = await fetch(`${API_HOST}/${endereco}`, {
       method: "GET",
       headers: {
         'Accept': 'application/json',
@@ -79,17 +81,40 @@ async function buscarAPI(elemento) {
     })
 
     if (requisicao.ok == true) {
-      carregar_dados(info_grupos, false);
+      carregar_dados(info_div, false);
 
       dados = await requisicao.json();
-      criar_lista_informacao(dados, 'nome', 'id', 'id_categoria', elemento, info_grupos);
+
+      infos = {
+        campo_id: null,
+        campo_nome: null,
+        campo_salvar: null
+      }
+      
+      switch (endereco) {
+        case 'categorias': 
+          infos.campo_id = 'id'
+          infos.campo_nome = 'nome'
+          infos.campo_salvar = 'id_categoria'
+          break;
+        case 'moedas': 
+          infos.campo_id = 'id'
+          infos.campo_nome = 'nome'
+          infos.campo_salvar = 'id_moeda'
+          break;
+      
+        default:
+          break;
+      }
+
+      criar_lista_informacao(dados, infos.campo_nome, infos.campo_id, infos.campo_salvar, elemento, info_div);
     } else {
-      carregar_dados(info_grupos, false);
-      exibir_informacao_falha(info_grupos, 'Nenhuma informação localizada');
+      carregar_dados(info_div, false);
+      exibir_informacao_falha(info_div, 'Nenhuma informação localizada');
     }
   } catch (erro) {
-    carregar_dados(info_categorias, false);
-    exibir_informacao_falha(info_grupos, 'Nenhuma informação localizada');
+    carregar_dados(info_div, false);
+    exibir_informacao_falha(info_div, 'Nenhuma informação localizada');
   }
 }
 

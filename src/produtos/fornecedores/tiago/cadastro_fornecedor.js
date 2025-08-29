@@ -15,8 +15,6 @@ valores_dados = {
 elemento_focado = null
 nova_selecao = false
 
-
-
 clique_geral = function () {
     if (nova_selecao) {
         nova_selecao = false
@@ -46,10 +44,8 @@ foco_campo = async function (elemento, minha_funcao) {
 }
 
 selecionar_item = function (elemento, id) {
-    valores_dados[id] = parseInt(elemento.dataset.abobrinha)
+    valores_dados[id] = parseInt(elemento.dataset.id)
     esconder_informacao(elemento)
-
-    console.log(valores_dados)
 }
 
 esconder_informacao = function (elemento) {
@@ -130,6 +126,118 @@ buscar_informacao_grupos = async function (elemento) {
     }
 }
 
+buscar_informacao_moedas = async function (elemento) {
+    info_moedas = document.getElementById('info-moedas')
+    animacao_carregando_dados(info_moedas)
+
+    try {
+        requisicao = await fetch(`${API_HOST}/moedas`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (requisicao.ok == true) {
+            animacao_carregando_dados(info_moedas, false)
+
+            dados = await requisicao.json()
+            criar_lista_informacao(dados, 'nome', 'id', 'id_moeda', elemento, info_moedas)
+        } else {
+            animacao_carregando_dados(info_moedas, false)
+            exibir_informacao_falha(info_moedas, 'Nenhum grupo localizado')
+        }
+    } catch (erro) {
+        animacao_carregando_dados(info_moedas, false)
+        exibir_informacao_falha(info_moedas, 'Nenhum grupo localizado')
+    }
+}
+
+buscar_informacao_marcas = async function (elemento) {
+    info_marcas = document.getElementById('info-marcas')
+    animacao_carregando_dados(info_marcas)
+
+    try {
+        requisicao = await fetch(`${API_HOST}/marca`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (requisicao.ok == true) {
+            animacao_carregando_dados(info_marcas, false)
+
+            dados = await requisicao.json()
+            criar_lista_informacao(dados, 'nome', 'id', 'id_marca', elemento, info_marcas)
+        } else {
+            animacao_carregando_dados(info_marcas, false)
+            exibir_informacao_falha(info_marcas, 'Nenhum grupo localizado')
+        }
+    } catch (erro) {
+        animacao_carregando_dados(info_marcas, false)
+        exibir_informacao_falha(info_marcas, 'Nenhum grupo localizado')
+    }
+}
+
+buscar_informacao_cores = async function (elemento) {
+    info_cores = document.getElementById('info-cores')
+    animacao_carregando_dados(info_cores)
+
+    try {
+        requisicao = await fetch(`${API_HOST}/cores`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (requisicao.ok == true) {
+            animacao_carregando_dados(info_cores, false)
+
+            dados = await requisicao.json()
+            criar_lista_informacao(dados, 'hexadecimal', 'id', 'id_cor', elemento, info_cores)
+        } else {
+            animacao_carregando_dados(info_cores, false)
+            exibir_informacao_falha(info_cores, 'Nenhum grupo localizado')
+        }
+    } catch (erro) {
+        animacao_carregando_dados(info_cores, false)
+        exibir_informacao_falha(info_cores, 'Nenhum grupo localizado')
+    }
+}
+
+buscar_informacao_medidas = async function (elemento) {
+    info_medidas = document.getElementById('info-medidas')
+    animacao_carregando_dados(info_medidas)
+
+    try {
+        requisicao = await fetch(`${API_HOST}/medidas`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (requisicao.ok == true) {
+            animacao_carregando_dados(info_medidas, false)
+
+            dados = await requisicao.json()
+            criar_lista_informacao(dados, 'nome', 'id', 'id_undade_medida', elemento, info_medidas)
+        } else {
+            animacao_carregando_dados(info_medidas, false)
+            exibir_informacao_falha(info_medidas, 'Nenhum grupo localizado')
+        }
+    } catch (erro) {
+        animacao_carregando_dados(info_medidas, false)
+        exibir_informacao_falha(info_medidas, 'Nenhum grupo localizado')
+    }
+}
+
 exibir_informacao_falha = function (elemento, mensagem) {
     lista = document.createElement('ul')
     lista_item = document.createElement('li')
@@ -169,3 +277,110 @@ criar_lista_informacao = function (dados, campo_nome, campo_id, campo_salvar, el
 adicionar_valor_campo = function (elemento, valor) {
     elemento.value = valor
 }
+
+botao_cancelar_click = function () {
+    navegarPara('lista_fornecedor.html');
+}
+
+campo_onchange = function (propriedade, elemento) {
+    valores_dados[propriedade] = elemento.value
+}
+
+botao_salvar_click = function () {
+
+    criar_fornecedor()
+
+}
+
+criar_fornecedor = async function () {
+
+    body = {
+        nome: valores_dados.nome,
+        descricao: valores_dados.descricao,
+        idCategoria: valores_dados.id_categoria,
+        idMoeda: valores_dados.id_moeda,
+        idGrupo: valores_dados.id_grupo,
+        idUndadeMedida: valores_dados.id_undade_medida,
+        idCor: valores_dados.id_cor,
+        idMarca: valores_dados.id_marca,
+        precoCompra: parseFloat(valores_dados.preco_compra.replace(',', '.')),
+        precoVenda: parseFloat(valores_dados.preco_venda.replace(',', '.'))
+    }
+
+    requisicao = await fetch(`${API_HOST}/fornecedores/tiago`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    })
+
+    if (requisicao.ok == true) {
+        console.log('deu bom')
+    } else {
+        console.log('deu ruim')
+    }
+
+}
+
+exibir_dados = async function () {
+
+    url_parametros = window.location.search
+
+    if (url_parametros != '') {
+        parametros = new URLSearchParams(url_parametros)
+        parametro_id = parametros.get('id')
+
+        requisicao = await fetch(`${API_HOST}/fornecedores/tiago/${parametro_id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (requisicao.ok === true) {
+            resposta = await requisicao.json()
+            objeto_fornecedor = resposta.data[0]
+
+            if (objeto_fornecedor) {
+                valores_dados.id_fornecedor = objeto_fornecedor.id
+                valores_dados.nome = objeto_fornecedor.nome
+                valores_dados.id_moeda = objeto_fornecedor.id_moeda
+                valores_dados.preco_compra = objeto_fornecedor.preco_compra
+                valores_dados.preco_venda = objeto_fornecedor.preco_venda
+                valores_dados.id_grupo = objeto_fornecedor.id_grupo
+                valores_dados.id_categoria = objeto_fornecedor.id_categoria
+                valores_dados.id_undade_medida = objeto_fornecedor.id_undade_medida
+                valores_dados.id_marca = objeto_fornecedor.id_marca
+                valores_dados.id_cor = objeto_fornecedor.id_cor
+                valores_dados.descricao = objeto_fornecedor.descricao
+
+                adicionarValorCampo = function (id, value) {
+                    campo = document.getElementById(id)
+                    campo.value = value
+                }
+
+                adicionarValorCampo('name', valores_dados.nome)
+                adicionarValorCampo('coin', objeto_fornecedor.nome_moeda)
+                adicionarValorCampo('buy', valores_dados.preco_compra)
+                adicionarValorCampo('sale', valores_dados.preco_venda)
+                adicionarValorCampo('group', objeto_fornecedor.nome_grupo)
+                adicionarValorCampo('category', objeto_fornecedor.nome_categoria)
+                adicionarValorCampo('measure', objeto_fornecedor.nome_unidade_medida)
+                adicionarValorCampo('brand', objeto_fornecedor.nome_marca)
+                adicionarValorCampo('color', objeto_fornecedor.hexadecimal)
+                adicionarValorCampo('desc', valores_dados.descricao)
+            }
+        }
+    }
+
+}
+
+exibir_dados()
+
+
+
+
+

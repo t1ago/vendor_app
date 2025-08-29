@@ -26,22 +26,27 @@
             <div class="linha espaco-cima linha-principal">
                 <div class="coluna coluna-fields">
                     <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" required minlength="3" maxlength="64">
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64"
+                        onchange="campo_onchange('nome', this)">
                 </div>
 
                 <div class="coluna coluna-fields">
                     <label for="coin">Moeda</label>
-                    <input type="text" id="coin" name="coin" onfocus="foco_campo(this)">
+                    <input type="text" id="coin" name="coin" onfocus="foco_campo(this, buscar_informacao_moedas)">
+                    <div id="info-moedas" class="informacao-consulta esconder">
+                    </div>
                 </div>
 
                 <div class="coluna coluna-fields">
                     <label for="buy">Preço Compra</label>
-                    <input type="text" id="buy" name="buy" required minlength="4" maxlength="64">
+                    <input type="text" id="buy" name="buy" required minlength="4" maxlength="64"
+                        onchange="campo_onchange('preco_compra', this)">
                 </div>
 
                 <div class="coluna coluna-fields">
                     <label for="sale">Preço Venda</label>
-                    <input type="text" id="sale" name="sale" required minlength="4" maxlength="64">
+                    <input type="text" id="sale" name="sale" required minlength="4" maxlength="64"
+                        onchange="campo_onchange('preco_venda', this)">
                 </div>
             </div>
 
@@ -65,24 +70,32 @@
             <div class="linha">
                 <div class="coluna coluna-fields">
                     <label for="measure">Unidade de Medida</label>
-                    <input type="text" id="measure" name="measure">
+                    <input type="text" id="measure" name="measure"
+                        onfocus="foco_campo(this, buscar_informacao_medidas)">
+                    <div id="info-medidas" class="informacao-consulta esconder">
+                    </div>
                 </div>
 
                 <div class="coluna coluna-fields">
                     <label for="brand">Marca</label>
-                    <input type="text" id="brand" name="brand">
+                    <input type="text" id="brand" name="brand" onfocus="foco_campo(this, buscar_informacao_marcas)">
+                    <div id="info-marcas" class="informacao-consulta esconder">
+                    </div>
                 </div>
 
                 <div class="coluna coluna-fields">
                     <label for="color">Cor</label>
-                    <input type="text" id="color" name="color">
+                    <input type="text" id="color" name="color" onfocus="foco_campo(this, buscar_informacao_cores)">
+                    <div id="info-cores" class="informacao-consulta esconder">
+                    </div>
                 </div>
             </div>
 
             <div class="linha">
                 <div class="coluna coluna-fields">
                     <label for="desc">Descrição</label>
-                    <input type="text" id="desc" name="desc" required minlength="3" maxlength="128">
+                    <input type="text" id="desc" name="desc" required minlength="3" maxlength="128"
+                        onchange="campo_onchange('descricao', this)">
                 </div>
             </div>
 
@@ -92,7 +105,7 @@
                         <img src="../../../../imagens/cancelar.png">
                         <span>Cancelar</span>
                     </button>
-                    <button type="button" id="botao_salvar" onclick="">
+                    <button type="button" id="botao_salvar" onclick="botao_salvar_click()">
                         <img src="../../../../imagens/salvar.png">
                         <span>Salvar</span>
                     </button>

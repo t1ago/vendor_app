@@ -1,3 +1,8 @@
+grupo_botoes = document.getElementsByClassName('coluna-botoes-cadastro')[0]
+grupo_mensagem = document.getElementsByClassName('coluna-operacao')[0]
+mensagem_operacao = document.getElementById('operacao')
+mensagem_imagem = document.getElementById('imagem')
+
 valores_dados = {
     id_fornecedor: null,
     nome: null,
@@ -14,6 +19,46 @@ valores_dados = {
 
 elemento_focado = null
 nova_selecao = false
+
+exibir_situacao_operacao = function (operacao, mensagem) {
+    grupo_botoes.setAttribute('class', 'coluna coluna-botoes-cadastro')
+    grupo_mensagem.setAttribute('class', 'coluna coluna-operacao')
+    mensagem_imagem.setAttribute('class', '')
+    mensagem_operacao.innerHTML = mensagem
+
+    switch (operacao) {
+        case 'SALVANDO':
+            grupo_botoes.classList.add('esconder')
+            mensagem_imagem.classList.add('exibir')
+            grupo_mensagem.classList.add('exibir')
+            break;
+
+        case 'SUCESSO':
+            grupo_botoes.classList.add('esconder')
+            mensagem_imagem.classList.add('esconder')
+            grupo_mensagem.classList.add('sucesso')
+            grupo_mensagem.classList.add('exibir')
+            break;
+
+        case 'ERRO':
+            grupo_botoes.classList.add('esconder')
+            mensagem_imagem.classList.add('esconder')
+            grupo_mensagem.classList.add('erro')
+            grupo_mensagem.classList.add('exibir')
+            break;
+
+        case 'BUSCANDO':
+            grupo_botoes.classList.add('esconder')
+            mensagem_imagem.classList.add('exibir')
+            grupo_mensagem.classList.add('exibir')
+            break;
+        default:
+            grupo_botoes.classList.add('exibir')
+            mensagem_imagem.classList.add('esconder')
+            grupo_mensagem.classList.add('esconder')
+            break;
+    }
+}
 
 clique_geral = function () {
     if (nova_selecao) {
@@ -286,13 +331,21 @@ campo_onchange = function (propriedade, elemento) {
     valores_dados[propriedade] = elemento.value
 }
 
-botao_salvar_click = function () {
+botao_salvar_click = async function () {
 
-    criar_fornecedor()
+    // validar aqui
+
+    if (valores_dados.id_fornecedor == null) {
+        await criar_fornecedor()
+    } else {
+
+    }
 
 }
 
 criar_fornecedor = async function () {
+
+    exibir_situacao_operacao('SALVANDO', 'Criando fornecedor')
 
     body = {
         nome: valores_dados.nome,
@@ -317,9 +370,9 @@ criar_fornecedor = async function () {
     })
 
     if (requisicao.ok == true) {
-        console.log('deu bom')
+        exibir_situacao_operacao('SUCESSO', 'Fornecedor criado com Sucesso')
     } else {
-        console.log('deu ruim')
+        exibir_situacao_operacao('ERRO', 'Falha ao salvar fornecedor')
     }
 
 }
@@ -329,6 +382,7 @@ exibir_dados = async function () {
     url_parametros = window.location.search
 
     if (url_parametros != '') {
+        exibir_situacao_operacao('BUSCANDO', 'Buscando informação')
         parametros = new URLSearchParams(url_parametros)
         parametro_id = parametros.get('id')
 
@@ -373,7 +427,13 @@ exibir_dados = async function () {
                 adicionarValorCampo('color', objeto_fornecedor.hexadecimal)
                 adicionarValorCampo('desc', valores_dados.descricao)
             }
+
+            exibir_situacao_operacao('ALTERAR', '')
+        } else {
+            exibir_situacao_operacao('ERRO', 'Falha ao recuperar categoria')
         }
+    } else {
+        exibir_situacao_operacao('NOVO', '')
     }
 
 }

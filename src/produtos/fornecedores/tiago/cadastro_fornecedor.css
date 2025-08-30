@@ -2,10 +2,13 @@
     padding: 32px 256px 0px 256px;
 }
 
-
-
-.linha-principal>div:nth-child(2) {
+.linha-principal>div:nth-child(1) {
     width: 50%;
+}
+
+.linha-principal>div:nth-child(3),
+.linha-principal>div:nth-child(4) {
+    width: 20%;
 }
 
 @media screen and (max-width: 950px) {
@@ -13,7 +16,12 @@
         padding: 32px 32px 0px 32px;
     }
 
-    .linha-principal>div:nth-child(2) {
+    .linha-principal>div:nth-child(1) {
+        width: calc(100% - 10px);
+    }
+
+    .linha-principal>div:nth-child(3),
+    .linha-principal>div:nth-child(4) {
         width: calc(100% - 10px);
     }
 }

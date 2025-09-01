@@ -330,3 +330,8 @@ buscar_informacao_cor = async function (elemento) {
 botao_salvar_click = function() {
     console.log(valores_dados)
 }
+
+exibir_dados = async function () {
+    
+    
+}

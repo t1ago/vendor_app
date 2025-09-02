@@ -17,7 +17,7 @@
       <div class="linha">
         <div class="coluna">
           <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" required minlength="3" maxlength="64" autocomplete="off"/>
+          <input type="text" id="nome" name="nome" placeholder="Nome do fornecedor" required minlength="3" maxlength="64" autocomplete="off"/>
         </div>
       </div>
 
@@ -32,14 +32,14 @@
       <!-- Preço de Compra -->
         <div class="coluna">
           <label for="preco_compra">Preço de Compra</label>
-          <input type="text" id="compra" name="compra" required minlength="4" maxlength="12" autocomplete="off" autocomplete="off"/>
+          <input type="text" id="compra" name="compra" placeholder="Preço de Compra" required minlength="4" maxlength="12" autocomplete="off" autocomplete="off"/>
           <small class="erro"></small>
         </div>
 
       <!-- Preço de Venda -->
         <div class="coluna">
           <label for="preco_venda">Preço de Venda</label>
-          <input type="text" id="venda" name="venda" required minlength="4" maxlength="12" autocomplete="off" autocomplete="off"/>
+          <input type="text" id="venda" name="venda" placeholder="Preço de Venda" required minlength="4" maxlength="12" autocomplete="off" autocomplete="off"/>
           <small class="erro"></small>
         </div>
       </div>
@@ -48,7 +48,7 @@
       <div class="linha">
         <div class="coluna lista-suspensa-container">
           <label for="grupo">Grupo</label>
-          <input type="text" id="grupo" name="grupo" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI)"/>
+          <input type="text" id="grupo" name="grupo" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'grupos')"/>
           <div id="info-grupos" class="lista-suspensa lista-oculta"></div>
         </div>
 
@@ -62,8 +62,8 @@
       <!-- Medida -->
         <div class="coluna lista-suspensa-container">
           <label for="medida">Unidade de Medida</label>
-          <input type="text" id="medida" name="medida" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI)"/>
-          <div id="info-grupos" class="lista-suspensa lista-oculta"></div>
+          <input type="text" id="medida" name="medida" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'medidas')"/>
+          <div id="info-medidas" class="lista-suspensa lista-oculta"></div>
         </div>
       </div>
 
@@ -71,15 +71,15 @@
       <div class="linha">
         <div class="coluna lista-suspensa-container">
           <label for="marca">Marca</label>
-          <input type="text" id="marca" name="marca" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI)" />
-          <div class="lista-suspensa lista-oculta"></div>
+          <input type="text" id="marca" name="marca" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'marca')" />
+          <div id="info-marcas" class="lista-suspensa lista-oculta"></div>
         </div>
 
       <!-- Cor -->
         <div class="coluna lista-suspensa-container">
           <label for="cor">Cor</label>
-          <input type="text" id="cor" name="cor" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI)" />
-          <ul class="lista-suspensa lista-oculta"></ul>
+          <input type="text" id="cor" name="cor" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'cores')" />
+          <div id="info-cores" class="lista-suspensa lista-oculta"></div>
         </div>
       </div>
 

@@ -16,7 +16,6 @@ valores_dados = {
     id_cor: null,
     descricao: null
 }
-
 elemento_focado = null
 nova_selecao = false
 
@@ -308,8 +307,8 @@ criar_lista_informacao = function (dados, campo_nome, campo_id, campo_salvar, el
 
         lista_li.appendChild(span)
 
-        lista_li.onclick = function () {
-            selecionar_item(lista_li, campo_salvar)
+        lista_li.onclick = function (event) {
+            selecionar_item(event.currentTarget, campo_salvar)
             adicionar_valor_campo(elemento_salvar, item[campo_nome])
         }
 
@@ -321,6 +320,7 @@ criar_lista_informacao = function (dados, campo_nome, campo_id, campo_salvar, el
 
 adicionar_valor_campo = function (elemento, valor) {
     elemento.value = valor
+
 }
 
 botao_cancelar_click = function () {
@@ -335,17 +335,15 @@ botao_salvar_click = async function () {
 
     // validar aqui
 
-    if (valores_dados.id_fornecedor == null) {
-        await criar_fornecedor()
-    } else {
-
-    }
-
+    await salvar_fornecedor(valores_dados.id_fornecedor == null ? 'INCLUIR' : 'ALTERAR')
 }
 
-criar_fornecedor = async function () {
+salvar_fornecedor = async function (acao = 'INCLUIR') {
 
-    exibir_situacao_operacao('SALVANDO', 'Criando fornecedor')
+    mensagem_start = acao == 'INCLUIR' ? 'Criando fornecedor' : 'Alterando fornecedor'
+    mensagem_end = acao == 'INCLUIR' ? 'Fornecedor criado com sucesso' : 'Fornecedor alterado com sucesso'
+
+    exibir_situacao_operacao('SALVANDO', mensagem_start)
 
     body = {
         nome: valores_dados.nome,
@@ -360,8 +358,16 @@ criar_fornecedor = async function () {
         precoVenda: parseFloat(valores_dados.preco_venda.replace(',', '.'))
     }
 
-    requisicao = await fetch(`${API_HOST}/fornecedores/tiago`, {
-        method: 'POST',
+    endpoint = `${API_HOST}`
+
+    if (acao == 'INCLUIR') {
+        endpoint += '/fornecedores/tiago'
+    } else {
+        endpoint += `/fornecedores/tiago/${valores_dados.id_fornecedor}`
+    }
+
+    requisicao = await fetch(endpoint, {
+        method: acao == 'INCLUIR' ? 'POST' : 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -370,9 +376,15 @@ criar_fornecedor = async function () {
     })
 
     if (requisicao.ok == true) {
-        exibir_situacao_operacao('SUCESSO', 'Fornecedor criado com Sucesso')
+        exibir_situacao_operacao('SUCESSO', mensagem_end)
+        setInterval(function () {
+            botao_cancelar_click()
+        }, 2000)
     } else {
         exibir_situacao_operacao('ERRO', 'Falha ao salvar fornecedor')
+        setInterval(function () {
+            exibir_situacao_operacao('LIMPAR', '')
+        }, 2000)
     }
 
 }
@@ -431,6 +443,9 @@ exibir_dados = async function () {
             exibir_situacao_operacao('ALTERAR', '')
         } else {
             exibir_situacao_operacao('ERRO', 'Falha ao recuperar categoria')
+            setInterval(function () {
+                botao_cancelar_click()
+            }, 2000)
         }
     } else {
         exibir_situacao_operacao('NOVO', '')

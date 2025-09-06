@@ -16,28 +16,30 @@ const valores = {
   descricao: "",
 };
 
+elemento_focado = null
+nova_selecao = false
+
 function clique_geral() {
   if (nova_selecao) {
     nova_selecao = false;
   } else {
-    const infos = document.getElementsByClassName('informacao-consulta');
+    const infos = document.getElementsByClassName('lista-suspensa');
 
     Array.from(infos).forEach(item => {
-      item.classList.add('lista-oculta');
-      });
+      if (item.classList.contains('lista-oculta') == false) {
+        item.classList.add('lista-oculta');
+      }});
   };
 }
-
-document.addEventListener("click", clique_geral);
 
 async function foco_campo(elemento, minha_funcao, endereco) {
   elemento_focado = elemento;
   nova_selecao = true;
 
   const elemento_pai = elemento.parentNode;
-  const elemento_informacao = elemento_pai.getElementsByClassName('lista-oculta')[0]
+  const elemento_informacao = elemento_pai.querySelector('.lista-suspensa')
 
-  if (elemento_informacao != undefined) {
+  if (elemento_informacao) {
     elemento_informacao.classList.remove('lista-oculta');
   }
 
@@ -46,7 +48,7 @@ async function foco_campo(elemento, minha_funcao, endereco) {
 
 function selecionar_item(elemento, id) {
   const valor = parseInt(elemento.dataset.id);
-  valores_dados[id] = valor;
+  valores[id] = valor;
   esconder_informacao(elemento);
 }
 
@@ -75,7 +77,7 @@ function carregar_dados (elemento, show = true) {
 async function buscarAPI(elemento, endereco) {
   elemento_pai = elemento.parentNode
 
-  info_div = elemento_pai.getElementsByTagName("div") [0]
+  info_div = elemento_pai.querySelector(".lista-suspensa");
   carregar_dados(info_div);
 
   try {
@@ -182,12 +184,9 @@ function criar_lista_informacao(
 
         lista_li.appendChild(span)
 
-        lista_li.onclick = function (event) {
-          event.stopPropagation();
+        lista_li.onclick = function () {
           selecionar_item(lista_li, campo_salvar);
           adicionar_valor_campo(elemento_salvar, item[campo_nome]);
-
-          container.classList.add("lista-oculta");
         };
 
         lista_ul.appendChild(lista_li);
@@ -199,3 +198,4 @@ function criar_lista_informacao(
 adicionar_valor_campo = function (elemento, valor) {
     elemento.value = valor
 }
+

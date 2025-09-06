@@ -212,11 +212,11 @@ div.oculto {
   margin-top: 4px;
 }
 
-div:not(.oculto) {
+/*div:not(.oculto) {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-}
+}*/
 
 .seletor {
   padding: 6px 12px;

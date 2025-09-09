@@ -331,7 +331,67 @@ botao_salvar_click = function() {
     console.log(valores_dados)
 }
 
-exibir_dados = async function () {
+exibir_dados = async function (event, ) {
     
     
 }
+
+exibir_dados = async function () {
+    // Pega o ID da URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    if (!id) {
+        console.log("Nenhum ID informado na URL");
+        return;
+    }
+
+    try {
+        // Faz a requisição para a API
+        let requisicao = await fetch(`http://localhost:3000/fornecedor/${id}`, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (requisicao.ok) {
+            let resposta = await requisicao.json();
+            let fornecedor = resposta.data; // supondo que sua API devolva { data: {...} }
+
+            // Preenche os valores no objeto valores_dados
+            valores_dados.id_fornecedor = fornecedor.id;
+            valores_dados.nome = fornecedor.nome;
+            valores_dados.preco_compra = fornecedor.preco_compra;
+            valores_dados.preco_venda = fornecedor.preco_venda;
+            valores_dados.id_categoria = fornecedor.id_categoria;
+            valores_dados.id_unidade_medida = fornecedor.id_unidade_medida;
+            valores_dados.id_grupo = fornecedor.id_grupo;
+            valores_dados.id_moeda = fornecedor.id_moeda;
+            valores_dados.id_cor = fornecedor.id_cor;
+            valores_dados.id_marca = fornecedor.id_marca;
+            valores_dados.descricao = fornecedor.descricao;
+
+            // Agora joga os valores nos inputs
+            document.getElementById("name").value = valores_dados.nome || "";
+            document.getElementById("buy").value = valores_dados.preco_compra || "";
+            document.getElementById("sale").value = valores_dados.preco_venda || "";
+            document.getElementById("category").value = fornecedor.nome_categoria || "";
+            document.getElementById("measure").value = fornecedor.nome_medida || "";
+            document.getElementById("group").value = fornecedor.nome_grupo || "";
+            document.getElementById("coin").value = fornecedor.nome_moeda || "";
+            document.getElementById("color").value = fornecedor.hexadecimal || "";
+            document.getElementById("brand").value = fornecedor.nome_marca || "";
+            document.getElementById("desc").value = valores_dados.descricao || "";
+
+        } else {
+            console.error("Erro ao buscar fornecedor");
+        }
+    } catch (erro) {
+        console.error("Erro na requisição:", erro);
+    }
+}
+
+// chama automaticamente ao carregar a página
+window.onload = exibir_dados;

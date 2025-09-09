@@ -199,3 +199,52 @@ adicionar_valor_campo = function (elemento, valor) {
     elemento.value = valor
 }
 
+async function incluirFornecedor() {
+  try{
+    const requisicao = await fetch(`${API_HOST}/fornecedores-dam`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(valores)
+    });
+
+    if (requisicao.ok) {
+      alert("Fornecedor incluído com sucesso!");
+    } else {
+      alert ("Erro ao incluir fornecedor.");
+    }
+  } catch (erro) {
+    console.error("Erro:", erro);
+  }
+}
+
+async function alterarFornecedor() {
+  try {
+    const requisicao = await fetch (`${API_HOST}/fornecedores-dam/${valores.id_fornecedor}`,{
+      method: "PUT",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(valores)
+    });
+
+    if (requisicao.ok) {
+      alert("Fornecedor atualizado com sucesso!");
+    } else {
+      alert("Erro ao atualizar fornecedor.")
+    }
+  } catch (erro) {
+    console.error("Erro:", erro);
+  }
+}
+
+function salvarFornecedor() {
+  if (valores.id_fornecedor == null) {
+    incluirFornecedor();
+  } else {
+    alterarFornecedor();
+  }
+}

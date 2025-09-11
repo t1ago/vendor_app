@@ -201,7 +201,7 @@ adicionar_valor_campo = function (elemento, valor) {
 
 async function incluirFornecedor() {
   try{
-    const requisicao = await fetch(`${API_HOST}/fornecedores-dam`, {
+    const requisicao = await fetch(`${API_HOST}/fornecedoresDam`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -222,7 +222,7 @@ async function incluirFornecedor() {
 
 async function alterarFornecedor() {
   try {
-    const requisicao = await fetch (`${API_HOST}/fornecedores-dam/${valores.id_fornecedor}`,{
+    const requisicao = await fetch (`${API_HOST}/fornecedoresDam/${valores.id_fornecedor}`,{
       method: "PUT",
       headers: {
         "Accept": "application/json",

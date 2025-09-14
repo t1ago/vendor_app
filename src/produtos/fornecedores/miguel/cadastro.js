@@ -12,6 +12,17 @@ valores_dados = {
     descricao: null
 }
 
+
+
+// pendente melhorar a interação do carregar as informações das tabelas
+
+
+botao_cancelar_click = function () {
+    window.location.href = "lista_fornecedor.html"
+}
+
+
+
 async function focar_campo(elemento, minha_funcao) {
     let elemento_pai = elemento.parentNode;
     let elemento_informacao = elemento_pai.querySelector('div');
@@ -82,8 +93,8 @@ buscar_informação_categoria = async function (elemento) {
             lista_item.appendChild(span_item)
 
 
-            lista_item.onclick = function () {
-                selecionar_item(lista_item, 'id_categoria')
+            lista_item.onclick = function (event) {
+                selecionar_item(event.currentTarget, 'id_categoria')
                 adicionar_valor_campo(elemento, item.nome)
             }
 
@@ -130,8 +141,8 @@ buscar_informação_grupo = async function (elemento) {
             lista_item.appendChild(span_item)
 
 
-            lista_item.onclick = function () {
-                selecionar_item(lista_item, 'id_grupo')
+            lista_item.onclick = function (event) {
+                selecionar_item(event.currentTarget, 'id_grupo')
                 adicionar_valor_campo(elemento, item.nome)
             }
 
@@ -176,8 +187,8 @@ buscar_informacao_moeda = async function (elemento) {
 
             lista_item.appendChild(span_moeda)
 
-            lista_item.onclick = function () {
-                selecionar_item(lista_item, "id_moeda")
+            lista_item.onclick = function (event) {
+                selecionar_item(event.currentTarget, "id_moeda")
                 adicionar_valor_campo(elemento, item.nome)
             }
 
@@ -220,8 +231,8 @@ buscar_informacao_marca = async function (elemento) {
 
             lista_item.appendChild(span_marca)
 
-            lista_item.onclick = function () {
-                selecionar_item(lista_item, "id_marca")
+            lista_item.onclick = function (event) {
+                selecionar_item(event.currentTarget, "id_marca")
                 adicionar_valor_campo(elemento, item.nome)
             }
 
@@ -266,8 +277,8 @@ buscar_informacao_medida = async function (elemento) {
 
             lista_item.appendChild(span_medida)
 
-            lista_item.onclick = function () {
-                selecionar_item(lista_item, "id_unidade_medida")
+            lista_item.onclick = function (event) {
+                selecionar_item(event.currentTarget, "id_unidade_medida")
                 adicionar_valor_campo(elemento, item.nome)
             }
 
@@ -312,8 +323,8 @@ buscar_informacao_cor = async function (elemento) {
 
             lista_item.appendChild(span_cor)
 
-            lista_item.onclick = function () {
-                selecionar_item(lista_item, "id_cor")
+            lista_item.onclick = function (event) {
+                selecionar_item(event.currentTarget, "id_cor")
                 adicionar_valor_campo(elemento, item.hexadecimal)
             }
             lista.appendChild(lista_item)
@@ -327,28 +338,82 @@ buscar_informacao_cor = async function (elemento) {
     }
 
 }
-botao_salvar_click = function() {
-    console.log(valores_dados)
+
+adicionando_valor = function (propriedade, elemento) {
+    valores_dados[propriedade] = elemento.value
 }
 
-exibir_dados = async function (event, ) {
-    
-    
+botao_salvar_click = async function () {
+    const acao = valores_dados.id_fornecedor == null ? "incluir" : "alterar";
+
+    let corpo = {
+        nome: valores_dados.nome,
+        descricao: valores_dados.descricao,
+        id_categoria: valores_dados.id_categoria,
+        id_cor: valores_dados.id_cor,
+        id_unidade_medida: valores_dados.id_unidade_medida,
+        id_marca: valores_dados.id_marca,
+        id_grupo: valores_dados.id_grupo,
+        id_moeda: valores_dados.id_moeda,
+        preco_venda: valores_dados.preco_venda,
+        preco_compra: valores_dados.preco_compra
+    }
+
+    let endpoint = "http://localhost:3000/fornecedor/miguel"
+    if (acao == "alterar") {
+        endpoint += "/" + valores_dados.id_fornecedor
+
+    }
+
+    let requisicao = await fetch(endpoint, {
+        method: acao == "incluir" ? "POST" : "PUT",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(corpo)
+    })
+
+
+    // adicionando um botão de mensagem, pegando o id do botão salvar(html), aqui ao clicar eu darei uma mensagem (dia 14/09)
+    let botao = document.getElementById("btnSalvar")
+
+    if (requisicao.ok) {
+
+        botao.outerHTML = "<span style='color: green; font-weight: bold;'>salvo com sucesso!</span>";
+
+        // fazendo esperar por 1,5s para ai sim eu ser jogado para a tela de lista (dia 14/09)
+        setTimeout(() => {
+            window.location.href = "lista_fornecedor.html";
+        }, 1500);
+
+    } else {
+        return null
+    }
+
+
+}
+
+ // fazendo interejamento para o cancelar tmb, (pendente) confirmar se não é muito forçado (dia 14/09)
+botao_cancelar_click = function () {
+    const botao_cancelar = document.getElementById("btncancel")
+
+    botao_cancelar.outerHTML = "<span style='color: black; font-weight: bold;'>Redirecionando para lista</span>";
+
+    setTimeout(() => {
+        window.location.href = "lista_fornecedor.html";
+
+    }, 1500);
 }
 
 exibir_dados = async function () {
-    // Pega o ID da URL
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-
-    if (!id) {
-        console.log("Nenhum ID informado na URL");
-        return;
-    }
-
     try {
-        // Faz a requisição para a API
-        let requisicao = await fetch(`http://localhost:3000/fornecedor/${id}`, {
+        // o URLSearchParams
+        const params = new URLSearchParams(window.location.search); // usando o window.location.search, pega a parte ?id=1 da URL. - (dia 09/09)
+        const id = params.get("id");
+
+        // fazendo a conexão de API com o fetch, na minha tela fornecedormiguel - (dia 09/09)
+        let requisicao = await fetch(`http://localhost:3000/fornecedor/miguel/${id}`, {
             method: "GET",
             headers: {
                 "Accept": "application/json",
@@ -358,40 +423,45 @@ exibir_dados = async function () {
 
         if (requisicao.ok) {
             let resposta = await requisicao.json();
-            let fornecedor = resposta.data; // supondo que sua API devolva { data: {...} }
+            let fornecedor = resposta.data[0];
 
-            // Preenche os valores no objeto valores_dados
-            valores_dados.id_fornecedor = fornecedor.id;
-            valores_dados.nome = fornecedor.nome;
-            valores_dados.preco_compra = fornecedor.preco_compra;
-            valores_dados.preco_venda = fornecedor.preco_venda;
-            valores_dados.id_categoria = fornecedor.id_categoria;
-            valores_dados.id_unidade_medida = fornecedor.id_unidade_medida;
-            valores_dados.id_grupo = fornecedor.id_grupo;
-            valores_dados.id_moeda = fornecedor.id_moeda;
-            valores_dados.id_cor = fornecedor.id_cor;
-            valores_dados.id_marca = fornecedor.id_marca;
-            valores_dados.descricao = fornecedor.descricao;
+            // criando um objeto JS com os dados do fornecedor. - (dia 09/09)
+            valores_dados = {
+                id_fornecedor: fornecedor.id,
+                nome: fornecedor.nome,
+                preco_compra: fornecedor.preco_compra,
+                preco_venda: fornecedor.preco_venda,
+                id_categoria: fornecedor.id_categoria,
+                id_unidade_medida: fornecedor.id_unidade_medida,
+                id_grupo: fornecedor.id_grupo,
+                id_moeda: fornecedor.id_moeda,
+                id_cor: fornecedor.id_cor,
+                id_marca: fornecedor.id_marca,
+                descricao: fornecedor.descricao
+            };
 
-            // Agora joga os valores nos inputs
-            document.getElementById("name").value = valores_dados.nome || "";
-            document.getElementById("buy").value = valores_dados.preco_compra || "";
-            document.getElementById("sale").value = valores_dados.preco_venda || "";
-            document.getElementById("category").value = fornecedor.nome_categoria || "";
-            document.getElementById("measure").value = fornecedor.nome_medida || "";
+            // Preenchendo os inputs com seus valores, temos o buscar  getElementById do HTML, 
+            // e o .value que vai passar as informações pro inputs, será igual a nossa função que esta com o data "." o valor do objeto - (dia 09/09)
+            document.getElementById("id").value = fornecedor.id || "";
+            document.getElementById("name").value = fornecedor.nome || "";
+            document.getElementById("buy").value = fornecedor.preco_compra || "";
+            document.getElementById("sell").value = fornecedor.preco_venda || "";
+            document.getElementById("categoria").value = fornecedor.nome_categoria || "";
+            document.getElementById("medida").value = fornecedor.nome_medida || "";
             document.getElementById("group").value = fornecedor.nome_grupo || "";
             document.getElementById("coin").value = fornecedor.nome_moeda || "";
-            document.getElementById("color").value = fornecedor.hexadecimal || "";
-            document.getElementById("brand").value = fornecedor.nome_marca || "";
-            document.getElementById("desc").value = valores_dados.descricao || "";
+            document.getElementById("cor").value = fornecedor.hexadecimal || "";
+            document.getElementById("marc").value = fornecedor.nome_marca || "";
+            document.getElementById("desc").value = fornecedor.descricao || "";
 
         } else {
-            console.error("Erro ao buscar fornecedor");
+
         }
     } catch (erro) {
         console.error("Erro na requisição:", erro);
     }
-}
+};
 
-// chama automaticamente ao carregar a página
+
 window.onload = exibir_dados;
+

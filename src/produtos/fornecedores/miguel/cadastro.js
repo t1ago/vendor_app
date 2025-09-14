@@ -13,10 +13,6 @@ valores_dados = {
 }
 
 
-
-// pendente melhorar a interação do carregar as informações das tabelas
-
-
 botao_cancelar_click = function () {
     window.location.href = "lista_fornecedor.html"
 }
@@ -47,6 +43,23 @@ function esconder_informacao(elemento) {
     }
 }
 
+// mostra o "carregando" em qualquer container
+function mostrarCarregando(containerId) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.innerHTML = '<img src="../../../../imagens/loading.png" width="32" />';
+    }
+}
+
+// coloca a lista de volta no container
+function carregarInformacoes(containerId, lista) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.innerHTML = "";   // limpa o que tinha
+        container.appendChild(lista);
+    }
+}
+
 document.addEventListener('click', (elemento) => {
     document.querySelectorAll('.coluna-base > div:not(.esconder)').forEach(div => {
         if (!div.parentNode.contains(elemento.target)) {
@@ -63,57 +76,47 @@ adicionar_valor_campo = function (elemento, valor) {
 
 
 buscar_informação_categoria = async function (elemento) {
-    info_categoria = document.getElementById('info-categoria')
-    info_categoria.innerHTML = "🔄"
+    mostrarCarregando("info-categoria");
 
-
-    requisicao = await fetch(`http://localhost:3000/categorias`, {
-
+    let requisicao = await fetch(`http://localhost:3000/categorias`, {
         method: "GET",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
-    })
+    });
 
-    if (requisicao.ok == true) {
-
-
-        lista = document.createElement('ul')
-
-        lista_categoria = await requisicao.json()
+    if (requisicao.ok) {
+        const lista = document.createElement("ul");
+        const lista_categoria = await requisicao.json();
 
         lista_categoria.data.forEach(item => {
-            lista_item = document.createElement('li')
-            lista_item.dataset.id = item.id
+            const lista_item = document.createElement("li");
+            lista_item.dataset.id = item.id;
 
-            span_item = document.createElement('span')
-            span_item.innerHTML = item.nome
+            const span_item = document.createElement("span");
+            span_item.innerHTML = item.nome;
 
-            lista_item.appendChild(span_item)
-
+            lista_item.appendChild(span_item);
 
             lista_item.onclick = function (event) {
-                selecionar_item(event.currentTarget, 'id_categoria')
-                adicionar_valor_campo(elemento, item.nome)
-            }
+                selecionar_item(event.currentTarget, "id_categoria");
+                adicionar_valor_campo(elemento, item.nome);
+            };
 
-            lista.appendChild(lista_item)
-        })
+            lista.appendChild(lista_item);
+        });
 
-        info_categoria.innerHTML = ""
-        info_categoria.appendChild(lista)
-
+        carregarInformacoes("info-categoria", lista);
     } else {
-
-        info_categoria.innerHTML = "erroo"
+        document.getElementById("info-categoria").innerHTML = "⚠️ Erro ao carregar";
     }
-
 }
+
 
 buscar_informação_grupo = async function (elemento) {
     info_grupo = document.getElementById('info-grupo')
-    info_grupo.innerHTML = "🔄"
+    mostrarCarregando("info-grupo")
 
     requisicao = await fetch(`http://localhost:3000/grupos`, {
 
@@ -149,7 +152,7 @@ buscar_informação_grupo = async function (elemento) {
             lista.appendChild(lista_item)
         })
 
-        info_grupo.innerHTML = ""
+        carregarInformacoes("info-grupo", lista);
         info_grupo.appendChild(lista)
 
 
@@ -160,7 +163,7 @@ buscar_informação_grupo = async function (elemento) {
 
 buscar_informacao_moeda = async function (elemento) {
     info_moeda = document.getElementById("info-moeda")
-    info_moeda.innerHTML = "🔄"
+    mostrarCarregando("info-moeda")
 
     requisicao = await fetch(`http://localhost:3000/moedas`, {
 
@@ -195,7 +198,7 @@ buscar_informacao_moeda = async function (elemento) {
             lista.appendChild(lista_item)
         })
 
-        info_moeda.innerHTML = ""
+        carregarInformacoes("info-moeda", lista);
         info_moeda.appendChild(lista)
 
     } else {
@@ -205,7 +208,7 @@ buscar_informacao_moeda = async function (elemento) {
 
 buscar_informacao_marca = async function (elemento) {
     info_marca = document.getElementById("info-marca")
-    info_marca.innerHTML = "🔄"
+    mostrarCarregando("info-marca")
 
     requisicao = await fetch("http://localhost:3000/marca", {
 
@@ -239,7 +242,7 @@ buscar_informacao_marca = async function (elemento) {
             lista.appendChild(lista_item)
         })
 
-        info_marca.innerHTML = ""
+        carregarInformacoes("info-marca", lista)
         info_marca.appendChild(lista)
     } else {
 
@@ -251,7 +254,7 @@ buscar_informacao_marca = async function (elemento) {
 
 buscar_informacao_medida = async function (elemento) {
     info_marca = document.getElementById("info-medida")
-    info_marca.innerHTML = "🔄"
+    mostrarCarregando("info-medida")
 
     requisicao = await fetch("http://localhost:3000/medidas", {
 
@@ -284,7 +287,7 @@ buscar_informacao_medida = async function (elemento) {
 
             lista.appendChild(lista_item)
         })
-        info_marca.innerHTML = ""
+        carregarInformacoes("info-medida", lista)
         info_marca.appendChild(lista)
     }
 
@@ -296,7 +299,7 @@ buscar_informacao_medida = async function (elemento) {
 buscar_informacao_cor = async function (elemento) {
 
     info_cor = document.getElementById("info-cor")
-    info_cor.innerHTML = "🔄"
+    mostrarCarregando("info-cor")
 
     requisicao = await fetch(`http://localhost:3000/cores`, {
 
@@ -331,7 +334,7 @@ buscar_informacao_cor = async function (elemento) {
 
         })
 
-        info_cor.innerHTML = ""
+        carregarInformacoes("info-cor", lista)
         info_cor.appendChild(lista)
     } else {
 
@@ -394,7 +397,7 @@ botao_salvar_click = async function () {
 
 }
 
- // fazendo interejamento para o cancelar tmb, (pendente) confirmar se não é muito forçado (dia 14/09)
+// fazendo interejamento para o cancelar tmb, (pendente) confirmar se não é muito forçado (dia 14/09)
 botao_cancelar_click = function () {
     const botao_cancelar = document.getElementById("btncancel")
 

@@ -31,7 +31,8 @@
             <div class="linha">
                 <div class="coluna coluna-base">
                     <label for="name">Nome</label>
-                    <input type="text" name="name" id="name" onchange="adicionando_valor('nome', this)">
+                    <input type="text" name="name" id="name" onchange="adicionando_valor('nome', this)"
+                    required minlength="3" maxlength="64">
                 </div>
 
 
@@ -123,7 +124,8 @@
                 <!-- Criação da Descricao -->
                 <div class="coluna coluna-base">
                     <label for="desc">Descricao</label>
-                    <input type="text" name="desc" id="desc" onchange="adicionando_valor('descricao', this)">
+                    <input type="text" name="desc" id="desc" onchange="adicionando_valor('descricao', this)"
+                    required minlength="3" maxlength="128">
                 </div>
             </div>
 

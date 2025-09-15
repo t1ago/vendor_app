@@ -21,7 +21,7 @@ botao_listar_grupo_click = function () {
 }
 
 botao_listar_fornecedor_tiago_click = function () {
-    navegarPara('./src/produtos/fornecedores/tiago/cadastro_fornecedor.html')
+    navegarPara('./src/produtos/fornecedores/tiago/lista_fornecedor.html')
 }
 
 botao_listar_fornecedores_click = function () {

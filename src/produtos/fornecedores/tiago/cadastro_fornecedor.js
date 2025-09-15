@@ -332,10 +332,11 @@ campo_onchange = function (propriedade, elemento) {
 }
 
 botao_salvar_click = async function () {
-
-    // validar aqui
-
     await salvar_fornecedor(valores_dados.id_fornecedor == null ? 'INCLUIR' : 'ALTERAR')
+}
+
+botao_cancelar_click = function () {
+    navegarPara('lista_fornecedor.html')
 }
 
 salvar_fornecedor = async function (acao = 'INCLUIR') {

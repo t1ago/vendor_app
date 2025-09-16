@@ -35,8 +35,6 @@ exibindo_dados = async function () {
     // limpando a tabela
     tabela.innerHTML = ""
 
-
-
     // facilitação explorada para + praticidade (dia 13/09, complemento estava dando erro, certo agora (dia 14/09)
     let adicionando_coluna = function (linha, valor) {
         coluna = document.createElement('td')

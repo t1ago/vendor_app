@@ -18,7 +18,6 @@ botao_cancelar_click = function () {
 }
 
 
-
 async function focar_campo(elemento, minha_funcao) {
     let elemento_pai = elemento.parentNode;
     let elemento_informacao = elemento_pai.querySelector('div');

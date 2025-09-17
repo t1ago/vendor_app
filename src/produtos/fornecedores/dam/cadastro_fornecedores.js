@@ -4,7 +4,7 @@ const API_HOST = "http://127.0.0.1:3000";
 // Valores selecionados no formulário
 const valores = {
   id_fornecedor: null,
-  nome: "",
+  nome: null,
   id_moeda: null,
   preco_compra: null,
   preco_venda: null,
@@ -13,7 +13,7 @@ const valores = {
   id_unidade_medida: null,
   id_marca: null,
   id_cor: null,
-  descricao: "",
+  descricao: null,
 };
 
 elemento_focado = null
@@ -201,7 +201,7 @@ adicionar_valor_campo = function (elemento, valor) {
 
 async function incluirFornecedor() {
   try{
-    const requisicao = await fetch(`${API_HOST}/fornecedoresDam`, {
+    const requisicao = await fetch(`${API_HOST}/fornecedoresDam/salvar`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -223,7 +223,7 @@ async function incluirFornecedor() {
 async function alterarFornecedor() {
   try {
     const requisicao = await fetch (`${API_HOST}/fornecedoresDam/${valores.id_fornecedor}`,{
-      method: "PUT",
+      method: "POST",
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"

@@ -32,6 +32,21 @@ function clique_geral() {
   };
 }
 
+function limparFormulario() {
+  document.getElementById("nome").value = "";
+  document.getElementById("compra").value = "";
+  document.getElementById("venda").value = "";
+  document.getElementById("descricao").value = "";
+  document.getElementById("moeda").value = "";
+  document.getElementById("grupo").value = "";
+  document.getElementById("categoria").value = "";
+  document.getElementById("medida").value = "";
+  document.getElementById("marca").value = "";
+  document.getElementById("cor").value = "";
+
+  valores = {};
+}
+
 async function foco_campo(elemento, minha_funcao, endereco) {
   elemento_focado = elemento;
   nova_selecao = true;
@@ -212,6 +227,7 @@ async function incluirFornecedor() {
 
     if (requisicao.ok) {
       alert("Fornecedor incluído com sucesso!");
+      limparFormulario();
     } else {
       alert ("Erro ao incluir fornecedor.");
     }
@@ -233,6 +249,7 @@ async function alterarFornecedor() {
 
     if (requisicao.ok) {
       alert("Fornecedor atualizado com sucesso!");
+      limparFormulario();
     } else {
       alert("Erro ao atualizar fornecedor.")
     }

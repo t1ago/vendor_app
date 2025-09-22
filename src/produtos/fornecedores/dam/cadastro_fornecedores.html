@@ -17,7 +17,7 @@
       <div class="linha">
         <div class="coluna">
           <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" placeholder="Nome do fornecedor" required minlength="3" maxlength="64" autocomplete="off" onchange=""/>
+          <input type="text" id="nome" name="nome" placeholder="Nome do fornecedor" required minlength="3" maxlength="64" autocomplete="off" onchange="valores.nome = this.value"/>
         </div>
       </div>
 
@@ -32,14 +32,14 @@
       <!-- Preço de Compra -->
         <div class="coluna">
           <label for="preco_compra">Preço de Compra</label>
-          <input type="text" id="compra" name="compra" placeholder="Preço de Compra" required minlength="4" maxlength="12" autocomplete="off" autocomplete="off"/>
+          <input type="text" id="compra" name="compra" placeholder="Preço de Compra" required minlength="4" maxlength="12" autocomplete="off" autocomplete="off" onchange="valores.preco_compra = this.value"/>
           <small class="erro"></small>
         </div>
 
       <!-- Preço de Venda -->
         <div class="coluna">
           <label for="preco_venda">Preço de Venda</label>
-          <input type="text" id="venda" name="venda" placeholder="Preço de Venda" required minlength="4" maxlength="12" autocomplete="off" autocomplete="off"/>
+          <input type="text" id="venda" name="venda" placeholder="Preço de Venda" required minlength="4" maxlength="12" autocomplete="off" autocomplete="off" onchange="valores.preco_venda = this.value"/>
           <small class="erro"></small>
         </div>
       </div>
@@ -55,7 +55,7 @@
       <!-- Categoria -->
         <div class="coluna lista-suspensa-container">
           <label for="categoria">Categoria</label>
-          <input type="text" id="categoria" name="categoria" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'categorias')">
+          <input type="text" id="categoria" name="categoria" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'categorias')"/>
           <div id="info-categorias" class="lista-suspensa lista-oculta"></div>
         </div>
 
@@ -71,14 +71,14 @@
       <div class="linha">
         <div class="coluna lista-suspensa-container">
           <label for="marca">Marca</label>
-          <input type="text" id="marca" name="marca" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'marca')" />
+          <input type="text" id="marca" name="marca" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'marca')"/>
           <div id="info-marcas" class="lista-suspensa lista-oculta"></div>
         </div>
 
       <!-- Cor -->
         <div class="coluna lista-suspensa-container">
           <label for="cor">Cor</label>
-          <input type="text" id="cor" name="cor" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'cores')" />
+          <input type="text" id="cor" name="cor" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'cores')"/>
           <div id="info-cores" class="lista-suspensa lista-oculta"></div>
         </div>
       </div>
@@ -87,7 +87,7 @@
       <div class="linha">
         <div class="coluna">
           <label for="descricao">Descrição</label>
-          <input type="text" id="descricao" name="descricao" required minlength="10" maxlength="255" />
+          <input type="text" id="descricao" name="descricao" required minlength="10" maxlength="255" onchange="valores.descricao = this.value"/>
           <small class="erro"></small>
         </div>
       </div>

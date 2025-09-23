@@ -23,7 +23,8 @@
                     <div class="linha"></div>
                     <div class="coluna campos"></div>
                     <label for="moeda">Moeda</label>
-                    <input type="text" id="moeda" required minlength="3" maxlength="64"></input>
+                    <input type="text" id="moeda" required minlength="3" maxlength="64" onkeyup="validarcampomoeda()"
+                        onchange="validarcampomoeda()"></input>
 
                     <label id="mensagemmoeda"></label>
                 </div>
@@ -33,7 +34,8 @@
                     <div class="linha"></div>
                     <div class="coluna campos"></div>
                     <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome" value="" required minlength="3" maxlength="64"></input>
+                    <input type="text" id="nome" name="nome" value="" required minlength="3" maxlength="64"
+                        onkeyup="validarcamponome()" onchange="validarcamponome()"></input>
 
                     <label id="mensagemnome"></label>
 
@@ -45,7 +47,7 @@
             <div class="button">
                 <button id="cancelar" onclick="voltarmoeda()">Cancelar</button>
                 <div class="botoes-salvar">
-                    <button type="button" id="salvar" onclick="botao_salvar()">Salvar</button>
+                    <button type="button" id="salvar" onclick="botao_salvar_click()">Salvar</button>
                 </div>
             </div>
         </div>

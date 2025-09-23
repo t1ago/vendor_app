@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Cores</title>
+
+  <!-- Usando o CSS padrão -->
+  <link rel="stylesheet" href="../../produtos/padraodam.css">
+  <link rel="stylesheet" href="padrao_cores.css">
+</head>
+<body>
+  <main class="container">
+    <form id="formCor" novalidate>
+      <h1>Cadastro de Cores</h1>
+
+      <!-- Campo ID oculto -->
+      <input type="hidden" id="campoId">
+
+      <!-- Linha da cor -->
+      <div class="linha">
+        <div class="coluna">
+          <label for="nova_cor">Selecionar cor:</label>
+          <input type="color" id="novaCor" name="novaCor">
+        </div>
+        <div class="coluna">
+          <label for="hexadecimal_cor">Código hexadecimal:</label>
+          <input type="text" id="hexCor" name="hexCor" placeholder="#000000" required pattern="^#([A-Fa-f0-9]{6})$">
+          <small class="erro"></small>
+        </div>
+      </div>
+
+      <!-- Botões -->
+      <div class="linha">
+        <div class="botoes-rodape">
+          <button type="button" onclick="voltar()">❌</button>
+          <button type="submit">💾</button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <script src="cadastro_cores.js"></script>
+</body>
+</html>

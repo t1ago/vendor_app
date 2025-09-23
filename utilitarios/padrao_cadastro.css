@@ -13,7 +13,8 @@
 }
 
 /*  CAMPO */
-.coluna-fields>input {
+.coluna-fields>input,
+textarea {
     font-size: 14px;
     padding: 0px 5px 5px 5px;
     border-top: 0px;
@@ -62,6 +63,58 @@
 .coluna-fields>input[disabled] {
     border: 0px;
     background: #f6f6f6;
+}
+
+.coluna-fields>.informacao-consulta.esconder {
+    display: none;
+}
+
+.coluna-fields>.informacao-consulta.loading {
+    display: none;
+}
+
+.coluna-fields>.informacao-consulta {
+    min-height: 50px;
+    max-height: 500px;
+    max-width: 500px;
+    background-color: #586EDB;
+    z-index: 99;
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 15px;
+}
+
+.coluna-fields>.informacao-consulta>ul {
+    margin: 12px 12px 12px 12px;
+    padding: 0;
+}
+
+.coluna-fields>.informacao-consulta>ul>li {
+    list-style-type: none;
+    padding: 6px;
+    margin: 0px;
+    color: white;
+}
+
+.coluna-fields>.informacao-consulta>ul>li:hover {
+    background-color: #599DDC;
+    color: white;
+    border-radius: 12px;
+}
+
+.coluna-fields>.informacao-consulta>img {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    animation: rotacao 5s linear infinite;
+}
+
+.coluna-fields>.informacao-consulta>img {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    animation: rotacao 5s linear infinite;
 }
 
 /*OPERACÃO*/

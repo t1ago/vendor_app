@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Medidas</title>
+
+  <!-- CSS padrão aplicado -->
+  <link rel="stylesheet" href="../../produtos/padraodam.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Lista de Medidas</h1>
+
+    <div class="tabela-container">
+      <table id="tabela_medidas">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="corpo_tabela">
+          <!-- Dados renderizados via JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Botões -->
+    <div class="botoes-rodape">
+      <button onclick="irParaIndex()">◀️ Voltar</button>
+      <button onclick="abrirCadastro()">💾 Cadastrar</button>
+    </div>
+  </main>
+
+  <script src="lista_medidas.js"></script>
+</body>
+</html>

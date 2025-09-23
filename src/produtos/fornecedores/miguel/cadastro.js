@@ -1,3 +1,4 @@
+
 valores_dados = {
     id_fornecedor: null,
     nome: null,
@@ -11,7 +12,6 @@ valores_dados = {
     id_marca: null,
     descricao: null
 }
-
 
 botao_cancelar_click = function () {
     window.location.href = "lista_fornecedor.html"

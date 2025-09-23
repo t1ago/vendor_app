@@ -47,7 +47,7 @@
     list-style-type: none;
 }
 .informacao-lista>ul>li:hover {
-    background-color: rgb(180, 167, 120);
+    background-color: rgb(209, 204, 188);
     color:white;
     border-radius: 12px;
 }

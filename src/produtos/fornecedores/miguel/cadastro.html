@@ -30,9 +30,10 @@
             <!-- Criação do nome -->
             <div class="linha">
                 <div class="coluna coluna-base">
-                    <label for="name">Nome</label>
-                    <input type="text" name="name" id="name" onchange="adicionando_valor('nome', this)"
-                    required minlength="3" maxlength="64">
+                    <label for="campo_nome">Nome</label>
+                    <input type="text" name="name" id="campo_nome" onchange="adicionando_valor('nome', this)" required
+                        minlength="3" maxlength="64">
+                    <span id="mensagem_nome" class="mensagem-erro"></span>
                 </div>
 
 
@@ -123,9 +124,10 @@
 
                 <!-- Criação da Descricao -->
                 <div class="coluna coluna-base">
-                    <label for="desc">Descricao</label>
-                    <input type="text" name="desc" id="desc" onchange="adicionando_valor('descricao', this)"
-                    required minlength="3" maxlength="128">
+                    <label for="campo_desc">Descrição</label>
+                    <input type="text" name="desc" id="campo_descricao" onchange="adicionando_valor('descricao', this)"
+                        required minlength="3" maxlength="128">
+                    <span id="mensagem_descricao" class="mensagem-erro"></span>
                 </div>
             </div>
 
@@ -133,7 +135,6 @@
                 <button class="button-cancel" id="btncancel" type="button" onclick="botao_cancelar_click()">Cancelar
                 </button>
                 <button class="button-save" id="btnSalvar" type="button" onclick="botao_salvar_click()">Salvar</button>
-
             </div>
 
             </div>

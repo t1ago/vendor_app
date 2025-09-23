@@ -1,11 +1,9 @@
-
 campo_nome = document.getElementById("nome")
 campo_moeda = document.getElementById("moeda")
 
 function abrirCadastro() {
     window.location.href = "tela_de_moeda.html"
 }
-
 
 function voltarparaindex() {
     window.location.href = "../../../index.html"

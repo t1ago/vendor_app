@@ -33,31 +33,30 @@ async function carregarMoedas() {
             span_nome.innerHTML = item.nome
 
             btn_editar.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" alt="Editar" style="width:100%;height:18px;vertical-align:middle;border:none;padding:0;margin:0;" />';
-            btn_editar.onclick = function () {
+            btn_editar.onclick = function (item) {
                 window.location.href = "tela_de_moeda.html?id=" + item.id;
             };
 
             btn_excluir.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="Excluir" style="width:100%;height:18px;vertical-align:middle;border:none;padding:0;margin:0;" />';
-            btn_excluir.onclick = async function () {
+            btn_excluir.onclick = async function (item) {
                 await fetch(`http://localhost:3000/moedas/${item.id}`, {
                     method: "DELETE"
                 });
-                carregarMoedas(); // recarrega lista depois de excluir
+                carregarMoedas(); 
             };
-            
-            coluna_moeda.appendChild(span_moeda)
-            coluna_nome.appendChild(span_nome)
-            coluna_acoes.appendChild(btn_editar)
-            coluna_acoes.appendChild(btn_excluir)
 
-            linha.appendChild(coluna_moeda)
-            linha.appendChild(coluna_nome)
-            linha.appendChild(coluna_acoes)
+            coluna_moeda.appendChild(span_moeda);
+            coluna_nome.appendChild(span_nome);
+            coluna_acoes.appendChild(btn_editar);
+            coluna_acoes.appendChild(btn_excluir);
 
-            corpotabela.appendChild(linha)
-          
-        });
+            linha.appendChild(coluna_moeda);
+            linha.appendChild(coluna_nome);
+            linha.appendChild(coluna_acoes);
+
+            corpotabela.appendChild(linha);
+
     }
+)}
 }
-
-carregarMoedas()
+    carregarMoedas()

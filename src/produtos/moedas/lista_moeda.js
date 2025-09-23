@@ -1,5 +1,5 @@
-campo_nome = document.getElementById("nome")
-campo_moeda = document.getElementById("moeda")
+let campo_nome = document.getElementById("nome")
+let campo_moeda = document.getElementById("moeda")
 
 function abrirCadastro() {
     window.location.href = "tela_de_moeda.html"
@@ -34,8 +34,8 @@ async function carregarMoedas() {
 
             btn_editar.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" alt="Editar" style="width:100%;height:18px;vertical-align:middle;border:none;padding:0;margin:0;" />';
             btn_editar.onclick = function () {
-                window.location.href = "tela_de_moeda.html?id=" + item.id
-            }
+                window.location.href = "tela_de_moeda.html?id=" + item.id;
+            };
 
             btn_excluir.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="Excluir" style="width:100%;height:18px;vertical-align:middle;border:none;padding:0;margin:0;" />';
             btn_excluir.onclick = async function () {
@@ -44,6 +44,7 @@ async function carregarMoedas() {
                 });
                 carregarMoedas(); // recarrega lista depois de excluir
             };
+            
             coluna_moeda.appendChild(span_moeda)
             coluna_nome.appendChild(span_nome)
             coluna_acoes.appendChild(btn_editar)
@@ -54,7 +55,8 @@ async function carregarMoedas() {
             linha.appendChild(coluna_acoes)
 
             corpotabela.appendChild(linha)
-        })
+          
+        });
     }
 }
 

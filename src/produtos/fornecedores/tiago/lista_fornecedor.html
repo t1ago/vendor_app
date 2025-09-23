@@ -23,8 +23,15 @@
             <h1 class="coluna">Lista de Fornecedores</h1>
         </div>
 
+        <div class="linha espaco-cima search">
+            <div class="coluna coluna-fields">
+                <label for="search">Filtro de fornecedores</label>
+                <input type="text" id="search" name="search" maxlength="64" oninput="filtrar_dados(event)">
+            </div>
+        </div>
+
         <div class="linha espaco-cima">
-            <div class="coluna">
+            <div class="coluna" id="container-tabela">
                 <table id="tabela" class="esconder">
                     <thead>
                         <tr>

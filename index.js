@@ -16,7 +16,7 @@ botao_listar_moedas_click = function () {
     navegarPara('./src/produtos/moedas/tela_de_moeda.html');
 }
 botao_listar_fornecedor_victor_click = function () {
-    navegarPara('./src/produtos/fornecedores/victor/fornecedor_victor.html')
+    navegarPara('./src/produtos/fornecedores/victor/lista_fornecedor_victor.html')
 }
 botao_listar_fornecedor_tiago_click = function () {
     navegarPara('./src/produtos/fornecedores/tiago/cadastro_fornecedor.html')

@@ -1,20 +1,17 @@
 valores_dados = {
-    id_fornecedor:null,
+    id:null,
     nome: null,
-    id_moeda: null,
-    preco_compra: null,
-    preco_venda: null,
-    id_grupo:null,
+    descricao:null,
     id_categoria:null,
-    id_unidade_medida:null,
+    id_moeda: null,
     id_marca:null,
     id_cores:null,
-    descricao:null
+    id_unidade_medida:null,
+    id_grupo:null,
+    preco_compra: null,
+    preco_venda: null
 }
 
-function salvar() {
-    console.log(valores_dados)
-}
 function campos_onchange(propriedade, elemento) {
     valores_dados[propriedade] = elemento.value;
 }
@@ -22,18 +19,7 @@ function campos_onchange(propriedade, elemento) {
 function selecionar_item(elemento, id) {
     valores_dados[id] = parseInt(elemento.dataset.id)
     esconder_informacao(elemento)
-    console.log(valores_dados)
 }
-
-function desfocar_campo(elemento) {
-    if (elemento.isTrusted != true) {
-        console.log('funcionou')
-        elemento_pai = elemento.parentNode;
-        elemento_fechado = elemento_pai.getElementsByClassName("informacao-lista")[0];
-        elemento_fechado.classList.add('esconder');
-    }
-}
-
 function esconder_informacao(elemento) {
     let elemento_pai = elemento.parentNode
     elemento_pai = elemento_pai.parentNode
@@ -51,7 +37,16 @@ async function focar_campo(elemento,minha_funcao) {
     
     await minha_funcao(elemento)
 }
-
+function erro_buscar(elemento,mensagem) {
+    info = document.getElementById(elemento);
+    lista = document.createElement("ul");
+    lista_item = document.createElement("li");
+    span_item = document.createElement("span");
+    span_item.innerHTML = mensagem;
+    lista_item.appendChild(span_item);
+    lista.appendChild(lista_item);
+    info.appendChild(lista);
+}
 async function buscar_informacao_categorias(elemento) {
     try {
         info_categorias = document.getElementById("info_categorias")
@@ -77,8 +72,8 @@ async function buscar_informacao_categorias(elemento) {
                 span_item.innerHTML = item.nome
                 lista_item.appendChild(span_item)
 
-                lista_item.onclick = function() {
-                    selecionar_item(lista_item, 'id_categoria')
+                lista_item.onclick = function(event) {
+                    selecionar_item(event.currentTarget, 'id_categoria')
                     adicionar_item_campo(elemento,item.nome)
                 }
                 lista.appendChild(lista_item)
@@ -87,13 +82,7 @@ async function buscar_informacao_categorias(elemento) {
         }
     } catch (erro) {
         animacaoCarregar(elemento,false)
-        lista = document.createElement("ul");
-        lista_item = document.createElement("li");
-        span_item = document.createElement("span");
-        span_item.innerHTML = "Nenhum grupo encontrado...";
-        lista_item.appendChild(span_item);
-        lista.appendChild(lista_item);
-        info_categorias.appendChild(lista);
+        erro_buscar("info_categorias","Nenhum grupo encontrado...")
     }
 }
 async function buscar_informacao_grupos(elemento) {
@@ -113,15 +102,16 @@ async function buscar_informacao_grupos(elemento) {
             lista = document.createElement("ul")
             listas_grupos = await requisicao.json()
             listas_grupos.data.filter(item => {
-                return item.nome != null}).forEach(item => {
+                return item.nome != null
+            }).forEach(item => {
                     lista_item = document.createElement("li")
                     lista_item.dataset.id = item.id
                     span_item = document.createElement("span")
                     span_item.innerHTML = item.nome
                     lista_item.appendChild(span_item)
 
-                    lista_item.onclick = function() {
-                        selecionar_item(lista_item, 'id_categoria')
+                    lista_item.onclick = function(event) {
+                        selecionar_item(event.currentTarget, 'id_grupo')
                         adicionar_item_campo(elemento,item.nome)
                     }
                     lista.appendChild(lista_item)
@@ -130,13 +120,7 @@ async function buscar_informacao_grupos(elemento) {
         } 
     } catch (erro) {
         animacaoCarregar(elemento,false)
-        lista = document.createElement("ul");
-        lista_item = document.createElement("li");
-        span_item = document.createElement("span");
-        span_item.innerHTML = "Nenhum grupo encontrado...";
-        lista_item.appendChild(span_item);
-        lista.appendChild(lista_item);
-        info_grupos.appendChild(lista);
+        erro_buscar("info_grupos","Nenhum grupo encontrado...")
     }
 }
 async function buscar_informacao_marca(elemento) {
@@ -164,8 +148,8 @@ async function buscar_informacao_marca(elemento) {
                 span_item.innerHTML = item.nome
                 lista_item.appendChild(span_item)
 
-                lista_item.onclick = function() {
-                    selecionar_item(lista_item, 'id_marca')
+                lista_item.onclick = function(event) {
+                    selecionar_item(event.currentTarget, 'id_marca')
                     adicionar_item_campo(elemento,item.nome)
                 }
                 lista.appendChild(lista_item)
@@ -174,19 +158,14 @@ async function buscar_informacao_marca(elemento) {
         }
     } catch (erro) {
         animacaoCarregar(elemento,false)
-        lista = document.createElement("ul");
-        lista_item = document.createElement("li");
-        span_item = document.createElement("span");
-        span_item.innerHTML = "Nenhuma marca encontrada...";
-        lista_item.appendChild(span_item);
-        lista.appendChild(lista_item);
-        info_marca.appendChild(lista);
+        erro_buscar("info_marca"," Nenhuma marca encontrada...")
     }
 }
 async function buscar_informacao_moedas(elemento) {
     try {
         info_moedas = document.getElementById("info_moedas");
         info_moedas.innerHTML = ""
+
         animacaoCarregar(elemento)
         requisicao = await fetch('http://localhost:3000/moedas', {
             method: 'GET',
@@ -195,6 +174,7 @@ async function buscar_informacao_moedas(elemento) {
                 'Content-type': 'application/json'
             }
         })
+
         animacaoCarregar(elemento,false)
         if(requisicao.ok == true) {
             lista = document.createElement("ul");
@@ -208,8 +188,8 @@ async function buscar_informacao_moedas(elemento) {
                 span_item.innerHTML = item.nome;
                 lista_item.appendChild(span_item);
 
-                lista_item.onclick = function() {
-                    selecionar_item(lista_item, 'id_moeda')
+                lista_item.onclick = function(event) {
+                    selecionar_item(event.currentTarget, 'id_moeda')
                     adicionar_item_campo(elemento,item.nome)
                 }
                 lista.appendChild(lista_item)
@@ -218,13 +198,7 @@ async function buscar_informacao_moedas(elemento) {
         }
     } catch {
         animacaoCarregar(elemento,false)
-        lista = document.createElement("ul");
-        lista_item = document.createElement("li");
-        span_item = document.createElement("span");
-        span_item.innerHTML = "Nenhuma moeda encontrada...";
-        lista_item.appendChild(span_item);
-        lista.appendChild(lista_item);
-        info_moedas.appendChild(lista);
+        erro_buscar("info_moedas", "Nenhuma moeda encontrada...")
     }
 }
 async function buscar_informacao_medidas(elemento) {
@@ -262,13 +236,7 @@ async function buscar_informacao_medidas(elemento) {
         }
     } catch {
         animacaoCarregar(elemento,false)
-        lista = document.createElement("ul");
-        lista_item = document.createElement("li");
-        span_item = document.createElement("span");
-        span_item.innerHTML = "Nenhuma medida encontrada...";
-        lista_item.appendChild(span_item);
-        lista.appendChild(lista_item);
-        info_medidas.appendChild(lista);
+        erro_buscar("info_medidas", "Nenhuma medida encontrada...")
     }
 }
 async function buscar_informacao_cores(elemento) {
@@ -296,8 +264,8 @@ async function buscar_informacao_cores(elemento) {
                 span_item.innerHTML = item.hexadecimal;
                 lista_item.appendChild(span_item);
 
-                lista_item.onclick = function() {
-                    selecionar_item(lista_item, 'id_cor')
+                lista_item.onclick = function(event) {
+                    selecionar_item(event.currentTarget, "id_cores")
                     adicionar_item_campo(elemento,item.hexadecimal)
                 }
                 lista.appendChild(lista_item)
@@ -306,13 +274,7 @@ async function buscar_informacao_cores(elemento) {
         }
     } catch {
         animacaoCarregar(elemento,false)
-        lista = document.createElement("ul");
-        lista_item = document.createElement("li");
-        span_item = document.createElement("span");
-        span_item.innerHTML = "Nenhuma cor encontrada...";
-        lista_item.appendChild(span_item);
-        lista.appendChild(lista_item);
-        info_cores.appendChild(lista);
+        erro_buscar("info_cores","Nenhuma cor encontrada...")
     }
 }
 function animacaoCarregar(elemento, chave = true) {
@@ -334,6 +296,88 @@ function animacaoCarregar(elemento, chave = true) {
 function adicionar_item_campo(elemento,valor) {
     elemento.value = valor
 }
-async function criar_fornecedor() {
-    await fetch ('http://localhost:3000/fornecedor/victor')
+async function salvar() {
+    url = window.location.search
+    if (url) {
+        urlQuebrada = new URLSearchParams(url)
+        if(urlQuebrada.get("id")) {
+            parametro = urlQuebrada.get("id")
+        } else {
+            parametro = valores_dados.id
+        }
+    } else {
+        parametro = valores_dados.id
+    }
+    const acao = parametro != null ? "ALTERAR" : "INCLUIR";
+    
+    endpoint = "http://localhost:3000/fornecedores/victor"
+
+    if(acao == "ALTERAR") {
+        endpoint += `/${parametro}`
+    }
+    requisicao = await fetch (endpoint,{
+        method: acao == "INCLUIR" ? "POST" : "PUT",
+        headers: {
+            "Accept": "application/json",
+            "Content-type":"application/json"
+        },
+        body: JSON.stringify(valores_dados)
+    })
+    if(requisicao.ok == true) {
+        setTimeout(
+            console.log("Funcionou")
+        ,3000);
+    }
 }
+function campo_dados(elemento,valor){
+    document.getElementById(elemento).value = valor || "";
+}
+async function exibir_dados() {
+    url = window.location.search;
+    if(url) {
+
+        urlQuebrada = new URLSearchParams(url)
+
+        id = urlQuebrada.get("id")
+        
+        endpoint = "http://localhost:3000/fornecedores/victor/" + id
+
+        requisicao = await fetch (endpoint,{
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-type":"application/json"
+            }
+        })
+
+        if(requisicao.ok == true) {
+            lista = await requisicao.json()
+            valores = lista.data[0]
+            valores_dados = {
+                id:valores.id,
+                nome: valores.nome,
+                descricao:valores.descricao,
+                id_categoria:valores.id_categoria,
+                id_moeda: valores.id_moeda,
+                id_marca:valores.id_marca,
+                id_cores:valores.id_cores,
+                id_unidade_medida:valores.id_unidade_medida,
+                id_grupo:valores.id_grupo,
+                preco_compra: valores.preco_compra,
+                preco_venda: valores.preco_venda
+            }
+            campo_dados("name",valores.nome);
+            campo_dados("moeda",valores.nome_moeda);
+            campo_dados("compra",valores.preco_compra);
+            campo_dados("venda",valores.preco_venda);
+            campo_dados("grupo",valores.nome_grupo);
+            campo_dados("categoria",valores.nome_categoria);
+            campo_dados("medida",valores.nome_medida);
+            campo_dados("marca",valores.nome_marca);
+            campo_dados("cor",valores.hexadecimal);
+            campo_dados("desc",valores.descricao);
+        }
+    }
+}
+
+exibir_dados()

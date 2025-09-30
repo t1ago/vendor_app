@@ -265,3 +265,7 @@ function salvarFornecedor() {
     alterarFornecedor();
   }
 }
+
+function voltar() {
+  window.location.href = "../dam/lista_fornecedores.html"
+}

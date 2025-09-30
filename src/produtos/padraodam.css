@@ -14,7 +14,7 @@
 
 /* Container Central*/
 .container{
-    max-width: 600px;
+    max-width: 1400px;
     margin: 30px auto;
     padding: 30px;
     background-color: #ffffff;
@@ -24,6 +24,7 @@
 
 .tabela-container {
   overflow-x: auto;
+  overflow-y: auto;
   max-width: 100%;
 }
 

@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="../../padraodam.css">
 </head>
 <body>
-    <main>
+    <main class="container">
         <h1>Lista de Fornecedores</h1>
 
-        <div>
-            <table>
+        <div class="tabela-container">
+            <table id="">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -26,18 +26,21 @@
                         <th>Marca</th>
                         <th>Cor</th>
                         <th>Descrição</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="corpoTabela">
     <!-- Dados inseridos pelo JS-->
                 </tbody>
             </table>
         </div>
 
-        <div>
-            <button>◀️ Voltar</button>
-            <button>💾 Cadastrar</button>
+        <div class="botoes-rodape">
+            <button type="button" onclick="irParaIndex()">◀️ Voltar</button>
+            <button type="button" onclick="abrirCadastro()">💾 Cadastrar</button>
         </div>
-    </main>  
+    </main>
+    
+    <script src="lista_fornecedores.js"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ let listaMarca = [];
 async function carregarMarca() {
     corpo_tabela = document.getElementById("corpo_tabela");
     corpo_tabela.innerHTML = "";
-    requisicao = await fetch ('http://localhost:3000/marca', {
+    requisicao = await fetch (`${API_HOST}/marca`, {
         method: "GET",
         headers: {
             'Accept': 'application/json',
@@ -45,7 +45,7 @@ async function carregarMarca() {
     }
 }
 async function excluir_coluna(id) {
-    await fetch (`http://localhost:3000/marca/${id}`, {
+    await fetch (`${API_HOST}/marca/${id}`, {
         method: "DELETE"
     })
     carregarMarca()

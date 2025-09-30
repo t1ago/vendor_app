@@ -3,7 +3,6 @@ campo_id = document.getElementById("id")
 mensagem_nome = document.getElementById('id_mensagem')
 
 
-
 function validarCampoNome() {
     campo_nome.classList.remove('erro')
     mensagem_nome.innerHTML = ''
@@ -39,7 +38,7 @@ async function cadastrar_marca() {
             'id': null,
             'nome': campo_nome.value 
         }
-        requisicao = await fetch ('http://localhost:3000/marca', {
+        requisicao = await fetch (`${API_HOST}/marca`, {
             method:'POST',
             headers: {
                 'Accept': 'application/json',
@@ -56,20 +55,11 @@ async function cadastrar_marca() {
 }
 
 async function alterar_marca() {
-    // marcas = window.localStorage.getItem("marca")
-    // listamarca = JSON.parse(marcas)
-    // indice = listamarca.findIndex(function (valor) {
-    //     return valor.id == campo_id.value
-    // })
-    // marca = listamarca[indice]
-    // marca.nome = campo_nome.value
-    // listamarca[indice] = marca
-    // window.localStorage.setItem("marca",JSON.stringify(listamarca))
     marca = {
         'id' : campo_id.value,
         'nome': campo_nome.value
     }
-    requisicao = await fetch (`http://localhost:3000/marca/${marca.id}`, {
+    requisicao = await fetch (`${API_HOST}/marca/${marca.id}`, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
@@ -97,7 +87,7 @@ async function exibirDados() {
     if (parametros) {
         parametrosQuebrado = new URLSearchParams(parametros)
         parametrosId = parametrosQuebrado.get("id")
-        requisicao = await fetch ('http://localhost:3000/marca', {
+        requisicao = await fetch (`${API_HOST}/marca`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

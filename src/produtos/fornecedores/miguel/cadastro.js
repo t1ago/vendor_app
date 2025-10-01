@@ -1,3 +1,5 @@
+API_HOST='http://127.0.0.1:3000'
+
 
 valores_dados = {
     id_fornecedor: null,
@@ -77,7 +79,7 @@ adicionar_valor_campo = function (elemento, valor) {
 buscar_informação_categoria = async function (elemento) {
     mostrarCarregando("info-categoria");
 
-    let requisicao = await fetch(`http://localhost:3000/categorias`, {
+    let requisicao = await fetch(`${API_HOST}/categorias`, {
         method: "GET",
         headers: {
             'Accept': 'application/json',
@@ -117,7 +119,7 @@ buscar_informação_grupo = async function (elemento) {
     info_grupo = document.getElementById('info-grupo')
     mostrarCarregando("info-grupo")
 
-    requisicao = await fetch(`http://localhost:3000/grupos`, {
+    requisicao = await fetch(`${API_HOST}/grupos`, {
 
         method: "GET",
         headers: {
@@ -164,7 +166,7 @@ buscar_informacao_moeda = async function (elemento) {
     info_moeda = document.getElementById("info-moeda")
     mostrarCarregando("info-moeda")
 
-    requisicao = await fetch(`http://localhost:3000/moedas`, {
+    requisicao = await fetch(`${API_HOST}/moedas`, {
 
         method: "GET",
         headers: {
@@ -209,7 +211,7 @@ buscar_informacao_marca = async function (elemento) {
     info_marca = document.getElementById("info-marca")
     mostrarCarregando("info-marca")
 
-    requisicao = await fetch("http://localhost:3000/marca", {
+    requisicao = await fetch(`${API_HOST}/marca`, {
 
         method: "GET",
         headers: {
@@ -255,7 +257,7 @@ buscar_informacao_medida = async function (elemento) {
     info_marca = document.getElementById("info-medida")
     mostrarCarregando("info-medida")
 
-    requisicao = await fetch("http://localhost:3000/medidas", {
+    requisicao = await fetch(`${API_HOST}/medidas`, {
 
         method: "GET",
         headers: {
@@ -300,7 +302,7 @@ buscar_informacao_cor = async function (elemento) {
     info_cor = document.getElementById("info-cor")
     mostrarCarregando("info-cor")
 
-    requisicao = await fetch(`http://localhost:3000/cores`, {
+    requisicao = await fetch(`${API_HOST}/cores`, {
 
         method: "GET",
         headers: {
@@ -361,7 +363,7 @@ botao_salvar_click = async function () {
         preco_compra: valores_dados.preco_compra
     }
 
-    let endpoint = "http://localhost:3000/fornecedor/miguel"
+    let endpoint = `${API_HOST}/fornecedor/miguel`
     if (acao == "alterar") {
         endpoint += "/" + valores_dados.id_fornecedor
 
@@ -415,7 +417,7 @@ exibir_dados = async function () {
         const id = params.get("id");
 
         // fazendo a conexão de API com o fetch, na minha tela fornecedormiguel - (dia 09/09)
-        let requisicao = await fetch(`http://localhost:3000/fornecedor/miguel/${id}`, {
+        let requisicao = await fetch(`${API_HOST}/fornecedor/miguel/${id}`, {
             method: "GET",
             headers: {
                 "Accept": "application/json",

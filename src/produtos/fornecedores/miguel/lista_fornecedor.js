@@ -1,3 +1,5 @@
+API_HOST='http://127.0.0.1:3000'
+
 let tabela = document.getElementById("tabela_fornecedor")
 
 botao_cadastrar_click = function () {
@@ -5,14 +7,14 @@ botao_cadastrar_click = function () {
 }
 
 function botao_voltar_click() {
-    window.location.href = '../../../index.html'
+    window.location.href = '../../../../index.html'
 }
 
 
 buscar_dados = async function () {
 
     // requisicao para minha API do banco de dados (dia 13/09)
-    let requisicao = await fetch('http://localhost:3000/fornecedor/miguel', {
+    let requisicao = await fetch(`${API_HOST}/fornecedor/miguel`, {
         method: "GET"
     })
 
@@ -30,7 +32,7 @@ buscar_dados = async function () {
 buscar_dados_filtrados = async function (value) {
 
 
-    let requisicao = await fetch(`http://localhost:3000/fornecedor/miguel?name=${value}`, {
+    let requisicao = await fetch(`${API_HOST}/fornecedor/miguel?name=${value}`, {
         method: "GET"
     })
 
@@ -141,7 +143,7 @@ editar_item = async function (item) {
 
 
 excluir_item = async function (item) {
-    await fetch(`http://localhost:3000/fornecedor/miguel/${item.id}`, {
+    await fetch(`${API_HOST}/fornecedor/miguel/${item.id}`, {
         method: "DELETE"
     })
 

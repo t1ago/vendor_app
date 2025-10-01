@@ -31,7 +31,7 @@
             <div class="linha">
                 <div class="coluna coluna-base">
                     <label for="campo_nome">Nome</label>
-                    <input type="text" name="name" id="campo_nome" onchange="adicionando_valor('nome', this)" required
+                    <input type="text" name="name" id="name" onchange="adicionando_valor('nome', this)" required
                         minlength="3" maxlength="64">
                     <span id="mensagem_nome" class="mensagem-erro"></span>
                 </div>
@@ -103,7 +103,7 @@
 
                 <div class="coluna coluna-base">
                     <label for="marc">Marca</label>
-                    <input type="text" name="marc" id="marc" onfocus="focar_campo(this, buscar_informacao_marca)">
+                    <input type="text" name="marca" id="marca" onfocus="focar_campo(this, buscar_informacao_marca)">
                     <div id="info-marca" class="informacao-lista esconder">
 
                     </div>

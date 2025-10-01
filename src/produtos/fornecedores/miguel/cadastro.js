@@ -446,17 +446,17 @@ exibir_dados = async function () {
 
             // Preenchendo os inputs com seus valores, temos o buscar  getElementById do HTML, 
             // e o .value que vai passar as informações pro inputs, será igual a nossa função que esta com o data "." o valor do objeto - (dia 09/09)
-            document.getElementById("id").value = fornecedor.id || "";
-            document.getElementById("name").value = fornecedor.nome || "";
-            document.getElementById("buy").value = fornecedor.preco_compra || "";
-            document.getElementById("sell").value = fornecedor.preco_venda || "";
-            document.getElementById("categoria").value = fornecedor.nome_categoria || "";
-            document.getElementById("medida").value = fornecedor.nome_medida || "";
-            document.getElementById("group").value = fornecedor.nome_grupo || "";
-            document.getElementById("coin").value = fornecedor.nome_moeda || "";
-            document.getElementById("cor").value = fornecedor.hexadecimal || "";
-            document.getElementById("marc").value = fornecedor.nome_marca || "";
-            document.getElementById("desc").value = fornecedor.descricao || "";
+            document.getElementById("id").value = fornecedor.id;
+            document.getElementById("name").value = valores_dados.nome;
+            document.getElementById("buy").value = valores_dados.preco_compra;
+            document.getElementById("sell").value = valores_dados.preco_venda;
+            document.getElementById("categoria").value = fornecedor.nome_categoria || fornecedor.id_categoria;
+            document.getElementById("medida").value = fornecedor.nome_medida || fornecedor.id_unidade_medida;
+            document.getElementById("group").value = fornecedor.nome_grupo || fornecedor.id_grupo;
+            document.getElementById("coin").value = fornecedor.nome_moeda || fornecedor.id_moeda;
+            document.getElementById("cor").value = fornecedor.hexadecimal || fornecedor.id_cor;
+            document.getElementById("marca").value = fornecedor.nome_marca || fornecedor.id_marca;
+            document.getElementById("campo_descricao").value = valores_dados.descricao;
 
         } else {
 

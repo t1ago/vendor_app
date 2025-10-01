@@ -21,18 +21,51 @@ body {
 
 
 .btn-red {
-    background-color: red;
+    background-color: #ff0000;
     padding: 20px;
     border-radius: 10px;
     border: none;
     color: white;
+    margin-left: 50%;
+    
 }
 
 .btn-green {
-    background-color: green;
+    background-color: #008000;
     padding: 20px;
     border-radius: 10px;
     border: none;
-    margin-left: 1090px;
     color: white;
+    margin: 20px;
+    
+}
+
+.btn-green:hover {
+
+    background-color:  #03a003;
+    transform: scale(1.2);
+
+}
+
+
+.btn-red:hover {
+
+    background-color: #ad2222;
+    transform: scale(1.2);
+
+}
+
+h1 {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 49px;
+    color: yellow;
+}
+
+thead > tr > th {
+
+    font-size: 30px;
+    
 }

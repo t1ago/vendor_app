@@ -1,3 +1,5 @@
+API_HOST = 'http://127.0.0.1:3000'
+
 let campo_nome = document.getElementById("nome")
 let campo_moeda = document.getElementById("moeda")
 
@@ -18,45 +20,64 @@ async function carregarMoedas() {
         let resposta = await requisicao.json()
         let listamoeda = resposta.data
 
+
+
+         adicionando_botao = function(linha, url_img, funcao) {
+            const coluna = document.createElement("td");
+            const botao = document.createElement("button");
+            const imagem = document.createElement("img");
+
+            imagem.src = url_img;
+            imagem.width = 30;
+            imagem.height = 18;
+
+            botao.appendChild(imagem);
+            botao.onclick = funcao;
+
+            coluna.appendChild(botao);
+            linha.appendChild(coluna);
+        }
+
         listamoeda.forEach(function (item) {
-            const linha = document.createElement("tr")
-            const coluna_moeda = document.createElement("td")
-            const coluna_nome = document.createElement("td")
-            const coluna_acoes = document.createElement("td")
+            const linha = document.createElement("tr");
+            const coluna_moeda = document.createElement("td");
+            const coluna_nome = document.createElement("td");
 
-            const span_moeda = document.createElement("span")
-            const span_nome = document.createElement("span")
-            const btn_editar = document.createElement("button")
-            const btn_excluir = document.createElement("button")
+            const span_moeda = document.createElement("span");
+            const span_nome = document.createElement("span");
 
-            span_moeda.innerHTML = item.moeda
-            span_nome.innerHTML = item.nome
-
-            btn_editar.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/4226/4226577.png" alt="Editar" style="width:100%;height:18px;vertical-align:middle;border:none;padding:0;margin:0;" />';
-            btn_editar.onclick = function (item) {
-                window.location.href = "tela_de_moeda.html?id=" + item.id;
-            };
-
-            btn_excluir.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="Excluir" style="width:100%;height:18px;vertical-align:middle;border:none;padding:0;margin:0;" />';
-            btn_excluir.onclick = async function (item) {
-                await fetch(`http://localhost:3000/moedas/${item.id}`, {
-                    method: "DELETE"
-                });
-                carregarMoedas(); 
-            };
+            span_moeda.innerHTML = item.moeda;
+            span_nome.innerHTML = item.nome;
 
             coluna_moeda.appendChild(span_moeda);
             coluna_nome.appendChild(span_nome);
-            coluna_acoes.appendChild(btn_editar);
-            coluna_acoes.appendChild(btn_excluir);
 
             linha.appendChild(coluna_moeda);
             linha.appendChild(coluna_nome);
-            linha.appendChild(coluna_acoes);
+
+            adicionando_botao(linha, "../../../imagens/editar.png", () => editar_item(item));
+            adicionando_botao(linha, "../../../imagens/remover.png", () => excluir_item(item));
 
             corpotabela.appendChild(linha);
 
+        })
     }
-)}
+};
+
+editar_item = async function (item) {
+    window.location.href = "tela_de_moeda.html?id=" + item.id
+
 }
+
+
+excluir_item = async function (item) {
+    await fetch(`${API_HOST}/moedas/${item.id}`, {
+        method: "DELETE"
+    })
     carregarMoedas()
+
+}
+
+carregarMoedas()
+
+

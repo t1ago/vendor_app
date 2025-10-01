@@ -1,18 +1,20 @@
+API_HOST='http://127.0.0.1:3000'
+
 let tabela = document.getElementById("tabela_fornecedor")
 
 botao_cadastrar_click = function () {
     window.location.href = "cadastro.html"
 }
 
-function botao_voltar_click() {
-    window.location.href = '../../../index.html'
+botao_voltar_click = function () {
+    window.location.href = '../../../../index.html'
 }
 
 
 buscar_dados = async function () {
 
     // requisicao para minha API do banco de dados (dia 13/09)
-    let requisicao = await fetch('http://localhost:3000/fornecedor/miguel', {
+    let requisicao = await fetch(`${API_HOST}/fornecedor/miguel`, {
         method: "GET"
     })
 
@@ -27,10 +29,11 @@ buscar_dados = async function () {
     }
 }
 
+
 buscar_dados_filtrados = async function (value) {
 
 
-    let requisicao = await fetch(`http://localhost:3000/fornecedor/miguel?name=${value}`, {
+    let requisicao = await fetch(`${API_HOST}/fornecedor/miguel?name=${value}`, {
         method: "GET"
     })
 
@@ -80,17 +83,19 @@ exibindo_dados = async function (lista = null) {
     };
 
 
+    
+    
     lista.forEach((item) => {
         let linha = document.createElement('tr');
         adicionando_coluna(linha, item.nome);
-        adicionando_coluna(linha, item.id_moeda);
+        adicionando_coluna(linha, item.nome_moeda || item.id_moeda);
         adicionando_coluna(linha, item.preco_compra);
         adicionando_coluna(linha, item.preco_venda);
-        adicionando_coluna(linha, item.id_cor);
-        adicionando_coluna(linha, item.id_grupo);
-        adicionando_coluna(linha, item.id_categoria);
-        adicionando_coluna(linha, item.id_unidade_medida);
-        adicionando_coluna(linha, item.id_marca);
+        adicionando_coluna(linha, item.hexadecimal_cor || item.id_cor);
+        adicionando_coluna(linha, item.nome_grupo || item.id_grupo);
+        adicionando_coluna(linha, item.nome_categoria || item.id_categoria);
+        adicionando_coluna(linha, item.nome_unidade_medida || item.id_unidade_medida);
+        adicionando_coluna(linha, item.nome_marca || item.id_marca);
         adicionando_coluna(linha, item.descricao);
 
         adicionando_botao(linha, "../../../../imagens/editar.png", () => editar_item(item));
@@ -141,7 +146,7 @@ editar_item = async function (item) {
 
 
 excluir_item = async function (item) {
-    await fetch(`http://localhost:3000/fornecedor/miguel/${item.id}`, {
+    await fetch(`${API_HOST}/fornecedor/miguel${item.id}`, {
         method: "DELETE"
     })
 

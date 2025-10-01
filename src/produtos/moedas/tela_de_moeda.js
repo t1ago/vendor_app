@@ -1,3 +1,5 @@
+API_HOST = 'http://127.0.0.1:3000'
+
 campo_id = document.getElementById("id")
 campo_nome = document.getElementById("nome")
 campo_moeda = document.getElementById("moeda")
@@ -8,7 +10,7 @@ async function cadastromoedas() {
         moeda: campo_moeda.value
     }
 
-    let requisicao = await fetch("http://localhost:3000/moedas", {
+    let requisicao = await fetch(`${API_HOST}/moedas`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(moeda)
@@ -16,29 +18,13 @@ async function cadastromoedas() {
 
     if (requisicao.ok) {
         let resposta = await requisicao.json()
-        campo_id.value = resposta.id 
+        campo_id.value = resposta.id
     } else {
-     
+
     }
+    cadastromoedas()
 }
 
-async function alterandomoedas() {
-    let moeda = {
-        nome: campo_nome.value,
-        moeda: campo_moeda.value
-    }
-
-    let requisicao = await fetch(`http://localhost:3000/moedas/${campo_id.value}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(moeda)
-    })
-
-    if (requisicao.ok) {
-        let resposta = await requisicao.json()
-    } else {
-    }
-}
 
 function botao_salvar() {
     if (campo_id.value == "" || campo_id.value == null) {
@@ -56,20 +42,19 @@ async function dados() {
         let parametrosid = parametrosquebrado.get("id")
 
         if (parametrosid) {
-            let requisicao = await fetch(`http://localhost:3000/moedas/${parametrosid}`)
+            let requisicao = await fetch(`${API_HOST}/moedas?id=${parametrosid}`)
+
             if (requisicao.ok) {
                 let localizado = await requisicao.json()
-                campo_id.value = localizado.id
-                campo_nome.value = localizado.nome
-                campo_moeda.value = localizado.moeda
+                let moeda = localizado.data[0]
+
+                // preencher campos com o que realmente existe
+                
+                document.getElementById("nome").value = moeda.nome || "";
+                document.getElementById("moeda").value = moeda.moeda || "";
             }
         }
     }
 }
-// Excluir moeda
-button_excluir.onclick = async function () {
-    await fetch(`http://localhost:3000/moedas/${item.id}`, {
-        method: "DELETE"
-    });
-    carregarMoedas(); // função que atualiza a lista
-}
+
+dados()

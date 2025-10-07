@@ -3,6 +3,8 @@ API_HOST = 'http://127.0.0.1:3000'
 campo_id = document.getElementById("id")
 campo_nome = document.getElementById("nome")
 campo_moeda = document.getElementById("moeda")
+mensagemmoeda = document.getElementById("mensagemmoeda")
+mensagemnome = document.getElementById("mensagemnome")
 
 
 async function cadastromoedas() {
@@ -26,6 +28,13 @@ async function cadastromoedas() {
         // Tratar erro de POST
         console.error("Erro ao cadastrar moeda:", requisicao.status)
     }
+
+    if (campo_moeda.validity.tooLong == true) {
+        mensagemmoeda.innerHTML = "Máximo de 64 letras"
+        return false
+    }
+
+    return false
 }
 
 async function alterandomoedas() {
@@ -48,6 +57,13 @@ async function alterandomoedas() {
         // Tratar erro de PUT
         console.error("Erro ao alterar moeda:", requisicao.status)
     }
+
+    if (campo_nome.validity.tooLong == true) {
+        mensagemnome.innerHTML = "Máximo de 64 letras"
+        return false
+    }
+    return true
+
 }
 
 
@@ -64,7 +80,7 @@ function botao_salvar() {
     window.location.href = "lista_moeda.html"
 }
 
-async function dados() {
+function exibirdados() {
     let parametros = window.location.search
     if (parametros) {
         let parametrosquebrado = new URLSearchParams(parametros)

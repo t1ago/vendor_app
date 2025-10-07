@@ -1,5 +1,3 @@
-API_HOST='http://127.0.0.1:3000'
-
 valores_dados = {
     id_fornecedor: null,
     nome: null,
@@ -43,7 +41,7 @@ function esconder_informacao(elemento) {
     }
 }
 
-// mostra o "carregando" em qualquer container
+
 function mostrarCarregando(containerId) {
     const container = document.getElementById(containerId);
     if (container) {
@@ -51,11 +49,10 @@ function mostrarCarregando(containerId) {
     }
 }
 
-// coloca a lista de volta no container
 function carregarInformacoes(containerId, lista) {
     const container = document.getElementById(containerId);
     if (container) {
-        container.innerHTML = "";   // limpa o que tinha
+        container.innerHTML = "";
         container.appendChild(lista);
     }
 }
@@ -378,14 +375,14 @@ botao_salvar_click = async function () {
     })
 
 
-    // adicionando um botão de mensagem, pegando o id do botão salvar(html), aqui ao clicar eu darei uma mensagem (dia 14/09)
+
     let botao = document.getElementById("btnSalvar")
 
     if (requisicao.ok) {
 
         botao.outerHTML = "<span style='color: green; font-weight: bold;'>salvo com sucesso!</span>";
 
-        // fazendo esperar por 1,5s para ai sim eu ser jogado para a tela de lista (dia 14/09)
+
         setTimeout(() => {
             window.location.href = "lista_fornecedor.html";
         }, 1500);
@@ -397,7 +394,7 @@ botao_salvar_click = async function () {
 
 }
 
-// fazendo interejamento para o cancelar tmb, (pendente) confirmar se não é muito forçado (dia 14/09)
+
 botao_cancelar_click = function () {
     const botao_cancelar = document.getElementById("btncancel")
 
@@ -411,11 +408,10 @@ botao_cancelar_click = function () {
 
 exibir_dados = async function () {
     try {
-        // o URLSearchParams
-        const params = new URLSearchParams(window.location.search); // usando o window.location.search, pega a parte ?id=1 da URL. - (dia 09/09)
+
+        const params = new URLSearchParams(window.location.search);
         const id = params.get("id");
 
-        // fazendo a conexão de API com o fetch, na minha tela fornecedormiguel - (dia 09/09)
         let requisicao = await fetch(`${API_HOST}/fornecedor/miguel/${id}`, {
             method: "GET",
             headers: {
@@ -428,7 +424,7 @@ exibir_dados = async function () {
             let resposta = await requisicao.json();
             let fornecedor = resposta.data[0];
 
-            // criando um objeto JS com os dados do fornecedor. - (dia 09/09)
+
             valores_dados = {
                 id_fornecedor: fornecedor.id,
                 nome: fornecedor.nome,
@@ -443,19 +439,18 @@ exibir_dados = async function () {
                 descricao: fornecedor.descricao
             };
 
-            // Preenchendo os inputs com seus valores, temos o buscar  getElementById do HTML, 
-            // e o .value que vai passar as informações pro inputs, será igual a nossa função que esta com o data "." o valor do objeto - (dia 09/09)
-            document.getElementById("id").value = valores_dados.id_fornecedor || "";
-            document.getElementById("name").value = valores_dados.nome || "";
-            document.getElementById("buy").value = valores_dados.preco_compra || "";
-            document.getElementById("sell").value = valores_dados.preco_venda || "";
-            document.getElementById("categoria").value = fornecedor.nome_categoria || "";
-            document.getElementById("medida").value = fornecedor.nome_medida || "";
-            document.getElementById("group").value = fornecedor.nome_grupo || "";
-            document.getElementById("coin").value = fornecedor.nome_moeda || "";
-            document.getElementById("cor").value = fornecedor.hexadecimal || "";
-            document.getElementById("marc").value = fornecedor.nome_marca || "";
-            document.getElementById("desc").value = valor.descricao || "";
+
+            document.getElementById("id").value = fornecedor.id;
+            document.getElementById("name").value = valores_dados.nome;
+            document.getElementById("buy").value = valores_dados.preco_compra;
+            document.getElementById("sell").value = valores_dados.preco_venda;
+            document.getElementById("categoria").value = fornecedor.nome_categoria || fornecedor.id_categoria;
+            document.getElementById("medida").value = fornecedor.nome_unidade_medida || fornecedor.id_unidade_medida;
+            document.getElementById("group").value = fornecedor.nome_grupo || fornecedor.id_grupo;
+            document.getElementById("coin").value = fornecedor.nome_moeda || fornecedor.id_moeda;
+            document.getElementById("cor").value = fornecedor.hexadecimal || fornecedor.id_cor;
+            document.getElementById("marca").value = fornecedor.nome_marca || fornecedor.id_marca;
+            document.getElementById("campo_descricao").value = valores_dados.descricao;
 
         } else {
 

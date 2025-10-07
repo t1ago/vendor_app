@@ -11,10 +11,10 @@ function voltarparaindex() {
     window.location.href = "../../../index.html"
 }
 
-
-async function carregarMoedas() {
+let listamoeda = [];
+function carregarMoedas() {
     const corpotabela = document.getElementById("tabela-moedas")
-    corpotabela.innerHTML = ""
+    corpotabela.innerHTML = "";
 
     let requisicao = await fetch(`${API_HOST}/moedas`)
     if (requisicao.ok) {
@@ -55,6 +55,7 @@ async function carregarMoedas() {
 
             corpotabela.appendChild(linha);
         })
+
     }
 };
 

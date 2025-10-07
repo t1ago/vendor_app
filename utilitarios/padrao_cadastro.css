@@ -38,6 +38,7 @@ textarea {
 /*  MENSAGEM */
 .coluna-fields>label.mensagem {
     font-size: 12px;
+    display: flex;
 }
 
 .coluna-fields>label.mensagem.erro {

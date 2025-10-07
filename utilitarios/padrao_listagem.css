@@ -1,4 +1,26 @@
 /*LISTAGENS*/
+/*CAMPO FILTRO*/
+.coluna-fields>label[for] {
+    font-size: 18px;
+}
+
+.coluna-fields>input {
+    font-size: 14px;
+    padding: 0px 5px 5px 5px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 1px solid #586EDB;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: calc(100% - 8px);
+}
+
+.coluna-fields>input:focus {
+    border-bottom: 2px solid #599DDC;
+    outline: none;
+}
+
 /*TABELA*/
 .coluna>table {
     width: 100%;

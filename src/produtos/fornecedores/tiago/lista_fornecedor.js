@@ -121,9 +121,8 @@ montar_tabela = function (lista_fornecedores) {
         adicionar_coluna(linha, item.nome_categoria)
         adicionar_coluna(linha, item.nome_grupo)
         adicionar_coluna(linha, item.nome_marca)
-        adicionar_coluna(linha, item.nome_moeda)
         adicionar_coluna(linha, item.nome_unidade_medida)
-        adicionar_coluna(linha, item.preco_venda)
+        adicionar_coluna(linha, `${item.simbolo_moeda} ${mascarar_moeda_pt_br(item.preco_venda)}`)
 
         coluna = document.createElement('td')
         botao_editar = adicionar_botao('../../../../imagens/editar.png', function () {

@@ -310,6 +310,7 @@ criar_lista_informacao = function (dados, campo_nome, campo_id, campo_salvar, el
         lista_li.onclick = function (event) {
             selecionar_item(event.currentTarget, campo_salvar)
             adicionar_valor_campo(elemento_salvar, item[campo_nome])
+            campo_onkeyup(elemento_salvar)
         }
 
         lista_ul.appendChild(lista_li)
@@ -328,10 +329,126 @@ botao_cancelar_click = function () {
 }
 
 campo_onchange = function (propriedade, elemento) {
+
+    if (propriedade == 'preco_compra' || propriedade == 'preco_venda') {
+        elemento.value = mascarar_moeda_pt_br(elemento.value)
+        campo_onkeyup(elemento)
+    }
+
     valores_dados[propriedade] = elemento.value
 }
 
+campo_onkeyup = function (elemento) {
+    campo_id = elemento.id
+    elemento_pai = elemento.parentNode
+    mensagem_id = elemento_pai.getElementsByClassName('mensagem')[0].id
+
+    return validar_campo(campo_id, mensagem_id)
+}
+
+validar_campo = function (campod_id, mensagem_id) {
+    campo = document.getElementById(campod_id)
+    campo_name = campo.name
+
+    mensagem = document.getElementById(mensagem_id)
+    label = document.querySelector(`label[for=${campo_name}]`)
+    label_value = label.innerHTML
+
+    validacoes = []
+
+    if (campo.required) {
+        validacoes.push('valueMissing')
+    }
+
+    if (campo.minLength) {
+        validacoes.push('tooShort')
+    }
+
+    if (campo.maxLength) {
+        validacoes.push('tooLong')
+    }
+
+    campo.classList.remove('erro')
+    mensagem.innerHTML = ''
+    mensagem.classList.remove('erro')
+
+    tem_erro = false
+
+    for (let index = 0; index < validacoes.length; index++) {
+        const validacao = validacoes[index];
+        resultado = campo.validity[validacao]
+
+        if (resultado) {
+
+            mensagem_texto = ''
+            switch (validacao) {
+                case 'valueMissing':
+                    mensagem_texto = `${label_value} não informado`
+                    break;
+                case 'tooShort':
+                    mensagem_texto = `Informe uma palavra com ${campo.minLength} letras`
+                    break;
+                case 'tooLong':
+                    mensagem_texto = `Informe um texto com até ${campo.maxLength} letras`
+                    break;
+                default:
+                    break;
+            }
+
+            campo.classList.add('erro')
+            mensagem.innerHTML = mensagem_texto
+            mensagem.classList.add('erro')
+
+            tem_erro = true
+            break
+        }
+    }
+
+    return tem_erro
+}
+
 botao_salvar_click = async function () {
+
+    if (validar_campo('name', 'mensagem_name')) {
+        return
+    }
+
+    if (validar_campo('coin', 'mensagem_coin')) {
+        return
+    }
+
+    if (validar_campo('buy', 'mensagem_buy')) {
+        return
+    }
+
+    if (validar_campo('sale', 'mensagem_sale')) {
+        return
+    }
+
+    if (validar_campo('group', 'mensagem_group')) {
+        return
+    }
+
+    if (validar_campo('category', 'mensagem_category')) {
+        return
+    }
+
+    if (validar_campo('measure', 'mensagem_measure')) {
+        return
+    }
+
+    if (validar_campo('brand', 'mensagem_brand')) {
+        return
+    }
+
+    if (validar_campo('color', 'mensagem_color')) {
+        return
+    }
+
+    if (validar_campo('desc', 'mensagem_desc')) {
+        return
+    }
+
     await salvar_fornecedor(valores_dados.id_fornecedor == null ? 'INCLUIR' : 'ALTERAR')
 }
 
@@ -355,8 +472,8 @@ salvar_fornecedor = async function (acao = 'INCLUIR') {
         idUndadeMedida: valores_dados.id_undade_medida,
         idCor: valores_dados.id_cor,
         idMarca: valores_dados.id_marca,
-        precoCompra: parseFloat(valores_dados.preco_compra.replace(',', '.')),
-        precoVenda: parseFloat(valores_dados.preco_venda.replace(',', '.'))
+        precoCompra: parseFloat(remover_mascara_moeda_pt_br(valores_dados.preco_compra)),
+        precoVenda: parseFloat(remover_mascara_moeda_pt_br(valores_dados.preco_venda))
     }
 
     endpoint = `${API_HOST}`
@@ -415,8 +532,8 @@ exibir_dados = async function () {
                 valores_dados.id_fornecedor = objeto_fornecedor.id
                 valores_dados.nome = objeto_fornecedor.nome
                 valores_dados.id_moeda = objeto_fornecedor.id_moeda
-                valores_dados.preco_compra = objeto_fornecedor.preco_compra
-                valores_dados.preco_venda = objeto_fornecedor.preco_venda
+                valores_dados.preco_compra = mascarar_moeda_pt_br(objeto_fornecedor.preco_compra)
+                valores_dados.preco_venda = mascarar_moeda_pt_br(objeto_fornecedor.preco_venda)
                 valores_dados.id_grupo = objeto_fornecedor.id_grupo
                 valores_dados.id_categoria = objeto_fornecedor.id_categoria
                 valores_dados.id_undade_medida = objeto_fornecedor.id_undade_medida

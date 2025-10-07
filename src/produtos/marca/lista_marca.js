@@ -1,15 +1,29 @@
-function abrirCadastro() {
+function abrir_cadastro() {
     window.location.href = "cadastro_marca.html"
 }
 
-function voltarIndex() {
+function voltar_index() {
     window.location.href = "../../../index.html"
 }
-
-let listaMarca = [];
-async function carregarMarca() {
+function animacao_carregar(elemento, chave = true) {
+    elemento_selecionado = elemento
+    elemento_animado = document.createElement('div');
+    elemento_animado.classList.add('elemento_animado');
+    if (chave == true) {
+        animacao = document.createElement('img');
+        animacao.src = '../../../imagens/loading.png';
+        animacao.classList.add('animar');
+        elemento_animado.appendChild(animacao);
+        elemento_selecionado.appendChild(elemento_animado);
+    } else {
+        elemento_animado = document.getElementsByClassName("elemento_animado")[0];
+        elemento_animado.remove();
+    } 
+}
+async function carregar_marca() {
     corpo_tabela = document.getElementById("corpo_tabela");
     corpo_tabela.innerHTML = "";
+    animacao_carregar(corpo_tabela)
     requisicao = await fetch (`${API_HOST}/marca`, {
         method: "GET",
         headers: {
@@ -17,6 +31,7 @@ async function carregarMarca() {
             'Content-type': 'application/json'
         }
     });
+    animacao_carregar(corpo_tabela,false)
     if (requisicao.ok == true) {
         listaMarca = await requisicao.json()
         listaMarca.data.filter(item => {
@@ -48,9 +63,9 @@ async function excluir_coluna(id) {
     await fetch (`${API_HOST}/marca/${id}`, {
         method: "DELETE"
     })
-    carregarMarca()
+    carregar_marca()
 }
 function editar_coluna(id) {
     window.location.href = "cadastro_marca.html?id="+id
 }
-carregarMarca();
+carregar_marca();

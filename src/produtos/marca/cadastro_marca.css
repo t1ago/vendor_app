@@ -1,0 +1,9 @@
+#principal-cadastro {
+    flex: 1 1 50%;
+    max-width: 1500px;
+    background-color: #e0effb;
+    border-radius: 15px;
+}
+.coluna-id {
+    display: none !important;
+}

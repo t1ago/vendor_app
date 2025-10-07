@@ -1,0 +1,55 @@
+#principal-listagem {
+    flex: 1 1 50%;
+    max-width: 1300px;
+    background-color: #e0effb;
+    border-radius: 15px;
+}
+.linha>.coluna-tabela {
+    justify-content: center;
+}
+#tabela_marca th,td {
+    padding: 10px;
+}
+#tabela_marca th {
+    text-align: center;
+    font-size: 2.5em;
+}
+#tabela_marca tr>td {
+    text-align: center;
+    font-size: 1.7em;
+}
+#tabela_marca tr {
+    position: relative;
+}
+#tabela_marca button {
+    font-size: 1em;
+    position: absolute;
+    bottom: 5px;
+    border: 4px solid #cee3ee;
+    border-radius: 15px;
+    background-color: #94bbd0;
+}
+#tabela_marca button:hover {
+    border-color:  #8dbdd7;
+    background-color: #6b99b1;
+}
+#tabela_marca button:first-child {
+    right:40px; 
+}
+#tabela_marca button:last-child {
+    right: -60px;
+}
+@keyframes girar {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.elemento_animado {
+    overflow: hidden;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+}
+.animar {
+    animation: girar 2s linear infinite;
+}

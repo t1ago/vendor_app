@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vendor_App (Estudos)</title>
+
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../utilitarios/padrao.css">
+    <link rel="stylesheet" type="text/css" href="../../../../utilitarios/padrao_cadastro.css">
+    <link rel="stylesheet" type="text/css" href="cadastro_produto.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main id="cadastro-produto" onclick="clique_geral()">
+        <form id="formulario">
+            <div class="linha">
+                <h1 class="coluna">Cadastro de Produtos (Tiago)</h1>
+            </div>
+
+            <div class="linha espaco-cima linha-principal">
+                <div class="coluna coluna-fields">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64"
+                        onchange="campo_onchange('nome', this)" onkeyup="campo_onkeyup(this)">
+                    <label id="mensagem_name" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="coin">Moeda</label>
+                    <input type="text" id="coin" name="coin" required
+                        onfocus="foco_campo(this, buscar_informacao_moedas)">
+                    <label id="mensagem_coin" class="mensagem"></label>
+                    <div id="info-moedas" class="informacao-consulta esconder">
+                    </div>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="buy">Preço Compra</label>
+                    <input type="text" id="buy" name="buy" required minlength="4" maxlength="64"
+                        onchange="campo_onchange('preco_compra', this)" onkeyup="campo_onkeyup(this)">
+                    <label id="mensagem_buy" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="sale">Preço Venda</label>
+                    <input type="text" id="sale" name="sale" required minlength="4" maxlength="64"
+                        onchange="campo_onchange('preco_venda', this)" onkeyup="campo_onkeyup(this)">
+                    <label id="mensagem_sale" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields">
+                    <label for="group">Grupo</label>
+                    <input type="text" id="group" name="group" required
+                        onfocus="foco_campo(this, buscar_informacao_grupos)">
+                    <label id="mensagem_group" class="mensagem"></label>
+                    <div id="info-grupos" class="informacao-consulta esconder">
+                    </div>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="category">Categoria</label>
+                    <input type="text" id="category" name="category" required
+                        onfocus="foco_campo(this, buscar_informacao_categorias)">
+                    <label id="mensagem_category" class="mensagem"></label>
+                    <div id="info-categorias" class="informacao-consulta esconder">
+                    </div>
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields">
+                    <label for="measure">Unidade de Medida</label>
+                    <input type="text" id="measure" name="measure" required
+                        onfocus="foco_campo(this, buscar_informacao_medidas)">
+                    <label id="mensagem_measure" class="mensagem"></label>
+                    <div id="info-medidas" class="informacao-consulta esconder">
+                    </div>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="brand">Marca</label>
+                    <input type="text" id="brand" name="brand" required
+                        onfocus="foco_campo(this, buscar_informacao_marcas)">
+                    <label id="mensagem_brand" class="mensagem"></label>
+                    <div id="info-marcas" class="informacao-consulta esconder">
+                    </div>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label for="color">Cor</label>
+                    <input type="text" id="color" name="color" required
+                        onfocus="foco_campo(this, buscar_informacao_cores)">
+                    <label id="mensagem_color" class="mensagem"></label>
+                    <div id="info-cores" class="informacao-consulta esconder">
+                    </div>
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields">
+                    <label for="desc">Descrição</label>
+                    <input type="text" id="desc" name="desc" required minlength="3" maxlength="128"
+                        onchange="campo_onchange('descricao', this)" onkeyup="campo_onkeyup(this)">
+                    <label id="mensagem_desc" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-botoes-cadastro">
+                    <button type="button" onclick="botao_cancelar_click()">
+                        <img src="../../../../imagens/cancelar.png">
+                        <span>Cancelar</span>
+                    </button>
+                    <button type="button" id="botao_salvar" onclick="botao_salvar_click()">
+                        <img src="../../../../imagens/salvar.png">
+                        <span>Salvar</span>
+                    </button>
+                </div>
+
+                <div class="coluna coluna-operacao esconder">
+                    <img id="imagem" class="esconder" src="../../../../imagens/loading.png">
+                    <label id="operacao"></label>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script src="../../../../config.js"></script>
+    <script src="../../../../utilitarios/padrao.js"></script>
+    <script src="cadastro_produto.js"></script>
+</body>

@@ -1,0 +1,53 @@
+.hidden {
+ display: none;
+}
+
+
+.linha {
+    width: 100%;
+    display: inline;
+}
+
+.coluna {
+    width: 100px;
+    display: inline-flex;
+
+}
+
+.coluna.coluna_name {
+    border: none;
+}
+
+.esconder {
+    display: none;
+}
+
+.informacao-lista.esconder {
+    display: none;
+}
+.informacao-lista {
+    min-height: 4%;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    z-index: 99;
+    border-radius: 15px;
+    background-color: rgb(0, 0, 0);
+    max-width: 400px;
+    position: absolute;
+}
+.informacao-lista>ul {
+    margin: 12px;
+    padding: 0px;
+}
+.informacao-lista>ul>li {
+    padding: 6px;
+    margin: 0px;
+    color: white;
+    list-style-type: none;
+}
+.informacao-lista>ul>li:hover {
+    background-color: rgb(209, 204, 188);
+    color:white;
+    border-radius: 12px;
+}

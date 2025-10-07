@@ -7,11 +7,11 @@ grupo_botoes = document.getElementsByClassName('coluna-botoes-cadastro')[0]
 grupo_mensagem = document.getElementsByClassName('coluna-operacao')[0]
 
 
-campo_nome_onchange = function() {
+campo_nome_onchange = function () {
     validar_campo_nome()
 }
 
-validar_campo_nome = function() {
+validar_campo_nome = function () {
     campo_nome.classList.remove('erro')
     mensagem_nome.innerHTML = ''
     mensagem_nome.classList.remove('erro')
@@ -40,7 +40,7 @@ validar_campo_nome = function() {
     return true
 }
 
-exibir_situacao_operacao = function(operacao, mensagem) {
+exibir_situacao_operacao = function (operacao, mensagem) {
     grupo_botoes.setAttribute('class', 'coluna coluna-botoes-cadastro')
     grupo_mensagem.setAttribute('class', 'coluna coluna-operacao')
     mensagem_imagem.setAttribute('class', '')
@@ -59,7 +59,7 @@ exibir_situacao_operacao = function(operacao, mensagem) {
             grupo_mensagem.classList.add('sucesso')
             grupo_mensagem.classList.add('exibir')
             break;
-    
+
         case 'ERRO':
             grupo_botoes.classList.add('esconder')
             mensagem_imagem.classList.add('esconder')
@@ -80,7 +80,7 @@ exibir_situacao_operacao = function(operacao, mensagem) {
     }
 }
 
-criar_categoria = async function() {
+criar_categoria = async function () {
     exibir_situacao_operacao('SALVANDO', 'Criando categoria')
 
     categoria = {
@@ -99,18 +99,18 @@ criar_categoria = async function() {
 
     if (requisicao.ok == true) {
         exibir_situacao_operacao('SUCESSO', 'Categoria criada com Sucesso')
-        setInterval(function() {
+        setInterval(function () {
             botao_cancelar_click()
         }, 2000)
     } else {
         exibir_situacao_operacao('ERRO', 'Falha ao salvar categoria')
-        setInterval(function() {
+        setInterval(function () {
             exibir_situacao_operacao('LIMPAR', '')
         }, 2000)
     }
 }
 
-alterar_categoria = async function() {
+alterar_categoria = async function () {
     exibir_situacao_operacao('SALVANDO', 'Alterando categoria')
 
     categoria = {
@@ -129,18 +129,18 @@ alterar_categoria = async function() {
 
     if (requisicao.ok == true) {
         exibir_situacao_operacao('SUCESSO', 'Categoria alterada com Sucesso')
-        setInterval(function() {
+        setInterval(function () {
             botao_cancelar_click()
         }, 2000)
     } else {
         exibir_situacao_operacao('ERRO', 'Falha ao salvar categoria')
-        setInterval(function() {
+        setInterval(function () {
             exibir_situacao_operacao('LIMPAR', '')
         }, 2000)
     }
 }
 
-botao_salvar_click = async function() {
+botao_salvar_click = async function () {
     if (validar_campo_nome() == false) {
         campo_nome.focus();
         return
@@ -153,12 +153,12 @@ botao_salvar_click = async function() {
     }
 }
 
-botao_cancelar_click = function() {
+botao_cancelar_click = function () {
     navegarPara('lista_categorias.html');
 }
 
-exibir_dados = async function() {
-    
+exibir_dados = async function () {
+
     url_parametros = window.location.search
 
     if (url_parametros != '') {
@@ -173,7 +173,7 @@ exibir_dados = async function() {
                 'Content-Type': 'application/json'
             }
         })
-    
+
         if (requisicao.ok == true) {
             resposta = await requisicao.json()
             campo_id.value = resposta.data[0].id
@@ -181,7 +181,7 @@ exibir_dados = async function() {
             exibir_situacao_operacao('ALTERAR', '')
         } else {
             exibir_situacao_operacao('ERRO', 'Falha ao recuperar categoria')
-            setInterval(function() {
+            setInterval(function () {
                 botao_cancelar_click()
             }, 2000)
         }

@@ -13,7 +13,7 @@ botao_editar_click = function (id) {
     navegarPara(`cadastro_categorias.html?id=${id}`);
 }
 
-botao_castrar_click = function () {
+botao_cadastrar_click = function () {
     navegarPara('cadastro_categorias.html');
 }
 

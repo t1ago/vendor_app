@@ -20,8 +20,8 @@ botao_listar_grupo_click = function () {
     navegarPara('./src/produtos/grupo/listagrupo.html');
 }
 
-botao_listar_fornecedor_tiago_click = function () {
-    navegarPara('./src/produtos/fornecedores/tiago/lista_fornecedor.html')
+botao_listar_produto_tiago_click = function () {
+    navegarPara('./src/produtos/produtos/tiago/lista_produto.html')
 }
 
 botao_listar_fornecedores_click = function () {

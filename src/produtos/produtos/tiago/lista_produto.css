@@ -1,4 +1,4 @@
-#listar-fornecedores {
+#listar-produtos {
     padding: 32px 156px 0px 156px;
 }
 
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 1150px) {
-    #listar-fornecedores {
+    #listar-produtos {
         padding: 32px 32px 0px 32px;
     }
 

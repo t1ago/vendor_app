@@ -453,7 +453,7 @@ botao_salvar_click = async function () {
 }
 
 botao_cancelar_click = function () {
-    navegarPara('lista_fornecedor.html')
+    navegarPara('lista_produto.html')
 }
 
 salvar_fornecedor = async function (acao = 'INCLUIR') {
@@ -479,9 +479,9 @@ salvar_fornecedor = async function (acao = 'INCLUIR') {
     endpoint = `${API_HOST}`
 
     if (acao == 'INCLUIR') {
-        endpoint += '/fornecedores/tiago'
+        endpoint += '/produtos/tiago'
     } else {
-        endpoint += `/fornecedores/tiago/${valores_dados.id_fornecedor}`
+        endpoint += `/produtos/tiago/${valores_dados.id_fornecedor}`
     }
 
     requisicao = await fetch(endpoint, {
@@ -516,7 +516,7 @@ exibir_dados = async function () {
         parametros = new URLSearchParams(url_parametros)
         parametro_id = parametros.get('id')
 
-        requisicao = await fetch(`${API_HOST}/fornecedores/tiago/${parametro_id}`, {
+        requisicao = await fetch(`${API_HOST}/produtos/tiago/${parametro_id}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

@@ -8,15 +8,15 @@ botao_voltar_home_click = function () {
 }
 
 botao_cadastrar_click = function () {
-    navegarPara('cadastro_fornecedor.html')
+    navegarPara('cadastro_produto.html')
 }
 
 botao_editar_click = function (id) {
-    navegarPara(`cadastro_fornecedor.html?id=${id}`)
+    navegarPara(`cadastro_produto.html?id=${id}`)
 }
 
 botao_remover_click = async function (id) {
-    requisicao = await fetch(`${API_HOST}/fornecedores/tiago/${id}`, {
+    requisicao = await fetch(`${API_HOST}/produtos/tiago/${id}`, {
         method: 'DELETE'
     })
 
@@ -34,7 +34,7 @@ botao_remover_click = async function (id) {
 }
 
 buscar_dados = async function () {
-    requisicao = await fetch(`${API_HOST}/fornecedores/tiago`, {
+    requisicao = await fetch(`${API_HOST}/produtos/tiago`, {
         method: 'GET'
     })
 
@@ -49,7 +49,7 @@ buscar_dados = async function () {
 }
 
 buscar_dados_filtrados = async function (value) {
-    requisicao = await fetch(`${API_HOST}/fornecedores/tiago?name=${value}`, {
+    requisicao = await fetch(`${API_HOST}/produtos/tiago?name=${value}`, {
         method: 'GET'
     })
 

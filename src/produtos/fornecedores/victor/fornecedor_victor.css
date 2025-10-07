@@ -1,3 +1,9 @@
+#principal-cadastro {
+    flex: 1 1 50%;
+    max-width: 1500px;
+    background-color: #e0effb;
+    border-radius: 15px;
+}
 .informacao-lista.esconder {
     display: none;
 }
@@ -6,11 +12,11 @@
     max-height: 500px;
     overflow-y: auto;
     overflow-x: auto;
-    z-index: 99;
     border-radius: 15px;
-    background-color: blue;
+    background-color: #94bbd0;
     max-width: 400px;
     position: absolute;
+    margin-top: 63px;
 }
 .informacao-lista>ul {
     margin: 12px;
@@ -19,12 +25,12 @@
 .informacao-lista>ul>li {
     padding: 6px;
     margin: 0px;
-    color: white;
+    color: #ffffff;
     list-style-type: none;
 }
 .informacao-lista>ul>li:hover {
-    background-color: aqua;
-    color:white;
+    background-color: #6b99b1;
+    color:#ffffff;
     border-radius: 12px;
 }
 @keyframes girar {

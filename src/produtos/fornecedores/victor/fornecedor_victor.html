@@ -8,9 +8,8 @@
     <title>Vendor_App (Estudos)</title>
 </head>
 <body>
-    <script src="/vendor_app/utilitarios/padrao.js"></script>
-    <script src="fornecedor_victor.js"></script>
-    <main id="cadastro-fornecedor">
+    
+    <main id="principal-cadastro">
         <div id="tabela">
             <div class="linha">
                 <h1 class="coluna">Cadastro de fornecedor (Victor)</h1>
@@ -18,7 +17,7 @@
             <div class="linha espaco-cima linha-principal">
                 <div class="coluna coluna-campo">
                     <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" required minlength="3" maxlength="64" onchange="campos_onchange('nome',this)">
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64" onchange="campos_onchange('nome',this)" >
                 </div>
                 <div class="coluna coluna-campo">
                     <label for="moeda">Moeda</label>
@@ -83,5 +82,8 @@
             </div>
         </div>
     </main>
+    <script src="/vendor_app/config.js"></script>
+    <script src="/vendor_app/utilitarios/padrao.js"></script>
+    <script src="fornecedor_victor.js"></script>
 </body>
 </html>

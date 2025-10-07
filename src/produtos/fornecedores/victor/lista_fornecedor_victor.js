@@ -6,7 +6,21 @@ function preencher_coluna(conteudo){
     coluna.appendChild(span)
     return coluna
 }
-
+function animacaoCarregar(elemento, chave = true) {
+    elemento_selecionado = elemento
+    elemento_animado = document.createElement('div');
+    elemento_animado.classList.add('elemento_animado');
+    if (chave == true) {
+        animacao = document.createElement('img');
+        animacao.src = '../../../../imagens/loading.png';
+        animacao.classList.add('animar');
+        elemento_animado.appendChild(animacao);
+        elemento_selecionado.appendChild(elemento_animado);
+    } else {
+        elemento_animado = document.getElementsByClassName("elemento_animado")[0];
+        elemento_animado.remove();
+    } 
+}
 function preencher_coluna_botao(funcao,id){
     botao = document.createElement("button")
     img = document.createElement("img")
@@ -31,6 +45,7 @@ function mostrar_dados(dados) {
         linha = document.createElement("tr")
         linha.appendChild(preencher_coluna(item.nome))
         linha.appendChild(preencher_coluna(item.nome_moeda))
+        linha.appendChild(preencher_coluna(item.nome_marca))
         linha.appendChild(preencher_coluna(item.nome_categoria))
         linha.appendChild(preencher_coluna(item.nome_grupo))
         linha.appendChild(preencher_coluna(item.hexadecimal))
@@ -50,15 +65,18 @@ let timeout;
 function filtrar_dados(event) {
     valor = event.target.value
     clearTimeout(timeout)
-
+    tabela = document.getElementById("tabela-fornecedores")
+    
     timeout = setTimeout(async function () {
-        const requisicao = await fetch(`http://localhost:3000/fornecedores/victor?nome=${valor}`,{
+        animacaoCarregar(tabela)
+        const requisicao = await fetch(`${API_HOST}/fornecedores/victor?nome=${valor}`,{
             method:'GET',
             headers:{
                 "Accept": "application/json",
                 "Content-type": "application/json"
             }
         })
+        animacaoCarregar(tabela,false)
         if(requisicao.ok == true) {
             dados = await requisicao.json()
             mostrar_dados(dados)
@@ -69,13 +87,16 @@ function filtrar_dados(event) {
 
 
 async function exibir_dados() {
-    const requisicao = await fetch("http://localhost:3000/fornecedores/victor",{
+    tabela = document.getElementById("tabela-fornecedores")
+    animacaoCarregar(tabela)
+    const requisicao = await fetch(`${API_HOST}/fornecedores/victor`,{
         method:'GET',
         headers:{
             "Accept": "application/json",
             "Content-type": "application/json"
         }
     })
+    animacaoCarregar(tabela,false)
     if(requisicao.ok == true) {
         dados = await requisicao.json()
         mostrar_dados(dados)

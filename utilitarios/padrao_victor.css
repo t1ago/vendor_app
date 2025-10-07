@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
 html,body {
     height: 100%;
 }
@@ -7,14 +11,54 @@ body {
     align-items: center;
 }
 #tabela {
-    display: grid;
-    grid-template-rows: repeat(3,50%);
-    padding: 20px 20px 20px 20px;
-    width: max-content;
-    height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px;
 }
 .linha {
     display: flex;
+    flex: 1 1 100%;
+    padding: 10px;
+    gap:10px;
+}
+.linha>.coluna {
+    width: 100%;
+    display: flex;
+}
+.coluna-campo {
+    display: flex;
     flex-direction: column;
-
+}
+.coluna-campo>input {
+    border: 3px solid #000;
+    border-width: 0px 0px 3px 0px;
+    font-size: 1.5em;
+    cursor: text;
+    outline: 0px;
+    flex: 1 1 50%;
+}
+.coluna-campo>input:focus {
+    border: 3px solid #94bbd0;
+}
+.coluna-campo>label {
+    font-size: 1.7em;
+    width: max-content;
+}
+.linha>.coluna-botoes {
+    justify-content: end;
+    gap: 40px;
+}
+.coluna-botoes>button {
+    padding: 20px;
+    border: 4px solid #cee3ee;
+    border-radius: 15px;
+    font-size: 1.6em;
+    background-color: #94bbd0;
+}
+.coluna-botoes>button:hover {
+    border-color: #8dbdd7;
+    background-color: #6b99b1;
+}
+.espaco-cima {
+    margin-top: 30px;
 }

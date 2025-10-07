@@ -29,6 +29,7 @@ function esconder_informacao(elemento) {
 }
 
 async function focar_campo(elemento,minha_funcao) {
+    desfocar_campo()
     elemento_pai = elemento.parentNode;
     elemento_informacao = elemento_pai.getElementsByClassName('esconder')[0]
     if (elemento_informacao != undefined) {
@@ -36,6 +37,14 @@ async function focar_campo(elemento,minha_funcao) {
     }
     
     await minha_funcao(elemento)
+}
+function desfocar_campo() {
+    elemento_informacao = document.querySelectorAll(".informacao-lista")
+    elemento_informacao.forEach(elemento => {
+        if(elemento.classList.contains("esconder") != true) {
+            elemento.classList.add("esconder")
+        }
+    })
 }
 function erro_buscar(elemento,mensagem) {
     info = document.getElementById(elemento);
@@ -52,7 +61,7 @@ async function buscar_informacao_categorias(elemento) {
         info_categorias = document.getElementById("info_categorias")
         info_categorias.innerHTML = "";
         animacaoCarregar(elemento)
-        requisicao = await fetch(`http://localhost:3000/categorias`,{
+        requisicao = await fetch(`${API_HOST}/categorias`,{
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -90,7 +99,7 @@ async function buscar_informacao_grupos(elemento) {
         info_grupos = document.getElementById("info_grupos")
         info_grupos.innerHTML = ""
         animacaoCarregar(elemento)
-        requisicao = await fetch(`http://localhost:3000/grupos`,{
+        requisicao = await fetch(`${API_HOST}/grupos`,{
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -128,7 +137,7 @@ async function buscar_informacao_marca(elemento) {
         info_marca = document.getElementById("info_marca")
         info_marca.innerHTML = ""
         animacaoCarregar(elemento);
-        requisicao = await fetch(`http://localhost:3000/marca`, {
+        requisicao = await fetch(`${API_HOST}/marca`, {
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -167,7 +176,7 @@ async function buscar_informacao_moedas(elemento) {
         info_moedas.innerHTML = ""
 
         animacaoCarregar(elemento)
-        requisicao = await fetch('http://localhost:3000/moedas', {
+        requisicao = await fetch(`${API_HOST}/moedas`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -206,7 +215,7 @@ async function buscar_informacao_medidas(elemento) {
         info_medidas = document.getElementById("info_medidas");
         info_medidas.innerHTML = "";
         animacaoCarregar(elemento)
-        requisicao = await fetch ('http://localhost:3000/medidas',{
+        requisicao = await fetch (`${API_HOST}/medidas`,{
             method:'GET',
             headers:{
                 'Accept': 'application/json',
@@ -244,7 +253,7 @@ async function buscar_informacao_cores(elemento) {
         info_cores = document.getElementById("info_cores");
         info_cores.innerHTML = "";
         animacaoCarregar(elemento)
-        requisicao = await fetch('http://localhost:3000/cores',{
+        requisicao = await fetch(`${API_HOST}/cores`,{
             method:'GET',
             headers:{
                 'Accept': 'application/json',
@@ -310,7 +319,7 @@ async function salvar() {
     }
     const acao = parametro != null ? "ALTERAR" : "INCLUIR";
     
-    endpoint = "http://localhost:3000/fornecedores/victor"
+    endpoint = `${API_HOST}/fornecedores/victor`
 
     if(acao == "ALTERAR") {
         endpoint += `/${parametro}`
@@ -340,7 +349,7 @@ async function exibir_dados() {
 
         id = urlQuebrada.get("id")
         
-        endpoint = "http://localhost:3000/fornecedores/victor/" + id
+        endpoint = `${API_HOST}/fornecedores/victor/` + id
 
         requisicao = await fetch (endpoint,{
             method: "GET",

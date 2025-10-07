@@ -19,9 +19,9 @@ async function cadastromoedas() {
 
     if (requisicao.ok) {
         let resposta = await requisicao.json()
-       
+
         campo_id.value = resposta.id || (resposta.data ? resposta.data.id : '')
-       
+
     } else {
         // Tratar erro de POST
         console.error("Erro ao cadastrar moeda:", requisicao.status)
@@ -37,7 +37,7 @@ async function cadastromoedas() {
 
 async function alterandomoedas() {
     let moeda_alterada = {
-        id: campo_id.value, 
+        id: campo_id.value,
         nome: campo_nome.value,
         moeda: campo_moeda.value
     }
@@ -66,15 +66,15 @@ async function alterandomoedas() {
 
 
 function botao_salvar() {
-    
+
     if (campo_id.value == "" || campo_id.value == null) {
-      
+
         cadastromoedas()
     } else {
-       
+
         alterandomoedas()
     }
-   
+
     window.location.href = "lista_moeda.html"
 }
 
@@ -83,9 +83,9 @@ async function exibirdados() {
     if (parametros) {
         let parametrosquebrado = new URLSearchParams(parametros)
         let parametrosid = parametrosquebrado.get("id")
-        
-       
-        campo_id.value = parametrosid || "" 
+
+
+        campo_id.value = parametrosid || ""
 
         if (parametrosid) {
             let requisicao = await fetch(`${API_HOST}/moedas?id=${parametrosid}`)
@@ -93,8 +93,8 @@ async function exibirdados() {
             if (requisicao.ok) {
                 let localizado = await requisicao.json()
                 let moeda = localizado.data[0]
-                
-                campo_id.value = parametrosid; 
+
+                campo_id.value = parametrosid;
                 campo_nome.value = moeda.nome || "";
                 campo_moeda.value = moeda.moeda || "";
             }
@@ -102,4 +102,4 @@ async function exibirdados() {
     }
 }
 
-dados()
+exibirdados()

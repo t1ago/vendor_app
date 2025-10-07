@@ -5,7 +5,9 @@
     border-radius: 15px;
 }
 .linha>.coluna-tabela {
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 #tabela-fornecedores th,td {
     padding: 10px;
@@ -40,11 +42,12 @@
     100% { transform: rotate(360deg); }
 }
 .elemento_animado {
+    display: flex;
+    border-radius: 10px;
+    background-color: #eeeeee;
     overflow: hidden;
-    min-width: 50px;
-    min-height: 50px;
-    max-width: 50px;
-    max-height: 50px;
+    width: 200px;
+    height: 200px;
 }
 .animar {
     

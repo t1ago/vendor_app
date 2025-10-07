@@ -7,7 +7,7 @@ function preencher_coluna(conteudo){
     return coluna
 }
 function animacaoCarregar(elemento, chave = true) {
-    elemento_selecionado = elemento
+    elemento_selecionado = elemento.parentNode
     elemento_animado = document.createElement('div');
     elemento_animado.classList.add('elemento_animado');
     if (chave == true) {

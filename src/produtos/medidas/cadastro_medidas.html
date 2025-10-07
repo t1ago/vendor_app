@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cadastro de medidas</title>
 
-<link rel="stylesheet" href="medidas.css">
+<link rel="stylesheet" href="../padraodam.css">
 
 </head>
 <body>
@@ -25,13 +25,13 @@
                         <label for="campo_novo_nome">Nome</label>
                         <input type="text" id="campo_novo_nome" placeholder="Unidade de medida" 
                         required minlength="3" maxlength="64" onkeyup="validar_campo_nome()" onchange="validar_campo_nome()">
-                        <label id="mensagem"></label>
+                        <small id="mensagem" class="erro"></small>
                         
                     </div>
                 </div>
                 <div class="botoes-rodape">
-                    <button onclick="voltar()">❌</button>
-                    <button onclick="salvar()">💾</button>
+                    <button type="button" onclick="voltar()">❌</button>
+                    <button type="button" onclick="salvar()">💾</button>
                 </div>
             
             </div>

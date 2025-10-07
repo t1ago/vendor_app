@@ -1,6 +1,3 @@
-API_HOST='http://127.0.0.1:3000'
-
-
 valores_dados = {
     id_fornecedor: null,
     nome: null,
@@ -55,7 +52,7 @@ function mostrarCarregando(containerId) {
 function carregarInformacoes(containerId, lista) {
     const container = document.getElementById(containerId);
     if (container) {
-        container.innerHTML = "";   
+        container.innerHTML = "";
         container.appendChild(lista);
     }
 }
@@ -378,14 +375,14 @@ botao_salvar_click = async function () {
     })
 
 
-    
+
     let botao = document.getElementById("btnSalvar")
 
     if (requisicao.ok) {
 
         botao.outerHTML = "<span style='color: green; font-weight: bold;'>salvo com sucesso!</span>";
 
-       
+
         setTimeout(() => {
             window.location.href = "lista_fornecedor.html";
         }, 1500);
@@ -411,7 +408,7 @@ botao_cancelar_click = function () {
 
 exibir_dados = async function () {
     try {
-        
+
         const params = new URLSearchParams(window.location.search);
         const id = params.get("id");
 
@@ -427,7 +424,7 @@ exibir_dados = async function () {
             let resposta = await requisicao.json();
             let fornecedor = resposta.data[0];
 
-           
+
             valores_dados = {
                 id_fornecedor: fornecedor.id,
                 nome: fornecedor.nome,
@@ -442,7 +439,7 @@ exibir_dados = async function () {
                 descricao: fornecedor.descricao
             };
 
-            
+
             document.getElementById("id").value = fornecedor.id;
             document.getElementById("name").value = valores_dados.nome;
             document.getElementById("buy").value = valores_dados.preco_compra;

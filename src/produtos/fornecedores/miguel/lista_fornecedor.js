@@ -1,5 +1,3 @@
-API_HOST = 'http://127.0.0.1:3000'
-
 let tabela = document.getElementById("tabela_fornecedor")
 
 botao_cadastrar_click = function () {
@@ -18,12 +16,12 @@ buscar_dados = async function () {
         method: "GET"
     })
 
-  
+
     if (requisicao.ok) {
         let response = await requisicao.json()
         return response.data.length > 0 ? response.data : []
 
-      
+
     } else {
         return null
     }

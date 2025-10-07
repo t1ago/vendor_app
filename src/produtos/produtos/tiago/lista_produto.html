@@ -6,9 +6,9 @@
 
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
-    <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao.css">
-    <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao_listagem.css">
-    <link rel="stylesheet" type="text/css" href="lista_categorias.css">
+    <link rel="stylesheet" type="text/css" href="../../../../utilitarios/padrao.css">
+    <link rel="stylesheet" type="text/css" href="../../../../utilitarios/padrao_listagem.css">
+    <link rel="stylesheet" type="text/css" href="lista_produto.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,17 +17,30 @@
 </head>
 
 <body>
-    <main id="listar-categorias">
+    <main id="listar-produtos">
+
         <div class="linha">
-            <h1 class="coluna">Lista de Categorias</h1>
+            <h1 class="coluna">Lista de Produtos</h1>
+        </div>
+
+        <div class="linha espaco-cima search">
+            <div class="coluna coluna-fields">
+                <label for="search">Filtro de fornecedores</label>
+                <input type="text" id="search" name="search" maxlength="64" oninput="filtrar_dados(event)">
+            </div>
         </div>
 
         <div class="linha espaco-cima">
-            <div class="coluna">
+            <div class="coluna" id="container-tabela">
                 <table id="tabela" class="esconder">
                     <thead>
                         <tr>
                             <th>Nome</th>
+                            <th>Categoria</th>
+                            <th>Grupo</th>
+                            <th>Marca</th>
+                            <th>unidade</th>
+                            <th>Preço Venda</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -35,29 +48,28 @@
                     </tbody>
                 </table>
                 <h2 id="mensagem" class="esconder">Nenhuma categoria localizada</h2>
-                <img id="imagem" class="esconder" src="../../../imagens/loading.png">
+                <img id="imagem" class="esconder" src="../../../../imagens/loading.png">
             </div>
         </div>
 
         <div class="linha coluna-botoes-listagem espaco-cima">
             <div class="coluna">
                 <button type="button" onclick="botao_voltar_home_click()">
-                    <img src="../../../imagens/voltar.png">
+                    <img src="../../../../imagens/voltar.png">
                     <span>Voltar</span>
                 </button>
             </div>
             <div class="coluna">
                 <button type="button" onclick="botao_cadastrar_click()">
-                    <img src="../../../imagens/novo.png">
-                    <span>Nova Categoria</span>
+                    <img src="../../../../imagens/novo.png">
+                    <span>Novo Fornecedor</span>
                 </button>
             </div>
         </div>
+
     </main>
 </body>
 
-<script src="../../../config.js"></script>
-<script src="../../../utilitarios/padrao.js"></script>
-<script src="lista_categorias.js"></script>
-
-</html>
+<script src="../../../../config.js"></script>
+<script src="../../../../utilitarios/padrao.js"></script>
+<script src="lista_produto.js"></script>

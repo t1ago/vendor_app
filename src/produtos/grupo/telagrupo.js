@@ -1,7 +1,3 @@
-// telagrupo.js (substituir por todo o arquivo atual)
-
-// usa API_HOST definido globalmente (por config.js) ou fallback
-const API_HOST = window.API_HOST || 'http://127.0.0.1:3000';
 
 const campo_id = document.getElementById("idgrupo");
 const campo_nome = document.getElementById("grupo");
@@ -33,11 +29,11 @@ function validacampo() {
 
     return true;
 }
-// expõe para chamadas inline do HTML (onkeyup / onchange)
+
 window.validacampo = validacampo;
 
 function voltar() {
-    // redireciona para a página de listagem (tem que existir)
+
     window.location.href = "listagrupo.html";
 }
 
@@ -66,7 +62,7 @@ async function cadastrargrupo() {
     }
 }
 
-// alterar (PUT)
+
 async function alterargrupo() {
     let corpo = {
         id: campo_id.value,
@@ -81,12 +77,12 @@ async function alterargrupo() {
     });
 
     if (requisicao.ok) {
-        // opcional: mostrar mensagem breve
+     
         console.log("Grupo alterado com sucesso");
     }
 }
 
-// salvar (decide POST ou PUT)
+
 async function botao_salvar_click() {
     if (validacampo() == false) {
         campo_nome.focus();
@@ -103,7 +99,7 @@ async function botao_salvar_click() {
 }
 
 
-// carrega dados para edição, se existir ?id=...
+
 async function dados() {
     let parametros = window.location.search;
     if (parametros) {
@@ -124,5 +120,5 @@ async function dados() {
     }
 }
 
-// chama dados quando o script carregar
+
 dados();

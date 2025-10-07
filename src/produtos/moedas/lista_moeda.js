@@ -1,5 +1,3 @@
-API_HOST = 'http://127.0.0.1:3000'
-
 let campo_nome = document.getElementById("nome")
 let campo_moeda = document.getElementById("moeda")
 

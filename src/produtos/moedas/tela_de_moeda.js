@@ -1,5 +1,3 @@
-API_HOST = 'http://127.0.0.1:3000'
-
 campo_id = document.getElementById("id")
 campo_nome = document.getElementById("nome")
 campo_moeda = document.getElementById("moeda")

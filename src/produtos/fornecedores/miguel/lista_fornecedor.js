@@ -1,5 +1,3 @@
-API_HOST='http://127.0.0.1:3000'
-
 let tabela = document.getElementById("tabela_fornecedor")
 
 botao_cadastrar_click = function () {
@@ -12,6 +10,7 @@ function botao_voltar_click() {
 
 
 buscar_dados = async function () {
+
 
     let requisicao = await fetch(`${API_HOST}/fornecedor/miguel`, {
         method: "GET"
@@ -27,7 +26,6 @@ buscar_dados = async function () {
         return null
     }
 }
-
 
 buscar_dados_filtrados = async function (value) {
 
@@ -82,15 +80,13 @@ exibindo_dados = async function (lista = null) {
     };
 
 
-    
-    
     lista.forEach((item) => {
         let linha = document.createElement('tr');
         adicionando_coluna(linha, item.nome);
         adicionando_coluna(linha, item.nome_moeda || item.id_moeda);
         adicionando_coluna(linha, item.preco_compra);
         adicionando_coluna(linha, item.preco_venda);
-        adicionando_coluna(linha, item.hexadecimal_cor || item.id_cor);
+        adicionando_coluna(linha, item.nome_cor || item.id_cor);
         adicionando_coluna(linha, item.nome_grupo || item.id_grupo);
         adicionando_coluna(linha, item.nome_categoria || item.id_categoria);
         adicionando_coluna(linha, item.nome_unidade_medida || item.id_unidade_medida);

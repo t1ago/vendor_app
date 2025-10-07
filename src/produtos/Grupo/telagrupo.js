@@ -110,13 +110,14 @@ async function dados() {
         let parametrosquebrado = new URLSearchParams(parametros);
         let parametrosid = parametrosquebrado.get("id");
 
-        if (parametrosid) {
+       if (parametrosid) {
             let requisicao = await fetch(`${API_HOST}/grupos/${parametrosid}`);
             if (requisicao.ok) {
                 let grupo = await requisicao.json();
+                let resultado = grupo.data[0]
               
-                campo_id.value = grupo.id;
-                campo_nome.value = grupo.data?.nome || "";
+                campo_id.value = resultado.id;
+                campo_nome.value = resultado.nome;
 
             }
         }

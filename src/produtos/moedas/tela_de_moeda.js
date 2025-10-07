@@ -80,7 +80,7 @@ function botao_salvar() {
     window.location.href = "lista_moeda.html"
 }
 
-function exibirdados() {
+async function exibirdados() {
     let parametros = window.location.search
     if (parametros) {
         let parametrosquebrado = new URLSearchParams(parametros)

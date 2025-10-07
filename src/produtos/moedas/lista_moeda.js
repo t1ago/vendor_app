@@ -12,7 +12,7 @@ function voltarparaindex() {
 }
 
 let listamoeda = [];
-function carregarMoedas() {
+async function carregarMoedas() {
     const corpotabela = document.getElementById("tabela-moedas")
     corpotabela.innerHTML = "";
 

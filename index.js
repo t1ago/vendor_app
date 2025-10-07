@@ -27,3 +27,7 @@ botao_listar_produto_tiago_click = function () {
 botao_listar_fornecedores_click = function () {
     navegarPara('./src/produtos/fornecedores/dam/cadastro_fornecedores.html');
 }
+
+botao_listar_fornecedor_miguel_click = function () {
+    navegarPara('./src/produtos/fornecedores/miguel/lista_fornecedor.html')
+}

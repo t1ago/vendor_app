@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor_app</title>
+    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="../../../../utilitarios/padrao_fornecedor_miguel.css">
+</head>
+
+<body>
+    <main id="cadastro-miguel">
+
+        <form id="formulario-miguel">
+            <div class="linha">
+                <h1 class="title">Cadastro de Fornecedor(Miguel)</h1>
+            </div>
+
+            <div class="#">
+                <div class="hidden">
+                    <label for="id">id</label>
+                    <input type="text" name="id" id="id">
+                </div>
+            </div>
+
+
+            <div class="linha">
+                <div class="coluna coluna-base">
+                    <label for="campo_nome">Nome</label>
+                    <input type="text" name="name" id="name" onchange="adicionando_valor('nome', this)" required
+                        minlength="3" maxlength="64">
+                    <span id="mensagem_nome" class="mensagem-erro"></span>
+                </div>
+
+
+        
+                <div class="coluna coluna-base">
+                    <label for="buy">Preço Compra</label>
+                    <input type="text" name="buy" id="buy" onchange="adicionando_valor('preco_compra', this)">
+                </div>
+            </div>
+
+
+   
+            <div class="linha">
+                <div class="coluna coluna-base">
+                    <label for="sell">Preço Venda</label>
+                    <input type="text" name="sell" id="sell" onchange="adicionando_valor('preco_venda', this)">
+                </div>
+
+
+             
+                <div class="coluna coluna-base">
+                    <label for="coin">Moeda</label>
+                    <input type="text" name="coin" id="coin" onfocus="focar_campo(this, buscar_informacao_moeda)">
+                    <div id="info-moeda" class="informacao-lista esconder">
+
+                    </div>
+                </div>
+            </div>
+
+
+       
+            <div class="linha">
+                <div class="coluna coluna-base">
+                    <label for="categoria">Categoria</label>
+                    <input type="text" name="categoria" id="categoria"
+                        onfocus="focar_campo(this, buscar_informação_categoria)">
+                    <div id="info-categoria" class="informacao-lista esconder">
+
+                    </div>
+                </div>
+
+
+                <div class="coluna coluna-base">
+                    <label for="cor">Cor</label>
+                    <input type="text" name="cor" id="cor" onfocus="focar_campo(this, buscar_informacao_cor)">
+                    <div id="info-cor" class="informacao-lista esconder">
+
+                    </div>
+                </div>
+            </div>
+
+       
+            <div class="linha">
+                <div class="coluna coluna-base">
+                    <label for="medida">Medida</label>
+                    <input type="text" name="medida" id="medida" onfocus="focar_campo(this, buscar_informacao_medida)">
+                    <div id="info-medida" class="informacao-lista esconder">
+
+                    </div>
+                </div>
+
+
+                <div class="coluna coluna-base">
+                    <label for="marc">Marca</label>
+                    <input type="text" name="marca" id="marca" onfocus="focar_campo(this, buscar_informacao_marca)">
+                    <div id="info-marca" class="informacao-lista esconder">
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="linha">
+                <div class="coluna coluna-base">
+                    <label for="group">Grupo</label>
+                    <input type="text" name="group" id="group" onfocus="focar_campo(this, buscar_informação_grupo)">
+                    <div id="info-grupo" class="informacao-lista esconder">
+
+                    </div>
+                </div>
+
+
+                <div class="coluna coluna-base">
+                    <label for="campo_desc">Descrição</label>
+                    <input type="text" name="desc" id="campo_descricao" onchange="adicionando_valor('descricao', this)"
+                        required minlength="3" maxlength="128">
+                    <span id="mensagem_descricao" class="mensagem-erro"></span>
+                </div>
+            </div>
+
+            <div class="botoes">
+                <button class="button-cancel" id="btncancel" type="button" onclick="botao_cancelar_click()">Cancelar
+                </button>
+                <button class="button-save" id="btnSalvar" type="button" onclick="botao_salvar_click()">Salvar</button>
+            </div>
+
+            </div>
+        </form>
+    </main>
+</body>
+
+<script src="cadastro.js"></script>
+
+</html>

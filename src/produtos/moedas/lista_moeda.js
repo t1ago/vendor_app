@@ -11,11 +11,12 @@ function voltarparaindex() {
     window.location.href = "../../../index.html"
 }
 
+
 async function carregarMoedas() {
     const corpotabela = document.getElementById("tabela-moedas")
     corpotabela.innerHTML = ""
 
-    let requisicao = await fetch("http://localhost:3000/moedas")
+    let requisicao = await fetch(`${API_HOST}/moedas`)
     if (requisicao.ok) {
         let resposta = await requisicao.json()
         let listamoeda = resposta.data

@@ -1,4 +1,4 @@
-API_HOST='http://127.0.0.1:3000'
+API_HOST = 'http://127.0.0.1:3000'
 
 let tabela = document.getElementById("tabela_fornecedor")
 
@@ -85,14 +85,14 @@ exibindo_dados = async function (lista = null) {
     lista.forEach((item) => {
         let linha = document.createElement('tr');
         adicionando_coluna(linha, item.nome);
-        adicionando_coluna(linha, item.id_moeda);
+        adicionando_coluna(linha, item.nome_moeda || item.id_moeda);
         adicionando_coluna(linha, item.preco_compra);
         adicionando_coluna(linha, item.preco_venda);
-        adicionando_coluna(linha, item.id_cor);
-        adicionando_coluna(linha, item.id_grupo);
-        adicionando_coluna(linha, item.id_categoria);
-        adicionando_coluna(linha, item.id_unidade_medida);
-        adicionando_coluna(linha, item.id_marca);
+        adicionando_coluna(linha, item.nome_cor || item.id_cor);
+        adicionando_coluna(linha, item.nome_grupo || item.id_grupo);
+        adicionando_coluna(linha, item.nome_categoria || item.id_categoria);
+        adicionando_coluna(linha, item.nome_unidade_medida || item.id_unidade_medida);
+        adicionando_coluna(linha, item.nome_marca || item.id_marca);
         adicionando_coluna(linha, item.descricao);
 
         adicionando_botao(linha, "../../../../imagens/editar.png", () => editar_item(item));
@@ -100,6 +100,7 @@ exibindo_dados = async function (lista = null) {
 
         tabela.appendChild(linha);
     });
+
 }
 
 

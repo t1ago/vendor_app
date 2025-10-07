@@ -5,11 +5,7 @@ campo_nome = document.getElementById("nome")
 campo_moeda = document.getElementById("moeda")
 
 async function cadastromoedas() {
-    let moeda = {
-        nome: campo_nome.value,
-        moeda: campo_moeda.value
-    }
-
+    
     let requisicao = await fetch(`${API_HOST}/moedas`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

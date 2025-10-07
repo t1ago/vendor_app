@@ -59,8 +59,8 @@ async function carregarMoedas() {
 };
 
 editar_item = async function (item) {
-    window.location.href = "tela_de_moeda.html?id=" + item.id
-
+    // Redirect to edit page with item id in query string
+    window.location.href = "tela_de_moeda.html?id=" + item.id;
 }
 
 

@@ -3,7 +3,7 @@ campo_id = document.getElementById("id")
 mensagem_nome = document.getElementById('id_mensagem')
 
 
-function validarCampoNome() {
+function validar_campo() {
     campo_nome.classList.remove('erro')
     mensagem_nome.innerHTML = ''
     mensagem_nome.classList.remove('erro')
@@ -33,7 +33,7 @@ function validarCampoNome() {
 }
 
 async function cadastrar_marca() {
-    if (validarCampoNome() == true) {
+    if (validar_campo() == true) {
         marca = { 
             'id': null,
             'nome': campo_nome.value 
@@ -82,7 +82,7 @@ function botao_salvar() {
     }
 }
 
-async function exibirDados() {
+async function exibir_dados() {
     parametros = window.location.search
     if (parametros) {
         parametrosQuebrado = new URLSearchParams(parametros)
@@ -104,7 +104,5 @@ async function exibirDados() {
         }
     }
 }
-function voltar() {
-    window.location.href = "lista_marca.html";
-}
-exibirDados()
+
+exibir_dados()

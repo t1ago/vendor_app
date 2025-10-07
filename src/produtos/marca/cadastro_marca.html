@@ -16,7 +16,7 @@
             <div class="linha espaco-cima">
                 <div class="coluna coluna-campo">
                     <label for="name">Nome</label>
-                    <input type=text id="name" name="name" required maxlength="64" minlength="3" oninput="validarCampoNome()">
+                    <input type=text id="name" name="name" required maxlength="64" minlength="3" oninput="validar_campo()">
                     <label id="id_mensagem" class="mensagem"></label>
                 </div>
                 <div class="coluna coluna-id coluna-campo">
@@ -26,12 +26,13 @@
             </div>
             <div class="linha">
                 <div class="coluna coluna-botoes">
-                    <button onclick="voltar()">Cancelar</button>
+                    <button onclick="navegarPara('lista_marca.html')">Cancelar</button>
                     <button onclick="botao_salvar()">Salvar</button>
                 </div>
             </div>
         </div>
     </main>
+    <script src="/vendor_app/utilitarios/padrao.js"></script>
     <script src="/vendor_app/config.js"></script>
     <script src="cadastro_marca.js"></script>
 </body>

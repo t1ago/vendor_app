@@ -1,10 +1,3 @@
-function abrir_cadastro() {
-    window.location.href = "cadastro_marca.html"
-}
-
-function voltar_index() {
-    window.location.href = "../../../index.html"
-}
 function animacao_carregar(elemento, chave = true) {
     elemento_selecionado = elemento
     elemento_animado = document.createElement('div');

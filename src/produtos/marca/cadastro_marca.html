@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="../../../utilitarios/padrao_victor.css">
+    <link rel="stylesheet" href="cadastro_marca.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor app</title>
+</head>
+<body>
+    <main id="principal-cadastro">
+        <div id="tabela">
+            <div class="linha">
+                <h1>Cadastro de Marcas</h1>
+            </div>
+            <div class="linha espaco-cima">
+                <div class="coluna coluna-campo">
+                    <label for="name">Nome</label>
+                    <input type=text id="name" name="name" required maxlength="64" minlength="3" oninput="validar_campo()">
+                    <label id="id_mensagem" class="mensagem"></label>
+                </div>
+                <div class="coluna coluna-id coluna-campo">
+                    <label for="id">Id</label>
+                    <input type=text id="id" name="id">
+                </div>
+            </div>
+            <div class="linha">
+                <div class="coluna coluna-botoes">
+                    <button onclick="navegarPara('lista_marca.html')">Cancelar</button>
+                    <button onclick="botao_salvar()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/vendor_app/utilitarios/padrao.js"></script>
+    <script src="/vendor_app/config.js"></script>
+    <script src="cadastro_marca.js"></script>
+</body>
+</html>

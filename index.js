@@ -16,6 +16,10 @@ botao_listar_moedas_click = function () {
     navegarPara('./src/produtos/moedas/lista_moeda.html');
 }
 
+botao_listar_marcas_click = function () {
+    navegarPara('./src/produtos/marca/lista_marca.html')
+}
+
 botao_listar_grupo_click = function () {
     navegarPara('./src/produtos/grupo/listagrupo.html');
 }

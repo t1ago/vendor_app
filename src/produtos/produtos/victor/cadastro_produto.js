@@ -288,19 +288,25 @@ async function buscar_informacao_cores(elemento) {
 }
 function animacaoCarregar(elemento, chave = true) {
     elemento_div = elemento.parentNode;
-    elemento_selecionado = elemento_div.getElementsByClassName('informacao-lista')[0];
+    indice_array = elemento_div.children.length > 2 ? 2 : 0
+    elemento_selecionado = elemento_div.children[indice_array].classList.contains('informacao-lista') ?  elemento_div.getElementsByClassName('informacao-lista')[0] : elemento_div;
     elemento_animado = document.createElement('div');
     elemento_animado.classList.add('elemento_animado');
     if (chave == true) {
+        if (indice_array == 0) {
+            elemento_animado.classList.remove('elemento_animado');
+            elemento_animado.classList.add('elemento_animado_grande')
+            elemento_animado.classList.add('carregando')
+        }
         animacao = document.createElement('img');
         animacao.src = '../../../../imagens/loading.png';
         animacao.classList.add('animar')
         elemento_animado.appendChild(animacao);
         elemento_selecionado.appendChild(elemento_animado);
     } else {
-        elemento_animado = document.getElementsByClassName("elemento_animado")[0];
+        elemento_animado = indice_array == 0 ? document.getElementsByClassName("elemento_animado_grande")[0] : document.getElementsByClassName("elemento_animado")[0] ;
         elemento_animado.remove();
-    } 
+    }
 }
 function adicionar_item_campo(elemento,valor) {
     elemento.value = valor
@@ -318,7 +324,8 @@ async function salvar() {
         parametro = valores_dados.id
     }
     const acao = parametro != null ? "ALTERAR" : "INCLUIR";
-    
+    tela_inteira = document.getElementById("tabela");
+    animacaoCarregar(tela_inteira)
     endpoint = `${API_HOST}/fornecedores/victor`
 
     if(acao == "ALTERAR") {
@@ -333,9 +340,10 @@ async function salvar() {
         body: JSON.stringify(valores_dados)
     })
     if(requisicao.ok == true) {
-        setTimeout(
-            console.log("Funcionou")
-        ,3000);
+        setTimeout(()=> {
+            animacaoCarregar(tela_inteira,false)
+            window.location.href = './lista_produto.html'
+        },3000);
     }
 }
 function campo_dados(elemento,valor){
@@ -344,11 +352,11 @@ function campo_dados(elemento,valor){
 async function exibir_dados() {
     url = window.location.search;
     if(url) {
-
+        tela_inteira = document.getElementById("tabela");
         urlQuebrada = new URLSearchParams(url)
 
         id = urlQuebrada.get("id")
-        
+        animacaoCarregar(tela_inteira)
         endpoint = `${API_HOST}/fornecedores/victor/` + id
 
         requisicao = await fetch (endpoint,{
@@ -358,7 +366,7 @@ async function exibir_dados() {
                 "Content-type":"application/json"
             }
         })
-
+        animacaoCarregar(tela_inteira,false)
         if(requisicao.ok == true) {
             lista = await requisicao.json()
             valores = lista.data[0]

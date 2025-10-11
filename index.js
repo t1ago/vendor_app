@@ -15,9 +15,10 @@ botao_listar_medidas_click = function () {
 botao_listar_moedas_click = function () {
     navegarPara('./src/produtos/moedas/tela_de_moeda.html');
 }
-botao_listar_fornecedor_victor_click = function () {
-    navegarPara('./src/produtos/fornecedores/victor/lista_fornecedor_victor.html')
+botao_listar_produto_victor_click = function () {
+    navegarPara('./src/produtos/produtos/victor/lista_produto.html')
 }
+
 botao_listar_fornecedor_tiago_click = function () {
     navegarPara('./src/produtos/fornecedores/tiago/cadastro_fornecedor.html')
 }

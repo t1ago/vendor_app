@@ -5,6 +5,7 @@
     border-radius: 15px;
 }
 .linha>.coluna-tabela {
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -42,14 +43,20 @@
     100% { transform: rotate(360deg); }
 }
 .elemento_animado {
+    position: absolute;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     border-radius: 10px;
-    background-color: #eeeeee;
+    background-color: #eeeeeeee;
     overflow: hidden;
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
 }
 .animar {
-    
+    width: 5%;
     animation: girar 2s linear infinite;
 }

@@ -6,8 +6,8 @@ function preencher_coluna(conteudo){
     coluna.appendChild(span)
     return coluna
 }
-function animacaoCarregar(elemento, chave = true) {
-    elemento_selecionado = elemento.parentNode
+function animacaoCarregar(chave = true) {
+    elemento_selecionado = document.getElementById('tabela-fornecedores').parentNode;
     elemento_animado = document.createElement('div');
     elemento_animado.classList.add('elemento_animado');
     if (chave == true) {
@@ -26,7 +26,7 @@ function preencher_coluna_botao(funcao,id){
     img = document.createElement("img")
     if(funcao == "EDITAR") {
         botao.onclick = function() {
-            window.location.href =  `fornecedor_victor.html?id=${id}`
+            window.location.href =  `cadastro_produto.html?id=${id}`
         }
         img.src = "/vendor_app/imagens/editar.png"
     } else {
@@ -68,7 +68,7 @@ function filtrar_dados(event) {
     tabela = document.getElementById("tabela-fornecedores")
     
     timeout = setTimeout(async function () {
-        animacaoCarregar(tabela)
+        animacaoCarregar()
         const requisicao = await fetch(`${API_HOST}/fornecedores/victor?nome=${valor}`,{
             method:'GET',
             headers:{
@@ -76,7 +76,7 @@ function filtrar_dados(event) {
                 "Content-type": "application/json"
             }
         })
-        animacaoCarregar(tabela,false)
+        animacaoCarregar(false)
         if(requisicao.ok == true) {
             dados = await requisicao.json()
             mostrar_dados(dados)
@@ -88,7 +88,7 @@ function filtrar_dados(event) {
 
 async function exibir_dados() {
     tabela = document.getElementById("tabela-fornecedores")
-    animacaoCarregar(tabela)
+    animacaoCarregar()
     const requisicao = await fetch(`${API_HOST}/fornecedores/victor`,{
         method:'GET',
         headers:{
@@ -96,7 +96,7 @@ async function exibir_dados() {
             "Content-type": "application/json"
         }
     })
-    animacaoCarregar(tabela,false)
+    animacaoCarregar(false)
     if(requisicao.ok == true) {
         dados = await requisicao.json()
         mostrar_dados(dados)

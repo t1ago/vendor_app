@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadastro de Fornecedores</title>
 
   <!-- CSS padrão aplicado -->
-  <link rel="stylesheet" href="../../padraodam.css" />
+  <link rel="stylesheet" href="../../../../utilitarios/padraodam.css" />
 </head>
+
 <body>
   <main class="container">
     <form id="form-fornecedor" novalidate>
@@ -17,7 +19,7 @@
       <div class="linha">
         <div class="coluna">
           <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" onfocus="foco_campo(this)" required autocomplete="off"/>
+          <input type="text" id="nome" name="nome" onfocus="foco_campo(this)" required autocomplete="off" />
         </div>
       </div>
 
@@ -25,23 +27,23 @@
       <div class="linha">
         <div class="coluna lista-suspensa-container">
           <label for="moeda">Moeda</label>
-          <input type="text" id="moeda" name="moeda" class="lista-suspensa-input " autocomplete="off"/>
+          <input type="text" id="moeda" name="moeda" class="lista-suspensa-input " autocomplete="off" />
           <ul class="lista-suspensa-opcoes lista-oculta">
             <li data-valor="BRL">Real (R$)</li>
             <li data-valor="USD">Dólar (US$)</li>
           </ul>
         </div>
 
-      <!-- Preço de Compra -->
+        <!-- Preço de Compra -->
         <div class="coluna">
           <label for="preco_compra">Preço de Compra</label>
-          <input type="text" id="preco_compra" name="preco_compra" onfocus="foco_campo(this)" autocomplete="off"/>
+          <input type="text" id="preco_compra" name="preco_compra" onfocus="foco_campo(this)" autocomplete="off" />
         </div>
 
-      <!-- Preço de Venda -->
+        <!-- Preço de Venda -->
         <div class="coluna">
           <label for="preco_venda">Preço de Venda</label>
-          <input type="text" id="preco_venda" name="preco_venda" onfocus="foco_campo(this)" autocomplete="off"/>
+          <input type="text" id="preco_venda" name="preco_venda" onfocus="foco_campo(this)" autocomplete="off" />
         </div>
       </div>
 
@@ -49,27 +51,30 @@
       <div class="linha">
         <div class="coluna lista-suspensa-container">
           <label for="grupo">Grupo</label>
-          <input type="text" id="grupo" name="grupo" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this)" />
+          <input type="text" id="grupo" name="grupo" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this)" />
           <ul class="lista-suspensa-opcoes lista-oculta">
             <li data-id="1" onclick="selecionar_item(this, 'id_grupo')">Eletrônicos</li>
             <li data-id="2" onclick="selecionar_item(this, 'id_grupo')">Roupas</li>
           </ul>
         </div>
 
-      <!-- Categoria -->
+        <!-- Categoria -->
         <div class="coluna lista-suspensa-container">
           <label for="categoria">Categoria</label>
-          <input type="text" id="categoria" name="categoria" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this)" />
+          <input type="text" id="categoria" name="categoria" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this)" />
           <ul class="lista-suspensa-opcoes lista-oculta">
             <li data-id="1" onclick="selecionar_item(this, 'id_categoria')">Importado</li>
             <li data-id="2" onclick="selecionar_item(this, 'id_categoria')">Nacional</li>
           </ul>
         </div>
 
-      <!-- Medida -->
+        <!-- Medida -->
         <div class="coluna lista-suspensa-container">
           <label for="medida">Unidade de Medida</label>
-          <input type="text" id="medida" name="medida" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this)" />
+          <input type="text" id="medida" name="medida" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this)" />
           <ul class="lista-suspensa-opcoes lista-oculta">
             <li data-id="1" onclick="selecionar_item(this, 'id_unidade_medida')">Unidade</li>
             <li data-id="2" onclick="selecionar_item(this, 'id_unidade_medida')">Litros</li>
@@ -81,17 +86,19 @@
       <div class="linha">
         <div class="coluna lista-suspensa-container">
           <label for="marca">Marca</label>
-          <input type="text" id="marca" name="marca" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this)" />
+          <input type="text" id="marca" name="marca" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this)" />
           <ul class="lista-suspensa-opcoes lista-oculta">
             <li data-id="1" onclick="selecionar_item(this, 'id_marca')">Marca A</li>
             <li data-id="2" onclick="selecionar_item(this, 'id_marca')">Marca B</li>
           </ul>
         </div>
 
-      <!-- Cor -->
+        <!-- Cor -->
         <div class="coluna lista-suspensa-container">
           <label for="cor">Cor</label>
-          <input type="text" id="cor" name="cor" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this)" />
+          <input type="text" id="cor" name="cor" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this)" />
           <ul class="lista-suspensa-opcoes lista-oculta">
             <li data-id="1" onclick="selecionar_item(this, 'id_cor')">Vermelho</li>
             <li data-id="2" onclick="selecionar_item(this, 'id_cor')">Azul</li>
@@ -120,4 +127,5 @@
 
   <script src="cadastro_fornecedores.js"></script>
 </body>
+
 </html>

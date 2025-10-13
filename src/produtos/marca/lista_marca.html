@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="../../../utilitarios/padrao_victor.css">
+    <link rel="stylesheet" href="lista_marca.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor app</title>
+</head>
+<body>
+    <main id="principal-listagem">
+        <div id="tabela">
+            <div class="linha">
+                <h1>Lista de Marcas</h1>
+            </div>
+            <div class="linha espaco-cima">
+                <div class="coluna coluna-tabela">
+                    <table id="tabela_marca">
+                            <thead>
+                                <th>Nome</th>
+                                <th>Ações</th>
+                            </thead>
+                            <tbody id="corpo_tabela">
+                                <!-- Local que aparecera todas as marcas em ordem crescente de id -->
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="linha">
+                <div class="coluna coluna-botoes">
+                    <button onclick="navegarPara('../../../index.html')">Voltar</button>
+                    <button onclick="navegarPara('cadastro_marca.html')">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../../../utilitarios/padrao.js"></script>
+    <script src="../../../config.js"></script>
+    <script src="./lista_marca.js"></script>
+</body>
+</html>

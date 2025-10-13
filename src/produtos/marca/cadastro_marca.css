@@ -1,0 +1,23 @@
+#principal-cadastro {
+    flex: 1 1 50%;
+    max-width: 1500px;
+    background-color: #e0effb;
+    border-radius: 15px;
+}
+.coluna-id {
+    display: none !important;
+}
+@keyframes girar {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.elemento_animado {
+    display: flex;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    overflow: hidden;
+    
+}
+.animar {
+    animation: girar 2s linear infinite;
+}

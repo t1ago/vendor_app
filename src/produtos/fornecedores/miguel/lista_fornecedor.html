@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Fornecedores</title>
+    <link rel="stylesheet" href="lista_fornecedor.css">
+    <link rel="stylesheet" href="../../../../utilitarios/padrao_fornecedor_miguel.css">
+</head>
+
+<body>
+    <h2>Lista de Fornecedores (Miguel)</h2>
+
+    <div>
+        <div class="filtro linha">
+            <label for="search">Filtro</label>
+            <input type="text" name="search" id="search" oninput="filtrar_dados(event)">
+        </div>
+    </div>
+
+
+    <div class="container">
+        <table width="100%" border="1">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Moeda</th>
+                    <th>Preço Compra</th>
+                    <th>Preço Venda</th>
+                    <th>Cor</th>
+                    <th>Grupo</th>
+                    <th>Categoria</th>
+                    <th>Medida</th>
+                    <th>Marca</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabela_fornecedor">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <button type="button" class="button-cancel" onclick="botao_voltar_click()">Cancelar</button>
+        <button type="button" class="button-save" onclick="botao_cadastrar_click()">Cadastrar</button>
+    </div>
+
+    <script src="../../../../config.js"></script>
+    <script src="lista_fornecedor.js"></script>
+</body>
+
+</html>

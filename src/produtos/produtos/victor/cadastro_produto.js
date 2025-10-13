@@ -326,7 +326,7 @@ async function salvar() {
     const acao = parametro != null ? "ALTERAR" : "INCLUIR";
     tela_inteira = document.getElementById("tabela");
     animacaoCarregar(tela_inteira)
-    endpoint = `${API_HOST}/fornecedores/victor`
+    endpoint = `${API_HOST}/produto/victor`
 
     if(acao == "ALTERAR") {
         endpoint += `/${parametro}`
@@ -357,7 +357,7 @@ async function exibir_dados() {
 
         id = urlQuebrada.get("id")
         animacaoCarregar(tela_inteira)
-        endpoint = `${API_HOST}/fornecedores/victor/` + id
+        endpoint = `${API_HOST}/produto/victor/` + id
 
         requisicao = await fetch (endpoint,{
             method: "GET",

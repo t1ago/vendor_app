@@ -28,12 +28,15 @@ function preencher_coluna_botao(funcao,id){
         botao.onclick = function() {
             window.location.href =  `cadastro_produto.html?id=${id}`
         }
-        img.src = "/vendor_app/imagens/editar.png"
+        img.src = "../../../../imagens/editar.png"
     } else {
-        botao.onclick = function() {
-            console.log(id)
+        botao.onclick = async function() {
+            await fetch(`${API_HOST}/produto/victor/${id}`,{
+                method:'DELETE'
+            })
+            exibir_dados()
         }
-        img.src = "/vendor_app/imagens/remover.png"
+        img.src = "../../../../imagens/remover.png"
     }
     botao.appendChild(img)
     return botao
@@ -69,7 +72,7 @@ function filtrar_dados(event) {
     
     timeout = setTimeout(async function () {
         animacaoCarregar()
-        const requisicao = await fetch(`${API_HOST}/fornecedores/victor?nome=${valor}`,{
+        const requisicao = await fetch(`${API_HOST}/produto/victor?nome=${valor}`,{
             method:'GET',
             headers:{
                 "Accept": "application/json",
@@ -89,7 +92,7 @@ function filtrar_dados(event) {
 async function exibir_dados() {
     tabela = document.getElementById("tabela-fornecedores")
     animacaoCarregar()
-    const requisicao = await fetch(`${API_HOST}/fornecedores/victor`,{
+    const requisicao = await fetch(`${API_HOST}/produto/victor`,{
         method:'GET',
         headers:{
             "Accept": "application/json",

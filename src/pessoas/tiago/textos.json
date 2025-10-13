@@ -1,0 +1,15 @@
+{
+    "titulo_tpf": "Cadastro de Cliente (Tiago)",
+    "titulo_tpj": "Cadastro de Fornecedores (Tiago)",
+    "nome_tpf": "Nome",
+    "nome_tpj": "Razão Social",
+    "apelido_tpf": "Apelido",
+    "apelido_tpj": "Nome Fantasia",
+    "sexo": "Sexo",
+    "data_nascimento": "Data de Nascimento",
+    "documento_federal_tpf": "CPF",
+    "documento_federal_tpj": "CNPJ",
+    "documento_estadual_tpf": "RG",
+    "documento_estadual_tpj": "Insc. Estadual",
+    "ativo": "Ativo"
+}

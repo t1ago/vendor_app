@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vendor_App (Estudos)</title>
+
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao.css">
+    <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao_cadastro.css">
+    <link rel="stylesheet" type="text/css" href="cadastro_pessoa.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main id="cadastro-pessoa" onclick="clique_geral()">
+        <form id="formulario">
+            <div class="linha">
+                <h1 class="coluna" data-texto-titulo>titulo aqui</h1>
+            </div>
+
+            <div class="linha espaco-cima ">
+                <div class="coluna coluna-fields">
+                    <label data-texto-nome for="name">Nome</label>
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64">
+                    <label id="mensagem_name" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-apelido for="apelido">Apelido</label>
+                    <input type="text" id="apelido" name="apelido" required minlength="3" maxlength="64">
+                    <label id="mensagem_apelido" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields">
+                    <label data-texto-documento-federeal for="documento_federeal">Documento Federeal</label>
+                    <input type="text" id="documento_federeal" name="documento_federeal" required minlength="3"
+                        maxlength="14">
+                    <label id="mensagem_documento_federeal" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-documento-estadual for="documento_estadual">Documento Estadual</label>
+                    <input type="text" id="documento_estadual" name="documento_estadual" required minlength="3"
+                        maxlength="14">
+                    <label id="mensagem_documento_estadual" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-data-nascimento for="data_nascimento">Data Nascimento</label>
+                    <input type="text" id="data_nascimento" name="data_nascimento">
+                    <label id="mensagem_data_nascimento" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields">
+                    <label data-texto-vinculo for="vinculo">Vínculo</label>
+                    <input type="text" id="vinculo" name="vinculo" required
+                        onfocus="foco_campo(this, buscar_informacao_vinculo)">
+                    <label id="mensagem_vinculo" class="mensagem"></label>
+                    <div id="info-vinculo" class="informacao-consulta esconder">
+                    </div>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <fieldset>
+                        <legend data-texto-sexo>Sexo</legend>
+                        <input type="radio" id="sexo_masculino" name="sexo" value="M">
+                        <label data-texto-sexo-masculino>Masculino</label>
+                        <input type="radio" id="sexo_femino" name="sexo" value="F">
+                        <label data-texto-sexo-feminino>Feminino</label>
+                    </fieldset>
+                    <label id="mensagem_sexo" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <fieldset>
+                        <legend data-texto-ativo>Ativo ?</legend>
+                        <input type="radio" id="ativo_sim" name="ativo" value="A">
+                        <label data-texto-sexo-masculino>Sim</label>
+                        <input type="radio" id="ativo_nao" name="ativo" value="I">
+                        <label data-texto-sexo-masculino>Não</label>
+                    </fieldset>
+                    <label id="mensagem_ativo" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-botoes-cadastro">
+                    <button type="button" onclick="botao_cancelar_click()">
+                        <img src="../../../../imagens/cancelar.png">
+                        <span data-texto-botao-cancelar>Cancelar</span>
+                    </button>
+                    <button type="button" id="botao_salvar" onclick="botao_salvar_click()">
+                        <img src="../../../../imagens/salvar.png">
+                        <span data-texto-botao-salvar>Salvar</span>
+                    </button>
+                </div>
+
+                <div class="coluna coluna-operacao esconder">
+                    <img id="imagem" class="esconder" src="../../../../imagens/loading.png">
+                    <label id="operacao"></label>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script src="../../../../config.js"></script>
+    <script src="../../../../utilitarios/padrao.js"></script>
+    <script src="cadastro_pessoa.js"></script>
+</body>

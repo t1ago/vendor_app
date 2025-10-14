@@ -238,7 +238,8 @@ async function incluirFornecedor() {
 
 async function alterarFornecedor() {
   try {
-    const requisicao = await fetch (`${API_HOST}/fornecedoresDam/${valores.id_fornecedor}`,{
+    console.log(valores)
+    const requisicao = await fetch (`${API_HOST}/fornecedoresDam/salvar`,{
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -269,3 +270,68 @@ function salvarFornecedor() {
 function voltar() {
   window.location.href = "../dam/lista_fornecedores.html"
 }
+
+async function exibirDados() {
+  const campo_id = document.getElementById("id");
+  const campo_nome = document.getElementById("nome");
+  const campo_moeda = document.getElementById("moeda");
+  const campo_preco_compra = document.getElementById("compra");
+  const campo_preco_venda = document.getElementById("venda");
+  const campo_grupo = document.getElementById("grupo");
+  const campo_categoria = document.getElementById("categoria");
+  const campo_unidade_medida = document.getElementById("medida");
+  const campo_marca = document.getElementById("marca");
+  const campo_cor = document.getElementById("cor");
+  const campo_descricao = document.getElementById("descricao");
+
+  const url_paramentros = window.location.search
+
+  if (url_paramentros !== '') {
+    const parametros = new URLSearchParams(url_paramentros);
+    const parametro_id = parametros.get('id');
+
+      const requisicao = await fetch(`${API_HOST}/fornecedoresDam/id/${parametro_id}`, {
+        method: "GET",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (requisicao.ok == true) {
+        const resposta = await requisicao.json();
+        const fornecedor = resposta.data[0];
+        console.log(resposta.data[0]);
+
+          campo_id.value = fornecedor.id;
+          campo_nome.value = fornecedor.nome;
+          campo_moeda.value = fornecedor.nome_moeda; 
+          campo_preco_compra.value = fornecedor.preco_compra;
+          campo_preco_venda.value = fornecedor.preco_venda;
+          campo_grupo.value = fornecedor.nome_grupo;
+          campo_categoria.value = fornecedor.nome_categoria;
+          campo_unidade_medida.value = fornecedor.nome_unidade_medida;
+          campo_marca.value = fornecedor.nome_marca;
+          campo_cor.value = fornecedor.cor_hexadecimal;
+          campo_descricao.value = fornecedor.descricao;
+          console.log(fornecedor);
+
+          valores.id_fornecedor = fornecedor.id;
+          valores.nome = fornecedor.nome;
+          valores.id_moeda = fornecedor.id_moeda; 
+          valores.preco_compra = fornecedor.preco_compra;
+          valores.preco_venda = fornecedor.preco_venda;
+          valores.id_grupo = fornecedor.id_grupo;
+          valores.id_categoria = fornecedor.id_categoria;
+          valores.id_unidade_medida = fornecedor.id_unidade_medida;
+          valores.id_marca = fornecedor.id_marca;
+          valores.id_cor = fornecedor.id_cor;
+          valores.descricao = fornecedor.descricao;
+
+      } else {
+        alert("Fornecedor não encontrado.")
+      }
+    }
+  }
+
+exibirDados();

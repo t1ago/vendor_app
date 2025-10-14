@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="lista_produto.css">
+    <link rel="stylesheet" href="../../../../utilitarios/padrao_victor.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor_App (Estudos)</title>
+</head>
+<body>
+   
+    <main id="principal-listagem" >
+        <div id="tabela">
+            <div class="linha">
+                <h1 class="coluna">Lista Fornecedores</h1>
+            </div>
+            <div class="linha">
+                <div class="coluna coluna-campo">
+                    <label for="name">Filtragem de fornecedores</label>
+                    <input type="text" id="name" name="name" oninput="filtrar_dados(event)">
+                </div>
+            </div>
+            <div class="linha espaco-cima">
+                <div class="coluna coluna-tabela">
+                    <table id="tabela-fornecedores">
+                        <thead>
+                            <th>Nome</th>
+                            <th>Moeda</th>
+                            <th>Marca</th>
+                            <th>Categoria</th>
+                            <th>Grupo</th>
+                            <th>Cor</th>
+                            <th>Medida</th>
+                            <th>Preço Venda</th>
+                            <th>Ações</th>
+                        </thead>
+                        <tbody id="corpo_tabela">
+                            <!-- Informações serão inseridas via arquivo JS -->
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+            <div class="linha">
+                <div class="coluna coluna-botoes">
+                    <button onclick="navegarPara('../../../../index.html')">Voltar</button>
+                    <button onclick="navegarPara('./cadastro_produto.html')">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../../../../utilitarios/padrao.js"></script>
+    <script src="../../../../config.js"></script>
+    <script src="./lista_produto.js"></script>
+</body>
+</html>

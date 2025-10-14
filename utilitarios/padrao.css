@@ -40,6 +40,14 @@ button>* {
     vertical-align: middle;
 }
 
+button:hover {
+    opacity: 80%;
+}
+
+button:active {
+    opacity: 100%;
+}
+
 /*EXIBICÃO*/
 .esconder {
     display: none;

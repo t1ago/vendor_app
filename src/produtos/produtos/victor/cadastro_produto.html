@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="./cadastro_produto.css">
+    <link rel="stylesheet" href="../../../../utilitarios/padrao_victor.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor_App (Estudos)</title>
+</head>
+<body>
+    
+    <main id="principal-cadastro">
+        <div id="tabela">
+            <div class="linha">
+                <h1 class="coluna">Cadastro de fornecedor (Victor)</h1>
+            </div>
+            <div class="linha espaco-cima linha-principal">
+                <div class="coluna coluna-campo">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64" onchange="campos_onchange('nome',this)" >
+                </div>
+                <div class="coluna coluna-campo">
+                    <label for="moeda">Moeda</label>
+                    <input type="text" id="moeda" name="moeda" onfocus="focar_campo(this, buscar_informacao_moedas)">
+                    <div id="info_moedas" class="informacao-lista esconder">
+                    </div>
+                </div>
+                <div class="coluna coluna-campo">
+                    <label for="compra">Preço Compra</label>
+                    <input type="text" id="compra" name="compra" required minlength="4" maxlength="64" onchange="campos_onchange('preco_compra',this)">
+                </div>
+                <div class="coluna coluna-campo">
+                    <label for="venda">Preço Venda</label>
+                    <input type="text" id="venda" name="venda" required minlength="4" maxlength="64" onchange="campos_onchange('preco_venda',this)">
+                </div>
+            </div>
+            <div class="linha">
+                <div class="coluna coluna-campo">
+                    <label for="grupo">Grupo</label>
+                    <input type="text" id="grupo" name="grupo" onfocus="focar_campo(this, buscar_informacao_grupos)">
+                    <div id="info_grupos" class="informacao-lista esconder">
+                    </div>
+                </div>
+                <div class="coluna coluna-campo">
+                    <label for="categoria">Categoria</label>
+                    <input type="text" id="categoria" name="categoria" onfocus="focar_campo(this, buscar_informacao_categorias)">
+                    <div id="info_categorias" class="informacao-lista esconder">
+                    </div>
+                </div>
+            </div>
+            <div class="linha">
+                <div class="coluna coluna-campo">
+                    <label for="medida">Unidade de Medida</label>
+                    <input type="text" id="medida" name="medida" onfocus="focar_campo(this,buscar_informacao_medidas)">
+                    <div id="info_medidas" class="informacao-lista esconder">
+                    </div>
+                </div>
+                <div class="coluna coluna-campo">
+                    <label for="marca">Marca</label>
+                    <input type="text" id="marca" name="marca" onfocus="focar_campo(this, buscar_informacao_marca)">
+                    <div id="info_marca" class="informacao-lista esconder">
+                    </div>
+                </div>
+                <div class="coluna coluna-campo" >
+                    <label for="cor">Cor</label>
+                    <input type="text" id="cor" name="cor" onfocus="focar_campo(this, buscar_informacao_cores)">
+                    <div id="info_cores" class="informacao-lista esconder">
+                    </div>
+                </div>
+            </div>
+            <div class="linha">
+                <div class="coluna coluna-campo">
+                    <label for="desc">Descrição</label>
+                    <input type="text" id="desc" required minlength="3" maxlength="120" onchange="campos_onchange('descricao',this)">
+                </div>
+            </div>
+            <div class="linha">
+                <div class="coluna coluna-botoes">
+                    <button onclick="navegarPara('./lista_produto.html')">Cancelar</button>
+                    <button onclick="salvar()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../../../../config.js"></script>
+    <script src="../../../../utilitarios/padrao.js"></script>
+    <script src="./cadastro_produto.js"></script>
+</body>
+</html>

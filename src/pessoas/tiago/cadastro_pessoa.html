@@ -17,51 +17,56 @@
 </head>
 
 <body>
-    <main id="cadastro-pessoa" onclick="clique_geral()">
+    <main id="cadastro-pessoa">
         <form id="formulario">
             <div class="linha">
-                <h1 class="coluna" data-texto-titulo>titulo aqui</h1>
+                <h1 class="coluna" data-texto-titulo></h1>
             </div>
 
-            <div class="linha espaco-cima ">
+            <div class="linha espaco-cima">
                 <div class="coluna coluna-fields">
-                    <label data-texto-nome for="name">Nome</label>
-                    <input type="text" id="name" name="name" required minlength="3" maxlength="64">
+                    <label data-texto-nome for="name"></label>
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64"
+                        onkeyup="campo_onkeyup(this)" onchange="campo_onchange('nome', this)">
                     <label id="mensagem_name" class="mensagem"></label>
                 </div>
 
                 <div class="coluna coluna-fields">
-                    <label data-texto-apelido for="apelido">Apelido</label>
-                    <input type="text" id="apelido" name="apelido" required minlength="3" maxlength="64">
+                    <label data-texto-apelido for="apelido"></label>
+                    <input type="text" id="apelido" name="apelido" required minlength="3" maxlength="64"
+                        onkeyup="campo_onkeyup(this)" onchange="campo_onchange('apelido', this)">
                     <label id="mensagem_apelido" class="mensagem"></label>
                 </div>
             </div>
 
             <div class="linha">
                 <div class="coluna coluna-fields">
-                    <label data-texto-documento-federeal for="documento_federeal">Documento Federeal</label>
+                    <label data-texto-documento-federeal for="documento_federeal"></label>
                     <input type="text" id="documento_federeal" name="documento_federeal" required minlength="3"
-                        maxlength="14">
+                        maxlength="14" onkeyup="campo_onkeyup_number(event)"
+                        onchange="campo_onchange('documento_federeal', this)">
                     <label id="mensagem_documento_federeal" class="mensagem"></label>
                 </div>
 
                 <div class="coluna coluna-fields">
-                    <label data-texto-documento-estadual for="documento_estadual">Documento Estadual</label>
+                    <label data-texto-documento-estadual for="documento_estadual"></label>
                     <input type="text" id="documento_estadual" name="documento_estadual" required minlength="3"
                         maxlength="14">
                     <label id="mensagem_documento_estadual" class="mensagem"></label>
                 </div>
 
-                <div class="coluna coluna-fields">
-                    <label data-texto-data-nascimento for="data_nascimento">Data Nascimento</label>
+                <div class="coluna coluna-fields" data-visible="F">
+                    <label data-texto-data-nascimento for="data_nascimento"></label>
                     <input type="text" id="data_nascimento" name="data_nascimento">
                     <label id="mensagem_data_nascimento" class="mensagem"></label>
                 </div>
+
+                <div class="coluna coluna-fields esconder" data-local-ativo-pessoa-juridica></div>
             </div>
 
             <div class="linha">
-                <div class="coluna coluna-fields">
-                    <label data-texto-vinculo for="vinculo">Vínculo</label>
+                <div class="coluna coluna-fields" data-visible="F">
+                    <label data-texto-vinculo for="vinculo"></label>
                     <input type="text" id="vinculo" name="vinculo" required
                         onfocus="foco_campo(this, buscar_informacao_vinculo)">
                     <label id="mensagem_vinculo" class="mensagem"></label>
@@ -69,38 +74,134 @@
                     </div>
                 </div>
 
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-fields" data-visible="F">
                     <fieldset>
-                        <legend data-texto-sexo>Sexo</legend>
+                        <legend data-texto-sexo></legend>
                         <input type="radio" id="sexo_masculino" name="sexo" value="M">
-                        <label data-texto-sexo-masculino>Masculino</label>
+                        <label data-texto-sexo-masculino></label>
                         <input type="radio" id="sexo_femino" name="sexo" value="F">
-                        <label data-texto-sexo-feminino>Feminino</label>
+                        <label data-texto-sexo-feminino></label>
                     </fieldset>
                     <label id="mensagem_sexo" class="mensagem"></label>
                 </div>
 
-                <div class="coluna coluna-fields">
+                <div class="coluna coluna-fields" id="divAtivo">
                     <fieldset>
-                        <legend data-texto-ativo>Ativo ?</legend>
+                        <legend data-texto-ativo></legend>
                         <input type="radio" id="ativo_sim" name="ativo" value="A">
-                        <label data-texto-sexo-masculino>Sim</label>
+                        <label data-texto-ativo-sim></label>
                         <input type="radio" id="ativo_nao" name="ativo" value="I">
-                        <label data-texto-sexo-masculino>Não</label>
+                        <label data-texto-ativo-nao></label>
                     </fieldset>
                     <label id="mensagem_ativo" class="mensagem"></label>
                 </div>
             </div>
 
+            <div class="linha espaco-cima">
+                <h2 class="coluna" data-texto-titulo-endereco></h2>
+            </div>
+
             <div class="linha">
                 <div class="coluna coluna-botoes-cadastro">
-                    <button type="button" onclick="botao_cancelar_click()">
-                        <img src="../../../../imagens/cancelar.png">
-                        <span data-texto-botao-cancelar>Cancelar</span>
+                    <button type="button" onclick="botao_novo_endereco_click()">
+                        <img src="../../../../imagens/endereco.png">
+                        <span data-texto-botao-novo-endereco>Novo Endereço</span>
                     </button>
-                    <button type="button" id="botao_salvar" onclick="botao_salvar_click()">
+                </div>
+            </div>
+
+            <div data-endereco-cadastro class="linha espaco-cima">
+                <div class="coluna coluna-fields">
+                    <fieldset>
+                        <legend data-texto-tipo-endereco></legend>
+                        <input type="radio" id="tipo_endereco_moradia" name="ativo_endereco" value="M">
+                        <label data-texto-tipo-endereco-moradia></label>
+                        <input type="radio" id="tipo_endereco_cobranca" name="ativo_endereco" value="C">
+                        <label data-texto-tipo-endereco-cobranca></label>
+                        <input type="radio" id="tipo_endereco_entrega" name="ativo_endereco" value="E">
+                        <label data-texto-tipo-endereco-entrega></label>
+                    </fieldset>
+                    <label id="mensagem_ativo_endereco" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div data-endereco-cadastro class="linha">
+                <div class="coluna coluna-fields">
+                    <label data-texto-cep for="cep"></label>
+                    <input type="text" id="cep" name="cep" required minlength="8" maxlength="8">
+                    <label id="mensagem_cep" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-logradouro for="logradouro"></label>
+                    <input type="text" id="logradouro" name="logradouro" required minlength="3" maxlength="256">
+                    <label id="mensagem_logradouro" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-numero for="numero"></label>
+                    <input type="text" id="numero" name="numero" required minlength="3" maxlength="12">
+                    <label id="mensagem_numero" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div data-endereco-cadastro class="linha">
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-bairro for="bairro"></label>
+                    <input type="text" id="bairro" name="bairro" required minlength="3" maxlength="64">
+                    <label id="mensagem_bairro" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-cidade for="cidade"></label>
+                    <input type="text" id="cidade" name="cidade" required minlength="3" maxlength="64">
+                    <label id="mensagem_cidade" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-estado for="estado"></label>
+                    <input type="text" id="estado" name="estado" required minlength="3" maxlength="2">
+                    <label id="mensagem_estado" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <fieldset>
+                        <legend data-texto-ativo-endereco></legend>
+                        <input type="radio" id="ativo_endereco_sim" name="ativo_endereco" value="A">
+                        <label data-texto-ativo-endereco-sim></label>
+                        <input type="radio" id="ativo_endereco_nao" name="ativo_endereco" value="I">
+                        <label data-texto-ativo-endereco-nao></label>
+                    </fieldset>
+                    <label id="mensagem_ativo_endereco" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div data-endereco-cadastro-listagem class="linha">
+                <div class="coluna" id="container-tabela">
+                    <table id="tabela" class="esconder">
+                        <thead>
+                            <tr>
+                                <th>Endereço</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela_dados">
+                        </tbody>
+                    </table>
+                    <h2 id="mensagem" class="esconder" data-texto-tabela-vazia>Nenhuma categoria localizada</h2>
+                </div>
+            </div>
+
+            <div class="linha espaco-cima">
+                <div class="coluna coluna-botoes-cadastro">
+                    <button id="botao_cancelar" type="button" onclick="">
+                        <img src="../../../../imagens/cancelar.png">
+                        <span data-texto-botao-cancelar></span>
+                    </button>
+                    <button type="button" id="botao_salvar">
                         <img src="../../../../imagens/salvar.png">
-                        <span data-texto-botao-salvar>Salvar</span>
+                        <span data-texto-botao-salvar></span>
                     </button>
                 </div>
 

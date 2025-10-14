@@ -70,6 +70,10 @@ textarea {
     background: #f6f6f6;
 }
 
+.coluna-fields>.esconder {
+    display: none;
+}
+
 .coluna-fields>.informacao-consulta.esconder {
     display: none;
 }

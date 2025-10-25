@@ -1,0 +1,159 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fa;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+
+  width: 90%;
+  max-width: 1000px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #2c3e50;
+  margin-top: 30px;
+}
+
+/* Campos gerais */
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #2c3e50;
+
+}
+
+input[type="text"] {
+
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ==== BOTÕES ==== */
+
+.center-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* Botão azul */
+
+#button-address {
+
+  background-color: #4a90e2;
+  color: white;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#button-address:hover {
+  background-color: #357abd;
+  transform: scale(1.25);
+}
+
+/* Botão vermelho X (abaixo do botão azul) */
+
+#button-cancel {
+
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#button-cancel:hover {
+  background-color: #c0392b;
+  transform: scale(1.25);
+}
+
+/* Botão salvar verde grande */
+
+.btn-save {
+
+  display: block;
+  margin: 40px auto;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 16px 60px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+
+.btn-save:hover {
+  background-color: #27ae60;
+  transform: scale(1.25);
+}
+
+
+/* ==== ENDEREÇO ==== */
+.endereco-grid {
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+}
+
+.hidden {
+
+  display: none;
+
+}
+
+/* Responsivo */
+
+@media (max-width: 768px) {
+
+  .endereco-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}

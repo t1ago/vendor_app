@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pessoas_Miguel</title>
+    <link rel="stylesheet" href="pessoa_cadastro.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Pessoas_Miguel</h1>
+
+        <form>
+
+            <!-- === DADOS PESSOAIS === -->
+            <div id="cadastro_section">
+                <div id="div-nome" class="form-group">
+
+                    <label for="nome" id="label-nome">Nome</label>
+
+                    <input type="text" name="nome" id="nome" required>
+                </div>
+
+                <div id="div-apelido" class="form-group">
+
+                    <label for="apelido" id="label-apelido">Apelido</label>
+
+                    <input type="text" name="apelido" id="apelido" required>
+                </div>
+
+                <div id="div-tipo" class="form-group">
+
+                    <label>Tipo de Pessoa</label>
+
+                    <div class="radio-group">
+
+                        <input type="radio" name="tipo_pessoa" id="tipo_pessoaF" value="F">
+
+                        <label for="tipo_pessoaF">F</label>
+
+
+
+                        <input type="radio" name="tipo_pessoa" id="tipo_pessoaJ" value="J">
+
+                        <label for="tipo_pessoaJ">J</label>
+
+                    </div>
+                </div>
+
+                <div id="div-sexo" class="form-group">
+
+                    <label>Sexo</label>
+
+                    <div class="radio-group">
+
+                        <input type="radio" name="sexo" id="sexoM" value="M">
+
+                        <label for="sexoF">M</label>
+
+                        <input type="radio" name="sexo" id="sexoF" value="F">
+
+                        <label for="sexoM">F</label>
+
+                    </div>
+                </div>
+
+                <div id="div-idade" class="form-group">
+
+                    <label for="idade">Idade</label>
+
+                    <input type="text" name="idade" id="idade">
+                </div>
+
+                <div id="div-federal" class="form-group">
+
+                    <label for="federal" id="label-federal">RG</label>
+
+                    <input type="text" name="federal" id="federal">
+                </div>
+
+                <div id="div-estadual" class="form-group">
+
+                    <label for="estadual" id="label-estadual">CPF</label>
+
+                    <input type="text" name="estadual" id="estadual">
+                </div>
+
+                <div id="div-ativo" class="form-group">
+
+                    <label>Ativo</label>
+                    <div class="radio-group">
+
+                        <input type="radio" name="ativo" id="ativoS" value="S">
+
+                        <label for="ativoS">S</label>
+
+                        <input type="radio" name="ativo" id="ativoN" value="N">
+
+                        <label for="ativoN">N</label>
+
+                    </div>
+                </div>
+
+
+
+                <div id="div-vinculo" class="form-group">
+                    <label>Vínculo</label>
+
+                    <div class="radio-group">
+
+                        <input type="radio" name="vinculo" id="vinculoS" value="S">
+
+                        <label for="vinculoS">S</label>
+
+                        <input type="radio" name="vinculo" id="vinculoN" value="N">
+
+                        <label for="vinculoN">N</label>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group center-buttons">
+                <button class="btn" type="button" id="button-address">Adicionar Novo Endereço</button>
+
+                <button class="btn-x hidden" type="button" id="button-cancel">✖</button>
+            </div>
+
+
+            <div id="endereco-section" class="hidden">
+
+                <h2>Endereço</h2>
+                <div class="endereco-grid">
+                    <div class="form-group">
+                        <label for="Cep" id="cep">Cep</label>
+                        <input type="text" id="cep" name="Cep" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Logradouro">Logradouro</label>
+
+                        <input type="text" id="logradouro" name="Logradouro">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Número">Número</label>
+
+                        <input type="text" id="numero" name="Número">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Bairro">Bairro</label>
+                        <input type="text" id="bairro" name="Bairro">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Cidade">Cidade</label>
+                        <input type="text" id="cidade" name="Cidade">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="Estado">Estado</label>
+                        <input type="text" id="estado" name="Estado">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TipoEndereco">Tipo Endereço</label>
+                        <input type="text" id="tipoendereco" name="TipoEndereco">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_pessoa" class="">id_pessoa</label>
+                        <input type="text" id="id_pessoa" name="id_pessoa">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão final -->
+
+            <div class="form-group full-width">
+                <button type="submit" class="btn-save">Salvar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="pessoa_cadastro.js"></script>
+</body>
+
+</html>

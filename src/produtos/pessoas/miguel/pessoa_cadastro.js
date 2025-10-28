@@ -11,18 +11,22 @@ const preencherform = (endereco) => {
 
 }
 
-const cepvalido = (cep) => cep.length == 8 && /^[0-9]+$/.test(cep);
+const cepvalido = (cep) => {
 
+    const cepNumeros = cep.replace(/\D/g, '');
+    return cepNumeros.length === 8;
+};
 
 const pesquisarcep = async function () {
-
 
     const cep = document.getElementById("cep").value
     const url = `http://viacep.com.br/ws/${cep}/json/`
 
     if (cepvalido(cep)) {
+
         const dados = await fetch(url)
         const endereco = await dados.json()
+
         if (endereco.hasOwnProperty('erro')) {
 
             document.getElementById('logradouro').value = 'Cep nao achado'
@@ -30,11 +34,9 @@ const pesquisarcep = async function () {
         } else {
             preencherform(endereco)
         }
-    } else {
-        document.getElementById("logradouro").value = 'CEP incorreto'
     }
+};
 
-}
 document.getElementById('cep')
     .addEventListener('focusout', pesquisarcep);
 
@@ -43,7 +45,6 @@ function Verificacao_pessoa() {
     // checkagem se o botão for pressionado, tanto do PF, quanto do PJ    
     PF = tipoPF.checked
     PJ = tipoPJ.checked
-
 
     const botao = document.getElementById("button-address");
     const campos_info = document.getElementById("endereco-section")
@@ -54,12 +55,13 @@ function Verificacao_pessoa() {
     const dividade = document.getElementById("div-idade")
     const divvinculo = document.getElementById("div-vinculo")
 
-    const nome = document.getElementById("label-nome")
-    const apelido = document.getElementById("label-apelido")
+    function mostrarDiv(id) {
+        document.getElementById(id).style.display = 'block';
+    }
 
-    const federal = document.getElementById("label-federal")
-    const estadual = document.getElementById("label-estadual")
-
+    function esconderDiv(id) {
+        document.getElementById(id).style.display = 'none';
+    }
 
     if (!campos_info.classList.contains("hidden")) {
 
@@ -72,17 +74,16 @@ function Verificacao_pessoa() {
     // Verificação do PF e PJ
     if (PF) {
 
-
         // Bloqueando na tela, as informações do PF
         divsexo.style.display = "block";
         dividade.style.display = "block";
         divvinculo.style.display = "block";
 
-        nome.textContent = "Nome";
-        apelido.textContent = "Apelido";
+        mostrarDiv("div-federal")
+        mostrarDiv("div-estadual")
 
-        federal.textContent = "RG";
-        estadual.textContent = "CPF";
+        esconderDiv("div-cnpj")
+        esconderDiv("div-inscricao")
 
         endereco_input()
 
@@ -92,24 +93,17 @@ function Verificacao_pessoa() {
         dividade.style.display = "none";
         divvinculo.style.display = "none";
 
-        nome.textContent = "Nome Fantasia";
-        apelido.textContent = "Razão social";
+        mostrarDiv("div-cnpj")
+        mostrarDiv("div-inscricao")
 
-        federal.textContent = "CNPJ";
-        estadual.textContent = "Inscrição estadual";
+        esconderDiv("div-federal")
+        esconderDiv("div-estadual")
 
         cadastro_input()
         endereco_input()
-
     }
 
-}
-
-document.getElementById("endereco-section").addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-    }
-});
+};
 
 const cadastro_input = function () {
 
@@ -118,7 +112,7 @@ const cadastro_input = function () {
     inputs.forEach(input => {
         input.value = ''
     });
-}
+};
 
 
 const endereco_input = function () {
@@ -129,7 +123,7 @@ const endereco_input = function () {
         input.value = ''
     });
 
-}
+};
 
 // ao alterar o estado dos elementos "Change", chama a function Verificacao_pessoa
 tipoPF.addEventListener("change", Verificacao_pessoa)
@@ -158,7 +152,8 @@ const endereco_entrada = function () {
 };
 
 endereco_entrada();
-endereco_entrada
+endereco_entrada()
+
 const endereco_remove = function () {
 
     const botao = document.getElementById("button-address");
@@ -184,11 +179,4 @@ const endereco_remove = function () {
 }
 
 endereco_remove()
-
-
-
-
-
-
-
 

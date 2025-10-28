@@ -19,17 +19,13 @@
             <!-- === DADOS PESSOAIS === -->
             <div id="cadastro_section">
                 <div id="div-nome" class="form-group">
-
                     <label for="nome" id="label-nome">Nome</label>
-
-                    <input type="text" name="nome" id="nome">
+                    <input type="text" name="nome" id="nome" maxlength="64">
                 </div>
 
                 <div id="div-apelido" class="form-group">
-
                     <label for="apelido" id="label-apelido">Apelido</label>
-
-                    <input type="text" name="apelido" id="apelido">
+                    <input type="text" name="apelido" id="apelido" maxlength="64">
                 </div>
 
                 <div id="div-tipo" class="form-group">
@@ -39,13 +35,9 @@
                     <div class="radio-group">
 
                         <input type="radio" name="tipo_pessoa" id="tipo_pessoaF" value="F">
-
                         <label for="tipo_pessoaF">F</label>
-
                         <input type="radio" name="tipo_pessoa" id="tipo_pessoaJ" value="J">
-
                         <label for="tipo_pessoaJ">J</label>
-
                     </div>
                 </div>
 
@@ -56,13 +48,9 @@
                     <div class="radio-group">
 
                         <input type="radio" name="sexo" id="sexoM" value="M">
-
                         <label for="sexoF">M</label>
-
                         <input type="radio" name="sexo" id="sexoF" value="F">
-
                         <label for="sexoM">F</label>
-
                     </div>
                 </div>
 
@@ -70,36 +58,43 @@
 
                     <label for="idade">Idade</label>
 
-                    <input type="text" name="idade" id="idade">
+                    <input type="text" name="idade" id="idade" maxlength="2">
                 </div>
 
                 <div id="div-federal" class="form-group">
 
-                    <label for="federal" id="label-federal">RG</label>
-
-                    <input type="text" name="federal" id="federal">
+                    <label for="federal">RG</label>
+                    <input type="text" name="federal" id="federal" maxlength="14">
                 </div>
 
                 <div id="div-estadual" class="form-group">
 
-                    <label for="estadual" id="label-estadual">CPF</label>
-
-                    <input type="text" name="estadual" id="estadual">
+                    <label for="estadual">CPF</label>
+                    <input type="text" name="estadual" id="estadual" maxlength="11">
                 </div>
 
-                <div id="div-ativo" class="form-group">
+                <div id="div-cnpj" class="hidden">
+
+                    <label for="cnpj" id="label-cnpj">CNPJ</label>
+                    <input type="text" name="cnpj" id="cnpj" maxlength="18">
+                </div>
+
+
+                <div id="div-inscricao" class="hidden">
+
+                    <label for="inscricao" id="label-inscrição">Inscrição Estadual</label>
+                    <input type="text" name="inscricao" id="inscricao" maxlength="14">
+                </div>
+
+                <div id=" div-ativo" class="form-group">
 
                     <label>Ativo</label>
                     <div class="radio-group">
 
                         <input type="radio" name="ativo" id="ativoS" value="S">
-
                         <label for="ativoS">S</label>
-
                         <input type="radio" name="ativo" id="ativoN" value="N">
-
                         <label for="ativoN">N</label>
-
                     </div>
                 </div>
 
@@ -109,21 +104,20 @@
                     <div class="radio-group">
 
                         <input type="radio" name="vinculo" id="vinculoS" value="S">
-
                         <label for="vinculoS">S</label>
-
                         <input type="radio" name="vinculo" id="vinculoN" value="N">
-
                         <label for="vinculoN">N</label>
-
                     </div>
                 </div>
             </div>
 
             <div class="center-buttons">
+
                 <button type="button" id="button-address" class="button-address">Adicionar novo endereço</button>
-                <div id="loader-endereco" class="loader hidden"></div>
+                <div id="loader-endereco" class="loader hidden">
+                </div>
                 <button type="button" id="button-cancel" class="hidden">✖</button>
+
             </div>
             <div id="endereco-section" class="hidden">
 
@@ -133,33 +127,33 @@
 
                     <div class="form-group">
                         <label for="Cep">Cep</label>
-                        <input type="text" id="cep" name="Cep" required>
+                        <input type="text" id="cep" name="Cep" required maxlength="9">
                     </div>
 
                     <div class="form-group">
                         <label for="Logradouro">Logradouro</label>
-                        <input type="text" id="logradouro" name="Logradouro" required>
+                        <input type="text" id="logradouro" name="Logradouro" disabled required> 
                     </div>
 
                     <div class="form-group">
                         <label for="Número">Número</label>
-                        <input type="text" id="numero" name="Número" required>
+                        <input type="text" id="numero" name="Número" >
                     </div>
 
                     <div class="form-group">
                         <label for="Bairro">Bairro</label>
-                        <input type="text" id="bairro" name="Bairro" required>
+                        <input type="text" id="bairro" name="Bairro" disabled required>
                     </div>
 
                     <div class="form-group">
                         <label for="Cidade">Cidade</label>
-                        <input type="text" id="cidade" name="Cidade" required>
+                        <input type="text" id="cidade" name="Cidade" disabled required>
                     </div>
 
 
                     <div class="form-group">
                         <label for="Estado">Estado</label>
-                        <input type="text" id="estado" name="Estado" required>
+                        <input type="text" id="estado" name="Estado" disabled required>
                     </div>
                     <div class="form-group tipo-endereco">
                         <label for="tipo_endereco">Tipo Endereço</label>
@@ -184,8 +178,20 @@
             </div>
         </form>
     </div>
-
     <script src="pessoa_cadastro.js"></script>
+
+    <script src=https://code.jquery.com/jquery-3.6.1.min.js></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $('#numero').mask('00000A')
+        $('#idade').mask('00')
+        $('#cep').mask('00000-000');
+        $('#estadual').mask('000.000.000-00', { reverse: true });
+        $('#cnpj').mask('00.000.000/0000-00', { reverse: true });
+        $('#federal').mask('00.000.000-0');
+        $('#inscricao').mask('000.000.000.000');
+    </script>
 </body>
 
 </html>

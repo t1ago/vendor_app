@@ -1,10 +1,44 @@
-
 // pegando dados do document HTML
 const tipoPF = document.getElementById("tipo_pessoaF")
 const tipoPJ = document.getElementById("tipo_pessoaJ")
 
-function Verificacao_pessoa() {
+const preencherform = (endereco) => {
 
+    document.getElementById("logradouro").value = endereco.logradouro;
+    document.getElementById("bairro").value = endereco.bairro;
+    document.getElementById("cidade").value = endereco.localidade;
+    document.getElementById("estado").value = endereco.uf;
+
+}
+
+const cepvalido = (cep) => cep.length == 8 && /^[0-9]+$/.test(cep);
+
+
+const pesquisarcep = async function () {
+
+
+    const cep = document.getElementById("cep").value
+    const url = `http://viacep.com.br/ws/${cep}/json/`
+
+    if (cepvalido(cep)) {
+        const dados = await fetch(url)
+        const endereco = await dados.json()
+        if (endereco.hasOwnProperty('erro')) {
+
+            document.getElementById('logradouro').value = 'Cep nao achado'
+
+        } else {
+            preencherform(endereco)
+        }
+    } else {
+        document.getElementById("logradouro").value = 'CEP incorreto'
+    }
+
+}
+document.getElementById('cep')
+    .addEventListener('focusout', pesquisarcep);
+
+function Verificacao_pessoa() {
 
     // checkagem se o botão for pressionado, tanto do PF, quanto do PJ    
     PF = tipoPF.checked
@@ -50,7 +84,7 @@ function Verificacao_pessoa() {
         federal.textContent = "RG";
         estadual.textContent = "CPF";
 
-        campos_value()
+        endereco_input()
 
     } if (PJ) {
 
@@ -64,12 +98,38 @@ function Verificacao_pessoa() {
         federal.textContent = "CNPJ";
         estadual.textContent = "Inscrição estadual";
 
-        campos_value()
+        cadastro_input()
+        endereco_input()
 
     }
-   
+
 }
 
+document.getElementById("endereco-section").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+    }
+});
+
+const cadastro_input = function () {
+
+    const inputs = document.querySelectorAll("#cadastro_section input");
+
+    inputs.forEach(input => {
+        input.value = ''
+    });
+}
+
+
+const endereco_input = function () {
+
+    const inputs = document.querySelectorAll("#endereco-section input");
+
+    inputs.forEach(input => {
+        input.value = ''
+    });
+
+}
 
 // ao alterar o estado dos elementos "Change", chama a function Verificacao_pessoa
 tipoPF.addEventListener("change", Verificacao_pessoa)
@@ -78,62 +138,57 @@ tipoPJ.addEventListener("change", Verificacao_pessoa)
 Verificacao_pessoa()
 
 
-const endereco = function () {
-
+const endereco_entrada = function () {
     const botao = document.getElementById("button-address");
     const botao_cancel = document.getElementById("button-cancel");
+    const campos_info = document.getElementById("endereco-section");
+    const loader = document.getElementById("loader-endereco");
 
     botao.addEventListener("click", function () {
+        botao.style.display = "none";
+        loader.style.display = "block";
 
-        campos_info = document.getElementById("endereco-section")
+        setTimeout(() => {
 
-        campos_info.classList.remove("hidden");
-
-        botao.style.display = "none"
-        botao_cancel.style.display = "block"
+            loader.style.display = "none";
+            botao_cancel.style.display = "block"
+            campos_info.classList.remove("hidden");
+        }, 1000);
     });
+};
 
-}
-
-endereco()
-
-const campos_value = function () {
-
-    const inputs = document.querySelectorAll("#endereco-section input");
-
-    inputs.forEach(input => {
-        input.value = ''
-    });
-
-    const input = document.querySelectorAll("#cadastro_section input");
-
-    input.forEach(input => {
-        input.value = ''
-    });
-}
-
+endereco_entrada();
+endereco_entrada
 const endereco_remove = function () {
 
     const botao = document.getElementById("button-address");
     const botao_cancel = document.getElementById("button-cancel");
+    const loader = document.getElementById("loader-endereco");
+    const campo = document.getElementById("endereco-section");
 
     botao_cancel.addEventListener("click", function () {
+        botao_cancel.style.display = "none"
 
-        campo = document.getElementById("endereco-section")
-
+        loader.style.display = "block"
         campo.classList.add("hidden")
 
-        botao_cancel.style.display = "none"
-        botao.style.display = "block"
+        setTimeout(() => {
 
-        campos_value()
+            loader.style.display = "none"
+            botao.style.display = "block"
+        }, 1000);
+
+        endereco_input()
 
     });
-
-
-
 }
 
 endereco_remove()
+
+
+
+
+
+
 
 

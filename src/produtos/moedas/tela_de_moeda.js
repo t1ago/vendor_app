@@ -4,17 +4,27 @@ campo_moeda = document.getElementById("moeda")
 mensagemmoeda = document.getElementById("mensagemmoeda")
 mensagemnome = document.getElementById("mensagemnome")
 
-function validarcampomoeda() {
-    mensagemmoeda.innerHTML = ""
 
-    if (campo_moeda.validity.valueMissing == true) {
-        mensagemmoeda.innerHTML = "informe a moeda"
-        return false
+async function cadastromoedas() {
+    let moeda = {
+        nome: campo_nome.value,
+        moeda: campo_moeda.value
     }
 
-    if (campo_moeda.validity.tooShort == true) {
-        mensagemmoeda.innerHTML = "Mínimo de 3 letras"
-        return false
+    let requisicao = await fetch(`${API_HOST}/moedas`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(moeda)
+    })
+
+    if (requisicao.ok) {
+        let resposta = await requisicao.json()
+
+        campo_id.value = resposta.id || (resposta.data ? resposta.data.id : '')
+
+    } else {
+        // Tratar erro de POST
+        console.error("Erro ao cadastrar moeda:", requisicao.status)
     }
 
     if (campo_moeda.validity.tooLong == true) {
@@ -25,18 +35,25 @@ function validarcampomoeda() {
     return false
 }
 
-
-function validarcamponome() {
-    mensagemnome.innerHTML = ""
-
-    if (campo_nome.validity.valueMissing == true) {
-        mensagemnome.innerHTML = "informe o nome"
-        return false
+async function alterandomoedas() {
+    let moeda_alterada = {
+        id: campo_id.value,
+        nome: campo_nome.value,
+        moeda: campo_moeda.value
     }
 
-    if (campo_nome.validity.tooShort == true) {
-        mensagemnome.innerHTML = "Mínimo de 3 letras"
-        return false
+    let requisicao = await fetch(`${API_HOST}/moedas/${moeda_alterada.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(moeda_alterada)
+    })
+
+    if (requisicao.ok) {
+        // Sucesso na alteração
+        console.log("Moeda alterada com sucesso!")
+    } else {
+        // Tratar erro de PUT
+        console.error("Erro ao alterar moeda:", requisicao.status)
     }
 
     if (campo_nome.validity.tooLong == true) {
@@ -48,108 +65,41 @@ function validarcamponome() {
 }
 
 
-function voltarmoeda() {
-    window.location.href = "lista_moeda.html"; // redireciona para a lista
-}
+function botao_salvar() {
 
+    if (campo_id.value == "" || campo_id.value == null) {
 
-function cadastrar_moeda() {
-    // Verifica se não há nenhum item "moeda" no localStorage, e se não houver, inicializa como um array vazio
-    if (window.localStorage.getItem("moeda") == null) {
-        window.localStorage.setItem("moeda", "[]")
-    }
-
-    // Recupera o item "moeda" do localStorage
-    moedas = window.localStorage.getItem("moeda")
-    // Converte o JSON armazenado no localStorage em um array de objetos
-    listasmoedas = JSON.parse(moedas)
-    // Cria um novo objeto moeda com os valores dos campos de entrada
-    moeda = {
-        'id': null,
-        'moeda': campo_moeda.value,
-        'nome': campo_nome.value
-    }
-    // Se o array de moedas estiver vazio, define o ID como 1
-    if (listasmoedas.length == 0) {
-        moeda.id = 1
+        cadastromoedas()
     } else {
-        // Ordena as moedas pelo ID em ordem decrescente
-        listasmoedas_ordenada = listasmoedas.sort(
-            function (a, b) {
-                return a - b
-            }
-        ).reverse()
-        // Obtém a última moeda (com o maior ID)
-        ultimamoeda = listasmoedas_ordenada[0]
-        // Define o ID da nova moeda como o próximo número após o maior ID existente
-        moeda.id = ultimamoeda.id + 1
+
+        alterandomoedas()
     }
-    // Define o valor do campo ID com o ID gerado para a nova moeda
-    campo_id.value = moeda.id
 
-    // Adiciona a nova moeda ao array de moedas
-    listasmoedas.push(moeda)
-    // Converte o array atualizado de moedas para JSON
-    moedas = JSON.stringify(listasmoedas)
-    // Armazena o array atualizado no localStorage
-    window.localStorage.setItem("moeda", moedas)
-}
-
-alterar_moeda = function () {
-    moedas = window.localStorage.getItem("moeda")
-
-    listasmoedas = JSON.parse(moedas)
-
-
-    indice = listasmoedas.findIndex(function (valor, array_indice, array) {
-        return valor.id == campo_id.value
-    })
-
-    moeda = listasmoedas[indice]
-    moeda.nome = campo_nome.value
-    moeda.moeda = campo_moeda.value
-    listasmoedas[indice] = moeda
-
-
-    window.localStorage.setItem('moeda', JSON.stringify(listasmoedas))
-
-}
-
-botao_salvar_click = function () {
-
-
-    if (campo_id.value == "") {
-        cadastrar_moeda()
-    }
-    else {
-        alterar_moeda()
-    }
     window.location.href = "lista_moeda.html"
 }
 
-function exibirdados() {
+async function exibirdados() {
     let parametros = window.location.search
-
     if (parametros) {
-        // ?id=10
-        parametrosquebrado = new URLSearchParams(parametros)
-        // [id, 10]
-        parametrosid = parametrosquebrado.get("id")
-        // 10
-        let moedas = window.localStorage.getItem("moeda")
+        let parametrosquebrado = new URLSearchParams(parametros)
+        let parametrosid = parametrosquebrado.get("id")
 
-        let listasmoedas = JSON.parse(moedas)
 
-        let localizado = listasmoedas.find(function (item, array_indice, array) {
-            return item.id == parametrosid
-        })
-        campo_id.value = localizado.id
-        campo_nome.value = localizado.nome
-        campo_moeda.value = localizado.moeda
+        campo_id.value = parametrosid || ""
+
+        if (parametrosid) {
+            let requisicao = await fetch(`${API_HOST}/moedas?id=${parametrosid}`)
+
+            if (requisicao.ok) {
+                let localizado = await requisicao.json()
+                let moeda = localizado.data[0]
+
+                campo_id.value = parametrosid;
+                campo_nome.value = moeda.nome || "";
+                campo_moeda.value = moeda.moeda || "";
+            }
+        }
     }
 }
 
-
 exibirdados()
-
-

@@ -37,7 +37,6 @@ function limpar_campo() {
 
 function voltar() {
     window.location.href = "../medidas/lista_medidas.html"
-    
 }
 
 function incluir() {

@@ -1,0 +1,73 @@
+#principal-cadastro {
+    flex: 1 1 50%;
+    max-width: 1500px;
+    background-color: #e0effb;
+    border-radius: 15px;
+}
+.informacao-lista.esconder {
+    display: none;
+}
+.informacao-lista {
+    min-height: 50px;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 15px;
+    background-color: #94bbd0;
+    max-width: 400px;
+    position: absolute;
+    margin-top: 63px;
+}
+.informacao-lista>ul {
+    margin: 12px;
+    padding: 0px;
+}
+.informacao-lista>ul>li {
+    padding: 6px;
+    margin: 0px;
+    color: #ffffff;
+    list-style-type: none;
+}
+.informacao-lista>ul>li:hover {
+    background-color: #6b99b1;
+    color:#ffffff;
+    border-radius: 12px;
+}
+@keyframes girar {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.elemento_animado {
+    overflow: hidden;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+}
+.elemento_animado_grande {
+    overflow: hidden;
+    min-width: 0%;
+    min-height: 0%;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+.elemento_animado_grande>.animar {
+    width: 600px;
+}
+main {
+    position: relative;
+}
+.carregando {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #eeeeeeee;
+}
+.animar {
+    animation: girar 2s linear infinite;
+}

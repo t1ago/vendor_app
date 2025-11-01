@@ -1,5 +1,5 @@
-campo_nome = document.getElementById("nome")
-campo_moeda = document.getElementById("moeda")
+let campo_nome = document.getElementById("nome")
+let campo_moeda = document.getElementById("moeda")
 
 function abrirCadastro() {
     window.location.href = "tela_de_moeda.html"
@@ -10,66 +10,67 @@ function voltarparaindex() {
 }
 
 let listamoeda = [];
-function carregarMoedas() {
+async function carregarMoedas() {
     const corpotabela = document.getElementById("tabela-moedas")
     corpotabela.innerHTML = "";
 
-    let moeda = localStorage.getItem("moeda");
-    if (moeda) {
-        listamoeda = JSON.parse(moeda);
+    let requisicao = await fetch(`${API_HOST}/moedas`)
+    if (requisicao.ok) {
+        let resposta = await requisicao.json()
+        let lista = resposta.data
 
+        adicionando_coluna = function (linha, valor) {
+            let coluna = document.createElement('td');
+            let span = document.createElement('span');
+            span.innerHTML = valor;
+            coluna.appendChild(span);
+            linha.appendChild(coluna);
+        };
 
+        adicionando_botao = function (linha, url_img, funcao) {
+            const coluna = document.createElement("td");
+            const botao = document.createElement("button");
+            const imagem = document.createElement("img");
 
-        listamoeda.forEach(function (item, i) {
-            const linha = document.createElement("tr");
-            const coluna_moeda = document.createElement("td")
-            const coluna_nome = document.createElement("td")
-            const coluna_acoes = document.createElement("td")
-            const span_moeda = document.createElement("span")
-            const span_nome = document.createElement("span")
-            const btn_editar = document.createElement("button")
-            const btn_excluir = document.createElement("button")
+            imagem.src = url_img;
+            imagem.width = 30;
+            imagem.height = 18;
 
-            btn_editar.innerHTML = "editar"
-            btn_editar.onclick = () => editar_coluna(item.id);
+            botao.appendChild(imagem);
+            botao.onclick = funcao;
 
-            btn_excluir.innerHTML = "excluir"
-            btn_excluir.onclick = () => excluir_coluna(item.id);
+            coluna.appendChild(botao);
+            linha.appendChild(coluna);
+        }
 
-            span_moeda.innerHTML = item.moeda
-            span_nome.innerHTML = item.nome
+        lista.forEach((item) => {
+            let linha = document.createElement('tr');
+            adicionando_coluna(linha, item.nome);
+            adicionando_coluna(linha, item.moeda);
 
-            linha.appendChild(coluna_moeda)
-            coluna_moeda.appendChild(span_moeda)
-            linha.appendChild(coluna_nome)
-            coluna_nome.appendChild(span_nome)
-            coluna_acoes.appendChild(btn_editar)
-            coluna_acoes.appendChild(btn_excluir)
-            linha.appendChild(coluna_acoes)
-            corpotabela.appendChild(linha)
+            adicionando_botao(linha, "../../../imagens/editar.png", () => editar_item(item));
+            adicionando_botao(linha, "../../../imagens/remover.png", () => excluir_item(item));
+
+            corpotabela.appendChild(linha);
         })
 
     }
+};
+
+editar_item = async function (item) {
+    // Redirect to edit page with item id in query string
+    window.location.href = "tela_de_moeda.html?id=" + item.id;
 }
 
 
-function excluir_coluna(id) {
-    let moeda = localStorage.getItem("moeda");
-    let listasmoeda = JSON.parse(moeda)
-
-    indice = listasmoeda.findIndex(function (valor, array_indice, array) {
-        return valor.id == id
+excluir_item = async function (item) {
+    await fetch(`${API_HOST}/moedas/${item.id}`, {
+        method: "DELETE"
     })
-    listasmoeda.splice(indice, 1)
-
-    window.localStorage.setItem('moeda', JSON.stringify(listasmoeda))
-
     carregarMoedas()
 
 }
 
-function editar_coluna(id) {
-    window.location.href = "tela_de_moeda.html?id=" + id
+carregarMoedas()
 
-}
-carregarMoedas();
+

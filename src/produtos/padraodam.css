@@ -14,7 +14,7 @@
 
 /* Container Central*/
 .container{
-    max-width: 600px;
+    max-width: 1400px;
     margin: 30px auto;
     padding: 30px;
     background-color: #ffffff;
@@ -24,6 +24,7 @@
 
 .tabela-container {
   overflow-x: auto;
+  overflow-y: auto;
   max-width: 100%;
 }
 
@@ -212,11 +213,11 @@ div.oculto {
   margin-top: 4px;
 }
 
-div:not(.oculto) {
+/*div:not(.oculto) {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-}
+}*/
 
 .seletor {
   padding: 6px 12px;

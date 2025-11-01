@@ -1,7 +1,7 @@
 //Utilitários gerais
 const el = id => document.getElementById(id);
 
-//Carrega as cores doii localStorage
+//Carrega as cores do localStorage
 function carregarCores() {
     return JSON.parse(localStorage.getItem("listaCores")) || [];
 }

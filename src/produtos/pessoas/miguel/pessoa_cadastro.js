@@ -47,13 +47,16 @@ function Verificacao_pessoa() {
     PJ = tipoPJ.checked
 
     const botao = document.getElementById("button-address");
-    const campos_info = document.getElementById("endereco-section")
-    const botao_cancel = document.getElementById("button-cancel")
+    const campos_info = document.getElementById("endereco-section");
+    const botao_cancel = document.getElementById("button-cancel");
+
+    const nome = document.getElementById("label-nome");
+    const apelido = document.getElementById("label-apelido");
 
     // pegando dados do document HTML
-    const divsexo = document.getElementById("div-sexo")
-    const dividade = document.getElementById("div-idade")
-    const divvinculo = document.getElementById("div-vinculo")
+    const divsexo = document.getElementById("div-sexo");
+    const dividade = document.getElementById("div-idade");
+    const divvinculo = document.getElementById("div-vinculo");
 
     function mostrarDiv(id) {
         document.getElementById(id).style.display = 'block';
@@ -79,6 +82,9 @@ function Verificacao_pessoa() {
         dividade.style.display = "block";
         divvinculo.style.display = "block";
 
+        nome.textContent = "Nome"
+        apelido.textContent = "Apelido"
+
         mostrarDiv("div-federal")
         mostrarDiv("div-estadual")
 
@@ -92,6 +98,9 @@ function Verificacao_pessoa() {
         divsexo.style.display = "none";
         dividade.style.display = "none";
         divvinculo.style.display = "none";
+
+        nome.textContent = "Razão social"
+        apelido.textContent = "Nome fantasia"
 
         mostrarDiv("div-cnpj")
         mostrarDiv("div-inscricao")

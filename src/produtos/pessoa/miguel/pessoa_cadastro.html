@@ -17,6 +17,10 @@
         <form>
 
             <!-- === DADOS PESSOAIS === -->
+            <div class="hidden">
+                <input type="text" id="id">
+            </div>
+
             <div id="cadastro_section">
                 <div id="div-nome" class="form-group">
                     <label for="nome" id="label-nome">Nome</label>
@@ -127,31 +131,31 @@
 
                     <div class="form-group">
                         <label for="Cep">Cep</label>
-                        <input type="text" id="cep" name="Cep" required maxlength="9">
+                        <input type="text" id="cep" name="Cep" maxlength="9">
                     </div>
 
                     <div class="form-group">
                         <label for="Logradouro">Logradouro</label>
-                        <input type="text" id="logradouro" name="Logradouro" disabled required> 
+                        <input type="text" id="logradouro" name="Logradouro" disabled>
                     </div>
 
                     <div class="form-group">
                         <label for="Número">Número</label>
-                        <input type="text" id="numero" name="Número" required>
+                        <input type="text" id="numero" name="Número">
                     </div>
                     <div class="form-group">
                         <label for="Bairro">Bairro</label>
-                        <input type="text" id="bairro" name="Bairro" disabled required>
+                        <input type="text" id="bairro" name="Bairro" disabled>
                     </div>
 
                     <div class="form-group">
                         <label for="Cidade">Cidade</label>
-                        <input type="text" id="cidade" name="Cidade" disabled required>
+                        <input type="text" id="cidade" name="Cidade" disabled>
                     </div>
 
                     <div class="form-group">
                         <label for="Estado">Estado</label>
-                        <input type="text" id="estado" name="Estado" disabled required>
+                        <input type="text" id="estado" name="Estado" disabled>
                     </div>
                     <div class="form-group tipo-endereco">
                         <label for="tipo_endereco">Tipo Endereço</label>
@@ -169,12 +173,11 @@
                 </div>
             </div>
 
-            <!-- Botão final -->
-
             <div class="form-group full-width">
-                <button type="submit" class="btn-save">Salvar</button>
+                <button onclick="botao_salvar()" type="button" class="btn-save">Salvar</button>
             </div>
         </form>
+        <script src="../../../../config.js"></script>
     </div>
     <script src="pessoa_cadastro.js"></script>
 

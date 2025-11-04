@@ -1,3 +1,18 @@
+const campo_id = document.getElementById("id")
+const campo_nome = document.getElementById("nome")
+const campo_apelido = document.getElementById("apelido")
+const campo_tipo_pessoa_f = document.getElementById("tipo_pessoaF")
+const campo_tipo_pessoa_j = document.getElementById("tipo_pessoaJ")
+const campo_sexo_m = document.getElementById("sexoM")
+const campo_sexo_f = document.getElementById("sexoF")
+const campo_idade = document.getElementById("idade")
+const campo_federal = document.getElementById("federal")
+const campo_estadual = document.getElementById("estadual")
+const campo_ativo_s = document.getElementById("ativoS")
+const campo_ativo_n = document.getElementById("ativoN")
+const campo_vinculo_s = document.getElementById("vinculoS")
+const campo_vinculo_n = document.getElementById("vinculoN")
+
 // pegando dados do document HTML
 const tipoPF = document.getElementById("tipo_pessoaF")
 const tipoPJ = document.getElementById("tipo_pessoaJ")
@@ -188,4 +203,103 @@ const endereco_remove = function () {
 }
 
 endereco_remove()
+
+const corpomontado = function () {
+
+    const getValorRadio = (campo_s, campo_n) => {
+        if (campo_s.checked) return 'S';
+        if (campo_n.checked) return 'N';
+        return null;
+    }
+
+
+    const getTipoPessoa = () => {
+        if (campo_tipo_pessoa_f.checked) return 'F';
+        if (campo_tipo_pessoa_j.checked) return 'J';
+        return null;
+    }
+
+    const getSexo = () => {
+        if (campo_sexo_m.checked) return 'M';
+        if (campo_sexo_f.checked) return 'F';
+        return null;
+    }
+
+    return {
+        id: campo_id.value,
+        nome: campo_nome.value,
+        apelido: campo_apelido.value,
+        tipo_pessoa: getTipoPessoa(),
+        sexo: getSexo(),
+        ativo: getValorRadio(campo_ativo_s, campo_ativo_n) === 'S' ? true : false,
+        id_vinculo: getValorRadio(campo_vinculo_s, campo_vinculo_n),
+        data_inicio: campo_idade.value,
+        documento_federal: campo_federal.value,
+        documento_estadual: campo_estadual.value,
+
+
+    }
+}
+
+const salvando_Tela = async function () {
+
+    const corpo = corpomontado()
+
+    try {
+        let requisicao = await fetch(`${API_HOST}/pessoas/miguel`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(corpo)
+        });
+
+        if (requisicao.ok) {
+            const resposta = await requisicao.json();
+            campo_id.value = resposta.id;
+
+        } else {
+
+        }
+    } finally {
+
+    }
+}
+
+const atualizando_tela = async function () {
+
+    const corpo = corpomontado()
+    try {
+        let requisicao = await fetch(`${API_HOST}/pessoas/miguel/${campo_id.value}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(corpo)
+        })
+        if (requisicao.ok) {
+            const resposta = await requisicao.json()
+            campo_id.value = resposta.id
+        } else {
+
+        }
+    } finally {
+
+    }
+}
+
+
+const botao_salvar = async function () {
+    const id = document.getElementById("id")
+
+    if (id.value == "") {
+        await salvando_Tela()
+    }
+    else {
+        await atualizando_tela()
+    }
+
+}
+
+// Add event listener to save button
+
 

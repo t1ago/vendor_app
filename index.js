@@ -41,3 +41,7 @@ botao_listar_fornecedores_click = function () {
 botao_listar_fornecedor_miguel_click = function () {
     navegarPara('./src/produtos/fornecedores/miguel/lista_fornecedor.html')
 }
+
+botao_listar_pessoas_miguel_click = function() {
+    navegarPara('./src/produtos/pessoa/miguel/pessoas_cadastro.html')
+}

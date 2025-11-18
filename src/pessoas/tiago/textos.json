@@ -33,5 +33,8 @@
     "tipo_endereco_moradia": "Moradia",
     "tipo_endereco_cobranca": "Cobrança",
     "tipo_endereco_entrega": "Entregas",
-    "mensagem_tabela_vazia": "Nenhum endereço informado"
+    "mensagem_tabela_vazia": "Nenhum endereço informado",
+    "alerta_botao": "OK",
+    "alerta_erro_tipo_endereco_selecionar": "Selecione um Tipo de Endereço",
+    "alerta_erro_endereco_ativo_selecionar": "Selecione Ativo ou Inativo para o Endereço"
 }

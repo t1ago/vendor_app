@@ -1,207 +1,4 @@
 
-grupo_botoes = document.getElementsByClassName('coluna-botoes-cadastro')[0]
-grupo_mensagem = document.getElementsByClassName('coluna-operacao')[0]
-mensagem_operacao = document.getElementById('operacao')
-mensagem_imagem = document.getElementById('imagem')
-botao_cancelar = document.getElementById('botao_cancelar')
-botao_salvar = document.getElementById('botao_salvar')
-
-valores_dados = {
-    id_pessoa: null,
-    nome: null,
-    apelido: null,
-    tipo_pessoa: null,
-    sexo: null,
-    data_inicio: null,
-    documento_estadual: null,
-    documento_federeal: null,
-    id_vinculo: null,
-    ativo: null,
-    enderecos: []
-}
-
-//Auxiliares
-adicionarValorObjeto = function (objeto, propriedade, valor) {
-    objeto[propriedade] = valor
-}
-
-adicionarValorCampo = function (id, valor) {
-    elemento = document.getElementById(id)
-
-    if (elemento.type == 'radio') {
-        elemento.checked = valor
-    }
-}
-
-//Validações
-campo_onkeyup = function (elemento) {
-    return validar_campo_estrutura(elemento)
-}
-
-campo_onkeyup_number = function (event) {
-    value = event.keyCode
-    if (value < 48 || value > 57) {
-        event.currentTarget.value = event.currentTarget.value.slice(0, event.currentTarget.value.length - 1)
-    }
-    return validar_campo_estrutura(event.currentTarget)
-}
-
-campo_onchange = function (propriedade, elemento) {
-    if (validar_campo_estrutura(elemento) == false) {
-        adicionarValorObjeto(valores_dados, propriedade, elemento.value)
-    } else {
-        adicionarValorObjeto(valores_dados, propriedade, null)
-    }
-
-    console.log(valores_dados)
-}
-
-validar_campo_estrutura = function (elemento) {
-    campo_id = elemento.id
-    elemento_pai = elemento.parentNode
-    mensagem_id = elemento_pai.getElementsByClassName('mensagem')[0].id
-
-    return validar_campo(campo_id, mensagem_id)
-}
-
-validar_campo = function (campod_id, mensagem_id) {
-    campo = document.getElementById(campod_id)
-    campo_name = campo.name
-
-    mensagem = document.getElementById(mensagem_id)
-    label = document.querySelector(`label[for=${campo_name}]`)
-    label_value = label.innerHTML
-
-    validacoes = []
-
-    if (campo.required) {
-        validacoes.push('valueMissing')
-    }
-
-    if (campo.minLength) {
-        validacoes.push('tooShort')
-    }
-
-    if (campo.maxLength) {
-        validacoes.push('tooLong')
-    }
-
-    campo.classList.remove('erro')
-    mensagem.innerHTML = ''
-    mensagem.classList.remove('erro')
-
-    tem_erro = false
-
-    for (let index = 0; index < validacoes.length; index++) {
-        const validacao = validacoes[index];
-        resultado = campo.validity[validacao]
-
-        if (resultado) {
-
-            mensagem_texto = ''
-            switch (validacao) {
-                case 'valueMissing':
-                    mensagem_texto = `${label_value} não informado`
-                    break;
-                case 'tooShort':
-                    mensagem_texto = `Informe uma palavra com ${campo.minLength} letras`
-                    break;
-                case 'tooLong':
-                    mensagem_texto = `Informe um texto com até ${campo.maxLength} letras`
-                    break;
-                default:
-                    break;
-            }
-
-            campo.classList.add('erro')
-            mensagem.innerHTML = mensagem_texto
-            mensagem.classList.add('erro')
-
-            tem_erro = true
-            break
-        }
-    }
-
-    return tem_erro
-}
-
-
-
-//Endereços
-botao_novo_endereco_click = function () {
-    document.querySelectorAll('[data-endereco-cadastro]').forEach(function (elemento) {
-        elemento.classList.remove('esconder')
-    })
-
-    document.querySelectorAll('[data-endereco-cadastro-listagem ]').forEach(function (elemento) {
-        elemento.classList.add('esconder')
-    })
-
-    botao_cancelar.onclick = botao_cancelar_endereco_click
-    botao_salvar.onclick = botao_salvar_endereco_click
-}
-
-botao_cancelar_endereco_click = function () {
-    document.querySelectorAll('[data-endereco-cadastro]').forEach(function (elemento) {
-        elemento.classList.add('esconder')
-    })
-
-    document.querySelectorAll('[data-endereco-cadastro-listagem ]').forEach(function (elemento) {
-        elemento.classList.remove('esconder')
-    })
-}
-
-botao_salvar_endereco_click = function () {
-    document.querySelectorAll('[data-endereco-cadastro]').forEach(function (elemento) {
-        elemento.classList.add('esconder')
-    })
-
-    document.querySelectorAll('[data-endereco-cadastro-listagem ]').forEach(function (elemento) {
-        elemento.classList.remove('esconder')
-    })
-}
-
-//Exibição
-exibir_situacao_operacao = function (operacao, mensagem) {
-    grupo_botoes.setAttribute('class', 'coluna coluna-botoes-cadastro')
-    grupo_mensagem.setAttribute('class', 'coluna coluna-operacao')
-    mensagem_imagem.setAttribute('class', '')
-    mensagem_operacao.innerHTML = mensagem
-
-    switch (operacao) {
-        case 'SALVANDO':
-            grupo_botoes.classList.add('esconder')
-            mensagem_imagem.classList.add('exibir')
-            grupo_mensagem.classList.add('exibir')
-            break;
-
-        case 'SUCESSO':
-            grupo_botoes.classList.add('esconder')
-            mensagem_imagem.classList.add('esconder')
-            grupo_mensagem.classList.add('sucesso')
-            grupo_mensagem.classList.add('exibir')
-            break;
-
-        case 'ERRO':
-            grupo_botoes.classList.add('esconder')
-            mensagem_imagem.classList.add('esconder')
-            grupo_mensagem.classList.add('erro')
-            grupo_mensagem.classList.add('exibir')
-            break;
-
-        case 'BUSCANDO':
-            grupo_botoes.classList.add('esconder')
-            mensagem_imagem.classList.add('exibir')
-            grupo_mensagem.classList.add('exibir')
-            break;
-        default:
-            grupo_botoes.classList.add('exibir')
-            mensagem_imagem.classList.add('esconder')
-            grupo_mensagem.classList.add('esconder')
-            break;
-    }
-}
-
 exiber_dados_textos = async function (textos, callback_error) {
 
     elemento_data = function (data) {
@@ -228,6 +25,7 @@ exiber_dados_textos = async function (textos, callback_error) {
     elemento_data('data-texto-tipo-endereco-cobranca').innerHTML = textos.tipo_endereco_cobranca
     elemento_data('data-texto-tipo-endereco-entrega').innerHTML = textos.tipo_endereco_entrega
     elemento_data('data-texto-tabela-vazia').innerHTML = textos.mensagem_tabela_vazia
+    elemento_data('data-texto-alerta-botao').innerHTML = textos.alerta_botao
 
     if (parametro_tipo_pessoa == 'F') {
         elemento_data('data-texto-titulo').innerHTML = textos.titulo_tpf
@@ -302,12 +100,12 @@ exibir_dados = async function () {
             // Fazer a parte de recuperar dados
         } else {
             adicionarValorCampo('ativo_sim', true)
-            adicionarValorObjeto(valores_dados, 'ativo', true)
-            adicionarValorObjeto(valores_dados, 'tipo_pessoa', parametro_tipo_pessoa)
+            adicionarValorObjeto(valores_pessoa, 'ativo', true)
+            adicionarValorObjeto(valores_pessoa, 'tipo_pessoa', parametro_tipo_pessoa)
 
             if (parametro_tipo_pessoa == 'F') {
                 adicionarValorCampo('sexo_masculino', 'M')
-                adicionarValorObjeto(valores_dados, 'sexo', 'M')
+                adicionarValorObjeto(valores_pessoa, 'sexo', 'M')
             }
 
             document.querySelectorAll('[data-endereco-cadastro]').forEach(function (elemento) {
@@ -329,5 +127,5 @@ exibir_dados = async function () {
     }
 
 }
-
+buscar_estados()
 exibir_dados()

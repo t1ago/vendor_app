@@ -16,6 +16,7 @@ exibir_situacao_operacao = function (operacao, mensagem) {
     grupo_botoes.setAttribute('class', 'coluna coluna-botoes-cadastro')
     grupo_mensagem.setAttribute('class', 'coluna coluna-operacao')
     mensagem_imagem.setAttribute('class', '')
+    mensagem_operacao.innerHTML = mensagem
 
     switch (operacao) {
         case 'SALVANDO':
@@ -264,11 +265,11 @@ carregar_endereco_cadastro = function (endereco) {
         ativo_endereco[i].checked = (endereco.ativo == true && ativo_endereco[i].value == 'A') || (endereco.ativo == false && ativo_endereco[i].value == 'I')
     }
 
-    if (endereco.buscado_por_cep) {
-        habilitar_campo(logradouro.id, false)
-        habilitar_campo(bairro.id, false)
-        habilitar_campo(cidade.id, false)
-        habilitar_campo(estado.id, false)
-    }
+    habilitado = !endereco.buscado_por_cep
+
+    habilitar_campo(logradouro.id, habilitado)
+    habilitar_campo(bairro.id, habilitado)
+    habilitar_campo(cidade.id, habilitado)
+    habilitar_campo(estado.id, habilitado)
 }
 

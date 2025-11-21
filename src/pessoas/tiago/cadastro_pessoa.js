@@ -129,3 +129,9 @@ exibir_dados = async function () {
 }
 buscar_estados()
 exibir_dados()
+botao_cancelar.onclick = botao_cancelar_click
+botao_salvar.onclick = botao_salvar_click
+
+if (parametro_tipo_pessoa == 'F') {
+    buscar_vinculos()
+}

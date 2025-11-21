@@ -102,3 +102,85 @@ buscar_estados = async function () {
         }, 2000)
     }
 }
+
+buscar_vinculos = async function () {
+    exibir_situacao_operacao('BUSCANDO', 'Buscando informação de estados')
+
+    requisicao = await fetch(`${API_HOST}/pessoas/tiago/vinculos`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if (requisicao.ok === true) {
+        resposta = await requisicao.json()
+
+        if (resposta.executado) {
+            vinculos = resposta.data.sort(function (a, b) {
+                if (a.nome > b.nome) {
+                    return 1;
+                }
+                if (a.nome < b.nome) {
+                    return -1;
+                }
+                return 0;
+            });
+
+            selectVinculos = document.getElementById('vinculo')
+            selectVinculos.innerHTML = ''
+
+            option = document.createElement('option')
+            option.value = -1
+            option.innerHTML = 'Sem Vínculo'
+
+            selectVinculos.appendChild(option)
+
+            for (let index = 0; index < vinculos.length; index++) {
+                const vinculo = vinculos[index];
+
+                option = document.createElement('option')
+                option.value = vinculo.id
+                option.innerHTML = vinculo.nome
+
+                selectVinculos.appendChild(option)
+            }
+
+            exibir_situacao_operacao('LIMPAR', '')
+        } else {
+            exibir_situacao_operacao('ERRO', 'Falha ao recuperar vínculos')
+            setInterval(function () {
+                exibir_situacao_operacao('LIMPAR', '')
+            }, 2000)
+        }
+    } else {
+        exibir_situacao_operacao('ERRO', 'Falha ao recuperar vínculos')
+        setInterval(function () {
+            exibir_situacao_operacao('LIMPAR', '')
+        }, 2000)
+    }
+}
+
+salvar_pessoa = async function (acao = 'INCLUIR') {
+    body = valores_pessoa
+
+    endpoint = `${API_HOST}`
+
+    if (acao == 'INCLUIR') {
+        endpoint += '/pessoas/tiago'
+    } else {
+        endpoint += `/pessoas/tiago/${valores_dados.id_fornecedor}`
+    }
+
+    requisicao = await fetch(endpoint, {
+        method: acao == 'INCLUIR' ? 'POST' : 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    })
+
+    return requisicao
+}

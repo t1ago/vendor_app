@@ -91,6 +91,18 @@ campo_onclick_radio = function (objeto, propriedade, valor) {
     adicionarValorObjeto(objeto, propriedade, valor)
 }
 
+campo_onchange_vinculo = function (propriedade, elemento) {
+    if (validar_campo_estrutura(elemento) == false) {
+        if (elemento.value == '-1') {
+            adicionarValorObjeto(valores_pessoa, propriedade, null)
+        } else {
+            adicionarValorObjeto(valores_pessoa, propriedade, elemento.value)
+        }
+    } else {
+        adicionarValorObjeto(valores_endereco, propriedade, null)
+    }
+}
+
 validar_campo_estrutura = function (elemento) {
     campo_id = elemento.id
     elemento_pai = elemento.parentNode

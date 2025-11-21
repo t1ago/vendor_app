@@ -67,10 +67,9 @@
             <div class="linha">
                 <div class="coluna coluna-fields" data-visible="F">
                     <label data-texto-vinculo for="vinculo"></label>
-                    <input type="text" id="vinculo" name="vinculo" required>
+                    <select name="vinculo" id="vinculo" required onchange="campo_onchange_vinculo('id_vinculo', this)">
+                    </select>
                     <label id="mensagem_vinculo" class="mensagem"></label>
-                    <div id="info-vinculo" class="informacao-consulta esconder">
-                    </div>
                 </div>
 
                 <div class="coluna coluna-fields" data-visible="F">

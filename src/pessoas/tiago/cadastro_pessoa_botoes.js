@@ -111,6 +111,55 @@ botao_salvar_endereco_click = function () {
 
     montar_tabela_endereco()
     cadatro_endereco_status = null
+
+    botao_cancelar.onclick = botao_cancelar_click
+    botao_salvar.onclick = botao_salvar_click
 }
 
+botao_salvar_click = async function () {
 
+    if (validar_campo('name', 'mensagem_name')) {
+        return
+    }
+
+    if (validar_campo('apelido', 'mensagem_apelido')) {
+        return
+    }
+
+    if (validar_campo('documento_federeal', 'mensagem_documento_federeal')) {
+        return
+    }
+
+    if (validar_campo('documento_estadual', 'mensagem_documento_estadual')) {
+        return
+    }
+
+    if (parametro_tipo_pessoa == 'F') {
+        if (validar_campo('data_nascimento', 'mensagem_data_nascimento')) {
+            return
+        }
+    }
+
+    acao = valores_pessoa.id_pessoa == null ? 'INCLUIR' : 'ALTERAR'
+    mensagem_start = acao == 'INCLUIR' ? 'Criando pessoa' : 'Alterando pessoa'
+    mensagem_end = acao == 'INCLUIR' ? 'Pessoa criada com sucesso' : 'Pessoa alterada com sucesso'
+
+    exibir_situacao_operacao('SALVANDO', mensagem_start)
+
+    requisicao = await salvar_pessoa(acao)
+
+    if (requisicao.ok == true) {
+        exibir_situacao_operacao('SUCESSO', mensagem_end)
+        setInterval(function () {
+            botao_cancelar_click()
+        }, 2000)
+    } else {
+        resposta = await requisicao.json()
+        exibir_alerta(true, resposta.mensagem, null)
+        exibir_situacao_operacao('LIMPAR', '')
+    }
+}
+
+botao_cancelar_click = function () {
+    navegarPara(`lista_produto.html?tipo_pessoa=${parametro_tipo_pessoa}`)
+}

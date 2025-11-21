@@ -7,6 +7,7 @@ botao_cancelar = document.getElementById('botao_cancelar')
 botao_salvar = document.getElementById('botao_salvar')
 alerta = document.getElementsByClassName('alerta')[0]
 textos = null
+parametro_tipo_pessoa = null
 
 REGEX_DOCUMENTO_FEDEREAL_PESSOA_FISICA = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/
 REGEX_DOCUMENTO_FEDEREAL_PESSOA_JURIDICA = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/

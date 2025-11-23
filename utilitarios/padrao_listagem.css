@@ -79,6 +79,14 @@
     animation: rotacao 5s linear infinite;
 }
 
+.coluna>table>thead>tr>th>.esconder {
+    display: none;
+}
+
+.coluna>table>tbody>tr>td>.esconder {
+    display: none;
+}
+
 @keyframes rotacao {
     from {
         transform: rotate(0deg);

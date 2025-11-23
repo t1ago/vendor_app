@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vendor_App (Estudos)</title>
+
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../utilitarios/padrao.css">
+    <link rel="stylesheet" type="text/css" href="../../../../utilitarios/padrao_listagem.css">
+    <link rel="stylesheet" type="text/css" href="lista_pessoa.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main id="listar-pessoas">
+
+        <div class="linha">
+            <h1 class="coluna" data-texto-lista-titulo></h1>
+        </div>
+
+        <div class="linha espaco-cima search">
+            <div class="coluna coluna-fields">
+                <label for="search" data-texto-filtro></label>
+                <input type="text" id="search" name="search" maxlength="64" oninput="filtrar_dados(event)">
+            </div>
+        </div>
+
+        <div class="linha espaco-cima">
+            <div class="coluna" id="container-tabela">
+                <table id="tabela" class="esconder">
+                    <thead>
+                        <tr>
+                            <th data-texto-nome></th>
+                            <th data-texto-apelido></th>
+                            <th data-texto-sexo data-visible="F"></th>
+                            <th data-texto-data-inicio data-visible="F"></th>
+                            <th data-texto-documento-estadual></th>
+                            <th data-texto-documento-federeal></th>
+                            <th data-texto-vinculo data-visible="F"></th>
+                            <th data-texto-ativo></th>
+                            <th data-texto-enderecos></th>
+                            <th data-texto-acoes></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela_dados">
+                    </tbody>
+                </table>
+                <h2 id="mensagem" class="esconder">Nenhuma pessoa localizada</h2>
+                <img id="imagem" class="esconder" src="../../../../imagens/loading.png">
+            </div>
+        </div>
+
+        <div class="linha coluna-botoes-listagem espaco-cima">
+            <div class="coluna">
+                <button type="button" onclick="botao_voltar_home_click()">
+                    <img src="../../../../imagens/voltar.png">
+                    <span>Voltar</span>
+                </button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_cadastrar_click()">
+                    <img src="../../../../imagens/novo.png">
+                    <span>Novo cadastro</span>
+                </button>
+            </div>
+        </div>
+
+    </main>
+</body>
+
+<script src="../../../../config.js"></script>
+<script src="../../../../utilitarios/padrao.js"></script>
+<script src="lista_pessoa.js"></script>

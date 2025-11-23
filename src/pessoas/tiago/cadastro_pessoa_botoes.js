@@ -161,5 +161,5 @@ botao_salvar_click = async function () {
 }
 
 botao_cancelar_click = function () {
-    navegarPara(`lista_produto.html?tipo_pessoa=${parametro_tipo_pessoa}`)
+    navegarPara(`lista_pessoa.html?tipo_pessoa=${parametro_tipo_pessoa}`)
 }

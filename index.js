@@ -37,5 +37,5 @@ botao_listar_fornecedor_miguel_click = function () {
 }
 
 botao_cadastrar_pessoa_click = function (tipo_pessoa) {
-    navegarPara(`./src/pessoas/tiago/cadastro_pessoa.html?tipo_pessoa=${tipo_pessoa}`)
+    navegarPara(`./src/pessoas/tiago/lista_pessoa.html?tipo_pessoa=${tipo_pessoa}`)
 }

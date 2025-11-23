@@ -1,5 +1,5 @@
 
-exiber_dados_textos = async function (textos, callback_error) {
+exibir_dados_textos = async function (textos, callback_error) {
 
     elemento_data = function (data) {
         return document.querySelector(`[${data}]`)
@@ -81,7 +81,7 @@ exibir_dados = async function () {
         if (requisicao.ok === true) {
             textos = await requisicao.json()
 
-            exiber_dados_textos(textos, function () {
+            exibir_dados_textos(textos, function () {
                 exibir_situacao_operacao('ERRO', 'Falha ao determinar tipo do cadastro')
                 setInterval(function () {
                     botao_cancelar_click()

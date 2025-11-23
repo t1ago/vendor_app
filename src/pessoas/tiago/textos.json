@@ -36,5 +36,9 @@
     "mensagem_tabela_vazia": "Nenhum endereço informado",
     "alerta_botao": "OK",
     "alerta_erro_tipo_endereco_selecionar": "Selecione um Tipo de Endereço",
-    "alerta_erro_endereco_ativo_selecionar": "Selecione Ativo ou Inativo para o Endereço"
+    "alerta_erro_endereco_ativo_selecionar": "Selecione Ativo ou Inativo para o Endereço",
+    "lista_titulo_tpf": "Listagem de Pessoas Física",
+    "lista_titulo_tpj": "Listagem de Pessoas Jurídica",
+    "filtrar_listagem": "Filtro de pessoas e endereços",
+    "listagem_acoes": "Ações"
 }

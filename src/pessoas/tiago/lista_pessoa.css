@@ -11,6 +11,12 @@
     overflow-y: auto;
 }
 
+tr>td>a {
+    text-decoration: none;
+    color: #599DDC;
+    ;
+}
+
 tr.inactive {
     text-decoration: line-through;
 }

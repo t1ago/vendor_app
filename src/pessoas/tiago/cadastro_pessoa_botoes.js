@@ -12,7 +12,7 @@ botao_novo_endereco_click = function () {
 
     limpar_endereco_cadastro()
     adicionarValorCampo('ativo_endereco_sim', true)
-    adicionarValorObjeto(valores_endereco, 'ativo', true)
+    adicionarValorObjeto(valores_endereco, 'ativo', 'A')
 
     cadatro_endereco_status = 'NOVO'
 }
@@ -25,6 +25,9 @@ botao_cancelar_endereco_click = function () {
     document.querySelectorAll('[data-endereco-cadastro-listagem ]').forEach(function (elemento) {
         elemento.classList.remove('esconder')
     })
+
+    botao_cancelar.onclick = botao_cancelar_click
+    botao_salvar.onclick = botao_salvar_click
 }
 
 botao_salvar_endereco_click = function () {
@@ -80,7 +83,7 @@ botao_salvar_endereco_click = function () {
         return
     }
 
-    endereco_ativo = document.getElementsByName('tipo_endereco');
+    endereco_ativo = document.getElementsByName('ativo_endereco');
 
     selecionado = false
     for (var i = 0, length = endereco_ativo.length; i < length; i++) {

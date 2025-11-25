@@ -49,7 +49,7 @@ botao_cadastrar_click = function () {
 }
 
 botao_editar_click = function (id) {
-    navegarPara(`cadastro_produto.html?id=${id}`)
+    navegarPara(`cadastro_pessoa.html?tipo_pessoa=${parametro_tipo_pessoa}&id=${id}`)
 }
 
 botao_inativar_click = async function (id) {
@@ -190,7 +190,15 @@ montar_tabela = function (lista_pessoas) {
             adicionar_coluna(linha, `${newDateSplited[2]}/${newDateSplited[1]}/${newDateSplited[0]}`)
             adicionar_coluna(linha, item.documento_estadual)
             adicionar_coluna(linha, item.documento_federeal)
-            adicionar_coluna(linha, item.nome_vinculo)
+            // adicionar_coluna(linha, item.nome_vinculo)
+
+            coluna = document.createElement('td')
+            vinculo_link = document.createElement('a')
+            vinculo_link.href = `cadastro_pessoa.html?tipo_pessoa=J&id=${item.id_vinculo}`
+            vinculo_link.innerHTML = item.nome_vinculo
+            coluna.appendChild(vinculo_link)
+            linha.appendChild(coluna)
+
         } else {
             adicionar_coluna(linha, item.nome)
             adicionar_coluna(linha, item.apelido)

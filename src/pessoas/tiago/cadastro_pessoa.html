@@ -77,7 +77,7 @@
                         <legend data-texto-sexo></legend>
                         <input type="radio" id="sexo_masculino" name="sexo" value="M">
                         <label data-texto-sexo-masculino></label>
-                        <input type="radio" id="sexo_femino" name="sexo" value="F">
+                        <input type="radio" id="sexo_feminino" name="sexo" value="F">
                         <label data-texto-sexo-feminino></label>
                     </fieldset>
                     <label id="mensagem_sexo" class="mensagem"></label>
@@ -86,9 +86,11 @@
                 <div class="coluna coluna-fields" id="divAtivo">
                     <fieldset>
                         <legend data-texto-ativo></legend>
-                        <input type="radio" id="ativo_sim" name="ativo" value="A">
+                        <input type="radio" id="ativo_sim" name="ativo" value="A"
+                            onclick="campo_onclick_radio(valores_pessoa, 'ativo', 'A')">
                         <label data-texto-ativo-sim></label>
-                        <input type="radio" id="ativo_nao" name="ativo" value="I">
+                        <input type="radio" id="ativo_nao" name="ativo" value="I"
+                            onclick="campo_onclick_radio(valores_pessoa, 'ativo', 'I')">
                         <label data-texto-ativo-nao></label>
                     </fieldset>
                     <label id="mensagem_ativo" class="mensagem"></label>
@@ -176,10 +178,10 @@
                     <fieldset>
                         <legend data-texto-ativo-endereco></legend>
                         <input type="radio" id="ativo_endereco_sim" name="ativo_endereco" value="A"
-                            onclick="campo_onclick_radio(valores_endereco, 'ativo', true)">
+                            onclick="campo_onclick_radio(valores_endereco, 'ativo', 'A')">
                         <label data-texto-ativo-endereco-sim></label>
                         <input type="radio" id="ativo_endereco_nao" name="ativo_endereco" value="I"
-                            onclick="campo_onclick_radio(valores_endereco, 'ativo', false)">
+                            onclick="campo_onclick_radio(valores_endereco, 'ativo', 'I')">
                         <label data-texto-ativo-endereco-nao></label>
                     </fieldset>
                 </div>

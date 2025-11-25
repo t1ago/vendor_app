@@ -5,7 +5,7 @@ buscar_localidade_por_cep = async function (elemento) {
 
     cep = elemento.value
 
-    requisicao = await fetch(`${API_HOST}/enderecos/tiago/localidade/${cep}`, {
+    requisicao_cep = await fetch(`${API_HOST}/enderecos/tiago/localidade/${cep}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -15,15 +15,15 @@ buscar_localidade_por_cep = async function (elemento) {
 
     valores_endereco.buscado_por_cep = false
 
-    if (requisicao.ok === true) {
-        resposta = await requisicao.json()
+    if (requisicao_cep.ok === true) {
+        resposta_cep = await requisicao_cep.json()
 
-        if (resposta.executado) {
+        if (resposta_cep.executado) {
             valores_endereco.buscado_por_cep = true
-            adicionarValorObjeto(valores_endereco, 'cidade', resposta.data.cidade)
-            adicionarValorObjeto(valores_endereco, 'bairro', resposta.data.bairro)
-            adicionarValorObjeto(valores_endereco, 'logradouro', resposta.data.logradouro)
-            adicionarValorObjeto(valores_endereco, 'estado', resposta.data.estado.sigla)
+            adicionarValorObjeto(valores_endereco, 'cidade', resposta_cep.data.cidade)
+            adicionarValorObjeto(valores_endereco, 'bairro', resposta_cep.data.bairro)
+            adicionarValorObjeto(valores_endereco, 'logradouro', resposta_cep.data.logradouro)
+            adicionarValorObjeto(valores_endereco, 'estado', resposta_cep.data.estado.sigla)
         } else {
             adicionarValorObjeto(valores_endereco, 'cidade', null)
             adicionarValorObjeto(valores_endereco, 'bairro', null)
@@ -54,7 +54,7 @@ buscar_estados = async function () {
 
     exibir_situacao_operacao('BUSCANDO', 'Buscando informação de estados')
 
-    requisicao = await fetch(`${API_HOST}/enderecos/tiago/estados`, {
+    requisicao_estado = await fetch(`${API_HOST}/enderecos/tiago/estados`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -62,11 +62,11 @@ buscar_estados = async function () {
         }
     })
 
-    if (requisicao.ok === true) {
-        resposta = await requisicao.json()
+    if (requisicao_estado.ok === true) {
+        resposta_estado = await requisicao_estado.json()
 
-        if (resposta.executado) {
-            estados = resposta.data.sort(function (a, b) {
+        if (resposta_estado.executado) {
+            estados = resposta_estado.data.sort(function (a, b) {
                 if (a.nome > b.nome) {
                     return 1;
                 }
@@ -106,7 +106,7 @@ buscar_estados = async function () {
 buscar_vinculos = async function () {
     exibir_situacao_operacao('BUSCANDO', 'Buscando informação de estados')
 
-    requisicao = await fetch(`${API_HOST}/pessoas/tiago/vinculos`, {
+    requisicao_vinculo = await fetch(`${API_HOST}/pessoas/tiago/vinculos`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -114,11 +114,11 @@ buscar_vinculos = async function () {
         }
     })
 
-    if (requisicao.ok === true) {
-        resposta = await requisicao.json()
+    if (requisicao_vinculo.ok === true) {
+        resposta_vinculo = await requisicao_vinculo.json()
 
-        if (resposta.executado) {
-            vinculos = resposta.data.sort(function (a, b) {
+        if (resposta_vinculo.executado) {
+            vinculos = resposta_vinculo.data.sort(function (a, b) {
                 if (a.nome > b.nome) {
                     return 1;
                 }
@@ -162,7 +162,22 @@ buscar_vinculos = async function () {
     }
 }
 
+buscar_textos = async function () {
+    return await fetch(`../tiago/textos.json`)
+}
+
+buscar_pessoa = async function (parametro_id) {
+    return fetch(`${API_HOST}/pessoas/tiago/${parametro_id}`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
 salvar_pessoa = async function (acao = 'INCLUIR') {
+
     body = valores_pessoa
 
     endpoint = `${API_HOST}`
@@ -170,8 +185,10 @@ salvar_pessoa = async function (acao = 'INCLUIR') {
     if (acao == 'INCLUIR') {
         endpoint += '/pessoas/tiago'
     } else {
-        endpoint += `/pessoas/tiago/${valores_dados.id_fornecedor}`
+        endpoint += `/pessoas/tiago/${valores_pessoa.id_pessoa}`
     }
+
+    delete body.id_pessoa
 
     requisicao = await fetch(endpoint, {
         method: acao == 'INCLUIR' ? 'POST' : 'PUT',

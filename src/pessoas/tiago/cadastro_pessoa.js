@@ -76,10 +76,10 @@ exibir_dados = async function () {
         parametro_tipo_pessoa = parametros.get('tipo_pessoa')
         parametro_id = parametros.has('id') ? parametros.get('id') : undefined
 
-        requisicao = await fetch(`../tiago/textos.json`)
+        requisicao_texto = await buscar_textos()
 
-        if (requisicao.ok === true) {
-            textos = await requisicao.json()
+        if (requisicao_texto.ok === true) {
+            textos = await requisicao_texto.json()
 
             exibir_dados_textos(textos, function () {
                 exibir_situacao_operacao('ERRO', 'Falha ao determinar tipo do cadastro')
@@ -96,29 +96,104 @@ exibir_dados = async function () {
             }, 2000)
         }
 
+        if (parametro_tipo_pessoa == 'F') {
+            await buscar_vinculos()
+        }
+
         if (parametro_id) {
-            // Fazer a parte de recuperar dados
+            requisicao_pessoa = await buscar_pessoa(parametro_id)
+
+            if (requisicao_pessoa.ok === true) {
+                resposta_pessoa = await requisicao_pessoa.json()
+                objeto_pessoa = resposta_pessoa.data
+
+                if (objeto_pessoa) {
+
+                    if (objeto_pessoa.tipo_pessoa == 'F') {
+                        newDateSplited = objeto_pessoa.data_inicio.split('T')[0]
+                        newDateSplited = newDateSplited.split('-')
+                        valores_pessoa.data_inicio = `${newDateSplited[2]}/${newDateSplited[1]}/${newDateSplited[0]}`
+                    } else {
+                        valores_pessoa.data_inicio = null
+                    }
+
+                    valores_pessoa.id_pessoa = objeto_pessoa.id
+                    valores_pessoa.nome = objeto_pessoa.nome
+                    valores_pessoa.apelido = objeto_pessoa.apelido
+                    valores_pessoa.tipo_pessoa = objeto_pessoa.tipo_pessoa
+                    valores_pessoa.sexo = objeto_pessoa.sexo
+                    valores_pessoa.documento_estadual = objeto_pessoa.documento_estadual
+                    valores_pessoa.documento_federeal = objeto_pessoa.documento_federeal
+                    valores_pessoa.id_vinculo = objeto_pessoa.id_vinculo
+                    valores_pessoa.ativo = objeto_pessoa.ativo
+
+                    for (let index = 0; index < objeto_pessoa.enderecos.length; index++) {
+                        const endereco = objeto_pessoa.enderecos[index];
+
+                        valores_pessoa.enderecos.push({
+                            id_endereco: endereco.id,
+                            cep: endereco.cep,
+                            logradouro: endereco.logradouro,
+                            numero: endereco.numero,
+                            bairro: endereco.bairro,
+                            cidade: endereco.cidade,
+                            estado: endereco.estado,
+                            tipo_endereco: endereco.tipo_endereco,
+                            ativo: endereco.ativo,
+                            buscado_por_cep: endereco.buscado_por_cep == 'S'
+                        })
+                    }
+
+                    adicionarValorCampo('name', valores_pessoa.nome)
+                    adicionarValorCampo('apelido', valores_pessoa.apelido)
+                    adicionarValorCampo('documento_federeal', valores_pessoa.documento_federeal)
+                    adicionarValorCampo('documento_estadual', valores_pessoa.documento_estadual)
+
+                    radio_ativo = valores_pessoa.ativo == 'A' ? 'ativo_sim' : 'ativo_nao'
+                    adicionarValorCampo(radio_ativo, true)
+
+                    if (valores_pessoa.tipo_pessoa == 'F') {
+                        adicionarValorCampo('data_nascimento', valores_pessoa.data_inicio)
+
+                        if (valores_pessoa.id_vinculo == undefined) {
+                            adicionarValorCampo('vinculo', '-1')
+                        } else {
+                            adicionarValorCampo('vinculo', valores_pessoa.id_vinculo)
+                        }
+
+                        radio_sexo = valores_pessoa.sexo == 'M' ? 'sexo_masculino' : 'sexo_feminino'
+                        adicionarValorCampo(radio_sexo, true)
+                    }
+                }
+
+                exibir_situacao_operacao('ALTERAR', '')
+            } else {
+                exibir_situacao_operacao('ERRO', 'Falha ao recuperar categoria')
+                setInterval(function () {
+                    botao_cancelar_click()
+                }, 2000)
+            }
+
         } else {
             adicionarValorCampo('ativo_sim', true)
-            adicionarValorObjeto(valores_pessoa, 'ativo', true)
+            adicionarValorObjeto(valores_pessoa, 'ativo', 'A')
             adicionarValorObjeto(valores_pessoa, 'tipo_pessoa', parametro_tipo_pessoa)
 
             if (parametro_tipo_pessoa == 'F') {
                 adicionarValorCampo('sexo_masculino', 'M')
                 adicionarValorObjeto(valores_pessoa, 'sexo', 'M')
             }
-
-            document.querySelectorAll('[data-endereco-cadastro]').forEach(function (elemento) {
-                elemento.classList.add('esconder')
-            })
-
-            document.querySelectorAll('[data-endereco-cadastro-listagem ]').forEach(function (elemento) {
-                elemento.classList.remove('esconder')
-            })
-
-            document.getElementById('tabela').classList.add('esconder')
-            document.getElementById('mensagem').classList.remove('esconder')
         }
+
+        document.querySelectorAll('[data-endereco-cadastro]').forEach(function (elemento) {
+            elemento.classList.add('esconder')
+        })
+
+        document.querySelectorAll('[data-endereco-cadastro-listagem ]').forEach(function (elemento) {
+            elemento.classList.remove('esconder')
+        })
+
+        montar_tabela_endereco()
     } else {
         exibir_situacao_operacao('ERRO', 'Falha ao determinar tipo do cadastro')
         setInterval(function () {
@@ -127,11 +202,9 @@ exibir_dados = async function () {
     }
 
 }
+
 buscar_estados()
 exibir_dados()
+
 botao_cancelar.onclick = botao_cancelar_click
 botao_salvar.onclick = botao_salvar_click
-
-if (parametro_tipo_pessoa == 'F') {
-    buscar_vinculos()
-}

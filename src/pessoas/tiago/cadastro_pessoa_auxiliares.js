@@ -152,7 +152,7 @@ montar_tabela_endereco = function () {
         endereco = `<strong>Tipo endereço: ${item.tipo_endereco == 'M' ? textos.tipo_endereco_moradia : item.tipo_endereco == 'C' ? textos.tipo_endereco_cobranca : textos.tipo_endereco_entrega} </strong>
         <br>${item.logradouro}, ${item.numero} - ${item.bairro}, ${item.cidade}/${item.estado}
         <br>CEP: ${item.cep}
-        <br><strong>${textos.ativo_endereco.replace(' ?', ':')} ${item.ativo ? textos.ativo_endereco_sim : textos.ativo_endereco_nao}</strong>`
+        <br><strong>${textos.ativo_endereco.replace(' ?', ':')} ${item.ativo == 'A' ? textos.ativo_endereco_sim : textos.ativo_endereco_nao}</strong>`
 
         adicionar_coluna(linha, endereco)
 
@@ -169,10 +169,13 @@ montar_tabela_endereco = function () {
             carregar_endereco_cadastro(item)
             valores_endereco = item
             cadatro_endereco_status = 'EDITAR'
+
+            botao_cancelar.onclick = botao_cancelar_endereco_click
+            botao_salvar.onclick = botao_salvar_endereco_click
         })
 
         botao_remover = adicionar_botao('../../../../imagens/remover.png', function () {
-            item.ativo = false
+            item.ativo = 'I'
             montar_tabela_endereco()
         })
 
@@ -243,27 +246,15 @@ carregar_endereco_cadastro = function (endereco) {
         tipos_endereco[i].checked = (endereco.tipo_endereco == tipos_endereco[i].value)
     }
 
-    document.getElementById('cep').value = endereco.cep
+    adicionarValorCampo('cep', endereco.cep)
+    adicionarValorCampo('logradouro', endereco.logradouro)
+    adicionarValorCampo('numero', endereco.numero)
+    adicionarValorCampo('bairro', endereco.bairro)
+    adicionarValorCampo('cidade', endereco.cidade)
+    adicionarValorCampo('estado', endereco.estado)
 
-    logradouro = document.getElementById('logradouro')
-    logradouro.value = endereco.logradouro
-
-    document.getElementById('numero').value = endereco.numero
-
-    bairro = document.getElementById('bairro')
-    bairro.value = endereco.bairro
-
-    cidade = document.getElementById('cidade')
-    cidade.value = endereco.cidade
-
-    estado = document.getElementById('estado')
-    estado.value = endereco.estado
-
-    ativo_endereco = document.getElementsByName('ativo_endereco');
-
-    for (var i = 0, length = ativo_endereco.length; i < length; i++) {
-        ativo_endereco[i].checked = (endereco.ativo == true && ativo_endereco[i].value == 'A') || (endereco.ativo == false && ativo_endereco[i].value == 'I')
-    }
+    radio_endereco_ativo = endereco.ativo == 'A' ? 'ativo_endereco_sim' : 'ativo_endereco_nao'
+    adicionarValorCampo(radio_endereco_ativo, true)
 
     habilitado = !endereco.buscado_por_cep
 

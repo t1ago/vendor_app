@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Clientes</title>
+
+    <link rel="stylesheet" href="../../padraodam.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Lista de Clientes</h1>
+
+    <div class="tabela-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Apelido</th>
+            <th>CPF</th>
+            <th>RG</th>
+            <th>Sexo</th>
+            <th>Ativo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="corpoTabela">
+            </tbody>
+      </table>
+    </div>
+
+    <div class="botoes-rodape">
+      <button type="button" onclick="irParaIndex()">◀️ Voltar</button>
+      <button type="button" onclick="abrirCadastro()">💾 Cadastrar</button>
+    </div>
+  </main>
+  
+  <script src="lista_clientes.js"></script>
+</body>
+</html>

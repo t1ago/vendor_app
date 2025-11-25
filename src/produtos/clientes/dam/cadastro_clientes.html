@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="../../padraodam.css" />
+</head>
+<body>
+  <main class="container" onclick="clique_geral()">
+
+    <div id="carregando-msg" style="text-align: center; padding: 50px;">
+        <h2>⌛ Carregando dados do cliente...</h2>
+    </div>
+
+        <form id="form-cliente" class="oculto"> 
+      <input type="hidden" id="id" name="id" />
+      <h1>Cadastro de Clientes</h1>
+
+            <div class="linha">
+        <div class="coluna">
+          <label for="tipo_pessoa">Tipo de Cliente</label>
+          <select id="tipo_pessoa" name="tipo_pessoa" required onchange="alternarTipoPessoa(this.value)">
+            <option value="PF" selected>Pessoa Física (PF)</option>
+            <option value="PJ">Pessoa Jurídica (PJ)</option>
+          </select>
+        </div>
+        <div class="coluna"></div>
+        <div class="coluna"></div>
+      </div>
+
+            <div class="linha">
+        <div class="coluna">
+          <label for="nome" id="label-nome">Nome Completo</label>
+          <input type="text" id="nome" name="nome" required onchange="valores.nome = this.value"/>
+        </div>
+        <div class="coluna">
+          <label for="apelido" id="label-apelido">Apelido/Nome Social</label>
+          <input type="text" id="apelido" name="apelido" required onchange="valores.apelido = this.value"/>
+        </div>
+      </div>
+
+            <div id="secao-pf">
+        <div class="linha">
+          <div class="coluna">
+            <label for="cpf">CPF</label>
+            <input type="text" id="cpf" name="cpf" required onchange="valores.cpf = this.value" maxlength="14" />
+          </div>
+          <div class="coluna">
+            <label for="rg">RG</label>
+            <input type="text" id="rg" name="rg" required onchange="valores.rg = this.value" maxlength="15"/>
+          </div>
+          <div class="coluna">
+            <label for="data_nascimento">Data de Nasc.</label>
+            <input type="date" id="data_nascimento" name="data_nascimento" required onchange="valores.data_nascimento = this.value"/>
+          </div>
+          <div class="coluna">
+            <label for="sexo">Sexo</label>
+            <select id="sexo" name="sexo" required onchange="valores.sexo = this.value">
+              <option value="" disabled selected>Selecione</option>
+              <option value="M">Masculino</option>
+              <option value="F">Feminino</option>
+              <option value="O">Outro</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+            <div id="secao-pj" class="oculto">
+        <div class="linha">
+          <div class="coluna">
+            <label for="cnpj">CNPJ</label>
+            <input type="text" id="cnpj" name="cnpj" onchange="valores.cnpj = this.value" maxlength="18"/>
+          </div>
+          <div class="coluna">
+            <label for="inscricao_estadual">Inscrição Estadual</label>
+            <input type="text" id="inscricao_estadual" name="inscricao_estadual" onchange="valores.inscricao_estadual = this.value"/>
+          </div>
+          <div class="coluna"></div>
+        </div>
+      </div>
+      
+      <h2>Endereços</h2>
+
+<div id="form-endereco-container" class="oculto">
+    <h3>Adicionar/Editar Endereço</h3>
+    <input type="hidden" id="end-id" value="" />
+    <input type="hidden" id="end-index" value="" /> 
+
+    <div class="bloco-endereco">
+        <div class="linha">
+            <div class="coluna">
+                <label for="end-tipo">Tipo</label>
+                <select id="end-tipo">
+                    <option value="Moradia">Moradia</option>
+                    <option value="Cobranca">Cobrança</option>
+                    <option value="Entrega">Entrega</option>
+                </select>
+            </div>
+            <div class="coluna">
+                <label for="end-ativo">Ativo</label>
+                <input type="checkbox" id="end-ativo" checked>
+            </div>
+            <div class="coluna">
+                <label for="end-cep">CEP</label>
+                <input type="text" id="end-cep" onchange="buscarEnderecoPorCep(this.value)">
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="coluna">
+                <label for="end-logradouro">Logradouro</label>
+                <input type="text" id="end-logradouro">
+            </div>
+            <div class="coluna">
+                <label for="end-numero">Número</label>
+                <input type="text" id="end-numero">
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="coluna">
+                <label for="end-bairro">Bairro</label>
+                <input type="text" id="end-bairro">
+            </div>
+            <div class="coluna">
+                <label for="end-cidade">Cidade</label>
+                <input type="text" id="end-cidade">
+            </div>
+            <div class="coluna">
+                <label for="end-estado">Estado (UF)</label>
+                <input type="text" id="end-estado">
+            </div>
+        </div>
+    </div>
+
+    <div class="linha botoes-rodape" style="justify-content: flex-start;">
+        <button type="button" onclick="salvarEndereco()">✅ Salvar Endereço</button>
+        <button type="button" onclick="cancelarEdicaoEndereco()">❌ Cancelar Edição</button>
+    </div>
+</div>
+
+<div id="tabela-enderecos-container" class="tabela-container">
+    <table id="tabela-enderecos">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Logradouro</th>
+                <th>Bairro</th>
+                <th>CEP</th>
+                <th>Ativo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="corpo-tabela-enderecos">
+                    </tbody>
+    </table>
+</div>
+
+<div class="linha">
+    <button type="button" onclick="abrirFormularioNovoEndereco()">➕ Adicionar Novo Endereço</button>
+</div>,       <div class="linha botoes-rodape">
+        <button type="button" onclick="voltar()">❌ Cancelar</button>
+        <button type="submit" onclick="salvarCliente()">💾 Salvar</button>
+      </div>
+    </form>
+  </main>
+  <script src="cadastro_clientes.js"></script>
+</body>
+</html>

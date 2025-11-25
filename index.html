@@ -1,36 +1,68 @@
 <!DOCTYPE html>
-<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fornecedores Dam</title>
+    <title>Vendor_App (Estudos)</title>
+
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="utilitarios/padrao.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <main id="home">
-        <button type="button" onclick="botao_listar_categorias_click()">Categorias</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_cores_click()">Cores</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_medidas_click()">Medidas</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_moedas_click()">Moedas</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_marcas_click()">Marcas</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_grupo_click()">Grupo</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_produto_tiago_click()">Produtos (Tiago)</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_fornecedor_dam_click()">Fornecedores (Dam)</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_produto_victor_click()">Produto (Victor)</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_fornecedor_miguel_click()">Fornecedores (Miguel) </button>
-        &nbsp;
+        <div class="linha">
+            <h1 class="coluna">Produtos</h1>
+        </div>
+        <div class="linha">
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_produto_tiago_click()">Produtos (Tiago)</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_fornecedor_miguel_click()">Fornecedores (Miguel) </button>
+            </div>
+        </div>
+        <div class="linha">
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_categorias_click()">Categorias</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_cores_click()">Cores</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_medidas_click()">Medidas</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_moedas_click()">Moedas</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_marcas_click()">Marcas</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_grupo_click()">Grupo</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_grupo_click()">Grupo</button>
+            </div>
+        </div>
+        <div class="linha">
+            <h1 class="coluna">Clientes</h1>
+        </div>
+        <div class="linha">
+            <div class="coluna">
+                <button type="button" onclick="botao_cadastrar_pessoa_click('F')">Pessoa Física (Tiago)</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_cadastrar_pessoa_click('J')">Pessoa Jurídica (Tiago)</button>
+            </div>
+        </div>
     </main>
 
+    <script src="utilitarios/padrao.js"></script>
     <script src="index.js"></script>
 </body>
 

@@ -1,0 +1,40 @@
+#listar-pessoas {
+    padding: 32px 80px 0px 80px;
+}
+
+.search {
+    width: 50%;
+}
+
+#container-tabela {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+tr>td>a {
+    text-decoration: none;
+    color: #599DDC;
+    ;
+}
+
+tr.inactive {
+    text-decoration: line-through;
+}
+
+tr.inactive>td:last-child {
+    text-align: left !important;
+}
+
+tr.inactive>td:last-child>button {
+    padding-left: 5px;
+}
+
+@media screen and (max-width: 1150px) {
+    #listar-pessoas {
+        padding: 32px 32px 0px 32px;
+    }
+
+    .search {
+        width: 100%;
+    }
+}

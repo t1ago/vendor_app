@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vendor_App (Estudos)</title>
+
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao.css">
+    <link rel="stylesheet" type="text/css" href="../../../utilitarios/padrao_cadastro.css">
+    <link rel="stylesheet" type="text/css" href="cadastro_pessoa.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main id="cadastro-pessoa">
+        <form id="formulario">
+            <div class="linha">
+                <h1 class="coluna" data-texto-titulo></h1>
+            </div>
+
+            <div class="linha espaco-cima">
+                <div class="coluna coluna-fields">
+                    <label data-texto-nome for="name"></label>
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="64"
+                        onchange="campo_onchange_pessoa('nome', this)">
+                    <label id="mensagem_name" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-apelido for="apelido"></label>
+                    <input type="text" id="apelido" name="apelido" required minlength="3" maxlength="64"
+                        onchange="campo_onchange_pessoa('apelido', this)">
+                    <label id="mensagem_apelido" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields">
+                    <label data-texto-documento-federeal for="documento_federeal"></label>
+                    <input type="text" id="documento_federeal" name="documento_federeal" required
+                        onchange="campo_documento_federal_onchange('documento_federeal', this)">
+                    <label id="mensagem_documento_federeal" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-documento-estadual for="documento_estadual"></label>
+                    <input type="text" id="documento_estadual" name="documento_estadual" required
+                        onchange="campo_documento_estadual_onchange('documento_estadual', this)">
+                    <label id="mensagem_documento_estadual" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields" data-visible="F">
+                    <label data-texto-data-nascimento for="data_nascimento"></label>
+                    <input type="text" id="data_nascimento" name="data_nascimento" required
+                        onchange="campo_data_nascimento_onchange('data_inicio', this)">
+                    <label id="mensagem_data_nascimento" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields esconder" data-local-ativo-pessoa-juridica></div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields" data-visible="F">
+                    <label data-texto-vinculo for="vinculo"></label>
+                    <select name="vinculo" id="vinculo" required onchange="campo_onchange_vinculo('id_vinculo', this)">
+                    </select>
+                    <label id="mensagem_vinculo" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields" data-visible="F">
+                    <fieldset>
+                        <legend data-texto-sexo></legend>
+                        <input type="radio" id="sexo_masculino" name="sexo" value="M">
+                        <label data-texto-sexo-masculino></label>
+                        <input type="radio" id="sexo_feminino" name="sexo" value="F">
+                        <label data-texto-sexo-feminino></label>
+                    </fieldset>
+                    <label id="mensagem_sexo" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields" id="divAtivo">
+                    <fieldset>
+                        <legend data-texto-ativo></legend>
+                        <input type="radio" id="ativo_sim" name="ativo" value="A"
+                            onclick="campo_onclick_radio(valores_pessoa, 'ativo', 'A')">
+                        <label data-texto-ativo-sim></label>
+                        <input type="radio" id="ativo_nao" name="ativo" value="I"
+                            onclick="campo_onclick_radio(valores_pessoa, 'ativo', 'I')">
+                        <label data-texto-ativo-nao></label>
+                    </fieldset>
+                    <label id="mensagem_ativo" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div class="linha espaco-cima">
+                <h2 class="coluna" data-texto-titulo-endereco></h2>
+            </div>
+
+            <div class="linha">
+                <div class="coluna">
+                    <button type="button" onclick="botao_novo_endereco_click()">
+                        <img src="../../../../imagens/endereco.png">
+                        <span data-texto-botao-novo-endereco>Novo Endereço</span>
+                    </button>
+                </div>
+            </div>
+
+            <div data-endereco-cadastro class="linha espaco-cima">
+                <div class="coluna coluna-fields">
+                    <fieldset>
+                        <legend data-texto-tipo-endereco></legend>
+                        <input type="radio" id="tipo_endereco_moradia" name="tipo_endereco" value="M"
+                            onclick="campo_onclick_radio(valores_endereco, 'tipo_endereco', 'M')">
+                        <label data-texto-tipo-endereco-moradia></label>
+                        <input type="radio" id="tipo_endereco_cobranca" name="tipo_endereco" value="C"
+                            onclick="campo_onclick_radio(valores_endereco, 'tipo_endereco', 'C')">
+                        <label data-texto-tipo-endereco-cobranca></label>
+                        <input type="radio" id="tipo_endereco_entrega" name="tipo_endereco" value="E"
+                            onclick="campo_onclick_radio(valores_endereco, 'tipo_endereco', 'E')">
+                        <label data-texto-tipo-endereco-entrega></label>
+                    </fieldset>
+                    <label id="mensagem_tipo_endereco" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div data-endereco-cadastro class="linha">
+                <div class="coluna coluna-fields">
+                    <label data-texto-cep for="cep"></label>
+                    <input type="text" id="cep" name="cep" required minlength="9" maxlength="9"
+                        onchange="campo_cep_onchange('cep', this)">
+                    <label id="mensagem_cep" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-logradouro for="logradouro"></label>
+                    <input type="text" id="logradouro" name="logradouro" required minlength="3" maxlength="256"
+                        onchange="campo_onchange_endereco('logradouro', this)">
+                    <label id="mensagem_logradouro" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-numero for="numero"></label>
+                    <input type="text" id="numero" name="numero" required minlength="1" maxlength="12"
+                        onchange="campo_onchange_endereco('numero', this)">
+                    <label id="mensagem_numero" class="mensagem"></label>
+                </div>
+            </div>
+
+            <div data-endereco-cadastro class="linha">
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-bairro for="bairro"></label>
+                    <input type="text" id="bairro" name="bairro" required minlength="3" maxlength="64"
+                        onchange="campo_onchange_endereco('bairro', this)">
+                    <label id="mensagem_bairro" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-cidade for="cidade"></label>
+                    <input type="text" id="cidade" name="cidade" required minlength="3" maxlength="64"
+                        onchange="campo_onchange_endereco('cidade', this)">
+                    <label id="mensagem_cidade" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <label data-texto-estado for="estado"></label>
+                    <select name="estado" id="estado" required onchange="campo_onchange_endereco('estado', this)">
+                    </select>
+                    <label id="mensagem_estado" class="mensagem"></label>
+                </div>
+
+                <div class="coluna coluna-fields">
+                    <fieldset>
+                        <legend data-texto-ativo-endereco></legend>
+                        <input type="radio" id="ativo_endereco_sim" name="ativo_endereco" value="A"
+                            onclick="campo_onclick_radio(valores_endereco, 'ativo', 'A')">
+                        <label data-texto-ativo-endereco-sim></label>
+                        <input type="radio" id="ativo_endereco_nao" name="ativo_endereco" value="I"
+                            onclick="campo_onclick_radio(valores_endereco, 'ativo', 'I')">
+                        <label data-texto-ativo-endereco-nao></label>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div data-endereco-cadastro-listagem class="linha">
+                <div class="coluna" id="container-tabela">
+                    <table id="tabela" class="esconder">
+                        <thead>
+                            <tr>
+                                <th>Endereço</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela_dados">
+                        </tbody>
+                    </table>
+                    <h2 id="mensagem" class="esconder" data-texto-tabela-vazia></h2>
+                </div>
+            </div>
+
+            <div class="linha espaco-cima">
+                <div class="coluna coluna-botoes-cadastro">
+                    <button id="botao_cancelar" type="button" onclick="">
+                        <img src="../../../../imagens/cancelar.png">
+                        <span data-texto-botao-cancelar></span>
+                    </button>
+                    <button type="button" id="botao_salvar">
+                        <img src="../../../../imagens/salvar.png">
+                        <span data-texto-botao-salvar></span>
+                    </button>
+                </div>
+
+                <div class="coluna coluna-operacao esconder">
+                    <img id="imagem" class="esconder" src="../../../../imagens/loading.png">
+                    <label id="operacao"></label>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <div class="alerta esconder">
+        <img src="../../../../imagens/error.png">
+        <label id="alerta_mensagem"></label>
+        <br>
+        <button data-texto-alerta-botao id="alerta_botao"></button>
+    </div>
+
+    <script src="../../../../config.js"></script>
+    <script src="../../../../utilitarios/padrao.js"></script>
+    <script src="cadastro_pessoa_variaveis.js"></script>
+    <script src="cadastro_pessoa_requisicoes.js"></script>
+    <script src="cadastro_pessoa_auxiliares.js"></script>
+    <script src="cadastro_pessoa_validacoes_campo.js"></script>
+    <script src="cadastro_pessoa_botoes.js"></script>
+    <script src="cadastro_pessoa.js"></script>
+
+</body>

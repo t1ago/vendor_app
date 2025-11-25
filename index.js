@@ -41,3 +41,7 @@ botao_listar_fornecedores_click = function () {
 botao_listar_fornecedor_miguel_click = function () {
     navegarPara('./src/produtos/fornecedores/miguel/lista_fornecedor.html')
 }
+
+botao_cadastrar_pessoa_click = function (tipo_pessoa) {
+    navegarPara(`./src/pessoas/tiago/lista_pessoa.html?tipo_pessoa=${tipo_pessoa}`)
+}

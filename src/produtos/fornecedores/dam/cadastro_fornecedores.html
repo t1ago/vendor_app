@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadastro de Fornecedores</title>
 
   <!-- CSS padrão aplicado -->
-  <link rel="stylesheet" href="../../padraodam.css" />
+  <link rel="stylesheet" href="../../../../utilitarios/padraodam.css" />
 </head>
+
 <body>
   <main class="container" onclick="clique_geral()">
     <form id="form-fornecedor">
@@ -18,7 +20,8 @@
       <div class="linha">
         <div class="coluna">
           <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" placeholder="Nome do fornecedor" required minlength="3" maxlength="64" autocomplete="off" onchange="valores.nome = this.value"/>
+          <input type="text" id="nome" name="nome" placeholder="Nome do fornecedor" required minlength="3"
+            maxlength="64" autocomplete="off" onchange="valores.nome = this.value" />
         </div>
       </div>
 
@@ -26,21 +29,24 @@
       <div class="linha">
         <div class="coluna lista-suspensa-container">
           <label for="moeda">Moeda</label>
-          <input type="text" id="moeda" name="moeda" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'moedas')"/>
+          <input type="text" id="moeda" name="moeda" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this, buscarAPI, 'moedas')" />
           <div id="info-moeda" class="lista-suspensa lista-oculta"></div>
         </div>
 
-      <!-- Preço de Compra -->
+        <!-- Preço de Compra -->
         <div class="coluna">
           <label for="preco_compra">Preço de Compra</label>
-          <input type="text" id="compra" name="compra" placeholder="Preço de Compra" required minlength="4" maxlength="12" autocomplete="off" autocomplete="off" onchange="valores.preco_compra = this.value"/>
+          <input type="text" id="compra" name="compra" placeholder="Preço de Compra" required minlength="4"
+            maxlength="12" autocomplete="off" autocomplete="off" onchange="valores.preco_compra = this.value" />
           <small class="erro"></small>
         </div>
 
-      <!-- Preço de Venda -->
+        <!-- Preço de Venda -->
         <div class="coluna">
           <label for="preco_venda">Preço de Venda</label>
-          <input type="text" id="venda" name="venda" placeholder="Preço de Venda" required minlength="4" maxlength="12" autocomplete="off" autocomplete="off" onchange="valores.preco_venda = this.value"/>
+          <input type="text" id="venda" name="venda" placeholder="Preço de Venda" required minlength="4" maxlength="12"
+            autocomplete="off" autocomplete="off" onchange="valores.preco_venda = this.value" />
           <small class="erro"></small>
         </div>
       </div>
@@ -49,21 +55,24 @@
       <div class="linha">
         <div class="coluna lista-suspensa-container">
           <label for="grupo">Grupo</label>
-          <input type="text" id="grupo" name="grupo" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'grupos')"/>
+          <input type="text" id="grupo" name="grupo" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this, buscarAPI, 'grupos')" />
           <div id="info-grupos" class="lista-suspensa lista-oculta"></div>
         </div>
 
-      <!-- Categoria -->
+        <!-- Categoria -->
         <div class="coluna lista-suspensa-container">
           <label for="categoria">Categoria</label>
-          <input type="text" id="categoria" name="categoria" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'categorias')"/>
+          <input type="text" id="categoria" name="categoria" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this, buscarAPI, 'categorias')" />
           <div id="info-categorias" class="lista-suspensa lista-oculta"></div>
         </div>
 
-      <!-- Medida -->
+        <!-- Medida -->
         <div class="coluna lista-suspensa-container">
           <label for="medida">Unidade de Medida</label>
-          <input type="text" id="medida" name="medida" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'medidas')"/>
+          <input type="text" id="medida" name="medida" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this, buscarAPI, 'medidas')" />
           <div id="info-medidas" class="lista-suspensa lista-oculta"></div>
         </div>
       </div>
@@ -72,14 +81,16 @@
       <div class="linha">
         <div class="coluna lista-suspensa-container">
           <label for="marca">Marca</label>
-          <input type="text" id="marca" name="marca" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'marca')"/>
+          <input type="text" id="marca" name="marca" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this, buscarAPI, 'marca')" />
           <div id="info-marcas" class="lista-suspensa lista-oculta"></div>
         </div>
 
-      <!-- Cor -->
+        <!-- Cor -->
         <div class="coluna lista-suspensa-container">
           <label for="cor">Cor</label>
-          <input type="text" id="cor" name="cor" class="lista-suspensa-input" autocomplete="off" onfocus="foco_campo(this, buscarAPI, 'cores')"/>
+          <input type="text" id="cor" name="cor" class="lista-suspensa-input" autocomplete="off"
+            onfocus="foco_campo(this, buscarAPI, 'cores')" />
           <div id="info-cores" class="lista-suspensa lista-oculta"></div>
         </div>
       </div>
@@ -88,7 +99,8 @@
       <div class="linha">
         <div class="coluna">
           <label for="descricao">Descrição</label>
-          <input type="text" id="descricao" name="descricao" required minlength="10" maxlength="255" onchange="valores.descricao = this.value"/>
+          <input type="text" id="descricao" name="descricao" required minlength="10" maxlength="255"
+            onchange="valores.descricao = this.value" />
           <small class="erro"></small>
         </div>
       </div>
@@ -105,4 +117,5 @@
 
   <script src="cadastro_fornecedores.js"></script>
 </body>
+
 </html>

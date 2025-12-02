@@ -149,16 +149,16 @@ botao_salvar_click = async function () {
 
     exibir_situacao_operacao('SALVANDO', mensagem_start)
 
-    requisicao = await salvar_pessoa(acao)
+    requisicao_salvar = await salvar_pessoa(acao)
 
-    if (requisicao.ok == true) {
+    if (requisicao_salvar.ok == true) {
         exibir_situacao_operacao('SUCESSO', mensagem_end)
         setInterval(function () {
             botao_cancelar_click()
         }, 2000)
     } else {
-        resposta = await requisicao.json()
-        exibir_alerta(true, resposta.mensagem, null)
+        resposta_salvar = await requisicao_salvar.json()
+        exibir_alerta(true, resposta_salvar.mensagem, null)
         exibir_situacao_operacao('LIMPAR', '')
     }
 }

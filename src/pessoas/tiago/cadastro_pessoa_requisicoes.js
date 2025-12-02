@@ -178,7 +178,7 @@ buscar_pessoa = async function (parametro_id) {
 
 salvar_pessoa = async function (acao = 'INCLUIR') {
 
-    body = valores_pessoa
+    body = Object.assign({}, valores_pessoa)
 
     endpoint = `${API_HOST}`
 

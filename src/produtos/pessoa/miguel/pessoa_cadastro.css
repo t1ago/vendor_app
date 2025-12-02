@@ -1,10 +1,12 @@
+* { box-sizing: border-box; }
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: #f5f7fa;
-  display: flex;
-  justify-content: center;
   margin: 0;
   padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .container {
@@ -13,59 +15,76 @@ body {
   background: #fff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 26px rgba(2,6,23,0.06);
 }
 
 h1 {
   text-align: center;
   color: #2c3e50;
-  margin-bottom: 20px;
+  margin: 0 0 20px;
 }
 
-h2 {
-  color: #2c3e50;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  margin-top: 35px;
-}
-
-/* Campos gerais */
 .form-group {
   margin-bottom: 15px;
 }
 
 label {
-  font-weight: bold;
+  font-weight: 600;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   color: #2c3e50;
+  font-size: 14px;
 }
 
-input[type="text"] {
+input[type="text"],
+select {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
+  padding: 8px 10px;
+  border: 1px solid #e2e8f0;
   border-radius: 6px;
   font-size: 14px;
+  background: #fff;
+  color: #0f172a;
 }
 
 .radio-group {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-/* ==== BOTÕES ==== */
-.center-buttons {
+.endereco-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 25px;
+  margin-top: 6px;
+}
+
+.endereco-grid .form-group:last-child {
+  grid-column: span 3;
+}
+
+.linha-menor {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.linha-menor-j {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.form-group:has(.button-address) {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
+  justify-content: center;
+  gap: 35px;
+  margin-bottom: 25px !important;
 }
 
 .button-address {
-  background-color: #4a90e2;
+  background-color: #002fff;
   color: white;
   padding: 12px 40px;
   border: none;
@@ -73,195 +92,153 @@ input[type="text"] {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition: background 0.25s ease, transform 0.22s ease;
 }
 
 .button-address:hover {
-  background-color: #357abd;
-  transform: scale(1.05);
+  background-color: #4a69f5;
+  transform: translateY(-3px) scale(1.05);
 }
 
-/* Loader */
-.loader-img {
-  margin-top: 10px;
-}
-
-/* Botão vermelho X */
-#button-cancel {
-  background-color: #e74c3c;
+.button-address-s {
+  background-color: #1733af;
   color: white;
-  border: none;
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 10px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-#button-cancel:hover {
-  background-color: #c0392b;
-  transform: scale(1.2);
-}
-
-/* Botão verde salvar */
-.btn-save {
-  display: block;
-  margin: 40px auto;
-  background-color: #2ecc71;
-  color: white;
+  padding: 12px 40px;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
-  padding: 14px 50px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: background 0.25s ease, transform 0.22s ease;
 }
 
-.btn-save:hover {
-  background-color: #27ae60;
-  transform: scale(1.1);
+.button-address-s:hover {
+  background-color: rgba(15, 45, 179, 0.856);
+  transform: translateY(-3px) scale(1.05);
 }
 
-/* ==== ENDEREÇO ==== */
-.endereco-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px 25px;
+/* CENTRALIZAÇÃO DO BOTÃO NOVO ENDEREÇO E DO X */
+#button_address,
+#x_cancelar {
+  background-color: #1733af;
+  color: white;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.22s ease;
+  width: auto !important; /* impede ocupar 100% */
+  display: inline-block;  /* impede esticar no flex */
+  margin-top: 10px;
+  margin-left: auto;      /* empurra para direita */
 }
 
-.endereco-grid .form-group:last-child {
-  grid-column: span 3;
+#x_cancelar:hover {
+  background-color: rgba(15, 45, 179, 0.856);
+  transform: translateY(-3px) scale(1.05);
 }
-
-.hidden {
-  display: none;
-}
-
-
-.J {
-  width: 28px;
-  height: 28px;
-  border: 6px solid rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-  border-top: 6px solid white;
-  animation: spinner 1s infinite linear;
-  display: none;
-}
-
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .container {
-    padding: 20px;
-    max-width: 95%;
-  }
-
-  input[type="text"] {
-    font-size: 13px;
-  }
-
-  .endereco-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .endereco-grid .form-group:last-child {
-    grid-column: span 2;
-  }
-
-  .button-address {
-    width: 100%;
-  }
-}
-
-.endereco-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px 25px;
-}
-
-
-.tipo-endereco {
-  grid-column: 2 / 3;
-}
-
 
 .loader {
   width: 38px;
   height: 38px;
-  border: 5px solid #ccc;
+  border: 5px solid #e6e6e6;
   border-top: 5px solid #3498db;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-top: 15px;
   display: none;
+  margin: 12px auto 0;
 }
+
+.loader.active { display: block; }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-.hidden {
-  display: none;
-}
-
-
-
-.form-group.tipo-endereco {
+.botoes-lado {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: flex-start;
-  min-width: 240px;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 36px;
+  align-items: center;
 }
 
-#tipo_endereco {
-  width: 320px;
-  max-width: 100%;
-  padding: 10px 40px 10px 14px;
+.btn-acao {
+  padding: 14px 56px;
   font-size: 16px;
-  color: #0f172a;
-  background: linear-gradient(180deg, #ffffff, #fbfdff);
-  border: 1px solid #e2e8f0;
+  font-weight: 700;
+  border: none;
   border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 20 20'><path fill='%237277a8' d='M5.5 7l4.5 4 4.5-4z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: calc(100% - 12px) center;
-  transition: border-color .15s ease, box-shadow .15s ease, transform .05s ease;
   cursor: pointer;
+  transition: transform 0.22s ease, background-color 0.22s ease, box-shadow 0.22s;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
 }
 
-#tipo_endereco:focus {
-  outline: none;
-  border-color: #000000;
-  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.12);
-  transform: translateY(-1px);
+.btn-save {
+  background-color: #2ecc71;
+  color: #fff;
 }
 
-.form-group.tipo-endereco label {
-  font-weight: 600;
-  font-size: 14px;
-  color: #0f172a;
+.btn-back {
+  background-color: #c62828;
+  color: #fff;
+}
+
+.btn-acao:hover {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 10px 28px rgba(2,6,23,0.12);
+}
+
+.btn-save:hover { background-color: #27ae60; }
+.btn-back:hover { background-color: #b71c1c; }
+
+.btn-acao:focus { outline: 3px solid rgba(74,144,226,0.18); }
+
+.hidden { display: none; }
+
+@media (max-width: 900px) {
+  .endereco-grid { grid-template-columns: 1fr 1fr; }
+  .linha-menor { grid-template-columns: 1fr; }
+  .linha-menor-j { grid-template-columns: 1fr; }
+  .botoes-lado { flex-direction: column; gap: 18px; margin-top: 24px; }
+  .btn-acao { width: 85%; padding: 12px 18px; }
+  .button-address { width: 85%; }
+  #tipo_endereco { width: 100%; }
+}
+
+@media (max-width: 420px) {
+  .container { padding: 18px; }
+  .btn-acao { width: 100%; padding: 12px; }
+  .button-address { width: 100%; padding: 10px; }
+}
+
+#x_cancelar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#x_cancelar button {
+  background-color: #1733af;
+  color: white;
+  padding: 10px 35px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.22s ease;
+  width: auto;
+}
+
+#x_cancelar button:hover {
+  background-color: rgba(15, 45, 179, 0.856);
+  transform: translateY(-3px) scale(1.05);
 }

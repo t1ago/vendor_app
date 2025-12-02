@@ -20,8 +20,6 @@ buscar_dados = async function () {
     if (requisicao.ok) {
         let response = await requisicao.json()
         return response.data.length > 0 ? response.data : []
-
-
     } else {
         return null
     }

@@ -9,190 +9,208 @@
 </head>
 
 <body>
-
     <div class="container">
 
         <h1>Pessoas_Miguel</h1>
 
         <form>
 
-            <!-- === DADOS PESSOAIS === -->
-            <div class="hidden">
-                <input type="text" id="id">
+            <!-- Formulário de Pessoa Física -->
+
+            <div class="form-group">
+                <button type="button" class="button-address" id="btn_pf">Pessoa Física</button>
+                <button type="button" class="button-address" id="btn_pj">Pessoa Jurídica</button>
             </div>
 
-            <div id="cadastro_section">
-                <div id="div-nome" class="form-group">
-                    <label for="nome" id="label-nome">Nome</label>
-                    <input type="text" name="nome" id="nome" maxlength="64">
+
+            <section id="formulario-fisico" class="hidden">
+
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" id="nome" required maxlength="64">
                 </div>
 
-                <div id="div-apelido" class="form-group">
-                    <label for="apelido" id="label-apelido">Apelido</label>
-                    <input type="text" name="apelido" id="apelido" maxlength="64">
+                <div class="form-group">
+                    <label>Apelido</label>
+                    <input type="text" id="apelido" required maxlength="64">
                 </div>
 
-                <div id="div-tipo" class="form-group">
-
-                    <label>Tipo de Pessoa</label>
-
-                    <div class="radio-group">
-
-                        <input type="radio" name="tipo_pessoa" id="tipo_pessoaF" value="F">
-                        <label for="tipo_pessoaF">F</label>
-                        <input type="radio" name="tipo_pessoa" id="tipo_pessoaJ" value="J">
-                        <label for="tipo_pessoaJ">J</label>
-                    </div>
-                </div>
-
-                <div id="div-sexo" class="form-group">
-
+                <div class="form-group">
                     <label>Sexo</label>
-
                     <div class="radio-group">
+                        <input type="radio" id="masculino" value="masculino" required>
+                        <label for="ativo_s">Masculino</label>
 
-                        <input type="radio" name="sexo" id="sexoM" value="M">
-                        <label for="sexoF">M</label>
-                        <input type="radio" name="sexo" id="sexoF" value="F">
-                        <label for="sexoM">F</label>
+                        <input type="radio" id="feminino" value="feminino" required>
+                        <label for="ativo_n">Feminino</label>
                     </div>
                 </div>
 
-                <div id="div-idade" class="form-group">
+                <div class="linha-menor">
+                    <div class="form-group">
+                        <label>Nascimento</label>
+                        <input type="text" id="data_nascimento" required>
+                    </div>
 
-                    <label for="idade">Idade</label>
+                    <div class="form-group">
+                        <label>RG</label>
+                        <input type="text" id="rg" required maxlength="13">
+                    </div>
 
-                    <input type="text" name="idade" id="idade" maxlength="2">
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" id="cpf" required maxlength="13">
+                    </div>
                 </div>
 
-                <div id="div-federal" class="form-group">
-
-                    <label for="federal">RG</label>
-                    <input type="text" name="federal" id="federal" maxlength="14">
-                </div>
-
-                <div id="div-estadual" class="form-group">
-
-                    <label for="estadual">CPF</label>
-                    <input type="text" name="estadual" id="estadual" maxlength="11">
-                </div>
-
-                <div id="div-cnpj" class="hidden">
-
-                    <label for="cnpj" id="label-cnpj">CNPJ</label>
-                    <input type="text" name="cnpj" id="cnpj" maxlength="18">
-                </div>
-
-
-                <div id="div-inscricao" class="hidden">
-
-                    <label for="inscricao" id="label-inscrição">Inscrição Estadual</label>
-                    <input type="text" name="inscricao" id="inscricao" maxlength="14">
-                </div>
-
-                <div id=" div-ativo" class="form-group">
-
+                <div class="form-group">
                     <label>Ativo</label>
                     <div class="radio-group">
+                        <input type="radio" id="ativo_s" value="sim" required>
+                        <label for="ativo_s">Sim</label>
 
-                        <input type="radio" name="ativo" id="ativoS" value="S">
-                        <label for="ativoS">S</label>
-                        <input type="radio" name="ativo" id="ativoN" value="N">
-                        <label for="ativoN">N</label>
+                        <input type="radio" id="ativo_n" value="nao" required>
+                        <label for="ativo_n">Não</label>
                     </div>
                 </div>
 
-                <div id="div-vinculo" class="form-group">
-                    <label>Vínculo</label>
-
+                <div class="form-group">
+                    <label>Vinculo</label>
                     <div class="radio-group">
+                        <input type="radio" id="vinculo_s" value="sim" required>
+                        <label for="vinculo_s">Sim</label>
 
-                        <input type="radio" name="vinculo" id="vinculoS" value="S">
-                        <label for="vinculoS">S</label>
-                        <input type="radio" name="vinculo" id="vinculoN" value="N">
-                        <label for="vinculoN">N</label>
+                        <input type="radio" id="vinculo_n" value="nao" required>
+                        <label for="vinculo_n">Não</label>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="center-buttons">
+            <!-- Formulário de Pessoa Jurídica -->
 
-                <button type="button" id="button-address" class="button-address">Adicionar novo endereço</button>
-                <div id="loader-endereco" class="loader hidden">
+            <section id="formulario-juridico" class="hidden">
+
+                <div class="form-group">
+                    <label>Razão social</label>
+                    <input type="text" id="social" required maxlength="64">
                 </div>
-                <button type="button" id="button-cancel" class="hidden">✖</button>
 
+                <div class="form-group">
+                    <label>Nome Fantasia</label>
+                    <input type="text" id="fantasia" required maxlength="64">
+                </div>
+
+                <div class="linha-menor-j">
+                    <div class="form-group">
+                        <label>CNPJ</label>
+                        <input type="text" id="cnpj" required maxlength="14">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Inscrição Estadual</label>
+                        <input type="text" id="inscricao" required maxlength="14">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ativo</label>
+                    <div class="radio-group">
+                        <input type="radio" id="ativo_s" value="sim" required>
+                        <label for="ativo_s">Sim</label>
+
+                        <input type="radio" id="ativo_n" value="nao" required>
+                        <label for="ativo_n">Não</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Botão Novo Endereço -->
+
+
+            <div id="button_address" class="hidden">
+                <button type="button" class="button-address-s" onclick="carregar_botao()">NovoEndereço</button>
             </div>
-            <div id="endereco-section" class="hidden">
+            <div id="button_x">
+                <button id="x_cancelar" type="button" class="hidden button-address-s">X</button>
+            </div>
 
-                <h2>Endereço</h2>
+
+
+            <!-- Formulário de Endereço -->
+
+            <section id="formulario-endereco" class="hidden">
 
                 <div class="endereco-grid">
 
                     <div class="form-group">
-                        <label for="Cep">Cep</label>
-                        <input type="text" id="cep" name="Cep" maxlength="9">
+                        <label>CEP</label>
+                        <input type="text" id="cep" required maxlength="">
                     </div>
 
                     <div class="form-group">
-                        <label for="Logradouro">Logradouro</label>
-                        <input type="text" id="logradouro" name="Logradouro" disabled>
+                        <label>Logradouro</label>
+                        <input type="text" id="logradouro" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="Número">Número</label>
-                        <input type="text" id="numero" name="Número">
-                    </div>
-                    <div class="form-group">
-                        <label for="Bairro">Bairro</label>
-                        <input type="text" id="bairro" name="Bairro" disabled>
+                        <label>Número</label>
+                        <input type="text" id="numero" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="Cidade">Cidade</label>
-                        <input type="text" id="cidade" name="Cidade" disabled>
+                        <label>Bairro</label>
+                        <input type="text" id="bairro" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="Estado">Estado</label>
-                        <input type="text" id="estado" name="Estado" disabled>
+                        <label>Cidade</label>
+                        <input type="text" id="cidade" required>
                     </div>
+
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <input type="text" id="estado" required>
+                    </div>
+
                     <div class="form-group tipo-endereco">
-                        <label for="tipo_endereco">Tipo Endereço</label>
-                        <select class="form-group tipo-endereco" id="tipo_endereco" name="tipo_endereco">
-                            <option value="C">Casa</option>
-                            <option value="B">Cobrança</option>
-                            <option value="E">Entrega</option>
+                        <label>Endereço</label>
+                        <select id="tipo_endereco">
+                            <option value="moradia">Moradia</option>
+                            <option value="entrega">Entrega</option>
+                            <option value="cobrança">Cobrança</option>
                         </select>
                     </div>
 
                     <div class="hidden">
-                        <label for="id_pessoa" class="hidden">id_pessoa</label>
-                        <input type="text" id="id_pessoa" name="id_pessoa">
+                        <label>id_pessoa</label>
+                        <input type="text">
                     </div>
+
                 </div>
-            </div>
+            </section>
 
-            <div class="form-group full-width">
-                <button onclick="botao_salvar()" type="button" class="btn-save">Salvar</button>
-            </div>
+            <!-- Botões Salvar e Voltar PF-->
+            <section id="button" class="hidden">
+                <div class="botoes-lado">
+                    <button id="btn_back" class="btn-acao btn-back">Voltar</button>
+                    <button id="btn_save" class="btn-acao btn-save">Salvar</button>
+                </div>
+            </section>
+
+            <!-- Botões Salvar e Voltar PJ-->
+            <section id="button_juridico" class="hidden">
+                <div class="botoes-lado">
+                    <button id="btn_back_juridico" class="btn-acao btn-back">Voltar</button>
+                    <button id="btn_save_juridico" class="btn-acao btn-save">Salvar</button>
+                </div>
+            </section>
+
         </form>
-        <script src="../../../../config.js"></script>
     </div>
-    <script src="pessoa_cadastro.js"></script>
 
-    <script src=https://code.jquery.com/jquery-3.6.1.min.js></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"> </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script>
-        $('#numero').mask('00000A')
-        $('#idade').mask('00')
-        $('#cep').mask('00000-000');
-        $('#estadual').mask('000.000.000-00', { reverse: true });
-        $('#cnpj').mask('00.000.000/0000-00', { reverse: true });
-        $('#federal').mask('00.000.000-0');
-        $('#inscricao').mask('000.000.000.000');
-    </script>
+    <script src="../../../../config.js"></script>
+    <script src="url.js"></script>
+    <script src="pessoa_cadastro.js"></script>
 </body>
 
 </html>

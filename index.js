@@ -43,5 +43,5 @@ botao_listar_fornecedor_miguel_click = function () {
 }
 
 botao_listar_pessoas_miguel_click = function() {
-    navegarPara('./src/produtos/pessoa/miguel/pessoas_cadastro.html')
+    navegarPara('./src/produtos/pessoa/miguel/pessoa_lista.html')
 }

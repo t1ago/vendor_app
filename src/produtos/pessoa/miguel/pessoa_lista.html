@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Pessoas (Miguel)</title>
+    <link rel="stylesheet" href="pessoa_lista.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista Pessoas (Miguel)</h1>
+
+        <div class="botoes-topo">
+            <button id="btn-voltar" onclick="volta_lista()"> Voltar</button>
+            <button id="btn-cadastrar" onclick="cadastro_lista()">Cadastrar Pessoa</button>
+        </div>
+
+        <div class="bloco-tabela">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Apelido</th>
+                        <th>Tipo Pessoa</th>
+                        <th>Sexo</th>
+                        <th>Idade</th>
+                        <th>RG</th>
+                        <th>CPF</th>
+                        <th>Ativo</th>
+                        <th>Vínculo</th>
+                        <th>Ações</th>
+                        <th>Ações</th>
+                        <th>Endereço</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-pessoas">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../../../../config.js"></script>
+    <script src="pessoa_lista.js"> </script>
+
+</body>
+
+</html>

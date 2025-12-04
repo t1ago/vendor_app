@@ -2,16 +2,16 @@ function carregar_botao() {
 
     const x_endereco = document.getElementById("x_cancelar")
     const secao_botao = document.getElementById("button_address")
+    const button_endereço = document.getElementById("button-address_btn")
 
     const formulario_endereco = document.getElementById("formulario-endereco")
     const secao_x = document.getElementById("button_x")
 
-    if (secao_botao) {
-        secao_botao.addEventListener("click", () => {
-            secao_botao.classList.add("hidden")
+    if (button_endereço) {
+        button_endereço.addEventListener("click", () => {
             formulario_endereco.classList.remove("hidden")
             secao_x.classList.remove("hidden")
-
+            button_endereço.classList.add("hidden")
         })
     }
 
@@ -20,6 +20,7 @@ function carregar_botao() {
             formulario_endereco.classList.add("hidden")
             secao_botao.classList.remove("hidden")
             secao_x.classList.add("hidden")
+            button_endereço.classList.remove("hidden")
         })
     }
 
@@ -31,6 +32,8 @@ window.onload = () => {
 
     const formFisico = document.getElementById("formulario-fisico");
     const formJuridico = document.getElementById("formulario-juridico");
+    const button_endereço = document.getElementById("button-address_btn")
+    const formEndereco = document.getElementById("formulario-endereco")
 
     const btnPF = document.getElementById("btn_pf");
     const btnPJ = document.getElementById("btn_pj");
@@ -52,6 +55,8 @@ window.onload = () => {
         secao_juridico.classList.add("hidden");
         div_endereco.classList.remove("hidden");
         secao_x.classList.add("hidden")
+        button_endereço.classList.remove("hidden")
+        formEndereco.classList.add("hidden")
 
         // código que faz a url mostrar que mudou o tipo 
         history.replaceState({}, "", "?tipo=F");
@@ -67,6 +72,8 @@ window.onload = () => {
         secao_fisico.classList.add("hidden")
         div_endereco.classList.remove("hidden");
         secao_x.classList.add("hidden")
+        button_endereço.classList.remove("hidden")
+        formEndereco.classList.add("hidden")
 
         // código que faz a url mostrar que mudou o tipo 
         history.replaceState({}, "", "?tipo=J");

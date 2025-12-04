@@ -27,63 +27,56 @@
 
                 <div class="form-group">
                     <label>Nome</label>
-                    <input type="text" id="nome" required maxlength="64">
+                    <input type="text" id="nome" maxlength="64">
                 </div>
 
                 <div class="form-group">
                     <label>Apelido</label>
-                    <input type="text" id="apelido" required maxlength="64">
+                    <input type="text" id="apelido" maxlength="64">
                 </div>
 
-                <div class="form-group">
-                    <label>Sexo</label>
-                    <div class="radio-group">
-                        <input type="radio" id="masculino" value="masculino" required>
-                        <label for="ativo_s">Masculino</label>
+                <label>Sexo</label>
+                <div class="radio-group">
+                    <input type="radio" id="campo_sexo_m" name="sexo" value="M">
+                    <label for="campo_sexo_m">Masculino</label>
 
-                        <input type="radio" id="feminino" value="feminino" required>
-                        <label for="ativo_n">Feminino</label>
-                    </div>
+                    <input type="radio" id="campo_sexo_f" name="sexo" value="F">
+                    <label for="campo_sexo_f">Feminino</label>
                 </div>
 
                 <div class="linha-menor">
                     <div class="form-group">
                         <label>Nascimento</label>
-                        <input type="text" id="data_nascimento" required>
+                        <input type="text" id="data_nascimento">
                     </div>
 
                     <div class="form-group">
                         <label>RG</label>
-                        <input type="text" id="rg" required maxlength="13">
+                        <input type="text" id="rg" maxlength="13">
                     </div>
 
                     <div class="form-group">
                         <label>CPF</label>
-                        <input type="text" id="cpf" required maxlength="13">
+                        <input type="text" id="cpf" maxlength="13">
                     </div>
+                </div>
+
+                <label>Ativo</label>
+                <div class="radio-group">
+                    <input type="radio" id="ativoS" name="ativo" value="S">
+                    <label for="ativoS">Ativo</label>
+
+                    <input type="radio" id="ativoN" name="ativo" value="N">
+                    <label for="ativoN">Inativo</label>
                 </div>
 
                 <div class="form-group">
-                    <label>Ativo</label>
-                    <div class="radio-group">
-                        <input type="radio" id="ativo_s" value="sim" required>
-                        <label for="ativo_s">Sim</label>
-
-                        <input type="radio" id="ativo_n" value="nao" required>
-                        <label for="ativo_n">Não</label>
-                    </div>
+                    <label>Vínculo (Pessoa Jurídica)</label>
+                    <select id="vinculo">
+                        <option value="">Sem vínculo</option>
+                    </select>
                 </div>
 
-                <div class="form-group">
-                    <label>Vinculo</label>
-                    <div class="radio-group">
-                        <input type="radio" id="vinculo_s" value="sim" required>
-                        <label for="vinculo_s">Sim</label>
-
-                        <input type="radio" id="vinculo_n" value="nao" required>
-                        <label for="vinculo_n">Não</label>
-                    </div>
-                </div>
             </section>
 
             <!-- Formulário de Pessoa Jurídica -->
@@ -92,33 +85,33 @@
 
                 <div class="form-group">
                     <label>Razão social</label>
-                    <input type="text" id="social" required maxlength="64">
+                    <input type="text" id="social" maxlength="64">
                 </div>
 
                 <div class="form-group">
                     <label>Nome Fantasia</label>
-                    <input type="text" id="fantasia" required maxlength="64">
+                    <input type="text" id="fantasia" maxlength="64">
                 </div>
 
                 <div class="linha-menor-j">
                     <div class="form-group">
                         <label>CNPJ</label>
-                        <input type="text" id="cnpj" required maxlength="14">
+                        <input type="text" id="cnpj" maxlength="14">
                     </div>
 
                     <div class="form-group">
                         <label>Inscrição Estadual</label>
-                        <input type="text" id="inscricao" required maxlength="14">
+                        <input type="text" id="inscricao" maxlength="14">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Ativo</label>
                     <div class="radio-group">
-                        <input type="radio" id="ativo_s" value="sim" required>
+                        <input type="radio" id="ativo_s" value="sim">
                         <label for="ativo_s">Sim</label>
 
-                        <input type="radio" id="ativo_n" value="nao" required>
+                        <input type="radio" id="ativo_n" value="nao">
                         <label for="ativo_n">Não</label>
                     </div>
                 </div>
@@ -128,10 +121,11 @@
 
 
             <div id="button_address" class="hidden">
-                <button type="button" class="button-address-s" onclick="carregar_botao()">NovoEndereço</button>
+                <button id="button-address_btn" type="button" class="button-address-s"
+                    onclick="carregar_botao()">NovoEndereço</button>
             </div>
-            <div id="button_x">
-                <button id="x_cancelar" type="button" class="hidden button-address-s">X</button>
+            <div id="button_x" class="hidden">
+                <button id="x_cancelar" type="button" class=" button-address-s">X</button>
             </div>
 
 
@@ -144,32 +138,32 @@
 
                     <div class="form-group">
                         <label>CEP</label>
-                        <input type="text" id="cep" required maxlength="">
+                        <input type="text" id="cep" maxlength="">
                     </div>
 
                     <div class="form-group">
                         <label>Logradouro</label>
-                        <input type="text" id="logradouro" required>
+                        <input type="text" id="logradouro" disabled>
                     </div>
 
                     <div class="form-group">
                         <label>Número</label>
-                        <input type="text" id="numero" required>
+                        <input type="text" id="numero">
                     </div>
 
                     <div class="form-group">
                         <label>Bairro</label>
-                        <input type="text" id="bairro" required>
+                        <input type="text" id="bairro" disabled>
                     </div>
 
                     <div class="form-group">
                         <label>Cidade</label>
-                        <input type="text" id="cidade" required>
+                        <input type="text" id="cidade" disabled>
                     </div>
 
                     <div class="form-group">
                         <label>Estado</label>
-                        <input type="text" id="estado" required>
+                        <input type="text" id="estado" disabled>
                     </div>
 
                     <div class="form-group tipo-endereco">
@@ -193,7 +187,7 @@
             <section id="button" class="hidden">
                 <div class="botoes-lado">
                     <button id="btn_back" class="btn-acao btn-back">Voltar</button>
-                    <button id="btn_save" class="btn-acao btn-save">Salvar</button>
+                    <button id="btn_save" type="button" class="btn-acao btn-save">Salvar</button>
                 </div>
             </section>
 

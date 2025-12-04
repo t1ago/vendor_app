@@ -1,20 +1,30 @@
 const campo_id = document.getElementById("id");
 const campo_nome = document.getElementById("nome");
 const campo_apelido = document.getElementById("apelido");
-const campo_tipo_pessoa_f = document.getElementById("campo_tipo_pessoa_f");
-const campo_tipo_pessoa_j = document.getElementById("campo_tipo_pessoa_j");
+
+// tipo pessoa
+const campo_tipo_pessoa_f = document.getElementById("btn_pf");
+const campo_tipo_pessoa_j = document.getElementById("btn_pj");
+
+// sexo
 const campo_sexo_m = document.getElementById("campo_sexo_m");
 const campo_sexo_f = document.getElementById("campo_sexo_f");
-const campo_data_nascimento = document.getElementById("data_nascimento");
-const campo_federal = document.getElementById("federal");
-const campo_estadual = document.getElementById("estadual");
+
+// documentos
+const campo_estadual = document.getElementById("rg");
+const campo_federal = document.getElementById("cpf");
+
+// ativo
 const campo_ativo_s = document.getElementById("ativoS");
+
 const campo_ativo_n = document.getElementById("ativoN");
+
+// vínculo
 const campo_vinculo_s = document.getElementById("vinculoS");
 const campo_vinculo_n = document.getElementById("vinculoN");
 
-
-
+// nascimento
+const campo_data_nascimento = document.getElementById("data_nascimento");
 const preencherform = (endereco) => {
     document.getElementById("logradouro").value = endereco.logradouro;
     document.getElementById("bairro").value = endereco.bairro;
@@ -54,34 +64,35 @@ const cadastro_input = function () {
 };
 
 
-const corpomontado = function () {
+const corpomontado = () => {
 
-    const getValorRadio = (campo_s, campo_n) => campo_s.checked ? "S" : campo_n.checked ? "N" : null;
+    const tipoPessoaSelecionada =
+        document.getElementById("formulario-fisico").classList.contains("hidden") ? "J" : "F";
 
-    const getTipoPessoa = () =>
-        campo_tipo_pessoa_f.checked ? "F" :
-            campo_tipo_pessoa_j.checked ? "J" : null;
-
-    const getSexo = () =>
+    const sexo =
         campo_sexo_m.checked ? "M" :
             campo_sexo_f.checked ? "F" : null;
+
+    const ativo =
+        campo_ativo_s.checked ? "A" :
+            campo_ativo_n.checked ? "I" : null;
 
     return {
         nome: campo_nome.value,
         apelido: campo_apelido.value,
-        tipo_pessoa: getTipoPessoa(),
-        sexo: getSexo(),
-        data_nascimento: parseInt(campo_data_nascimento.value) || 0,
-        documento_federal: campo_federal.value,
+        tipo_pessoa: tipoPessoaSelecionada,
+        sexo,
+        data_nascimento: campo_data_nascimento.value,
         documento_estadual: campo_estadual.value,
-        ativo: campo_ativo_s.checked ? "S" : "N",
-        id_vinculo: getValorRadio(campo_vinculo_s, campo_vinculo_n)
+        documento_federal: campo_federal.value,
+        ativo,
+        id_vinculo: document.getElementById("vinculo").value || null
+
     };
 };
 
 
-const salvando_Tela = async function () {
-
+const salvando_Tela = async () => {
     const corpo = corpomontado();
 
     const requisicao = await fetch(`${API_HOST}/pessoa/miguel`, {
@@ -90,16 +101,15 @@ const salvando_Tela = async function () {
         body: JSON.stringify(corpo)
     });
 
+    const resposta = await requisicao.json();
+
     if (!requisicao.ok) {
-        alert("Erro ao salvar pessoa");
+        alert("Erro ao salvar: " + resposta.mensagem);
         return;
     }
 
-    const resposta = await requisicao.json();
     campo_id.value = resposta.data[0].id;
 };
-
-
 
 async function salvarEndereco(id_pessoa) {
 
@@ -118,7 +128,7 @@ async function salvarEndereco(id_pessoa) {
 
     const corpo = { cep, logradouro, numero, bairro, cidade, estado, tipo_endereco, id_pessoa, ativo: "S" };
 
-    await fetch(`${API_HOST}/pessoas/miguel/endereco`, {
+    await fetch(`${API_HOST}/pessoa/miguel/endereco`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(corpo)
@@ -134,7 +144,7 @@ const atualizando_tela = async function () {
 
     const corpo = corpomontado();
 
-    await fetch(`${API_HOST}/pessoas/miguel/${campo_id.value}`, {
+    await fetch(`${API_HOST}/pessoa/miguel/${campo_id.value}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(corpo)
@@ -170,7 +180,7 @@ const dados = async function () {
 
     if (!pessoaId) return;
 
-    let requisicao = await fetch(`${API_HOST}/pessoas/miguel/${pessoaId}`);
+    let requisicao = await fetch(`${API_HOST}/pessoa/miguel/${pessoaId}`);
 
     if (!requisicao.ok) return;
 

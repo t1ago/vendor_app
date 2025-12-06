@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cadastro de medidas</title>
 
-<link rel="stylesheet" href="../padraodam.css">
+    <link rel="stylesheet" href="../../../utilitarios/padraodam.css">
 
 </head>
+
 <body>
-    
+
     <main id="cadastro_medidas">
         <form>
             <div class="container">
                 <h1>Cadastro de Medidas</h1>
                 <div class="linha">
-                <!-- ID escondido para uso interno -->
+                    <!-- ID escondido para uso interno -->
                     <div class="coluna coluna-id">
                         <label for="campo_novo_id">ID</label>
                         <input type="hidden" id="campo_novo_id" value="">
                     </div>
-                <!-- Campo medida -->
+                    <!-- Campo medida -->
                     <div class="coluna">
                         <label for="campo_novo_nome">Nome</label>
-                        <input type="text" id="campo_novo_nome" placeholder="Unidade de medida" 
-                        required minlength="3" maxlength="64" onkeyup="validar_campo_nome()" onchange="validar_campo_nome()">
+                        <input type="text" id="campo_novo_nome" placeholder="Unidade de medida" required minlength="3"
+                            maxlength="64" onkeyup="validar_campo_nome()" onchange="validar_campo_nome()">
                         <small id="mensagem" class="erro"></small>
-                        
+
                     </div>
                 </div>
                 <div class="botoes-rodape">
                     <button type="button" onclick="voltar()">❌</button>
                     <button type="button" onclick="salvar()">💾</button>
                 </div>
-            
+
             </div>
         </form>
     </main>
     <script src="cadastro_medidas.js"></script>
 </body>
+
 </html>

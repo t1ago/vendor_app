@@ -14,7 +14,8 @@
 
 /*  CAMPO */
 .coluna-fields>input,
-textarea {
+textarea,
+select {
     font-size: 14px;
     padding: 0px 5px 5px 5px;
     border-top: 0px;
@@ -24,6 +25,14 @@ textarea {
     margin-top: 5px;
     margin-bottom: 5px;
     width: calc(100% - 8px);
+}
+
+.coluna-fields>select {
+    padding-bottom: 3px;
+}
+
+.coluna-fields>fieldset {
+    border: 1px solid #586EDB;
 }
 
 .coluna-fields>input:focus {
@@ -62,8 +71,19 @@ textarea {
 }
 
 .coluna-fields>input[disabled] {
-    border: 0px;
     background: #f6f6f6;
+}
+
+.coluna-fields>select[disabled] {
+    background: #f6f6f6;
+}
+
+.coluna-fields>select[disabled] {
+    color: black
+}
+
+.coluna-fields>.esconder {
+    display: none;
 }
 
 .coluna-fields>.informacao-consulta.esconder {
@@ -158,6 +178,43 @@ textarea {
     color: #FE0707;
 }
 
+.alerta {
+    z-index: 99;
+    padding-top: 15%;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: #599ddc4d;
+    padding-right: 300px;
+    backdrop-filter: blur(10px);
+    opacity: 1;
+    visibility: visible;
+    animation: fadeIn 0.5s;
+}
+
+.alerta>* {
+    vertical-align: middle;
+}
+
+.alerta>label {
+    font-size: 28px;
+    color: black;
+    padding: 0px 5px 5px 5px;
+    border: 0px 0px 0px 0px
+}
+
+.alerta>img {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+}
+
+.alerta>button {
+    min-width: 100px;
+}
+
 @media screen and (max-width: 950px) {
     .linha>h1 {
         text-align: center;
@@ -172,5 +229,15 @@ textarea {
     .coluna-botoes-cadastro>button:last-child {
         margin-top: 10px;
         background: #599DDC;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }

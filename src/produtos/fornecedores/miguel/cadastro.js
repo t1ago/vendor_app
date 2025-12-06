@@ -30,7 +30,6 @@ async function focar_campo(elemento, minha_funcao) {
 function selecionar_item(elemento, id) {
     valores_dados[id] = parseInt(elemento.dataset.id)
     esconder_informacao(elemento)
-    console.log(valores_dados)
 }
 
 function esconder_informacao(elemento) {

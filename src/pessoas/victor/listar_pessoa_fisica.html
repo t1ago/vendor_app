@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor_App (Estudos)</title>
+</head>
+<body>
+    <main class="listar_pessoas">
+        <div class="linha">
+            <h2>Pessoas Físicas</h2>
+            <div class="coluna">
+                <h3>Filtrar Pessoas</h3>
+                <input type="text">
+            </div>
+        </div>
+        <div class="linha">
+            <div class="coluna">
+                <table>
+                    <thead>
+                        <th>Nome</th>
+                        <th>Apelido</th>
+                        <th>CPF</th>
+                        <th>RG</th>
+                        <th>Ativo</th>
+                        <th>Vinculo</th>
+                        <th>Endereços</th>
+                        <th>Ações</th>
+                    </thead>
+                    <tbody id="corpo_pessoas">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="../../../utilitarios/padrao.js"></script>
+    <script src="../../../config.js"></script>
+    <script src="./cadastro_pessoa_conexoes.js"></script>
+    <script src="./listar_pessoa_fisica.js"></script>
+</body>
+</html>

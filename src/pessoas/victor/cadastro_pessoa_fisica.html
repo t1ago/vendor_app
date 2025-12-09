@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor_app (Estudos)</title>
+    <link rel="stylesheet" href="../../utilitarios/padrao_victor.css">
+</head>
+<body>
+    <main id="principal-cadastro">
+        <form id="form-cadastro">
+            <div class="linha">
+                <div class="coluna">
+                    <label for="nome"></label>
+                    <input type="text" id="nome">
+                </div>
+                <div class="coluna">
+                    <label for="apelido"></label>
+                    <input type="text" id="apelido">
+                </div>
+            </div>
+            <div class="linha">
+                <div class="coluna">
+                    <label for="documento_federal"></label>
+                    <input type="text" id="documento_federal">
+                </div>
+                <div class="coluna">
+                    <label for="documento_estadual"></label>
+                    <input type="text" id="documento_estadual">
+                </div>
+                <div class="coluna">
+                    <label for="ativo"></label>
+                    <label for="ativo_sim"></label>
+                    <input type="radio" id="ativo_sim" name="ativo" value="A">
+                    <label for="ativo_nao"></label>
+                    <input type="radio" id="ativo_nao" name="ativo" value="I">
+                </div>
+            </div>
+            <div class="linha">
+                <div class="coluna">
+                    <label for="sexo"></label>
+                    <label for="sexo_masculino"></label>
+                    <input type="radio" id="sexo_masculino" name="sexo" value="M">
+                    <label for="sexo_feminino"></label>
+                    <input type="radio" id="sexo_feminino" name="sexo" value="F">
+                </div>
+                <div class="coluna">
+                    <label for="data_nascimento"></label>
+                    <input type="date" id="data_nascimento">
+                </div>
+                <div class="coluna">
+                    <label for="vinculo"></label>
+                    <select id="vinculo">
+                    </select>
+                </div>
+            </div>
+        </form>
+    </main>
+    <script src="../../config.js"></script>
+    <script src="./cadastro_pessoa_conexoes.js"></script>
+    <script src="./cadastro_pessoa.js"></script>
+</body>
+</html>

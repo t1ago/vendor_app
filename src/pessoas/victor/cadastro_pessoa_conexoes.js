@@ -53,3 +53,15 @@ async function inativar(id_pessoa) {
         }
     });
 }
+
+async function buscarVinculos() {
+    requisao = await fetch(`${API_HOST}/pessoas/v/`,{
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
+        }
+    });
+    resultado = await requisao.json();
+    return resultado;
+}

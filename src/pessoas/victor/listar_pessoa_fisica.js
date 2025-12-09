@@ -40,6 +40,19 @@ async function montarEnderecos(moradia,cobranca,entrega) {
     }
     return coluna;
 }
+function montarColunaBotao(pessoa) {
+    coluna = document.createElement("td");
+    button_inativar = document.createElement("button");
+    button_inativar.onclick = async function(){
+        await inativar(pessoa);
+    }
+    button_inativar.innerHTML = "I";
+    button_editar = document.createElement("button");
+    button_editar.onclick = function () {
+        navegarPara(`./cadastro_pessoa_fisica.html?id_pessoa=${pessoa}`);
+    }
+    button_editar.innerHTML = "E";
+}
 function mostrarDados(dados) {
     tabela.innerHTML = "";
     dados.data.forEach(coluna => {
@@ -51,7 +64,7 @@ function mostrarDados(dados) {
         linha.appendChild(montarColuna(coluna.ativo));
         linha.appendChild(montarColuna(coluna.id_vinculo));
         linha.appendChild(montarEnderecos(coluna.id_moradia,coluna.id_cobranca,coluna.id_entrega));
-        linha.appendChild(montarColunaBotao())
+        linha.appendChild(montarColunaBotao(coluna.id_pessoa));
         tabela.appendChild(linha);
     });
 }
@@ -59,6 +72,14 @@ function mostrarDados(dados) {
 async function listarPessoas() {
     resultado = await buscarTodos(tipo);
     mostrarDados(resultado);
+}
+
+ function pesquisar(elemento) {
+    clearTimeout()
+    setTimeout(async()=> {
+        resultado = await buscarTodosFiltro(elemento.value);
+        console.log("foi");
+    },3000)
 }
 
 listarPessoas()

@@ -10,7 +10,17 @@ async function buscarTodos(tipo_pessoa) {
         resultado = await requisao.json();
         return resultado;
     }
-    
+}
+async function buscarTodosFiltro(filtro,tipo_pessoa) {
+    requisao = await fetch(`${API_HOST}/pessoas/victor/?esp${tipo_pessoa}&filtro=${filtro}`,{
+        method: "GET",
+        headers:{
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
+        }
+    });
+    resultado = await requisao.json();
+    return resultado;
 }
 async function buscarEstados() {
     requisao = await fetch(`${API_HOST}/enderecos/victor/estados`,{
@@ -33,4 +43,13 @@ async function buscarEnderecoId(id_endereco) {
     });
     resultado = await requisao.json();
     return resultado;
+}
+async function inativar(id_pessoa) {
+    requisao = await fetch(`${API_HOST}/pessoas/i/${id_pessoa}`,{
+        method: "PUT",
+        headers: {
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
+        }
+    });
 }

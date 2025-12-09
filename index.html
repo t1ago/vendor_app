@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 
 <head>
     <title>Vendor_App (Estudos)</title>
@@ -16,29 +15,55 @@
 
 <body>
     <main id="home">
-        <button type="button" onclick="botao_listar_categorias_click()">Categorias</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_cores_click()">Cores</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_medidas_click()">Medidas</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_moedas_click()">Moedas</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_produto_victor_click()">Produto (Victor)</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_marcas_click()">Marcas</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_grupo_click()">Grupo</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_produto_tiago_click()">Produtos (Tiago)</button>
-        &nbsp;
-        <button type="button" onclick="botao_listar_fornecedor_miguel_click()">Fornecedores (Miguel) </button>
-
-        
+        <div class="linha">
+            <h1 class="coluna">Produtos</h1>
+        </div>
+        <div class="linha">
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_produto_tiago_click()">Produtos (Tiago)</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_fornecedor_miguel_click()">Fornecedores (Miguel) </button>
+            </div>
+        </div>
+        <div class="linha">
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_categorias_click()">Categorias</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_cores_click()">Cores</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_medidas_click()">Medidas</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_moedas_click()">Moedas</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_marcas_click()">Marcas</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_grupo_click()">Grupo</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_listar_grupo_click()">Grupo</button>
+            </div>
+        </div>
+        <div class="linha">
+            <h1 class="coluna">Clientes</h1>
+        </div>
+        <div class="linha">
+            <div class="coluna">
+                <button type="button" onclick="botao_cadastrar_pessoa_click('F')">Pessoa Física (Tiago)</button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="botao_cadastrar_pessoa_click('J')">Pessoa Jurídica (Tiago)</button>
+            </div>
+        </div>
     </main>
-</body>
 
-<script src="utilitarios/padrao.js"></script>
-<script src="index.js"></script>
+    <script src="utilitarios/padrao.js"></script>
+    <script src="index.js"></script>
+</body>
 
 </html>

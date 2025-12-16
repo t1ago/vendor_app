@@ -228,12 +228,18 @@ function abrirModal(titulo, texto, acaoConfirmacao) {
             acaoConfirmacao();
             fecharModal();
         };
-        
-        modalOverlay.classList.remove('esconder');
+
+        requestAnimationFrame(() => {
+            modalOverlay.classList.add('mostrar');
+        });
     }
 
 function fecharModal() {
-    modalOverlay.classList.add('esconder');
+    modalOverlay.classList.remove('mostrar');
+    
+    setTimeout(() => {
+        modalOverlay.classList.add('esconder');
+    }, 300);
 }
 
 btnCancelarModal.onclick = fecharModal;

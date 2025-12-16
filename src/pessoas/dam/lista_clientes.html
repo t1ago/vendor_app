@@ -1,40 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de Clientes</title>
-
-    <link rel="stylesheet" href="../../padraodam.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor_App (Estudos)</title>
+    <link rel="stylesheet" href="../../../utilitarios/padraodam.css">
 </head>
 <body>
-  <main class="container">
-    <h1>Lista de Clientes</h1>
+    <main id="listar-clientes" class="container">
+        <div class="linha">
+            <h1 data-texto-lista-titulo>Listagem de Clientes</h1>
+        </div>
 
-    <div class="tabela-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Apelido</th>
-            <th>CPF</th>
-            <th>RG</th>
-            <th>Sexo</th>
-            <th>Ativo</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody id="corpoTabela">
-            </tbody>
-      </table>
+        <div class="linha espaco-cima search">
+            <div class="coluna coluna-fields">
+                <label for="search" data-texto-filtro>Filtrar</label>
+                <input type="text" id="search" name="search" maxlength="64" oninput="filtrarDados(event)">
+            </div>
+        </div>
+
+        <div class="linha espaco-cima">
+            <div class="coluna" id="container-tabela">
+                <table id="tabela" class="esconder">
+                    <thead>
+                        <tr>
+                            <th data-texto-nome>Nome</th>
+                            <th data-texto-apelido>Apelido</th>
+                            <th data-texto-cpf>CPF</th>
+                            <th data-texto-rg>RG</th>
+                            <th data-texto-sexo>Sexo</th>
+                            <th data-texto-ativo>Ativo</th>
+                            <th data-texto-acoes>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabela">
+                    </tbody>
+                </table>
+                <h2 id="mensagem" class="esconder"></h2>
+                <img id="imagem" class="esconder" src="../../../imagens/loading.gif" alt="Carregando..."> 
+            </div>
+        </div>
+
+        <div class="linha" style="justify-content: center;">
+            <h3 id="feedbackMensagem" style="color: green; text-align: center;"></h3>
+        </div>
+
+        <div class="linha coluna-botoes-listagem espaco-cima">
+            <div class="coluna">
+                <button type="button" onclick="irParaIndex()">
+                    <span>◀️ Voltar</span>
+                </button>
+            </div>
+            <div class="coluna">
+                <button type="button" onclick="abrirCadastro()">
+                    <span>💾 Novo cadastro</span>
+                </button>
+            </div>
+        </div>
+    </main>
+    
+    <div id="modal-confirmacao" class="modal-overlay esconder">
+        <div class="modal-box">
+            <h3 id="modal-titulo">Confirma��o</h3>
+            <p id="modal-mensagem">Tem certeza que deseja realizar esta a��o?</p>
+            
+            <div class="modal-botoes">
+                <button id="btn-cancelar-modal" class="botao-cancelar">Cancelar</button>
+                <button id="btn-confirmar-modal" class="botao-confirmar">Confirmar</button>
+            </div>
+        </div>
     </div>
 
-    <div class="botoes-rodape">
-      <button type="button" onclick="irParaIndex()">◀️ Voltar</button>
-      <button type="button" onclick="abrirCadastro()">💾 Cadastrar</button>
-    </div>
-  </main>
-  
-  <script src="lista_clientes.js"></script>
+    <script src="../../../config.js"></script> 
+    <script src="lista_clientes.js"></script>
 </body>
 </html>

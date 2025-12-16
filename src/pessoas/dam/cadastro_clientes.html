@@ -1,170 +1,226 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cadastro de Clientes</title>
-    <link rel="stylesheet" href="../../padraodam.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>Cadastro de Clientes</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../utilitarios/padraodam.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .esconder { display: none !important; }
+        .bloco-endereco { border: 1px solid #e0e0e0; padding: 20px; margin-bottom: 20px; border-radius: 8px; background-color: #fff; }
+        .coluna-botoes-cadastro { display: flex; gap: 10px; justify-content: flex-end; }
+        .checkbox-container { display: flex; align-items: center; height: 100%; padding-top: 1.5rem; }
+    </style>
 </head>
+
 <body>
-  <main class="container" onclick="clique_geral()">
+    <main id="cadastro-pessoa" class="container">
+        
+        <div id="carregando-msg" style="text-align: center; padding: 50px;">
+            <h2>⌛ Carregando dados...</h2>
+        </div>
 
-    <div id="carregando-msg" style="text-align: center; padding: 50px;">
-        <h2>⌛ Carregando dados do cliente...</h2>
-    </div>
-
-        <form id="form-cliente" class="oculto"> 
-      <input type="hidden" id="id" name="id" />
-      <h1>Cadastro de Clientes</h1>
+        <form id="form-cliente" class="esconder" onsubmit="event.preventDefault();">
+            <input type="hidden" id="id" name="id" />
 
             <div class="linha">
-        <div class="coluna">
-          <label for="tipo_pessoa">Tipo de Cliente</label>
-          <select id="tipo_pessoa" name="tipo_pessoa" required onchange="alternarTipoPessoa(this.value)">
-            <option value="PF" selected>Pessoa Física (PF)</option>
-            <option value="PJ">Pessoa Jurídica (PJ)</option>
-          </select>
-        </div>
-        <div class="coluna"></div>
-        <div class="coluna"></div>
-      </div>
+                <h1 class="coluna" data-texto-titulo>Cadastro de Cliente</h1>
+            </div>
 
             <div class="linha">
-        <div class="coluna">
-          <label for="nome" id="label-nome">Nome Completo</label>
-          <input type="text" id="nome" name="nome" required onchange="valores.nome = this.value"/>
-        </div>
-        <div class="coluna">
-          <label for="apelido" id="label-apelido">Apelido/Nome Social</label>
-          <input type="text" id="apelido" name="apelido" required onchange="valores.apelido = this.value"/>
-        </div>
-      </div>
-
-            <div id="secao-pf">
-        <div class="linha">
-          <div class="coluna">
-            <label for="cpf">CPF</label>
-            <input type="text" id="cpf" name="cpf" required onchange="valores.cpf = this.value" maxlength="14" />
-          </div>
-          <div class="coluna">
-            <label for="rg">RG</label>
-            <input type="text" id="rg" name="rg" required onchange="valores.rg = this.value" maxlength="15"/>
-          </div>
-          <div class="coluna">
-            <label for="data_nascimento">Data de Nasc.</label>
-            <input type="date" id="data_nascimento" name="data_nascimento" required onchange="valores.data_nascimento = this.value"/>
-          </div>
-          <div class="coluna">
-            <label for="sexo">Sexo</label>
-            <select id="sexo" name="sexo" required onchange="valores.sexo = this.value">
-              <option value="" disabled selected>Selecione</option>
-              <option value="M">Masculino</option>
-              <option value="F">Feminino</option>
-              <option value="O">Outro</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-            <div id="secao-pj" class="oculto">
-        <div class="linha">
-          <div class="coluna">
-            <label for="cnpj">CNPJ</label>
-            <input type="text" id="cnpj" name="cnpj" onchange="valores.cnpj = this.value" maxlength="18"/>
-          </div>
-          <div class="coluna">
-            <label for="inscricao_estadual">Inscrição Estadual</label>
-            <input type="text" id="inscricao_estadual" name="inscricao_estadual" onchange="valores.inscricao_estadual = this.value"/>
-          </div>
-          <div class="coluna"></div>
-        </div>
-      </div>
-      
-      <h2>Endereços</h2>
-
-<div id="form-endereco-container" class="oculto">
-    <h3>Adicionar/Editar Endereço</h3>
-    <input type="hidden" id="end-id" value="" />
-    <input type="hidden" id="end-index" value="" /> 
-
-    <div class="bloco-endereco">
-        <div class="linha">
-            <div class="coluna">
-                <label for="end-tipo">Tipo</label>
-                <select id="end-tipo">
-                    <option value="Moradia">Moradia</option>
-                    <option value="Cobranca">Cobrança</option>
-                    <option value="Entrega">Entrega</option>
-                </select>
+                <div class="coluna coluna-fields">
+                    <label style="display:block; margin-bottom:5px;">Tipo de Cliente</label>
+                    <div class="radio-group-container">
+                        <div class="radio-group-item">
+                            <input type="radio" id="tp_pf" name="tipo_pessoa" value="PF" checked onchange="alternarTipoPessoa('PF')">
+                            <label for="tp_pf">Pessoa Física</label>
+                        </div>
+                        <div class="radio-group-item">
+                            <input type="radio" id="tp_pj" name="tipo_pessoa" value="PJ" onchange="alternarTipoPessoa('PJ')">
+                            <label for="tp_pj">Pessoa Jurídica</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="coluna"></div> 
             </div>
-            <div class="coluna">
-                <label for="end-ativo">Ativo</label>
-                <input type="checkbox" id="end-ativo" checked>
-            </div>
-            <div class="coluna">
-                <label for="end-cep">CEP</label>
-                <input type="text" id="end-cep" onchange="buscarEnderecoPorCep(this.value)">
-            </div>
-        </div>
 
-        <div class="linha">
-            <div class="coluna">
-                <label for="end-logradouro">Logradouro</label>
-                <input type="text" id="end-logradouro">
-            </div>
-            <div class="coluna">
-                <label for="end-numero">Número</label>
-                <input type="text" id="end-numero">
-            </div>
-        </div>
+            <div class="linha espaco-cima">
+                <div class="coluna coluna-fields">
+                    <label data-texto-nome for="nome"></label>
+                    <input type="text" id="nome" name="nome" required minlength="3" maxlength="64">
+                </div>
 
-        <div class="linha">
-            <div class="coluna">
-                <label for="end-bairro">Bairro</label>
-                <input type="text" id="end-bairro">
+                <div class="coluna coluna-fields">
+                    <label data-texto-apelido for="apelido"></label>
+                    <input type="text" id="apelido" name="apelido" required minlength="3" maxlength="64">
+                </div>
             </div>
-            <div class="coluna">
-                <label for="end-cidade">Cidade</label>
-                <input type="text" id="end-cidade">
-            </div>
-            <div class="coluna">
-                <label for="end-estado">Estado (UF)</label>
-                <input type="text" id="end-estado">
-            </div>
-        </div>
-    </div>
 
-    <div class="linha botoes-rodape" style="justify-content: flex-start;">
-        <button type="button" onclick="salvarEndereco()">✅ Salvar Endereço</button>
-        <button type="button" onclick="cancelarEdicaoEndereco()">❌ Cancelar Edição</button>
-    </div>
-</div>
+            <div class="linha">
+                <div class="coluna coluna-fields">
+                    <label data-texto-documento-federal for="documento_federal"></label>
+                    <input type="text" id="documento_federal" name="documento_federal" required 
+                           oninput="mascaraDocumento(this)" maxlength="18">
+                </div>
 
-<div id="tabela-enderecos-container" class="tabela-container">
-    <table id="tabela-enderecos">
-        <thead>
-            <tr>
-                <th>Tipo</th>
-                <th>Logradouro</th>
-                <th>Bairro</th>
-                <th>CEP</th>
-                <th>Ativo</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody id="corpo-tabela-enderecos">
+                <div class="coluna coluna-fields">
+                    <label data-texto-documento-estadual for="documento_estadual"></label>
+                    <input type="text" id="documento_estadual" name="documento_estadual" 
+                           oninput="mascaraNumeros(this)">
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="coluna coluna-fields" data-visible="F">
+                    <label data-texto-data-nascimento for="data_nascimento"></label>
+                    <input type="date" id="data_nascimento" name="data_nascimento">
+                </div>
+
+                <div class="coluna coluna-fields" data-visible="F">
+                    <label data-texto-sexo style="display:block; margin-bottom:5px;"></label>
+                    <div class="radio-group-container">
+                        <div class="radio-group-item">
+                            <input type="radio" id="sexo_masculino" name="sexo" value="M" onclick="atualizarValor('sexo', 'M')">
+                            <label for="sexo_masculino" data-texto-sexo-masculino>Masculino</label>
+                        </div>
+                        <div class="radio-group-item">
+                            <input type="radio" id="sexo_feminino" name="sexo" value="F" onclick="atualizarValor('sexo', 'F')">
+                            <label for="sexo_feminino" data-texto-sexo-feminino>Feminino</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="coluna coluna-fields" style="display: flex; flex-direction: column; justify-content: center;">
+                    <label data-texto-ativo style="margin-bottom: 5px; display:block;">Ativo?</label>
+                    <label class="switch-container">
+                        <input type="checkbox" id="ativo_toggle" class="switch-input" checked onchange="atualizarValor('ativo', this.checked)">
+                        <span class="switch-label"></span>
+                        <span id="texto-ativo-status">Sim</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="linha espaco-cima">
+                <h2 class="coluna" data-texto-titulo-endereco>Endereços</h2>
+            </div>
+
+            <div id="form-endereco-container" class="bloco-endereco esconder">
+                <h3 data-texto-titulo-form-endereco>Dados do Endereço</h3>
+                <input type="hidden" id="end-id">
+                <input type="hidden" id="end-index">
+
+                <div class="linha">
+                    <div class="coluna">
+                        <label data-texto-tipo-endereco>Tipo</label>
+                        <select id="end-tipo">
+                            <option value="Moradia">Moradia</option>
+                            <option value="Cobranca">Cobrança</option>
+                            <option value="Entrega">Entrega</option>
+                        </select>
+                    </div>
+                    <div class="coluna">
+                        <label data-texto-cep>CEP</label>
+                        <input type="text" id="end-cep" oninput="mascaraCEP(this)" onchange="buscarEnderecoPorCep(this.value)" maxlength="9">
+                    </div>
+                    <div class="coluna checkbox-container">
+                        <label class="switch-container" style="margin-top: 20px;">
+                            <input type="checkbox" id="end-ativo" class="switch-input" checked>
+                            <span class="switch-label"></span>
+                            <span>Ativo</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="linha">
+                    <div class="coluna">
+                        <label data-texto-logradouro>Logradouro</label>
+                        <input type="text" id="end-logradouro">
+                    </div>
+                    <div class="coluna">
+                        <label data-texto-numero>Número</label>
+                        <input type="text" id="end-numero">
+                    </div>
+                </div>
+
+                <div class="linha">
+                    <div class="coluna">
+                        <label data-texto-bairro>Bairro</label>
+                        <input type="text" id="end-bairro">
+                    </div>
+                    <div class="coluna">
+                        <label data-texto-cidade>Cidade</label>
+                        <input type="text" id="end-cidade">
+                    </div>
+                    <div class="coluna">
+                        <label data-texto-estado>Estado</label>
+                        <input type="text" id="end-estado" maxlength="2" style="text-transform: uppercase;">
+                    </div>
+                </div>
+
+                <div class="linha botoes-rodape" style="justify-content: flex-start;">
+                    <button type="button" class="btn-primario" onclick="salvarEnderecoNaLista()">
+                        <span data-texto-botao-salvar-endereco>Confirmar Endereço</span>
+                    </button>
+                    <button type="button" class="btn-secundario" onclick="fecharFormularioEndereco()">
+                        <span data-texto-botao-cancelar-endereco>Cancelar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="tabela-enderecos-container" class="tabela-container">
+                <table id="tabela-enderecos">
+                    <thead>
+                        <tr>
+                            <th data-texto-tipo-endereco>Tipo</th>
+                            <th data-texto-logradouro>Logradouro</th>
+                            <th data-texto-cep>CEP</th>
+                            <th data-texto-ativo-endereco>Ativo</th>
+                            <th data-texto-acoes>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-enderecos">
                     </tbody>
-    </table>
-</div>
+                </table>
+                <h3 id="msg-sem-enderecos" class="esconder" style="text-align: center; margin-top: 10px;">Nenhum endereço adicionado.</h3>
+            </div>
 
-<div class="linha">
-    <button type="button" onclick="abrirFormularioNovoEndereco()">➕ Adicionar Novo Endereço</button>
-</div>,       <div class="linha botoes-rodape">
-        <button type="button" onclick="voltar()">❌ Cancelar</button>
-        <button type="submit" onclick="salvarCliente()">💾 Salvar</button>
-      </div>
-    </form>
-  </main>
-  <script src="cadastro_clientes.js"></script>
+            <div class="linha">
+                <button type="button" class="btn-secundario" onclick="abrirFormularioNovoEndereco()">
+                    ➕ <span data-texto-botao-novo-endereco>Adicionar Endereço</span>
+                </button>
+            </div>
+
+            <div class="linha espaco-cima">
+                <div class="coluna coluna-botoes-cadastro">
+                    <button type="button" class="btn-secundario" onclick="voltar()">
+                        ❌ <span data-texto-botao-cancelar>Cancelar</span>
+                    </button>
+                    <button type="button" id="btn-salvar" class="btn-primario" onclick="salvarCliente()">
+                        <span id="icon-salvar">💾</span> 
+                        <span id="text-salvar" data-texto-botao-salvar>Salvar Cliente</span>
+                        <span id="loading-salvar" class="esconder">🔄</span>
+                    </button>
+                </div>  
+            </div>
+
+        </form>
+    </main>
+
+    <div id="modal-global" class="modal-overlay">
+        <div class="modal-box">
+            <h3 id="modal-titulo">Título</h3>
+            <p id="modal-mensagem">Mensagem aqui</p>
+            <div id="modal-acoes" class="modal-botoes">
+                </div>
+        </div>
+    </div>
+
+    <script src="../../../../config.js"></script>
+    <script src="cadastro_clientes.js"></script>
 </body>
 </html>

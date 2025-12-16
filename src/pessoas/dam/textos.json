@@ -1,0 +1,58 @@
+{
+  "lista_titulo": "Listagem de Clientes",
+  "filtrar_listagem": "Filtrar por Nome/Documento:",
+  
+  "nome": "Nome/Razão Social",
+  "apelido": "Apelido/Nome Fantasia",
+  "cpf": "CPF",
+  "rg": "RG",
+  "sexo": "Sexo",
+  "ativo": "Ativo",
+  "listagem_acoes": "Ações",
+  "sexo_masculino": "Masculino",
+  "sexo_feminino": "Feminino",
+  "indisponivel": "-",
+
+  "emoji_editar": "✏️",
+  "emoji_excluir": "🗑️",
+  "editar": "Editar Cliente",
+  "deletar": "Excluir Cliente",
+
+  "nenhum_cliente_localizado": "Nenhum cliente foi localizado.",
+  "confirmar_exclusao": "Deseja realmente excluir este cliente?",
+  "sucesso_exclusao": "Cliente excluído com sucesso!",
+  "erro_exclusao": "Erro ao excluir cliente.",
+  "erro_servidor": "Erro no servidor.",
+  "erro_padrao": "Ocorreu um erro ao carregar os dados.",
+
+  "titulo_tpf": "Cadastro de Cliente",
+  "nome_tpf": "Nome Completo",
+  "apelido_tpf": "Apelido",
+  "documento_federal_tpf": "CPF",
+  "documento_estadual_tpf": "RG",
+  "data_nascimento": "Data de Nascimento",
+
+  "titulo_tpj": "Cadastro de Pessoa Jurídica",
+  "nome_tpj": "Razão Social",
+  "apelido_tpj": "Nome Fantasia",
+  "documento_federal_tpj": "CNPJ",
+  "documento_estadual_tpj": "Inscrição Estadual",
+
+  "titulo_endereco": "Endereços",
+  "novo_endereco": "Adicionar Endereço",
+  "botao_salvar": "Salvar Cliente",
+  "botao_cancelar": "Cancelar",
+
+  "cep": "CEP",
+  "logradouro": "Logradouro",
+  "numero": "Número",
+  "bairro": "Bairro",
+  "cidade": "Cidade",
+  "estado": "UF",
+
+  "botao_salvando": "Salvando...",
+  "msg_sucesso_cadastro": "✅ Cliente cadastrado com sucesso!",
+  "msg_sucesso_alteracao": "✅ Cliente alterado com sucesso!",
+  "erro_padrao_salvar": "Falha ao salvar o cliente. Erro: ",
+  "erro_conexao": "Erro de conexão com o servidor."
+}

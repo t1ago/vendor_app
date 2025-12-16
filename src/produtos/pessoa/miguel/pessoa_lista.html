@@ -14,7 +14,14 @@
 
         <div class="botoes-topo">
             <button id="btn-voltar" onclick="volta_lista()"> Voltar</button>
-            <button id="btn-cadastrar" onclick="cadastro_lista()">Cadastrar Pessoa</button>
+            <button id="btn-cadastrar" onclick="cadastro_lista()">Cadastrar Pessoa</button> 
+        </div>
+
+        <div class="filter-group" style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <input type="text" id="filtro_busca" placeholder="Buscar por Nome, CPF ou Endereço..."
+                style="padding: 8px; flex-grow: 1; border: 1px solid #ccc; border-radius: 4px;">
+            <button id="btn_filtrar" type="button" class="btn-acao btn-save"
+                style="background-color: #007bff;">Buscar</button>
         </div>
 
         <div class="bloco-tabela">
@@ -30,19 +37,17 @@
                         <th>CPF</th>
                         <th>Ativo</th>
                         <th>Vínculo</th>
-                        <th>Ações</th>
-                        <th>Ações</th>
-                        <th>Endereço</th>
+                        <th colspan="2">Ações</th> <th>Endereço</th>
                     </tr>
                 </thead>
-                <tbody id="tabela-pessoas">
+                <tbody id="tabela-pessoas"> 
                 </tbody>
             </table>
         </div>
     </div>
 
-    <script src="../../../../config.js"></script>
-    <script src="pessoa_lista.js"> </script>
+    <script src="../../../../config.js"></script> 
+    <script src="pessoa_lista.js"></script> 
 
 </body>
 

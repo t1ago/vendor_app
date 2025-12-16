@@ -28,7 +28,7 @@ function carregar_botao() {
 
 carregar_botao()
 
-window.onload = () => {
+window.addEventListener("load", () => {
 
     const formFisico = document.getElementById("formulario-fisico");
     const formJuridico = document.getElementById("formulario-juridico");
@@ -41,18 +41,13 @@ window.onload = () => {
     const div_endereco = document.getElementById("button_address")
     const btn_geral = document.getElementById("button")
 
-    const secao_fisico = document.getElementById("button")
-    const secao_juridico = document.getElementById("button_juridico")
-
     const secao_x = document.getElementById("button_x")
 
     // Função para mostrar PF
     function mostrarPF() {
         formJuridico.classList.add("hidden");
         formFisico.classList.remove("hidden");
-        btn_geral.classList.remove("hidden");
-        secao_fisico.classList.remove("hidden")
-        secao_juridico.classList.add("hidden");
+        btn_geral.classList.remove("hidden")        
         div_endereco.classList.remove("hidden");
         secao_x.classList.add("hidden")
         button_endereço.classList.remove("hidden")
@@ -60,16 +55,14 @@ window.onload = () => {
 
         // código que faz a url mostrar que mudou o tipo 
         history.replaceState({}, "", "?tipo=F");
+        
     }
 
     // Função para mostrar PJ
     function mostrarPJ() {
         formFisico.classList.add("hidden");
         formJuridico.classList.remove("hidden");
-
         btn_geral.classList.remove("hidden");
-        secao_juridico.classList.remove("hidden");
-        secao_fisico.classList.add("hidden")
         div_endereco.classList.remove("hidden");
         secao_x.classList.add("hidden")
         button_endereço.classList.remove("hidden")
@@ -92,5 +85,5 @@ window.onload = () => {
     } else if (tipo === "J") {
         mostrarPJ();
     }
-};
+});
 

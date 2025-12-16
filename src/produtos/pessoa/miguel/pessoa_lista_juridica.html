@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pessoas Jurídicas</title>
+    <link rel="stylesheet" href="pessoa_lista.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Pessoas Jurídicas</h1>
+
+        <div class="header-actions">
+            <button type="button" class="btn-novo" onclick="window.location.href='pessoa_cadastro.html?tipo=J'">Nova Pessoa </button> 
+        </div>
+
+        <div class="filter-group" style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <input type="text" id="filtro_busca" placeholder="Buscar por Nome, CNPJ ou Endereço..."
+                style="padding: 8px; flex-grow: 1; border: 1px solid #ccc; border-radius: 4px;">
+            <button id="btn_filtrar" type="button" class="btn-acao btn-save"
+                style="background-color: #007bff;">Buscar</button>
+        </div>
+
+        <table id="tabela-pessoas">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Razão Social</th>
+                    <th>Nome Fantasia</th>
+                    <th>CNPJ</th>
+                    <th>IE</th> <th>Ativo</th>
+                    <th colspan="2">Ações</th>
+                    <th>Endereço</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-pessoas-juridicas"> 
+            </tbody>
+        </table>
+    </div>
+
+    <script src="../../../../config.js"></script>
+    <script src="pessoa_lista_juridica.js"></script> 
+</body>
+
+</html>

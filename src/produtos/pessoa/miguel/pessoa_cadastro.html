@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
 
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +13,7 @@
         <h1>Pessoas_Miguel</h1>
 
         <form>
-
-            <!-- Formulário de Pessoa Física -->
+            <input type="hidden" id="id" value="">
 
             <div class="form-group">
                 <button type="button" class="button-address" id="btn_pf">Pessoa Física</button>
@@ -27,12 +25,12 @@
 
                 <div class="form-group">
                     <label>Nome</label>
-                    <input type="text" id="nome" maxlength="64">
+                    <input type="text" id="nome" maxlength="64" >
                 </div>
 
                 <div class="form-group">
                     <label>Apelido</label>
-                    <input type="text" id="apelido" maxlength="64">
+                    <input type="text" id="apelido" maxlength="64" >
                 </div>
 
                 <label>Sexo</label>
@@ -63,10 +61,10 @@
 
                 <label>Ativo</label>
                 <div class="radio-group">
-                    <input type="radio" id="ativoS" name="ativo" value="S">
+                    <input type="radio" id="ativoS" name="ativo" value="A">
                     <label for="ativoS">Ativo</label>
 
-                    <input type="radio" id="ativoN" name="ativo" value="N">
+                    <input type="radio" id="ativoN" name="ativo" value="I">
                     <label for="ativoN">Inativo</label>
                 </div>
 
@@ -78,8 +76,6 @@
                 </div>
 
             </section>
-
-            <!-- Formulário de Pessoa Jurídica -->
 
             <section id="formulario-juridico" class="hidden">
 
@@ -108,37 +104,30 @@
                 <div class="form-group">
                     <label>Ativo</label>
                     <div class="radio-group">
-                        <input type="radio" id="ativo_s" value="sim">
+                        <input type="radio" id="ativo_s" value="A" name="ativo_pj">
                         <label for="ativo_s">Sim</label>
 
-                        <input type="radio" id="ativo_n" value="nao">
+                        <input type="radio" id="ativo_n" value="I" name="ativo_pj">
                         <label for="ativo_n">Não</label>
                     </div>
                 </div>
             </section>
 
-            <!-- Botão Novo Endereço -->
-
-
-            <div id="button_address" class="hidden">
-                <button id="button-address_btn" type="button" class="button-address-s"
-                    onclick="carregar_botao()">NovoEndereço</button>
+            <div id="endereco-manager-buttons" style="display: flex; justify-content: flex-end; margin-top: 20px;">
+                <div id="button_address">
+                    <button id="button-address_btn" type="button" class="button-address-s">Novo Endereço</button>
+                </div>
             </div>
-            <div id="button_x" class="hidden">
-                <button id="x_cancelar" type="button" class=" button-address-s">X</button>
-            </div>
+            
+            <section id="lista-enderecos-temporarios"></section>
 
-
-
-            <!-- Formulário de Endereço -->
 
             <section id="formulario-endereco" class="hidden">
-
                 <div class="endereco-grid">
 
                     <div class="form-group">
                         <label>CEP</label>
-                        <input type="text" id="cep" maxlength="">
+                        <input type="text" id="cep" maxlength="9" >
                     </div>
 
                     <div class="form-group">
@@ -174,28 +163,19 @@
                             <option value="cobrança">Cobrança</option>
                         </select>
                     </div>
-
-                    <div class="hidden">
-                        <label>id_pessoa</label>
-                        <input type="text">
-                    </div>
-
+                </div>
+                
+                <div id="button_x" style="display: flex; justify-content: flex-end;">
+                    <button id="x_cancelar" type="button" class="button-address-s">Adicionar Endereço</button>
                 </div>
             </section>
 
-            <!-- Botões Salvar e Voltar PF-->
-            <section id="button" class="hidden">
+            <section id="button">
                 <div class="botoes-lado">
                     <button id="btn_back" class="btn-acao btn-back">Voltar</button>
-                    <button id="btn_save" type="button" class="btn-acao btn-save">Salvar</button>
-                </div>
-            </section>
-
-            <!-- Botões Salvar e Voltar PJ-->
-            <section id="button_juridico" class="hidden">
-                <div class="botoes-lado">
-                    <button id="btn_back_juridico" class="btn-acao btn-back">Voltar</button>
-                    <button id="btn_save_juridico" class="btn-acao btn-save">Salvar</button>
+                    
+                    <button id="btn_save" type="button" class="btn-acao btn-save"
+                        onclick="botao_salvar()">Salvar</button>
                 </div>
             </section>
 
